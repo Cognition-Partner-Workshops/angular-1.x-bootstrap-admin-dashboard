@@ -31,3 +31,6 @@ input, select, textarea {
   font-family: inherit;
   font-size: inherit;
 }
+
+/* Typography page styles */
+@import 'app/features/ui/typography/typography.styles';
