@@ -163,6 +163,11 @@ export const routes: Routes = [
         path: 'maps/lines',
         loadChildren: () => import('./features/maps/lines/lines.routes').then(m => m.LINES_ROUTES),
         data: { breadcrumb: 'Maps' }
+      },
+      {
+        path: 'maps/bubble',
+        loadChildren: () => import('./features/maps/bubble/bubble.routes').then(m => m.BUBBLE_ROUTES),
+        data: { breadcrumb: 'Maps' }
       }
     ]
   },

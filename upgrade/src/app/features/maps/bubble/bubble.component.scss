@@ -1,0 +1,11 @@
+#map-bubbles {
+  width: 100%;
+  height: 500px;
+  min-height: 400px;
+}
+
+:host ::ng-deep .viewport100 {
+  .panel-body {
+    padding: 0;
+  }
+}
