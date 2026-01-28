@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaPanelComponent } from '../../../shared/components/ba-panel';
 import {
@@ -24,7 +24,8 @@ interface ChartInstance {
   standalone: true,
   imports: [CommonModule, BaPanelComponent],
   templateUrl: './chartist.component.html',
-  styleUrl: './chartist.component.scss'
+  styleUrl: './chartist.component.scss',
+  encapsulation: ViewEncapsulation.None
 })
 export class ChartistComponent implements AfterViewInit, OnDestroy {
   @ViewChild('lineChart') lineChartEl!: ElementRef;
