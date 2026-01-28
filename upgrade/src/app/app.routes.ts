@@ -126,6 +126,11 @@ export const routes: Routes = [
         path: 'ui/buttons',
         loadChildren: () => import('./features/ui/buttons/buttons.routes').then(m => m.BUTTONS_ROUTES),
         data: { breadcrumb: 'UI' }
+      },
+      {
+        path: 'ui/modals',
+        loadChildren: () => import('./features/ui/modals/modals.routes').then(m => m.MODALS_ROUTES),
+        data: { breadcrumb: 'UI' }
       }
     ]
   },
