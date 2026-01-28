@@ -1,0 +1,30 @@
+<div class="widgets" data-testid="slider-page">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-blur with-scroll" data-testid="slider-panel">
+        <div class="panel-heading">Ion Range Slider</div>
+        <div class="panel-body">
+          @for (slider of sliders; track slider.id) {
+            <div class="slider-box" [attr.data-testid]="'slider-box-' + slider.id">
+              <h5>{{ slider.title }}</h5>
+              @if (slider.highValue !== undefined) {
+                <ngx-slider
+                  [(value)]="slider.value"
+                  [(highValue)]="slider.highValue"
+                  [options]="slider.options"
+                  [attr.data-testid]="'slider-' + slider.id">
+                </ngx-slider>
+              } @else {
+                <ngx-slider
+                  [(value)]="slider.value"
+                  [options]="slider.options"
+                  [attr.data-testid]="'slider-' + slider.id">
+                </ngx-slider>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
