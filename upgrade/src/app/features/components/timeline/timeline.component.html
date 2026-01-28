@@ -1,0 +1,19 @@
+<app-page-container title="Timeline" [showBreadcrumb]="true">
+  <section id="cd-timeline" class="cd-container cssanimations" data-testid="timeline-container">
+    @for (item of timelineItems; track item.id) {
+      <div class="cd-timeline-block" #timelineBlock [attr.data-testid]="'timeline-block-' + item.id">
+        <div class="cd-timeline-img">
+          <div class="kameleon-icon with-round-bg" [ngClass]="item.colorVariant">
+            <img [src]="getIconPath(item.icon)" [alt]="item.icon">
+          </div>
+        </div>
+
+        <div class="cd-timeline-content" [ngClass]="item.colorVariant">
+          <h5>{{ item.title }}</h5>
+          <p>{{ item.description }}</p>
+          <span class="cd-date">{{ item.date }}</span>
+        </div>
+      </div>
+    }
+  </section>
+</app-page-container>

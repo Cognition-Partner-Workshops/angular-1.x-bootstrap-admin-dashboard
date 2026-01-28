@@ -70,6 +70,13 @@ export const routes: Routes = [
         data: {
           breadcrumb: 'UI'
         }
+      },
+      {
+        path: 'components/timeline',
+        loadChildren: () => import('./features/components/timeline/timeline.routes').then(m => m.TIMELINE_ROUTES),
+        data: {
+          breadcrumb: 'Components'
+        }
       }
     ]
   },
