@@ -82,6 +82,11 @@ export const routes: Routes = [
         path: 'ui/tabs',
         loadChildren: () => import('./features/ui/tabs/tabs.routes').then(m => m.TABS_ROUTES),
         data: { breadcrumb: 'UI Elements' }
+      },
+      {
+        path: 'tables/smart',
+        loadChildren: () => import('./features/tables/smart/smart.routes').then(m => m.SMART_TABLE_ROUTES),
+        data: { breadcrumb: 'Tables' }
       }
     ]
   },

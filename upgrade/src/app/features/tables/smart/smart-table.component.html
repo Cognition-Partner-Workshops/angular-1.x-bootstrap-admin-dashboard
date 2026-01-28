@@ -1,0 +1,167 @@
+<div class="widgets">
+  <div class="row">
+    <div class="col-md-12">
+      <app-ba-panel panelTitle="Smart Table With Filtering, Sorting And Pagination" panelClass="with-scroll">
+        <div class="horizontal-scroll">
+          <div class="form-group select-page-size-wrap">
+            <label>Rows on page
+              <select
+                class="form-control"
+                [(ngModel)]="pageSize"
+                (ngModelChange)="onPageSizeChange()"
+                data-testid="page-size-select">
+                @for (option of pageSizeOptions; track option) {
+                  <option [value]="option">{{ option }}</option>
+                }
+              </select>
+            </label>
+          </div>
+          <table class="table" data-testid="smart-table">
+            <thead>
+              <tr class="sortable">
+                <th
+                  class="table-id"
+                  [class]="getSortClass('id')"
+                  (click)="onSort('id')"
+                  data-testid="sort-id">
+                  #
+                </th>
+                <th
+                  [class]="getSortClass('firstName')"
+                  (click)="onSort('firstName')"
+                  data-testid="sort-firstName">
+                  First Name
+                </th>
+                <th
+                  [class]="getSortClass('lastName')"
+                  (click)="onSort('lastName')"
+                  data-testid="sort-lastName">
+                  Last Name
+                </th>
+                <th
+                  [class]="getSortClass('username')"
+                  (click)="onSort('username')"
+                  data-testid="sort-username">
+                  Username
+                </th>
+                <th
+                  [class]="getSortClass('email')"
+                  (click)="onSort('email')"
+                  data-testid="sort-email">
+                  Email
+                </th>
+                <th
+                  [class]="getSortClass('age')"
+                  (click)="onSort('age')"
+                  data-testid="sort-age">
+                  Age
+                </th>
+              </tr>
+              <tr>
+                <th></th>
+                <th>
+                  <input
+                    type="search"
+                    placeholder="Search First Name"
+                    class="input-sm form-control search-input"
+                    [(ngModel)]="filters.firstName"
+                    (ngModelChange)="onFilterChange()"
+                    data-testid="filter-firstName" />
+                </th>
+                <th>
+                  <input
+                    type="search"
+                    placeholder="Search Last Name"
+                    class="input-sm form-control search-input"
+                    [(ngModel)]="filters.lastName"
+                    (ngModelChange)="onFilterChange()"
+                    data-testid="filter-lastName" />
+                </th>
+                <th>
+                  <input
+                    type="search"
+                    placeholder="Search Username"
+                    class="input-sm form-control search-input"
+                    [(ngModel)]="filters.username"
+                    (ngModelChange)="onFilterChange()"
+                    data-testid="filter-username" />
+                </th>
+                <th>
+                  <input
+                    type="search"
+                    placeholder="Search Email"
+                    class="input-sm form-control search-input"
+                    [(ngModel)]="filters.email"
+                    (ngModelChange)="onFilterChange()"
+                    data-testid="filter-email" />
+                </th>
+                <th>
+                  <input
+                    type="search"
+                    placeholder="Search Age"
+                    class="input-sm form-control search-input"
+                    [(ngModel)]="filters.age"
+                    (ngModelChange)="onFilterChange()"
+                    data-testid="filter-age" />
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of displayedData; track trackByRowId($index, item)) {
+                <tr data-testid="table-row">
+                  <td class="table-id">{{ item.id }}</td>
+                  <td>{{ item.firstName }}</td>
+                  <td>{{ item.lastName }}</td>
+                  <td>{{ item.username }}</td>
+                  <td><a class="email-link" [href]="'mailto:' + item.email">{{ item.email }}</a></td>
+                  <td>{{ item.age }}</td>
+                </tr>
+              }
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="6" class="text-center">
+                  <nav aria-label="Table pagination">
+                    <ul class="pagination" data-testid="pagination">
+                      <li [class.disabled]="currentPage === 1">
+                        <button
+                          type="button"
+                          class="pagination-link"
+                          (click)="goToPage(currentPage - 1)"
+                          [disabled]="currentPage === 1"
+                          aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                        </button>
+                      </li>
+                      @for (page of pageNumbers; track page) {
+                        <li [class.active]="page === currentPage">
+                          <button
+                            type="button"
+                            class="pagination-link"
+                            (click)="goToPage(page)"
+                            [attr.data-testid]="'page-' + page">
+                            {{ page }}
+                          </button>
+                        </li>
+                      }
+                      <li [class.disabled]="currentPage === totalPages">
+                        <button
+                          type="button"
+                          class="pagination-link"
+                          (click)="goToPage(currentPage + 1)"
+                          [disabled]="currentPage === totalPages"
+                          aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                        </button>
+                      </li>
+                    </ul>
+                  </nav>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </app-ba-panel>
+    </div>
+  </div>
+</div>
