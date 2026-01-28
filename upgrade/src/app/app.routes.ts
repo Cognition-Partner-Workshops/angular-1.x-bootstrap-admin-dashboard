@@ -35,6 +35,13 @@ export const routes: Routes = [
         data: {
           breadcrumb: 'UI'
         }
+      },
+      {
+        path: 'ui/alerts',
+        loadChildren: () => import('./features/ui/alerts/alerts.routes').then(m => m.ALERTS_ROUTES),
+        data: {
+          breadcrumb: 'UI'
+        }
       }
     ]
   },
