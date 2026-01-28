@@ -1,0 +1,458 @@
+<div class="widgets form-inputs-page">
+  <div class="row">
+    <div class="col-md-6">
+      <!-- Standard Fields -->
+      <app-ba-panel panelTitle="Standard Fields" panelClass="with-scroll">
+        <form>
+          <div class="form-group">
+            <label for="input01">Text</label>
+            <input type="text" class="form-control" id="input01" placeholder="Text" data-testid="text-input">
+          </div>
+          <div class="form-group">
+            <label for="input02">Password</label>
+            <input type="password" class="form-control" id="input02" placeholder="Password" data-testid="password-input">
+          </div>
+          <div class="form-group">
+            <label for="input03">Rounded Corners</label>
+            <input type="text" class="form-control form-control-rounded" id="input03" placeholder="Rounded Corners">
+          </div>
+          <div class="form-group">
+            <label for="input04">With help</label>
+            <input type="text" class="form-control" id="input04" placeholder="With help">
+            <span class="help-block sub-little-text">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+          </div>
+          <div class="form-group">
+            <label for="input05">Disabled Input</label>
+            <input type="text" class="form-control" id="input05" placeholder="Disabled Input" disabled data-testid="disabled-input">
+          </div>
+          <div class="form-group">
+            <label for="textarea01">Textarea</label>
+            <textarea placeholder="Default Input" class="form-control" id="textarea01"></textarea>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control input-sm" id="input2" placeholder="Small Input">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control input-lg" id="input4" placeholder="Large Input">
+          </div>
+        </form>
+      </app-ba-panel>
+
+      <!-- Tags Input -->
+      <app-ba-panel panelTitle="Tags Input" panelClass="with-scroll">
+        <div class="form-group" data-testid="tags-input-primary">
+          <div class="bootstrap-tagsinput">
+            @for (tag of tags.primary; track tag; let i = $index) {
+              <span class="tag label label-primary">
+                {{ tag }}
+                <span data-role="remove" (click)="removeTag('primary', i)" data-testid="remove-tag-primary">&times;</span>
+              </span>
+            }
+            <input
+              type="text"
+              [(ngModel)]="newTag.primary"
+              (keydown)="addTag('primary', $event)"
+              placeholder="Add Tag"
+              data-testid="tag-input-primary">
+          </div>
+        </div>
+        <div class="form-group" data-testid="tags-input-warning">
+          <div class="bootstrap-tagsinput warning">
+            @for (tag of tags.warning; track tag; let i = $index) {
+              <span class="tag label label-warning">
+                {{ tag }}
+                <span data-role="remove" (click)="removeTag('warning', i)">&times;</span>
+              </span>
+            }
+            <input
+              type="text"
+              [(ngModel)]="newTag.warning"
+              (keydown)="addTag('warning', $event)"
+              placeholder="Add Tag">
+          </div>
+        </div>
+        <div class="form-group" data-testid="tags-input-danger">
+          <div class="bootstrap-tagsinput danger">
+            @for (tag of tags.danger; track tag; let i = $index) {
+              <span class="tag label label-danger">
+                {{ tag }}
+                <span data-role="remove" (click)="removeTag('danger', i)">&times;</span>
+              </span>
+            }
+            <input
+              type="text"
+              [(ngModel)]="newTag.danger"
+              (keydown)="addTag('danger', $event)"
+              placeholder="Add Tag">
+          </div>
+        </div>
+      </app-ba-panel>
+
+      <!-- Input Groups -->
+      <app-ba-panel panelTitle="Input Groups" panelClass="with-scroll">
+        <div class="input-group">
+          <span class="input-group-addon input-group-addon-primary addon-left" id="basic-addon1">&#64;</span>
+          <input type="text" class="form-control with-primary-addon" placeholder="Username" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group">
+          <input type="text" class="form-control with-warning-addon" placeholder="Recipient's username" aria-describedby="basic-addon2">
+          <span class="input-group-addon input-group-addon-warning addon-right" id="basic-addon2">&#64;example.com</span>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon addon-left input-group-addon-success">$</span>
+          <input type="text" class="form-control with-success-addon" aria-label="Amount (to the nearest dollar)">
+          <span class="input-group-addon addon-right input-group-addon-success">.00</span>
+        </div>
+        <div class="input-group">
+          <input type="text" class="form-control with-danger-addon" placeholder="Search for...">
+          <span class="input-group-btn">
+            <button class="btn btn-danger" type="button">Go!</button>
+          </span>
+        </div>
+      </app-ba-panel>
+
+      <!-- Checkboxes & Radios -->
+      <app-ba-panel panelTitle="Checkboxes & Radios" panelClass="with-scroll">
+        <div class="checkbox-demo-row">
+          <div class="input-demo checkbox-demo row">
+            <div class="col-md-4">
+              <label class="checkbox-inline custom-checkbox nowrap">
+                <input type="checkbox" id="inlineCheckbox01" [(ngModel)]="checkboxes.check1" data-testid="checkbox-1">
+                <span>Check 1</span>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <label class="checkbox-inline custom-checkbox nowrap">
+                <input type="checkbox" id="inlineCheckbox02" [(ngModel)]="checkboxes.check2" data-testid="checkbox-2">
+                <span>Check 2</span>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <label class="checkbox-inline custom-checkbox nowrap">
+                <input type="checkbox" id="inlineCheckbox03" [(ngModel)]="checkboxes.check3" data-testid="checkbox-3">
+                <span>Check 3</span>
+              </label>
+            </div>
+          </div>
+          <div class="input-demo radio-demo row">
+            <div class="col-md-4">
+              <label class="radio-inline custom-radio nowrap">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" [(ngModel)]="radioValue" value="option1" data-testid="radio-1">
+                <span>Option 1</span>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <label class="radio-inline custom-radio nowrap">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" [(ngModel)]="radioValue" value="option2" data-testid="radio-2">
+                <span>Option 2</span>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <label class="radio-inline custom-radio nowrap">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" [(ngModel)]="radioValue" value="option3" data-testid="radio-3">
+                <span>Option 3</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="checkbox disabled">
+            <label class="custom-checkbox nowrap">
+              <input type="checkbox" value="" disabled>
+              <span>Checkbox is disabled</span>
+            </label>
+          </div>
+          <div class="radio disabled">
+            <label class="custom-radio nowrap">
+              <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
+              <span>Disabled option</span>
+            </label>
+          </div>
+        </div>
+      </app-ba-panel>
+
+      <!-- On/Off Switches -->
+      <app-ba-panel panelTitle="On/Off Switches" panelClass="with-scroll">
+        <div class="switches-container" data-testid="switches-panel">
+          <label class="switcher-container" data-testid="switch-primary">
+            <input type="checkbox" [(ngModel)]="switches.s1">
+            <div class="switcher primary">
+              <div class="handle-container">
+                <span class="handle handle-on">ON</span>
+                <span class="handle"></span>
+                <span class="handle handle-off">OFF</span>
+              </div>
+            </div>
+          </label>
+          <label class="switcher-container" data-testid="switch-success">
+            <input type="checkbox" [(ngModel)]="switches.s2">
+            <div class="switcher success">
+              <div class="handle-container">
+                <span class="handle handle-on">ON</span>
+                <span class="handle"></span>
+                <span class="handle handle-off">OFF</span>
+              </div>
+            </div>
+          </label>
+          <label class="switcher-container" data-testid="switch-warning">
+            <input type="checkbox" [(ngModel)]="switches.s3">
+            <div class="switcher warning">
+              <div class="handle-container">
+                <span class="handle handle-on">ON</span>
+                <span class="handle"></span>
+                <span class="handle handle-off">OFF</span>
+              </div>
+            </div>
+          </label>
+          <label class="switcher-container" data-testid="switch-danger">
+            <input type="checkbox" [(ngModel)]="switches.s4">
+            <div class="switcher danger">
+              <div class="handle-container">
+                <span class="handle handle-on">ON</span>
+                <span class="handle"></span>
+                <span class="handle handle-off">OFF</span>
+              </div>
+            </div>
+          </label>
+          <label class="switcher-container" data-testid="switch-info">
+            <input type="checkbox" [(ngModel)]="switches.s5">
+            <div class="switcher info">
+              <div class="handle-container">
+                <span class="handle handle-on">ON</span>
+                <span class="handle"></span>
+                <span class="handle handle-off">OFF</span>
+              </div>
+            </div>
+          </label>
+        </div>
+      </app-ba-panel>
+    </div>
+
+    <div class="col-md-6">
+      <!-- Validation States -->
+      <app-ba-panel panelTitle="Validation States" panelClass="with-scroll">
+        <div class="form-group has-success" data-testid="validation-success">
+          <label class="control-label" for="inputSuccess1">Input with success</label>
+          <input type="text" class="form-control" id="inputSuccess1">
+        </div>
+        <div class="form-group has-warning" data-testid="validation-warning">
+          <label class="control-label" for="inputWarning1">Input with warning</label>
+          <input type="text" class="form-control" id="inputWarning1">
+        </div>
+        <div class="form-group has-error" data-testid="validation-error">
+          <label class="control-label" for="inputError1">Input with error</label>
+          <input type="text" class="form-control" id="inputError1">
+        </div>
+        <div class="has-success">
+          <div class="checkbox">
+            <label class="custom-checkbox">
+              <input type="checkbox" id="checkboxSuccess" value="option1">
+              <span>Checkbox with success</span>
+            </label>
+          </div>
+        </div>
+        <div class="has-warning">
+          <div class="checkbox">
+            <label class="custom-checkbox">
+              <input type="checkbox" id="checkboxWarning" value="option1">
+              <span>Checkbox with warning</span>
+            </label>
+          </div>
+        </div>
+        <div class="has-error">
+          <div class="checkbox">
+            <label class="custom-checkbox">
+              <input type="checkbox" id="checkboxError" value="option1">
+              <span>Checkbox with error</span>
+            </label>
+          </div>
+        </div>
+        <div class="form-group has-success has-feedback">
+          <label class="control-label" for="inputSuccess2">Input with success</label>
+          <input type="text" class="form-control" id="inputSuccess2" aria-describedby="inputSuccess2Status">
+          <i class="ion-checkmark-circled form-control-feedback" aria-hidden="true"></i>
+          <span id="inputSuccess2Status" class="sr-only">(success)</span>
+        </div>
+        <div class="form-group has-warning has-feedback">
+          <label class="control-label" for="inputWarning2">Input with warning</label>
+          <input type="text" class="form-control" id="inputWarning2" aria-describedby="inputWarning2Status">
+          <i class="ion-alert-circled form-control-feedback" aria-hidden="true"></i>
+          <span id="inputWarning2Status" class="sr-only">(warning)</span>
+        </div>
+        <div class="form-group has-error has-feedback">
+          <label class="control-label" for="inputError2">Input with error</label>
+          <input type="text" class="form-control" id="inputError2" aria-describedby="inputError2Status">
+          <i class="ion-android-cancel form-control-feedback" aria-hidden="true"></i>
+          <span id="inputError2Status" class="sr-only">(error)</span>
+        </div>
+        <div class="form-group has-success has-feedback">
+          <label class="control-label" for="inputGroupSuccess1">Input group with success</label>
+          <div class="input-group">
+            <span class="input-group-addon addon-left">&#64;</span>
+            <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status">
+          </div>
+          <i class="ion-checkmark-circled form-control-feedback" aria-hidden="true"></i>
+          <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+        </div>
+      </app-ba-panel>
+
+      <!-- Selects -->
+      <app-ba-panel panelTitle="Selects" panelClass="with-scroll">
+        <div class="form-group" data-testid="select-standard">
+          <div class="custom-select-wrapper" [class.open]="dropdownOpen['standard']">
+            <button type="button" class="btn btn-default dropdown-toggle" (click)="toggleDropdown('standard')">
+              {{ selectedItem?.label || 'Standard Select' }}
+              <span class="caret"></span>
+            </button>
+            @if (dropdownOpen['standard']) {
+              <ul class="dropdown-menu show">
+                @for (item of standardSelectItems; track item.value) {
+                  <li (click)="selectOption('standard', item)">
+                    <a>{{ item.label }}</a>
+                  </li>
+                }
+              </ul>
+            }
+          </div>
+        </div>
+
+        <div class="form-group" data-testid="select-with-search">
+          <div class="custom-select-wrapper" [class.open]="dropdownOpen['withSearch']">
+            <button type="button" class="btn btn-default dropdown-toggle" (click)="toggleDropdown('withSearch')">
+              {{ withSearchItem?.label || 'Select With Search' }}
+              <span class="caret"></span>
+            </button>
+            @if (dropdownOpen['withSearch']) {
+              <ul class="dropdown-menu show">
+                <li class="search-box">
+                  <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Search..." (click)="$event.stopPropagation()">
+                </li>
+                @for (item of getFilteredSearchItems(); track item.value) {
+                  <li (click)="selectOption('withSearch', item)">
+                    <a>{{ item.label }}</a>
+                  </li>
+                }
+              </ul>
+            }
+          </div>
+        </div>
+
+        <div class="form-group" data-testid="select-disabled">
+          <div class="custom-select-wrapper disabled">
+            <button type="button" class="btn btn-default dropdown-toggle" disabled>
+              Disabled Selection
+              <span class="caret"></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group" data-testid="select-grouped">
+          <div class="custom-select-wrapper" [class.open]="dropdownOpen['grouped']">
+            <button type="button" class="btn btn-default dropdown-toggle" (click)="toggleDropdown('grouped')">
+              {{ groupedItem?.label || 'Select With Option Groups' }}
+              <span class="caret"></span>
+            </button>
+            @if (dropdownOpen['grouped']) {
+              <ul class="dropdown-menu show">
+                @for (group of getGroupedItems(); track group.group) {
+                  <li class="dropdown-header">{{ group.group }}</li>
+                  @for (item of group.items; track item.value) {
+                    <li (click)="selectOption('grouped', item)">
+                      <a>{{ item.label }}</a>
+                    </li>
+                  }
+                }
+              </ul>
+            }
+          </div>
+        </div>
+
+        <div class="form-group" data-testid="select-grouped-by">
+          <div class="custom-select-wrapper" [class.open]="dropdownOpen['groupedBy']">
+            <button type="button" class="btn btn-default dropdown-toggle" (click)="toggleDropdown('groupedBy')">
+              {{ groupedByItem?.name || 'Select With Option Groups Function' }}
+              <span class="caret"></span>
+            </button>
+            @if (dropdownOpen['groupedBy']) {
+              <ul class="dropdown-menu show">
+                @for (group of getGroupedByItems(); track group.group) {
+                  <li class="dropdown-header">{{ group.group }}</li>
+                  @for (item of group.items; track item.name) {
+                    <li (click)="selectGroupedByOption(item)">
+                      <a>{{ item.name }}</a>
+                    </li>
+                  }
+                }
+              </ul>
+            }
+          </div>
+        </div>
+
+        <div class="form-group" data-testid="select-multiple">
+          <div class="custom-select-wrapper multiple" [class.open]="dropdownOpen['multiple']">
+            <div class="selected-items" (click)="toggleDropdown('multiple')">
+              @if (multipleItems.length === 0) {
+                <span class="placeholder">Multiple Select</span>
+              } @else {
+                @for (item of multipleItems; track item.value) {
+                  <span class="tag label label-info">
+                    {{ item.label }}
+                    <span class="remove" (click)="removeMultipleItem(item); $event.stopPropagation()">&times;</span>
+                  </span>
+                }
+              }
+            </div>
+            @if (dropdownOpen['multiple']) {
+              <ul class="dropdown-menu show">
+                @for (item of multipleSelectItems; track item.value) {
+                  <li [class.selected]="isMultipleSelected(item)" (click)="toggleMultipleOption(item); $event.stopPropagation()">
+                    <a>
+                      <input type="checkbox" [checked]="isMultipleSelected(item)" readonly>
+                      {{ item.label }}
+                    </a>
+                  </li>
+                }
+              </ul>
+            }
+          </div>
+        </div>
+
+        <div class="form-group" data-testid="select-with-delete">
+          <div class="input-group">
+            <div class="custom-select-wrapper multiple form-control" [class.open]="dropdownOpen['withDelete']">
+              <div class="selected-items" (click)="toggleDropdown('withDelete')">
+                @if (withDeleteItems.length === 0) {
+                  <span class="placeholder">Select With Clear Button</span>
+                } @else {
+                  @for (item of withDeleteItems; track item.value) {
+                    <span class="tag label label-info">
+                      {{ item.label }}
+                      <span class="remove" (click)="removeWithDeleteItem(item); $event.stopPropagation()">&times;</span>
+                    </span>
+                  }
+                }
+              </div>
+              @if (dropdownOpen['withDelete']) {
+                <ul class="dropdown-menu show">
+                  @for (item of withDeleteSelectItems; track item.value) {
+                    <li [class.selected]="isWithDeleteSelected(item)" (click)="toggleWithDeleteOption(item); $event.stopPropagation()">
+                      <a>
+                        <input type="checkbox" [checked]="isWithDeleteSelected(item)" readonly>
+                        {{ item.label }}
+                      </a>
+                    </li>
+                  }
+                </ul>
+              }
+            </div>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-danger" (click)="clearWithDeleteItems()" data-testid="clear-selection-btn">
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+            </span>
+          </div>
+        </div>
+      </app-ba-panel>
+    </div>
+  </div>
+</div>

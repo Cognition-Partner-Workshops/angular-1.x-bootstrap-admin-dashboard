@@ -58,6 +58,13 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'form/inputs',
+        loadChildren: () => import('./features/form/inputs/inputs.routes').then(m => m.INPUTS_ROUTES),
+        data: {
+          breadcrumb: 'Form'
+        }
+      },
+      {
         path: 'ui/panels',
         loadChildren: () => import('./features/ui/panels/panels.routes').then(m => m.PANELS_ROUTES),
         data: {
