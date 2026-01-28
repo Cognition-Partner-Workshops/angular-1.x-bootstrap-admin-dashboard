@@ -1,0 +1,12 @@
+<button 
+  type="button" 
+  [class]="getButtonClasses()"
+  (click)="onClick()"
+  [disabled]="isLoading">
+  <span class="content">
+    <ng-content></ng-content>
+  </span>
+  <span class="progress">
+    <span class="progress-inner" [ngStyle]="getProgressStyle()"></span>
+  </span>
+</button>
