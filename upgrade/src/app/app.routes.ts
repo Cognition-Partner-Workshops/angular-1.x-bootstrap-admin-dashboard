@@ -138,6 +138,11 @@ export const routes: Routes = [
         path: 'ui/modals',
         loadChildren: () => import('./features/ui/modals/modals.routes').then(m => m.MODALS_ROUTES),
         data: { breadcrumb: 'UI' }
+      },
+      {
+        path: 'maps/google-maps',
+        loadChildren: () => import('./features/maps/google-maps/google-maps.routes').then(m => m.GOOGLE_MAPS_ROUTES),
+        data: { breadcrumb: 'Maps' }
       }
     ]
   },
