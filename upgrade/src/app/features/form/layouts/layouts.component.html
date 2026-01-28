@@ -1,0 +1,252 @@
+<div class="widgets" data-testid="form-layouts-page">
+  <!-- Inline Form - Full Width -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel" data-testid="inline-form-panel">
+        <div class="panel-heading">Inline Form</div>
+        <div class="panel-body with-scroll">
+          <form class="row form-inline" (ngSubmit)="onInlineFormSubmit()" data-testid="inline-form">
+            <div class="form-group col-sm-3 col-xs-6">
+              <input 
+                type="text" 
+                class="form-control" 
+                id="exampleInputName2" 
+                placeholder="Name"
+                [(ngModel)]="inlineFormData.name"
+                name="inlineName"
+                data-testid="inline-name-input">
+            </div>
+            <div class="form-group col-sm-3 col-xs-6">
+              <input 
+                type="email" 
+                class="form-control" 
+                id="exampleInputEmail2" 
+                placeholder="Email"
+                [(ngModel)]="inlineFormData.email"
+                name="inlineEmail"
+                data-testid="inline-email-input">
+            </div>
+            <div class="checkbox">
+              <label class="custom-checkbox">
+                <input 
+                  type="checkbox"
+                  [(ngModel)]="inlineFormData.rememberMe"
+                  name="inlineRememberMe"
+                  data-testid="inline-remember-checkbox">
+                <span>Remember me</span>
+              </label>
+            </div>
+            <button type="submit" class="btn btn-primary" data-testid="inline-submit-btn">Send invitation</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Two Column Layout -->
+  <div class="row">
+    <!-- Left Column -->
+    <div class="col-md-6">
+      <!-- Basic Form -->
+      <div class="panel" data-testid="basic-form-panel">
+        <div class="panel-heading">Basic Form</div>
+        <div class="panel-body with-scroll">
+          <form (ngSubmit)="onBasicFormSubmit()" data-testid="basic-form">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input 
+                type="email" 
+                class="form-control" 
+                id="exampleInputEmail1" 
+                placeholder="Email"
+                [(ngModel)]="basicFormData.email"
+                name="basicEmail"
+                data-testid="basic-email-input">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input 
+                type="password" 
+                class="form-control" 
+                id="exampleInputPassword1" 
+                placeholder="Password"
+                [(ngModel)]="basicFormData.password"
+                name="basicPassword"
+                data-testid="basic-password-input">
+            </div>
+            <div class="checkbox">
+              <label class="custom-checkbox">
+                <input 
+                  type="checkbox"
+                  [(ngModel)]="basicFormData.checkMe"
+                  name="basicCheckMe"
+                  data-testid="basic-check-checkbox">
+                <span>Check me out</span>
+              </label>
+            </div>
+            <button type="submit" class="btn btn-danger" data-testid="basic-submit-btn">Submit</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Horizontal Form -->
+      <div class="panel" data-testid="horizontal-form-panel">
+        <div class="panel-heading">Horizontal Form</div>
+        <div class="panel-body with-scroll">
+          <form class="form-horizontal" (ngSubmit)="onHorizontalFormSubmit()" data-testid="horizontal-form">
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+              <div class="col-sm-10">
+                <input 
+                  type="email" 
+                  class="form-control" 
+                  id="inputEmail3" 
+                  placeholder="Email"
+                  [(ngModel)]="horizontalFormData.email"
+                  name="horizontalEmail"
+                  data-testid="horizontal-email-input">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+              <div class="col-sm-10">
+                <input 
+                  type="password" 
+                  class="form-control" 
+                  id="inputPassword3" 
+                  placeholder="Password"
+                  [(ngModel)]="horizontalFormData.password"
+                  name="horizontalPassword"
+                  data-testid="horizontal-password-input">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                  <label class="custom-checkbox">
+                    <input 
+                      type="checkbox"
+                      [(ngModel)]="horizontalFormData.rememberMe"
+                      name="horizontalRememberMe"
+                      data-testid="horizontal-remember-checkbox">
+                    <span>Remember me</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-warning" data-testid="horizontal-submit-btn">Sign in</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="col-md-6">
+      <!-- Form Without Labels -->
+      <div class="panel" data-testid="form-without-labels-panel">
+        <div class="panel-heading">Form Without Labels</div>
+        <div class="panel-body with-scroll">
+          <form (ngSubmit)="onFormWithoutLabelsSubmit()" data-testid="form-without-labels">
+            <div class="form-group">
+              <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Recipients"
+                [(ngModel)]="formWithoutLabelsData.recipients"
+                name="recipients"
+                data-testid="no-labels-recipients-input">
+            </div>
+            <div class="form-group">
+              <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Subject"
+                [(ngModel)]="formWithoutLabelsData.subject"
+                name="subject"
+                data-testid="no-labels-subject-input">
+            </div>
+            <div class="form-group">
+              <textarea 
+                class="form-control" 
+                placeholder="Message"
+                [(ngModel)]="formWithoutLabelsData.message"
+                name="message"
+                data-testid="no-labels-message-input"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success" data-testid="no-labels-submit-btn">Send</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Block Form -->
+      <div class="panel" data-testid="block-form-panel">
+        <div class="panel-heading">Block Form</div>
+        <div class="panel-body with-scroll">
+          <form (ngSubmit)="onBlockFormSubmit()" data-testid="block-form">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="inputFirstName">First Name</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="inputFirstName" 
+                    placeholder="First Name"
+                    [(ngModel)]="blockFormData.firstName"
+                    name="firstName"
+                    data-testid="block-firstname-input">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="inputLastName">Last Name</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="inputLastName" 
+                    placeholder="Last Name"
+                    [(ngModel)]="blockFormData.lastName"
+                    name="lastName"
+                    data-testid="block-lastname-input">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="inputEmail">Email</label>
+                  <input 
+                    type="email" 
+                    class="form-control" 
+                    id="inputEmail" 
+                    placeholder="Email"
+                    [(ngModel)]="blockFormData.email"
+                    name="blockEmail"
+                    data-testid="block-email-input">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="inputWebsite">Website</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="inputWebsite" 
+                    placeholder="Website"
+                    [(ngModel)]="blockFormData.website"
+                    name="website"
+                    data-testid="block-website-input">
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary" data-testid="block-submit-btn">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
