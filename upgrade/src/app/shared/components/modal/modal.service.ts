@@ -44,7 +44,7 @@ export class ModalService {
 
     this.appRef.attachView(componentRef.hostView);
 
-    const domElem = (componentRef.hostView as { rootNodes: Node[] }).rootNodes[0] as HTMLElement;
+    const domElem = (componentRef.hostView as unknown as { rootNodes: Node[] }).rootNodes[0] as HTMLElement;
     document.body.appendChild(domElem);
 
     this.modalStack.push(componentRef);
