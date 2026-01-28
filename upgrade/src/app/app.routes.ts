@@ -168,6 +168,11 @@ export const routes: Routes = [
         path: 'maps/bubble',
         loadChildren: () => import('./features/maps/bubble/bubble.routes').then(m => m.BUBBLE_ROUTES),
         data: { breadcrumb: 'Maps' }
+      },
+      {
+        path: 'charts/morris',
+        loadChildren: () => import('./features/charts/morris/morris.routes').then(m => m.MORRIS_ROUTES),
+        data: { breadcrumb: 'Charts' }
       }
     ]
   },
