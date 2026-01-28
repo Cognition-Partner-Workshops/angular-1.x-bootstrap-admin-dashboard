@@ -28,6 +28,13 @@ export const routes: Routes = [
       {
         path: 'settings',
         loadComponent: () => import('./features/settings/settings.component').then(m => m.SettingsComponent)
+      },
+      {
+        path: 'ui/grid',
+        loadChildren: () => import('./features/ui/grid/grid.routes').then(m => m.GRID_ROUTES),
+        data: {
+          breadcrumb: 'UI'
+        }
       }
     ]
   },
