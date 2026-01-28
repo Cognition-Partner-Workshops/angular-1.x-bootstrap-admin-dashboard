@@ -21,7 +21,7 @@
           <div class="user-menu-header">
             <span class="user-email">{{ currentUser?.email || 'Not logged in' }}</span>
             @if (currentUser?.roles?.length) {
-              <span class="user-role">{{ currentUser.roles[0] }}</span>
+              <span class="user-role">{{ currentUser!.roles[0] }}</span>
             }
           </div>
           <div class="user-menu-divider"></div>
