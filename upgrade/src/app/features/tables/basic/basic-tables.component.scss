@@ -1,0 +1,239 @@
+$border-light: rgba(0, 0, 0, 0.12);
+$default-text: #666666;
+$danger: #e85656;
+$danger-dark: #d9534f;
+$primary: #209e91;
+$success: #90b900;
+$warning: #dfb81c;
+$info: #2dacd1;
+$border: rgba(0, 0, 0, 0.12);
+$label-text: #ffffff;
+$font-normal: 400;
+
+.widgets {
+  padding: 0;
+}
+
+.table {
+  margin-bottom: 0;
+  width: 100%;
+
+  > thead > tr > th {
+    border-bottom: 1px solid $border-light;
+    white-space: nowrap;
+
+    &:first-child {
+      text-align: center;
+    }
+
+    &:last-child {
+      padding-right: 16px;
+    }
+  }
+
+  > tbody > tr {
+    > td {
+      padding: 0 8px;
+      line-height: 35px;
+      border-top: 1px solid $border-light;
+
+      &:first-child {
+        text-align: center;
+      }
+
+      &:last-child {
+        padding-right: 16px !important;
+      }
+    }
+  }
+
+  > thead > tr > th {
+    border-bottom: none;
+  }
+
+  > tbody > tr.no-top-border {
+    &:first-child > td {
+      border-top: none;
+    }
+  }
+
+  > tbody > tr > th {
+    border: none;
+  }
+}
+
+.table-id {
+  text-align: left !important;
+  width: 40px;
+}
+
+.table-arr {
+  width: 5px;
+  padding: 10px 8px 8px 0 !important;
+}
+
+.browser-icons {
+  width: 41px;
+}
+
+a.email-link {
+  color: $default-text;
+  text-decoration: none;
+
+  &:hover {
+    color: $danger;
+  }
+}
+
+.status-button {
+  width: 60px;
+}
+
+.vertical-scroll {
+  max-height: 214px;
+  overflow-y: auto;
+}
+
+.horizontal-scroll {
+  overflow-x: auto;
+}
+
+.black-muted-bg {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.table-hover > tbody > tr:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.table-bordered,
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+  border: 1px solid $border-light;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.table-striped > tbody > tr > td {
+  border: none;
+}
+
+.table-condensed > thead > tr > th,
+.table-condensed > tbody > tr > th,
+.table-condensed > tfoot > tr > th,
+.table-condensed > thead > tr > td,
+.table-condensed > tbody > tr > td,
+.table-condensed > tfoot > tr > td {
+  padding: 5px;
+}
+
+@mixin color-row($color) {
+  background-color: rgba($color, 0.7);
+  color: $label-text;
+  border: none;
+
+  a.email-link {
+    color: $label-text;
+
+    &:hover {
+      color: $danger;
+    }
+  }
+}
+
+.table > tbody > tr.primary > td {
+  @include color-row($primary);
+}
+
+.table > tbody > tr.success > td {
+  @include color-row($success);
+}
+
+.table > tbody > tr.warning > td {
+  @include color-row($warning);
+}
+
+.table > tbody > tr.danger > td {
+  @include color-row($danger);
+}
+
+.table > tbody > tr.info > td {
+  @include color-row($info);
+}
+
+th {
+  font-weight: $font-normal;
+}
+
+.table-responsive {
+  margin-top: 10px;
+  overflow-x: auto;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.icon-up,
+.icon-down {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+}
+
+.icon-up {
+  border-bottom: 4px solid $success;
+}
+
+.icon-down {
+  border-top: 4px solid $danger;
+}
+
+.btn-xs {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+
+.btn-info {
+  background-color: $info;
+  border-color: $info;
+  color: $label-text;
+}
+
+.btn-primary {
+  background-color: $primary;
+  border-color: $primary;
+  color: $label-text;
+}
+
+.btn-success {
+  background-color: $success;
+  border-color: $success;
+  color: $label-text;
+}
+
+.btn-danger {
+  background-color: $danger;
+  border-color: $danger;
+  color: $label-text;
+}
+
+.btn-warning {
+  background-color: $warning;
+  border-color: $warning;
+  color: $label-text;
+}

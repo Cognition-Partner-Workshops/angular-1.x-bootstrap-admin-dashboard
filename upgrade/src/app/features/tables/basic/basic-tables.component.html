@@ -1,0 +1,182 @@
+<app-page-container pageTitle="Basic Tables">
+  <div class="widgets">
+    <div class="row">
+      <div class="col-lg-6 col-md-12">
+        <app-ba-panel panelTitle="Hover Rows" panelClass="with-scroll table-panel">
+          <div class="horizontal-scroll">
+            <table class="table table-hover" data-testid="hover-rows-table">
+              <thead>
+                <tr class="black-muted-bg">
+                  <th class="browser-icons"></th>
+                  <th>Browser</th>
+                  <th class="align-right">Visits</th>
+                  <th class="table-arr"></th>
+                  <th class="align-right">Purchases</th>
+                  <th class="table-arr"></th>
+                  <th class="align-right">%</th>
+                  <th class="table-arr"></th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (item of metricsTableData; track item.browser) {
+                  <tr class="no-top-border">
+                    <td><img [src]="item.image" width="20" height="20" [alt]="item.browser"></td>
+                    <td class="nowrap">{{ item.browser }}</td>
+                    <td class="align-right">{{ item.visits }}</td>
+                    <td class="table-arr"><i [ngClass]="{'icon-up': item.isVisitsUp, 'icon-down': !item.isVisitsUp}"></i></td>
+                    <td class="align-right">{{ item.purchases }}</td>
+                    <td class="table-arr"><i [ngClass]="{'icon-up': item.isPurchasesUp, 'icon-down': !item.isPurchasesUp}"></i></td>
+                    <td class="align-right">{{ item.percent }}</td>
+                    <td class="table-arr"><i [ngClass]="{'icon-up': item.isPercentUp, 'icon-down': !item.isPercentUp}"></i></td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </app-ba-panel>
+      </div>
+      <div class="col-lg-6 col-md-12">
+        <app-ba-panel panelTitle="Bordered Table" panelClass="with-scroll table-panel">
+          <div class="horizontal-scroll">
+            <table class="table table-bordered" data-testid="bordered-table">
+              <thead>
+                <tr>
+                  <th class="browser-icons"></th>
+                  <th>Browser</th>
+                  <th class="align-right">Visits</th>
+                  <th class="align-right">Purchases</th>
+                  <th class="align-right">%</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (item of metricsTableData; track item.browser) {
+                  <tr>
+                    <td><img [src]="item.image" width="20" height="20" [alt]="item.browser"></td>
+                    <td class="nowrap">{{ item.browser }}</td>
+                    <td class="align-right">{{ item.visits }}</td>
+                    <td class="align-right">{{ item.purchases }}</td>
+                    <td class="align-right">{{ item.percent }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </app-ba-panel>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-md-12">
+        <app-ba-panel panelTitle="Condensed Table" panelClass="with-scroll table-panel">
+          <div class="horizontal-scroll">
+            <table class="table table-condensed" data-testid="condensed-table">
+              <thead>
+                <tr>
+                  <th class="table-id">#</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (item of peopleTableData; track item.id) {
+                  <tr>
+                    <td class="table-id">{{ item.id }}</td>
+                    <td>{{ item.firstName }}</td>
+                    <td>{{ item.lastName }}</td>
+                    <td>{{ item.username }}</td>
+                    <td><a class="email-link" [href]="'mailto:' + item.email">{{ item.email }}</a></td>
+                    <td><button class="status-button btn btn-xs" [ngClass]="'btn-' + item.status">{{ item.status }}</button></td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </app-ba-panel>
+      </div>
+      <div class="col-lg-6 col-md-12">
+        <app-ba-panel panelTitle="Striped Rows" panelClass="with-scroll table-panel">
+          <div class="vertical-scroll">
+            <table class="table table-striped" data-testid="striped-rows-table">
+              <thead>
+                <tr>
+                  <th class="table-id">#</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Age</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (item of smartTableData; track item.id) {
+                  <tr>
+                    <td class="table-id">{{ item.id }}</td>
+                    <td>{{ item.firstName }}</td>
+                    <td>{{ item.lastName }}</td>
+                    <td>{{ item.username }}</td>
+                    <td><a class="email-link" [href]="'mailto:' + item.email">{{ item.email }}</a></td>
+                    <td>{{ item.age }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </app-ba-panel>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-md-12">
+        <app-ba-panel panelTitle="Contextual Table" panelClass="with-scroll table-panel">
+          <table class="table" data-testid="contextual-table">
+            <tr>
+              <th>#</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Age</th>
+            </tr>
+            @for (item of contextualTableData; track item.id) {
+              <tr [ngClass]="item.rowClass">
+                <td>{{ item.id }}</td>
+                <td>{{ item.firstName }}</td>
+                <td>{{ item.lastName }}</td>
+                <td>{{ item.username }}</td>
+                <td><a class="email-link" [href]="'mailto:' + item.email">{{ item.email }}</a></td>
+                <td>{{ item.age }}</td>
+              </tr>
+            }
+          </table>
+        </app-ba-panel>
+      </div>
+      <div class="col-lg-6 col-md-12">
+        <app-ba-panel panelTitle="Responsive Table" panelClass="with-scroll table-panel">
+          <div class="table-responsive">
+            <table class="table" data-testid="responsive-table">
+              <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Age</th>
+              </tr>
+              @for (item of responsiveTableData; track item.id) {
+                <tr>
+                  <td>{{ item.id }}</td>
+                  <td>{{ item.firstName }}</td>
+                  <td>{{ item.lastName }}</td>
+                  <td>{{ item.username }}</td>
+                  <td><a class="email-link" [href]="'mailto:' + item.email">{{ item.email }}</a></td>
+                  <td>{{ item.age }}</td>
+                </tr>
+              }
+            </table>
+          </div>
+        </app-ba-panel>
+      </div>
+    </div>
+  </div>
+</app-page-container>
