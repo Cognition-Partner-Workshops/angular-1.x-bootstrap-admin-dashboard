@@ -1,0 +1,271 @@
+<div class="tabs-page">
+  <div class="row">
+    <!-- Main Horizontal Tabs -->
+    <div class="col-md-6">
+      <div class="panel panel-blur with-scroll horizontal-tabs tabs-panel medium-panel" data-testid="main-tabs-panel">
+        <div class="panel-body">
+          <!-- Tab Navigation -->
+          <ul class="nav nav-tabs" role="tablist" data-testid="main-tabs-nav">
+            @for (tab of mainTabs; track tab.id; let i = $index) {
+              @if (tab.id === 'dropdown') {
+                <li class="nav-item dropdown" [class.active]="mainActiveTab === i" role="presentation">
+                  <button type="button"
+                     class="nav-link dropdown-toggle"
+                     [class.active]="mainActiveTab === i"
+                     (click)="toggleDropdown($event)"
+                     data-testid="dropdown-tab-toggle">
+                    {{ tab.heading }} <i class="caret"></i>
+                  </button>
+                  @if (dropdownOpen) {
+                    <ul class="dropdown-menu show" data-testid="dropdown-menu" role="menu">
+                      <li role="menuitem"><button type="button" class="dropdown-item" (click)="selectDropdownTab(1)" data-testid="dropdown-tab-1">Tab 1</button></li>
+                      <li role="menuitem"><button type="button" class="dropdown-item" (click)="selectDropdownTab(2)" data-testid="dropdown-tab-2">Tab 2</button></li>
+                    </ul>
+                  }
+                </li>
+              } @else {
+                <li class="nav-item" [class.active]="mainActiveTab === i" role="presentation">
+                  <button type="button"
+                     class="nav-link"
+                     [class.active]="mainActiveTab === i"
+                     (click)="selectMainTab(i)"
+                     [attr.data-testid]="'main-tab-' + tab.id">
+                    {{ tab.heading }}
+                  </button>
+                </li>
+              }
+            }
+          </ul>
+
+          <!-- Tab Content -->
+          <div class="tab-content" data-testid="main-tabs-content">
+            @if (mainActiveTab === 0) {
+              <div class="tab-pane active" data-testid="tab-pane-start">
+                <p>
+                  Take up one idea. Make that one idea your life--think of it, dream of it, live on that idea. Let the brain,
+                  muscles, nerves, every part of your body, be full of that idea, and just leave every other idea alone. This is the
+                  way to success.
+                </p>
+                <p>
+                  People who succeed have momentum. The more they succeed, the more they want to succeed, and the more they find a
+                  way to succeed. Similarly, when someone is failing, the tendency is to get on a downward spiral that can even
+                  become a self-fulfilling prophecy.
+                </p>
+                <div class="text-center">
+                  <div class="kameleon-icon with-round-bg primary inline-icon"><img src="assets/img/shopping-cart.svg" alt="Shop"></div>
+                  <div class="kameleon-icon with-round-bg primary inline-icon"><img src="assets/img/code.svg" alt="Programming"></div>
+                  <div class="kameleon-icon with-round-bg primary inline-icon"><img src="assets/img/dna.svg" alt="Dna"></div>
+                </div>
+                <p>
+                  The reason most people never reach their goals is that they don't define them, or ever seriously consider them as
+                  believable or achievable. Winners can tell you where they are going, what they plan to do along the way, and who
+                  will be sharing the adventure with them.
+                </p>
+              </div>
+            }
+            @if (mainActiveTab === 1) {
+              <div class="tab-pane active" data-testid="tab-pane-getting-done">
+                <p>
+                  You can't connect the dots looking forward; you can only connect them looking backwards. So you have to trust that
+                  the dots will somehow connect in your future. You have to trust in something--your gut, destiny, life, karma,
+                  whatever. This approach has never let me down, and it has made all the difference in my life.
+                </p>
+                <p>
+                  The reason most people never reach their goals is that they don't define them, or ever seriously consider them as
+                  believable or achievable. Winners can tell you where they are going, what they plan to do along the way, and who
+                  will be sharing the adventure with them.
+                </p>
+              </div>
+            }
+            @if (mainActiveTab === 2) {
+              <div class="tab-pane active" data-testid="tab-pane-dropdown">
+                @if (dropdownActiveTab === 1) {
+                  <div data-testid="dropdown-content-1">
+                    <p>
+                      Success is ... knowing your purpose in life, growing to reach your maximum potential, and sowing seeds that
+                      benefit others.
+                    </p>
+                    <p>Failure is the condiment that gives success its flavor.</p>
+                  </div>
+                }
+                @if (dropdownActiveTab === 2) {
+                  <div data-testid="dropdown-content-2">
+                    <p class="text-center">
+                      <button class="btn btn-danger">I'm just a dummy button</button>
+                    </p>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Side Tabs (Left and Right aligned) -->
+    <div class="col-md-6 tabset-group">
+      <!-- Left-aligned tabs -->
+      <div class="panel panel-blur tabs-panel xsmall-panel with-scroll" data-testid="left-tabs-panel">
+        <div class="panel-body">
+          <div class="tabs-left">
+            <ul class="nav nav-tabs" role="tablist" data-testid="left-tabs-nav">
+              @for (tab of leftTabs; track tab.id; let i = $index) {
+                <li class="nav-item" [class.active]="leftActiveTab === i" role="presentation">
+                  <button type="button"
+                     class="nav-link"
+                     [class.active]="leftActiveTab === i"
+                     (click)="selectLeftTab(i)"
+                     [attr.data-testid]="'left-tab-' + tab.id">
+                    {{ tab.heading }}
+                  </button>
+                </li>
+              }
+            </ul>
+            <div class="tab-content" data-testid="left-tabs-content">
+              @if (leftActiveTab === 0) {
+                <div class="tab-pane active">
+                  <p class="text-center">Take up one idea.</p>
+                  <div class="kameleon-icon-tabs kameleon-icon with-round-bg danger"><img src="assets/img/key.svg" alt="Key"></div>
+                  <p>
+                    People who succeed have momentum. The more they succeed, the more they want to succeed, and the more they find a
+                    way to succeed.
+                  </p>
+                </div>
+              }
+              @if (leftActiveTab === 1) {
+                <div class="tab-pane active">
+                  <p>
+                    You can't connect the dots looking forward; you can only connect them looking backwards. So you have to trust
+                    that the dots will somehow connect in your future. You have to trust in something--your gut, destiny, life, karma,
+                    whatever. This approach has never let me down, and it has made all the difference in my life.
+                  </p>
+                  <p>
+                    The reason most people never reach their goals is that they don't define them, or ever seriously consider them
+                    as believable or achievable. Winners can tell you where they are going, what they plan to do along the way, and who
+                    will be sharing the adventure with them.
+                  </p>
+                </div>
+              }
+              @if (leftActiveTab === 2) {
+                <div class="tab-pane active">
+                  <p>
+                    Success is ... knowing your purpose in life, growing to reach your maximum potential, and sowing seeds that
+                    benefit others.
+                  </p>
+                  <p>Failure is the condiment that gives success its flavor.</p>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right-aligned tabs -->
+      <div class="panel panel-blur tabs-panel xsmall-panel with-scroll" data-testid="right-tabs-panel">
+        <div class="panel-body">
+          <div class="tabs-right">
+            <ul class="nav nav-tabs" role="tablist" data-testid="right-tabs-nav">
+              @for (tab of rightTabs; track tab.id; let i = $index) {
+                <li class="nav-item" [class.active]="rightActiveTab === i" role="presentation">
+                  <button type="button"
+                     class="nav-link"
+                     [class.active]="rightActiveTab === i"
+                     (click)="selectRightTab(i)"
+                     [attr.data-testid]="'right-tab-' + tab.id">
+                    {{ tab.heading }}
+                  </button>
+                </li>
+              }
+            </ul>
+            <div class="tab-content" data-testid="right-tabs-content">
+              @if (rightActiveTab === 0) {
+                <div class="tab-pane active">
+                  <p class="text-center">Take up one idea.</p>
+                  <div class="kameleon-icon-tabs kameleon-icon with-round-bg warning"><img src="assets/img/phone.svg" alt="Phone-Booth"></div>
+                  <p>
+                    People who succeed have momentum. The more they succeed, the more they want to succeed, and the more they find a
+                    way to succeed.
+                  </p>
+                </div>
+              }
+              @if (rightActiveTab === 1) {
+                <div class="tab-pane active">
+                  <p>
+                    You can't connect the dots looking forward; you can only connect them looking backwards. So you have to trust
+                    that the dots will somehow connect in your future. You have to trust in something--your gut, destiny, life, karma,
+                    whatever. This approach has never let me down, and it has made all the difference in my life.
+                  </p>
+                  <p>
+                    The reason most people never reach their goals is that they don't define them, or ever seriously consider them
+                    as believable or achievable. Winners can tell you where they are going, what they plan to do along the way, and who
+                    will be sharing the adventure with them.
+                  </p>
+                </div>
+              }
+              @if (rightActiveTab === 2) {
+                <div class="tab-pane active">
+                  <p>
+                    Success is ... knowing your purpose in life, growing to reach your maximum potential, and sowing seeds that
+                    benefit others.
+                  </p>
+                  <p>Failure is the condiment that gives success its flavor.</p>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Accordions Row -->
+  <div class="row accordions-row">
+    <!-- Sample Accordion -->
+    <div class="col-md-6">
+      <div class="accordion" data-testid="sample-accordion">
+        @for (panel of sampleAccordionPanels; track panel.id; let i = $index) {
+          <div class="accordion-panel bootstrap-panel" [ngClass]="panel.panelClass" data-testid="sample-accordion-panel">
+            <button type="button" class="accordion-header" (click)="toggleAccordionPanel(sampleAccordionPanels, i)" [attr.data-testid]="'sample-accordion-header-' + panel.id">
+              @if (panel.hasCustomHeading) {
+                <span>{{ panel.customHeadingHtml }}</span>
+                <i class="fa pull-right ion-settings"></i>
+              } @else {
+                <span>{{ panel.heading }}</span>
+              }
+              <i class="accordion-toggle-icon" [class.expanded]="panel.isOpen"></i>
+            </button>
+            @if (panel.isOpen) {
+              <div class="accordion-body" [attr.data-testid]="'sample-accordion-body-' + panel.id">
+                @if (panel.id === 'dynamic') {
+                  <p>The body of the uib-accordion group grows to fit the contents</p>
+                  <button type="button" class="btn btn-primary btn-sm">Add Item</button>
+                } @else {
+                  {{ panel.content }}
+                }
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Contextual Accordion -->
+    <div class="col-md-6">
+      <div class="accordion" data-testid="contextual-accordion">
+        @for (panel of contextualAccordionPanels; track panel.id; let i = $index) {
+          <div class="accordion-panel bootstrap-panel" [ngClass]="panel.panelClass" data-testid="contextual-accordion-panel">
+            <button type="button" class="accordion-header" (click)="toggleAccordionPanel(contextualAccordionPanels, i)" [attr.data-testid]="'contextual-accordion-header-' + panel.id">
+              <span>{{ panel.heading }}</span>
+              <i class="accordion-toggle-icon" [class.expanded]="panel.isOpen"></i>
+            </button>
+            @if (panel.isOpen) {
+              <div class="accordion-body" [attr.data-testid]="'contextual-accordion-body-' + panel.id">
+                {{ panel.content }} <i [class]="getContextualIcon(panel.id)"></i>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

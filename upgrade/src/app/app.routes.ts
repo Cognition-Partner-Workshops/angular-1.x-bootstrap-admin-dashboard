@@ -77,6 +77,11 @@ export const routes: Routes = [
         data: {
           breadcrumb: 'Components'
         }
+      },
+      {
+        path: 'ui/tabs',
+        loadChildren: () => import('./features/ui/tabs/tabs.routes').then(m => m.TABS_ROUTES),
+        data: { breadcrumb: 'UI Elements' }
       }
     ]
   },
