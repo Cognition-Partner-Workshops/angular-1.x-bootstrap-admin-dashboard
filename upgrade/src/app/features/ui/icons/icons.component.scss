@@ -1,0 +1,114 @@
+.widgets {
+  .kameleon-row {
+    float: left;
+    width: 20%;
+    padding: 0 5px;
+    margin-bottom: 10px;
+
+    @media (max-width: 991px) {
+      width: 25%;
+    }
+
+    @media (max-width: 767px) {
+      width: 33.33%;
+    }
+
+    @media (max-width: 480px) {
+      width: 50%;
+    }
+  }
+
+  .kameleon-icon {
+    text-align: center;
+    padding: 10px 5px;
+
+    img {
+      width: 48px;
+      height: 48px;
+      display: block;
+      margin: 0 auto 8px;
+    }
+
+    span {
+      display: block;
+      font-size: 12px;
+      color: #666;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &.with-round-bg {
+      img {
+        padding: 10px;
+        border-radius: 50%;
+        width: 68px;
+        height: 68px;
+      }
+
+      &.success img {
+        background-color: rgba(144, 185, 62, 0.2);
+      }
+
+      &.warning img {
+        background-color: rgba(223, 184, 24, 0.2);
+      }
+
+      &.primary img {
+        background-color: rgba(32, 158, 145, 0.2);
+      }
+
+      &.danger img {
+        background-color: rgba(232, 74, 78, 0.2);
+      }
+
+      &.info img {
+        background-color: rgba(45, 174, 194, 0.2);
+      }
+    }
+  }
+
+  .icons-list {
+    padding: 10px 0;
+
+    .col-xs-2 {
+      text-align: center;
+      padding: 10px 5px;
+      min-height: 50px;
+
+      i {
+        font-size: 24px;
+        line-height: 30px;
+      }
+    }
+
+    &.primary i {
+      color: #209e91;
+    }
+
+    &.success i {
+      color: #90b93e;
+    }
+
+    &.danger i {
+      color: #e84a4e;
+    }
+  }
+
+  .see-all-icons {
+    display: block;
+    text-align: center;
+    padding: 15px 0 5px;
+    color: #209e91;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .socicon {
+    font-family: 'socicon';
+    font-size: 24px;
+  }
+}

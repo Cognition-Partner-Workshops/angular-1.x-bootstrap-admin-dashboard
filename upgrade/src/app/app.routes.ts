@@ -111,6 +111,11 @@ export const routes: Routes = [
         data: {
           breadcrumb: 'Components'
         }
+      },
+      {
+        path: 'ui/icons',
+        loadChildren: () => import('./features/ui/icons/icons.routes').then(m => m.ICONS_ROUTES),
+        data: { breadcrumb: 'UI' }
       }
     ]
   },

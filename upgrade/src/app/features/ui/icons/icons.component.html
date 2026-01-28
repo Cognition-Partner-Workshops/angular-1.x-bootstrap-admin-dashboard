@@ -1,0 +1,68 @@
+<div class="widgets" data-testid="icons-screen">
+  <div class="row">
+    <div class="col-md-6">
+      <app-ba-panel panelTitle="Kameleon SVG Icons" panelClass="with-scroll" data-testid="kameleon-panel">
+        <div class="row clearfix">
+          @for (icon of kameleonIcons; track icon.img) {
+            <div class="kameleon-row" data-testid="kameleon-icon">
+              <div class="kameleon-icon">
+                <img [src]="getKameleonImgPath(icon.img)" [alt]="icon.name">
+                <span>{{ icon.name }}</span>
+              </div>
+            </div>
+          }
+        </div>
+        <a href="http://www.kameleon.pics/" target="_blank" class="see-all-icons">See all Kamaleon icons</a>
+      </app-ba-panel>
+
+      <app-ba-panel panelTitle="Socicon" panelClass="with-scroll" data-testid="socicon-panel">
+        <div class="row icons-list danger">
+          @for (icon of socicons; track $index) {
+            <div class="col-xs-2" data-testid="socicon-icon">
+              <i class="socicon">{{ icon }}</i>
+            </div>
+          }
+        </div>
+        <a href="http://www.socicon.com/chart.php" target="_blank" class="see-all-icons">See all Socicon icons</a>
+      </app-ba-panel>
+    </div>
+
+    <div class="col-md-6">
+      <app-ba-panel panelTitle="Icons With Rounded Background" panelClass="with-scroll" data-testid="kameleon-rounded-panel">
+        <div class="row clearfix">
+          @for (icon of kameleonRoundedIcons; track icon.img) {
+            <div class="kameleon-row" data-testid="kameleon-rounded-icon">
+              <div class="kameleon-icon with-round-bg" [ngClass]="icon.color">
+                <img [src]="getKameleonImgPath(icon.img)" [alt]="icon.name">
+                <span>{{ icon.name }}</span>
+              </div>
+            </div>
+          }
+        </div>
+        <a href="http://www.kameleon.pics/" target="_blank" class="see-all-icons">See all Kamaleon icons</a>
+      </app-ba-panel>
+
+      <app-ba-panel panelTitle="ionicons" panelClass="with-scroll" data-testid="ionicons-panel">
+        <div class="row icons-list primary">
+          @for (icon of ionicons; track icon) {
+            <div class="col-xs-2" data-testid="ionicon-icon">
+              <i [class]="icon"></i>
+            </div>
+          }
+        </div>
+        <a href="http://ionicons.com/" target="_blank" class="see-all-icons">See all ionicons icons</a>
+      </app-ba-panel>
+
+      <app-ba-panel panelTitle="Font Awesome Icons" panelClass="with-scroll" data-testid="fontawesome-panel">
+        <div class="row icons-list success awesomeIcons">
+          @for (icon of fontAwesomeIcons; track icon) {
+            <div class="col-xs-2" data-testid="fontawesome-icon">
+              <i [class]="icon"></i>
+            </div>
+          }
+        </div>
+        <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank" class="see-all-icons">See all Font Awesome icons</a>
+      </app-ba-panel>
+    </div>
+  </div>
+</div>
