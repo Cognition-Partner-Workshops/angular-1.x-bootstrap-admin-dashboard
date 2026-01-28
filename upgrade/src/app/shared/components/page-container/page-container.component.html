@@ -1,0 +1,19 @@
+<div class="page-container">
+  @if (showBreadcrumb) {
+    <app-breadcrumb></app-breadcrumb>
+  }
+  <div class="page-header">
+    @if (title) {
+      <h1 class="page-title">{{ title }}</h1>
+    }
+    @if (subtitle) {
+      <p class="page-subtitle">{{ subtitle }}</p>
+    }
+    <div class="page-actions">
+      <ng-content select="[pageActions]"></ng-content>
+    </div>
+  </div>
+  <div class="page-content">
+    <ng-content></ng-content>
+  </div>
+</div>

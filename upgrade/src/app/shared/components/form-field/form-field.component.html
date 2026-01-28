@@ -1,0 +1,18 @@
+<div class="form-field" [class]="'state-' + state">
+  @if (label) {
+    <label class="form-label" [attr.for]="fieldId">
+      {{ label }}
+      @if (required) {
+        <span class="required-indicator">*</span>
+      }
+    </label>
+  }
+  <div class="form-input-wrapper">
+    <ng-content></ng-content>
+  </div>
+  @if (error && state === 'invalid') {
+    <p class="form-error">{{ error }}</p>
+  } @else if (hint) {
+    <p class="form-hint">{{ hint }}</p>
+  }
+</div>

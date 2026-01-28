@@ -1,0 +1,24 @@
+<div class="notification-container">
+  @for (notification of notifications; track trackById($index, notification)) {
+    <div class="notification" [class]="'notification-' + notification.type">
+      <div class="notification-icon">
+        <span>{{ getTypeIcon(notification.type) }}</span>
+      </div>
+      <div class="notification-content">
+        <h4 class="notification-title">{{ notification.title }}</h4>
+        @if (notification.message) {
+          <p class="notification-message">{{ notification.message }}</p>
+        }
+      </div>
+      @if (notification.dismissible) {
+        <button
+          class="notification-dismiss"
+          (click)="dismiss(notification.id)"
+          type="button"
+          aria-label="Dismiss notification">
+          X
+        </button>
+      }
+    </div>
+  }
+</div>

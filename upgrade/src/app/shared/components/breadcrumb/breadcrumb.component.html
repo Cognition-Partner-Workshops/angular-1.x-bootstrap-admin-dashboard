@@ -1,0 +1,20 @@
+<nav class="breadcrumb-nav" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/upgrade/dashboard']" class="breadcrumb-link">
+        <span class="home-icon">H</span>
+        <span class="sr-only">Home</span>
+      </a>
+    </li>
+    @for (item of breadcrumbs; track item.path) {
+      <li class="breadcrumb-item" [class.active]="item.isActive">
+        <span class="breadcrumb-separator">/</span>
+        @if (item.isActive) {
+          <span class="breadcrumb-current">{{ item.label }}</span>
+        } @else {
+          <a [routerLink]="[item.path]" class="breadcrumb-link">{{ item.label }}</a>
+        }
+      </li>
+    }
+  </ol>
+</nav>

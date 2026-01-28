@@ -1,0 +1,8 @@
+<div class="spinner-container" [class.overlay]="overlay">
+  <div class="spinner" [class]="'spinner-' + size">
+    <div class="spinner-ring"></div>
+  </div>
+  @if (message) {
+    <p class="spinner-message">{{ message }}</p>
+  }
+</div>
