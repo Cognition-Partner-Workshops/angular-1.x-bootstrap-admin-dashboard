@@ -42,6 +42,13 @@ export const routes: Routes = [
         data: {
           breadcrumb: 'UI'
         }
+      },
+      {
+        path: 'form/layouts',
+        loadChildren: () => import('./features/form/layouts/layouts.routes').then(m => m.LAYOUTS_ROUTES),
+        data: {
+          breadcrumb: 'Form'
+        }
       }
     ]
   },
