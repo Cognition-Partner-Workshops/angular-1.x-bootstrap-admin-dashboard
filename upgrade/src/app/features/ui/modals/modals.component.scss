@@ -1,0 +1,23 @@
+.modal-buttons {
+  margin-top: -12px;
+  margin-right: -22px;
+
+  button {
+    float: left;
+    margin-right: 24px;
+    margin-top: 12px;
+  }
+
+  &.same-width {
+    button {
+      width: 160px;
+      text-align: center;
+    }
+  }
+}
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}

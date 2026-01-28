@@ -1,0 +1,132 @@
+<div class="widgets" data-testid="modals-page">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-blur with-scroll" data-testid="modals-panel">
+        <div class="panel-heading">MODALS</div>
+        <div class="panel-body">
+          <div class="modal-buttons clearfix">
+            <button 
+              type="button" 
+              class="btn btn-primary" 
+              (click)="openModal('medium')"
+              data-testid="default-modal-btn">
+              Default modal
+            </button>
+            <button 
+              type="button" 
+              class="btn btn-success" 
+              (click)="openModal('large')"
+              data-testid="large-modal-btn">
+              Large modal
+            </button>
+            <button 
+              type="button" 
+              class="btn btn-warning" 
+              (click)="openModal('small')"
+              data-testid="small-modal-btn">
+              Small modal
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-blur with-scroll" data-testid="message-modals-panel">
+        <div class="panel-heading">MESSAGE MODALS</div>
+        <div class="panel-body">
+          <div class="modal-buttons same-width clearfix">
+            <button 
+              type="button" 
+              class="btn btn-success" 
+              (click)="openMessageModal('success')"
+              data-testid="success-message-btn">
+              Success Message
+            </button>
+            <button 
+              type="button" 
+              class="btn btn-info" 
+              (click)="openMessageModal('info')"
+              data-testid="info-message-btn">
+              Info Message
+            </button>
+            <button 
+              type="button" 
+              class="btn btn-warning" 
+              (click)="openMessageModal('warning')"
+              data-testid="warning-message-btn">
+              Warning Message
+            </button>
+            <button 
+              type="button" 
+              class="btn btn-danger" 
+              (click)="openMessageModal('danger')"
+              data-testid="danger-message-btn">
+              Danger Message
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-blur with-scroll" data-testid="notifications-panel">
+        <div class="panel-heading">NOTIFICATIONS</div>
+        <div class="panel-body">
+          <div class="modal-buttons same-width clearfix">
+            <button 
+              type="button" 
+              class="btn btn-success" 
+              (click)="showSuccessNotification()"
+              data-testid="success-notification-btn">
+              Success Notification
+            </button>
+            <button 
+              type="button" 
+              class="btn btn-info" 
+              (click)="showInfoNotification()"
+              data-testid="info-notification-btn">
+              Info Notification
+            </button>
+            <button 
+              type="button" 
+              class="btn btn-warning" 
+              (click)="showWarningNotification()"
+              data-testid="warning-notification-btn">
+              Warning Notification
+            </button>
+            <button 
+              type="button" 
+              class="btn btn-danger" 
+              (click)="showErrorNotification()"
+              data-testid="danger-notification-btn">
+              Danger Notification
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-blur with-scroll" data-testid="progress-dialogs-panel">
+        <div class="panel-heading">PROGRESS DIALOGS</div>
+        <div class="panel-body">
+          <div class="modal-buttons same-width clearfix">
+            <button 
+              type="button" 
+              class="btn btn-info" 
+              (click)="openProgressDialog()"
+              data-testid="progress-dialog-btn">
+              Progress dialog
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
