@@ -40,8 +40,8 @@ export class LeafletComponent implements OnInit, AfterViewInit {
 
   private initializeMap(): void {
     const defaultIcon = icon({
-      iconUrl: 'assets/img/theme/vendor/leaflet/dist/images/marker-icon.png',
-      shadowUrl: 'assets/img/theme/vendor/leaflet/dist/images/marker-shadow.png',
+      iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+      shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
       iconSize: [25, 41],
       iconAnchor: [12, 41],
       popupAnchor: [1, -34],
@@ -49,9 +49,9 @@ export class LeafletComponent implements OnInit, AfterViewInit {
     });
 
     Icon.Default.mergeOptions({
-      iconUrl: 'assets/img/theme/vendor/leaflet/dist/images/marker-icon.png',
-      shadowUrl: 'assets/img/theme/vendor/leaflet/dist/images/marker-shadow.png',
-      iconRetinaUrl: 'assets/img/theme/vendor/leaflet/dist/images/marker-icon-2x.png'
+      iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+      shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+      iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png'
     });
 
     this.options.layers = [
