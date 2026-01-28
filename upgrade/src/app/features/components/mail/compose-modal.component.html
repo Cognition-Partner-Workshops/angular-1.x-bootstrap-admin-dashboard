@@ -1,0 +1,45 @@
+<div class="compose-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="compose-title" (click)="close()" (keyup.escape)="close()" tabindex="0" data-testid="compose-modal">
+  <div class="compose-modal" role="document" (click)="$event.stopPropagation()" (keyup.escape)="$event.stopPropagation()">
+    <div class="compose-header">
+      <span id="compose-title">New message</span>
+      <span class="header-controls">
+        <button type="button" class="icon-btn" aria-label="Minimize"><i class="ion-minus-round"></i></button>
+        <button type="button" class="icon-btn" aria-label="Maximize"><i class="ion-arrow-resize"></i></button>
+        <button type="button" class="icon-btn" aria-label="Close" (click)="close()"><i class="ion-close-round"></i></button>
+      </span>
+    </div>
+    <div class="compose-body">
+      <input type="text" class="form-control compose-input" placeholder="To" [(ngModel)]="to" data-testid="compose-to">
+      <input type="text" class="form-control compose-input" placeholder="Subject" [(ngModel)]="subject" data-testid="compose-subject">
+      <div class="compose-container">
+        <div class="toolbar toolbar-main">
+          <button type="button" (click)="formatBlock('h1')" title="Heading 1">H1</button>
+          <button type="button" (click)="formatBlock('h2')" title="Heading 2">H2</button>
+          <button type="button" (click)="formatBlock('h3')" title="Heading 3">H3</button>
+          <button type="button" (click)="execCommand('bold')" title="Bold"><b>B</b></button>
+          <button type="button" (click)="execCommand('italic')" title="Italic"><i>I</i></button>
+          <button type="button" (click)="execCommand('underline')" title="Underline"><u>U</u></button>
+          <button type="button" (click)="execCommand('justifyLeft')" title="Align Left"><i class="ion-android-menu"></i></button>
+          <button type="button" (click)="execCommand('justifyCenter')" title="Align Center"><i class="ion-android-menu"></i></button>
+          <button type="button" (click)="execCommand('justifyRight')" title="Align Right"><i class="ion-android-menu"></i></button>
+          <button type="button" (click)="execCommand('justifyFull')" title="Justify"><i class="ion-android-menu"></i></button>
+        </div>
+        <div class="editor-content" contenteditable="true" #editorContent data-testid="compose-editor"></div>
+      </div>
+    </div>
+    <div class="compose-footer">
+      <button type="button" class="btn btn-send" (click)="send()" data-testid="compose-send">Send</button>
+      <div class="toolbar toolbar-footer">
+        <button type="button" (click)="insertLink()" title="Insert Link"><i class="ion-link"></i></button>
+        <button type="button" title="Insert Image"><i class="ion-image"></i></button>
+        <button type="button" title="HTML"><i class="ion-code"></i></button>
+        <button type="button" (click)="formatBlock('blockquote')" title="Quote"><i class="ion-quote"></i></button>
+        <button type="button" title="Insert Video"><i class="ion-ios-videocam"></i></button>
+      </div>
+      <div class="footer-controls">
+        <button type="button" class="icon-btn" aria-label="More options"><i class="footer-control-first compose-footer-icon ion-arrow-down-b"></i></button>
+        <button type="button" class="icon-btn" aria-label="Delete draft" (click)="close()"><i class="compose-footer-icon ion-android-delete"></i></button>
+      </div>
+    </div>
+  </div>
+</div>

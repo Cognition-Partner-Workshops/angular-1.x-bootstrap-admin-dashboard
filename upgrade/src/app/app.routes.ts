@@ -183,6 +183,11 @@ export const routes: Routes = [
         path: 'charts/chartjs',
         loadChildren: () => import('./features/charts/chartjs/chartjs.routes').then(m => m.CHARTJS_ROUTES),
         data: { breadcrumb: 'Charts' }
+      },
+      {
+        path: 'components/mail',
+        loadChildren: () => import('./features/components/mail/mail.routes').then(m => m.MAIL_ROUTES),
+        data: { breadcrumb: 'Components' }
       }
     ]
   },

@@ -1,0 +1,213 @@
+.side-message-navigation {
+  flex: 1;
+  padding: 0;
+
+  &.expanded {
+    margin-left: 0;
+  }
+}
+
+.mail-messages-control {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  gap: 15px;
+}
+
+.toggle-navigation-container {
+  .collapse-navigation-link {
+    font-size: 20px;
+    color: #666;
+    text-decoration: none;
+
+    &:hover {
+      color: #333;
+    }
+  }
+}
+
+.custom-checkbox {
+  margin: 0;
+  
+  input[type="checkbox"] {
+    margin-right: 5px;
+  }
+
+  .select-all-label {
+    font-weight: normal;
+  }
+}
+
+.refresh-button {
+  background: transparent;
+  border: none;
+  color: #666;
+  padding: 5px 10px;
+
+  &:hover {
+    color: #333;
+  }
+
+  i {
+    font-size: 16px;
+  }
+}
+
+.more-button {
+  background: transparent;
+  border: 1px solid #ddd;
+  color: #666;
+
+  &:hover {
+    background-color: #f5f5f5;
+  }
+}
+
+.messages {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    tr {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.03);
+      }
+
+      &.work {
+        border-left: 3px solid #f0ad4e;
+      }
+
+      &.family {
+        border-left: 3px solid #5cb85c;
+      }
+
+      &.friend {
+        border-left: 3px solid #5bc0de;
+      }
+
+      &.study {
+        border-left: 3px solid #d9534f;
+      }
+    }
+
+    td {
+      padding: 12px 8px;
+      vertical-align: middle;
+    }
+  }
+}
+
+.check-td {
+  width: 40px;
+  padding-left: 15px !important;
+}
+
+.mail-checkbox {
+  .custom-checkbox {
+    input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+.photo-td {
+  width: 50px;
+}
+
+.little-human-picture {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name-container {
+  min-width: 120px;
+
+  .name {
+    font-weight: 500;
+    color: #333;
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .tag.label {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: normal;
+
+    &.work {
+      background-color: #f0ad4e;
+      color: #fff;
+    }
+
+    &.family {
+      background-color: #5cb85c;
+      color: #fff;
+    }
+
+    &.friend {
+      background-color: #5bc0de;
+      color: #fff;
+    }
+
+    &.study {
+      background-color: #d9534f;
+      color: #fff;
+    }
+  }
+}
+
+.additional-info {
+  .subject {
+    font-weight: 500;
+    color: #333;
+  }
+}
+
+.mail-body-part {
+  color: #999;
+  font-size: 13px;
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.date {
+  color: #999;
+  font-size: 12px;
+  white-space: nowrap;
+  padding-right: 15px !important;
+}
+
+.dropdown-menu {
+  min-width: 160px;
+
+  li {
+    a {
+      display: block;
+      padding: 8px 15px;
+      color: #333;
+      text-decoration: none;
+
+      &:hover {
+        background-color: #f5f5f5;
+      }
+    }
+  }
+
+  .divider {
+    height: 1px;
+    margin: 5px 0;
+    background-color: #e5e5e5;
+  }
+}

@@ -1,0 +1,63 @@
+<div class="side-message-navigation" [class.expanded]="mailComponent.navigationCollapsed" data-testid="mail-list">
+  <div class="mail-messages-control side-message-navigation-item">
+    <div class="toggle-navigation-container">
+      <button type="button" class="collapse-navigation-link ion-navicon"
+         (click)="toggleNavigation()" aria-label="Toggle navigation"></button>
+    </div>
+    <label class="checkbox-inline custom-checkbox nowrap">
+      <input type="checkbox" value="option1">
+      <span class="select-all-label">Select All</span>
+    </label>
+    <button type="button" class="btn btn-icon refresh-button"><i class="ion-refresh"></i></button>
+    <div class="btn-group dropdown">
+      <button type="button" class="btn more-button dropdown-toggle" data-toggle="dropdown">
+        More <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="javascript:void(0)">Action</a></li>
+        <li><a href="javascript:void(0)">Another action</a></li>
+        <li><a href="javascript:void(0)">Something else here</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="javascript:void(0)">Separated link</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="messages">
+    <table>
+      @for (m of messages; track m.id) {
+        <tr class="side-message-navigation-item little-human shineHover {{ m.tag }}"
+            [routerLink]="['/upgrade/components/mail', label, m.id]"
+            data-testid="mail-list-item">
+          <td class="check-td" (click)="$event.stopPropagation()">
+            <div class="mail-checkbox">
+              <label class="checkbox-inline custom-checkbox nowrap">
+                <input type="checkbox" [attr.aria-label]="'Select ' + m.name">
+                <span></span>
+              </label>
+            </div>
+          </td>
+          <td class="photo-td">
+            <img [src]="getProfilePicture()" class="little-human-picture" [alt]="m.name">
+          </td>
+          <td>
+            <div class="name-container">
+              <div><span class="name">{{ m.name }}</span></div>
+              <div><span class="tag label label-primary {{ m.tag }}">{{ m.tag }}</span></div>
+            </div>
+          </td>
+          <td>
+            <div class="additional-info">
+              <span class="subject">{{ m.subject }}</span>
+            </div>
+          </td>
+          <td>
+            <div class="mail-body-part">{{ getPlainText(m.body) }}</div>
+          </td>
+          <td class="date">
+            <span>{{ m.date | date:'MMM d HH:mm' }}</span>
+          </td>
+        </tr>
+      }
+    </table>
+  </div>
+</div>
