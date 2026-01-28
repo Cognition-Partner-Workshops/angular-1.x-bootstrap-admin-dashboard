@@ -1,0 +1,37 @@
+<div class="app-layout" [class.sidebar-collapsed]="sidebarCollapsed">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h1 class="logo">Upgrade App</h1>
+      <button class="toggle-btn" (click)="toggleSidebar()">
+        <span class="toggle-icon">{{ sidebarCollapsed ? '>' : '<' }}</span>
+      </button>
+    </div>
+    <nav class="sidebar-nav">
+      <a routerLink="/upgrade/dashboard" routerLinkActive="active" class="nav-item">
+        <span class="nav-icon">D</span>
+        <span class="nav-text">Dashboard</span>
+      </a>
+      <a routerLink="/upgrade/users" routerLinkActive="active" class="nav-item">
+        <span class="nav-icon">U</span>
+        <span class="nav-text">Users</span>
+      </a>
+      <a routerLink="/upgrade/settings" routerLinkActive="active" class="nav-item">
+        <span class="nav-icon">S</span>
+        <span class="nav-text">Settings</span>
+      </a>
+    </nav>
+  </aside>
+  <main class="main-content">
+    <header class="top-header">
+      <div class="header-left">
+        <span class="breadcrumb">Upgrade App</span>
+      </div>
+      <div class="header-right">
+        <span class="user-info">Admin User</span>
+      </div>
+    </header>
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

@@ -1,0 +1,36 @@
+<div class="users-page">
+  <h2 class="page-title">Users</h2>
+
+  <div class="loading" *ngIf="loading">Loading users...</div>
+
+  <div class="users-table-container" *ngIf="!loading">
+    <table class="users-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Created</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+          <td>
+            <span class="status-badge" [ngClass]="getStatusClass(user.status)">
+              {{ user.status }}
+            </span>
+          </td>
+          <td>{{ user.createdAt | date:'mediumDate' }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="no-users" *ngIf="users.length === 0">
+      No users found
+    </div>
+  </div>
+</div>
