@@ -3,35 +3,15 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { BaPanelComponent } from '../../../shared/components/ba-panel';
 import { ThemeConfigService } from '../../../core/services/theme-config.service';
 
-interface MorrisGridPrototype {
-  gridDefaults?: {
-    gridLineColor?: string;
-    gridTextColor?: string;
-  };
-}
-
-interface MorrisDonutPrototype {
-  defaults?: {
-    backgroundColor?: string;
-    labelColor?: string;
-  };
-}
-
-interface MorrisConstructor {
-  new (options: MorrisLineOptions | MorrisDonutOptions | MorrisBarOptions | MorrisAreaOptions): MorrisChart;
-  prototype: MorrisGridPrototype | MorrisDonutPrototype;
-}
-
-declare const Morris: {
-  Line: MorrisConstructor;
-  Donut: MorrisConstructor & { prototype: MorrisDonutPrototype };
-  Bar: MorrisConstructor;
-  Area: MorrisConstructor;
-  Grid: { prototype: MorrisGridPrototype };
-};
-
 interface MorrisChart {
   redraw: () => void;
+}
+
+interface MorrisStatic {
+  Line: new (options: MorrisLineOptions) => MorrisChart;
+  Donut: new (options: MorrisDonutOptions) => MorrisChart;
+  Bar: new (options: MorrisBarOptions) => MorrisChart;
+  Area: new (options: MorrisAreaOptions) => MorrisChart;
 }
 
 interface MorrisLineOptions {
@@ -49,8 +29,6 @@ interface MorrisDonutOptions {
   data: { label: string; value: number }[];
   colors: string[];
   formatter?: (value: number) => string;
-  backgroundColor?: string;
-  labelColor?: string;
   resize: boolean;
 }
 
@@ -74,6 +52,14 @@ interface MorrisAreaOptions {
   resize: boolean;
 }
 
+declare global {
+  interface Window {
+    Morris: MorrisStatic;
+    jQuery: unknown;
+    Raphael: unknown;
+  }
+}
+
 @Component({
   selector: 'app-morris',
   standalone: true,
@@ -91,6 +77,7 @@ export class MorrisComponent implements OnInit, AfterViewInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
   private charts: MorrisChart[] = [];
   private resizeHandler: (() => void) | null = null;
+  private scriptsLoaded = false;
 
   colors: string[] = [];
 
@@ -136,8 +123,7 @@ export class MorrisComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      this.initializeCharts();
-      this.setupResizeHandler();
+      this.loadScriptsAndInitialize();
     }
   }
 
@@ -147,22 +133,64 @@ export class MorrisComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  private initializeCharts(): void {
-    const themeColors = this.themeConfig.getColors();
-
-    if (typeof Morris === 'undefined') {
-      console.warn('Morris.js is not loaded. Charts will not be rendered.');
+  private loadScriptsAndInitialize(): void {
+    if (window.Morris && window.Morris.Line) {
+      this.initializeCharts();
+      this.setupResizeHandler();
       return;
     }
 
-    Morris.Donut.prototype.defaults = Morris.Donut.prototype.defaults || {};
-    Morris.Donut.prototype.defaults.backgroundColor = 'transparent';
-    Morris.Donut.prototype.defaults.labelColor = themeColors.defaultText;
+    this.loadScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js')
+      .then(() => this.loadScript('https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js'))
+      .then(() => this.loadScript('https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js'))
+      .then(() => this.loadStylesheet('https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css'))
+      .then(() => {
+        this.scriptsLoaded = true;
+        this.initializeCharts();
+        this.setupResizeHandler();
+      })
+      .catch((error) => {
+        console.error('Failed to load Morris.js dependencies:', error);
+      });
+  }
 
-    Morris.Grid.prototype = Morris.Grid.prototype || {};
-    Morris.Grid.prototype.gridDefaults = Morris.Grid.prototype.gridDefaults || {};
-    Morris.Grid.prototype.gridDefaults.gridLineColor = themeColors.borderDark;
-    Morris.Grid.prototype.gridDefaults.gridTextColor = themeColors.defaultText;
+  private loadScript(src: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const existingScript = document.querySelector(`script[src="${src}"]`);
+      if (existingScript) {
+        resolve();
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = src;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
+      document.head.appendChild(script);
+    });
+  }
+
+  private loadStylesheet(href: string): Promise<void> {
+    return new Promise((resolve) => {
+      const existingLink = document.querySelector(`link[href="${href}"]`);
+      if (existingLink) {
+        resolve();
+        return;
+      }
+
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = href;
+      link.onload = () => resolve();
+      document.head.appendChild(link);
+    });
+  }
+
+  private initializeCharts(): void {
+    if (!window.Morris || !window.Morris.Line) {
+      console.warn('Morris.js is not loaded. Charts will not be rendered.');
+      return;
+    }
 
     this.createLineChart();
     this.createDonutChart();
@@ -172,7 +200,7 @@ export class MorrisComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private createLineChart(): void {
     if (this.lineChartRef?.nativeElement) {
-      const chart = new Morris.Line({
+      const chart = new window.Morris.Line({
         element: this.lineChartRef.nativeElement,
         data: this.lineData,
         xkey: 'y',
@@ -187,7 +215,7 @@ export class MorrisComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private createDonutChart(): void {
     if (this.donutChartRef?.nativeElement) {
-      const chart = new Morris.Donut({
+      const chart = new window.Morris.Donut({
         element: this.donutChartRef.nativeElement,
         data: this.donutData,
         colors: this.colors,
@@ -200,7 +228,7 @@ export class MorrisComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private createBarChart(): void {
     if (this.barChartRef?.nativeElement) {
-      const chart = new Morris.Bar({
+      const chart = new window.Morris.Bar({
         element: this.barChartRef.nativeElement,
         data: this.barData,
         xkey: 'y',
@@ -215,7 +243,7 @@ export class MorrisComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private createAreaChart(): void {
     if (this.areaChartRef?.nativeElement) {
-      const chart = new Morris.Area({
+      const chart = new window.Morris.Area({
         element: this.areaChartRef.nativeElement,
         data: this.areaData,
         xkey: 'y',
