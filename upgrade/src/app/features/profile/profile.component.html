@@ -1,0 +1,237 @@
+<app-ba-panel panelClass="profile-page">
+  <div class="panel-content">
+    <div class="progress-info">Your profile is 70% Complete</div>
+    <div class="progress">
+      <div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar"
+           aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+      </div>
+    </div>
+
+    <h3 class="with-line">General Information</h3>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row clearfix">
+          <label for="inputFirstName" class="col-sm-3 control-label">Picture</label>
+
+          <div class="col-sm-9">
+            <div class="userpic" data-testid="userpic">
+              <div class="userpic-wrapper">
+                <img [src]="picture" (click)="uploadPicture()" (keydown.enter)="uploadPicture()" tabindex="0" role="button" alt="Profile picture" data-testid="profile-picture">
+              </div>
+              @if (!noPicture) {
+                <button type="button" class="remove-picture-btn ion-ios-close-outline" (click)="removePicture()" data-testid="remove-picture-btn" aria-label="Remove picture"></button>
+              }
+              <a href="javascript:void(0)" class="change-userpic" (click)="uploadPicture()" data-testid="change-picture-link">Change Profile Picture</a>
+              <input type="file" 
+                     #uploadFile 
+                     style="display: none" 
+                     (change)="onFileSelect($event)" 
+                     accept="image/*"
+                     data-testid="upload-file-input">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row clearfix">
+          <label for="inputFirstName" class="col-sm-3 control-label">First Name</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="inputFirstName" [(ngModel)]="firstName" data-testid="first-name-input">
+          </div>
+        </div>
+        <div class="form-group row clearfix">
+          <label for="inputLastName" class="col-sm-3 control-label">Last Name</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="inputLastName" [(ngModel)]="lastName" data-testid="last-name-input">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group row clearfix">
+          <label for="inputDepartment" class="col-sm-3 control-label">Department</label>
+
+          <div class="col-sm-9">
+            <select class="form-control" id="inputDepartment" [(ngModel)]="department" data-testid="department-select">
+              @for (dept of departments; track dept) {
+                <option [value]="dept">{{ dept }}</option>
+              }
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group row clearfix">
+          <label for="inputOccupation" class="col-sm-3 control-label">Occupation</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="inputOccupation" [(ngModel)]="occupation" data-testid="occupation-input">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="with-line">Change Password</h3>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row clearfix">
+          <label for="inputPassword" class="col-sm-3 control-label">Password</label>
+
+          <div class="col-sm-9">
+            <input type="password" class="form-control" id="inputPassword" [(ngModel)]="password" data-testid="password-input">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group row clearfix">
+          <label for="inputConfirmPassword" class="col-sm-3 control-label">Confirm Password</label>
+
+          <div class="col-sm-9">
+            <input type="password" class="form-control" id="inputConfirmPassword" [(ngModel)]="confirmPassword" data-testid="confirm-password-input">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="with-line">Contact Information</h3>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row clearfix">
+          <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
+
+          <div class="col-sm-9">
+            <input type="email" class="form-control" id="inputEmail3" [(ngModel)]="email" data-testid="email-input">
+          </div>
+        </div>
+        <div class="form-group row clearfix">
+          <label for="inputPhone" class="col-sm-3 control-label">Phone</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="inputPhone" [(ngModel)]="phone" data-testid="phone-input">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group row clearfix">
+          <label for="inputOfficeLocation" class="col-sm-3 control-label">Office Location</label>
+
+          <div class="col-sm-9">
+            <select class="form-control" id="inputOfficeLocation" [(ngModel)]="officeLocation" data-testid="office-location-select">
+              @for (location of officeLocations; track location) {
+                <option [value]="location">{{ location }}</option>
+              }
+            </select>
+          </div>
+        </div>
+        <div class="form-group row clearfix">
+          <label for="inputRoom" class="col-sm-3 control-label">Room</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="inputRoom" [(ngModel)]="room" data-testid="room-input">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="with-line">Social Profiles</h3>
+
+    <div class="social-profiles row clearfix">
+      @for (item of socialProfiles; track item.name) {
+        <div class="col-md-3 col-sm-4">
+          @if (!item.href) {
+            <a class="sn-link" href="javascript:void(0)" (click)="showModal(item)" data-testid="social-link-unconnected">
+              <i class="socicon {{ item.icon }}"></i>
+              <span>{{ item.name }}</span>
+            </a>
+          } @else {
+            <a class="sn-link connected" [href]="item.href" target="_blank" data-testid="social-link-connected">
+              <i class="socicon {{ item.icon }}"></i>
+              <span>{{ item.name }}</span>
+              <em class="ion-ios-close-empty sn-link-close" (mousedown)="unconnect(item)" data-testid="social-unconnect-btn"></em>
+            </a>
+          }
+        </div>
+      }
+    </div>
+
+    <h3 class="with-line">Send Email Notifications</h3>
+
+    <div class="notification row clearfix">
+      <div class="col-sm-6">
+        <div class="form-group row clearfix">
+          <span class="col-xs-8 notification-label">When I receive a message</span>
+
+          <div class="col-xs-4">
+            <label class="switch-container">
+              <input type="checkbox" [checked]="switches[0]" (change)="onSwitchChange(0)" data-testid="switch-0">
+              <span class="switch-slider primary"></span>
+            </label>
+          </div>
+        </div>
+        <div class="form-group row clearfix">
+          <span class="col-xs-8 notification-label">When Someone sends me an invitation</span>
+
+          <div class="col-xs-4">
+            <label class="switch-container">
+              <input type="checkbox" [checked]="switches[1]" (change)="onSwitchChange(1)" data-testid="switch-1">
+              <span class="switch-slider primary"></span>
+            </label>
+          </div>
+        </div>
+        <div class="form-group row clearfix">
+          <span class="col-xs-8 notification-label">When profile information changes</span>
+
+          <div class="col-xs-4">
+            <label class="switch-container">
+              <input type="checkbox" [checked]="switches[2]" (change)="onSwitchChange(2)" data-testid="switch-2">
+              <span class="switch-slider primary"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group row clearfix">
+          <span class="col-xs-8 notification-label">When anyone logs into your account from a new device or browser</span>
+
+          <div class="col-xs-4">
+            <label class="switch-container">
+              <input type="checkbox" [checked]="switches[3]" (change)="onSwitchChange(3)" data-testid="switch-3">
+              <span class="switch-slider primary"></span>
+            </label>
+          </div>
+        </div>
+        <div class="form-group row clearfix">
+          <span class="col-xs-8 notification-label">Weekly Reports</span>
+
+          <div class="col-xs-4">
+            <label class="switch-container">
+              <input type="checkbox" [checked]="switches[4]" (change)="onSwitchChange(4)" data-testid="switch-4">
+              <span class="switch-slider primary"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group row clearfix">
+          <span class="col-xs-8 notification-label">Daily Reports</span>
+
+          <div class="col-xs-4">
+            <label class="switch-container">
+              <input type="checkbox" [checked]="switches[5]" (change)="onSwitchChange(5)" data-testid="switch-5">
+              <span class="switch-slider primary"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary btn-with-icon save-profile" (click)="updateProfile()" data-testid="update-profile-btn">
+      <i class="ion-android-checkmark-circle"></i>Update Profile
+    </button>
+  </div>
+</app-ba-panel>

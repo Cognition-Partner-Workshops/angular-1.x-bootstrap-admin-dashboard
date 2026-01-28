@@ -1,0 +1,477 @@
+$border: #e6e6e6;
+$default-text: #666666;
+$font-normal: 400;
+$font-light: 300;
+$default: #ffffff;
+$primary: #209e91;
+$primary-light: #209e91;
+$danger: #f44336;
+
+h3.with-line {
+  border-bottom: 1px solid $border;
+  color: $default-text;
+  font-weight: $font-normal;
+  padding-top: 30px;
+  margin-bottom: 14px;
+  line-height: 39px;
+  width: 100%;
+}
+
+.panel .panel-body h3 {
+  &.with-line {
+    margin-bottom: 14px;
+    margin-top: 0;
+  }
+}
+
+.profile-block {
+  background: $default;
+
+  .nav-tabs > li {
+    & > a {
+      border-radius: 0;
+      transition: background, 0s, ease !important;
+    }
+  }
+
+  .progress {
+    border-radius: 0;
+    margin-bottom: 6px;
+  }
+
+  .progress-info {
+    margin-bottom: 8px;
+    margin-top: -2px;
+  }
+
+  .tab-content {
+    padding: 15px 15px 25px;
+  }
+
+  .progress-bar-primary {
+    background-color: $primary-light;
+  }
+
+  .form-group {
+    margin-bottom: 14px;
+    label {
+      text-align: right;
+    }
+  }
+
+  .form-control {
+    font-size: 13px;
+  }
+}
+
+.notification {
+  .form-group {
+    label {
+      text-align: left;
+      padding-left: 26px;
+    }
+  }
+}
+
+.userpic {
+  border: 1px dashed #b8b8b8;
+  width: 202px;
+  height: 202px;
+  position: relative;
+  cursor: pointer;
+  .userpic-wrapper {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  i {
+    display: none;
+    position: absolute;
+    font-size: 32px;
+    background: $default;
+    cursor: pointer;
+    color: $primary;
+    top: -11px;
+    right: -11px;
+    height: 26px;
+    border-radius: 50%;
+    &:before {
+      line-height: 26px;
+    }
+    &:hover {
+      color: $danger;
+    }
+  }
+  a.change-userpic {
+    display: none;
+    width: 202px;
+    background: rgba(0, 0, 0, 0.7);
+    transition: all 200ms ease-in-out;
+    color: $default-text;
+    text-decoration: none;
+    position: absolute;
+    bottom: -1px;
+    left: -1px;
+    line-height: 32px;
+    text-align: center;
+  }
+  &:hover {
+    i {
+      display: block;
+    }
+    .change-userpic {
+      display: block;
+    }
+  }
+}
+
+.save-profile {
+  margin: 23px 0 12px 12px;
+}
+
+$snColor: $primary;
+$snPadding: 8px;
+a.sn-link {
+  transition: none;
+  display: block;
+  border-radius: 5px;
+  background-color: transparent;
+  padding: $snPadding;
+  color: $default-text;
+  border: 1px solid transparent;
+  margin-bottom: 23px;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  text-decoration: none !important;
+  i.socicon {
+    padding: 6px;
+    border-radius: 50%;
+    width: auto;
+    font-size: 17px;
+    margin-right: 8px;
+    background-color: rgba(0,0,0,.15);
+    color: $default-text;
+  }
+
+  span {
+    font-size: 14px;
+    line-height: 29px;
+  }
+
+  &.connected {
+    border-color: $snColor;
+    border-width: 2px;
+    padding: $snPadding - 1;
+    span {
+      color: $default-text;
+    }
+    i {
+      background: $snColor;
+    }
+    em {
+      display: block;
+    }
+  }
+  &:hover {
+    border-color: $snColor;
+    border-width: 2px;
+    padding: $snPadding - 1;
+    span {
+      color: $default-text;
+    }
+    i {
+      background: $snColor;
+    }
+  }
+
+  .socicon {
+    background: transparent;
+  }
+}
+
+.close {
+  opacity: 1;
+  box-shadow: none;
+  outline: none !important;
+  &:hover, &:focus, &:active {
+    opacity: 1;
+  }
+}
+
+.connected .sn-link-close {
+  position: absolute;
+  top: 1px;
+  right: 0;
+  width: 45px;
+  line-height: 45px;
+  text-align: center;
+  font-size: 32px;
+  color: $snColor;
+  transition: all 0.1s ease;
+  outline: none;
+  &:hover {
+    color: $danger;
+    transform: scale(1.2);
+  }
+}
+
+.social-profiles {
+  padding-top: 3px;
+  margin-bottom: -3px;
+  padding-left: 12px;
+}
+
+.profile-page {
+  .form-group {
+    label {
+      line-height: 34px;
+      font-size: 14px;
+      font-weight: $font-light;
+    }
+    input {
+      font-weight: $font-light;
+    }
+  }
+}
+
+.progress {
+  height: 20px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+  float: left;
+  width: 0;
+  height: 100%;
+  font-size: 12px;
+  line-height: 20px;
+  color: #fff;
+  text-align: center;
+  background-color: $primary;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  transition: width 0.6s ease;
+}
+
+.progress-bar-striped {
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+
+.progress-bar-primary {
+  background-color: $primary-light;
+}
+
+.progress-info {
+  margin-bottom: 8px;
+  color: $default-text;
+}
+
+.switch-container {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    &:checked + .switch-slider {
+      background-color: $primary;
+    }
+
+    &:checked + .switch-slider:before {
+      transform: translateX(26px);
+    }
+  }
+
+  .switch-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 24px;
+
+    &:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    &.primary {
+      &:checked {
+        background-color: $primary;
+      }
+    }
+  }
+}
+
+.panel-content {
+  padding: 15px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+
+  &:focus {
+    border-color: $primary;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(32, 158, 145, 0.6);
+  }
+}
+
+.control-label {
+  padding-top: 7px;
+  margin-bottom: 0;
+  text-align: right;
+}
+
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: $primary;
+  border-color: darken($primary, 5%);
+
+  &:hover {
+    background-color: darken($primary, 10%);
+    border-color: darken($primary, 15%);
+  }
+}
+
+.btn-with-icon {
+  i {
+    margin-right: 8px;
+  }
+}
+
+.row {
+  margin-right: -15px;
+  margin-left: -15px;
+
+  &::before,
+  &::after {
+    display: table;
+    content: " ";
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+.clearfix {
+  &::before,
+  &::after {
+    display: table;
+    content: " ";
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+.col-xs-4, .col-xs-8,
+.col-sm-3, .col-sm-4, .col-sm-6, .col-sm-9,
+.col-md-3, .col-md-6 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.col-xs-4 {
+  width: 33.33333333%;
+  float: left;
+}
+
+.col-xs-8 {
+  width: 66.66666667%;
+  float: left;
+}
+
+@media (min-width: 768px) {
+  .col-sm-3 {
+    width: 25%;
+    float: left;
+  }
+  .col-sm-4 {
+    width: 33.33333333%;
+    float: left;
+  }
+  .col-sm-6 {
+    width: 50%;
+    float: left;
+  }
+  .col-sm-9 {
+    width: 75%;
+    float: left;
+  }
+}
+
+@media (min-width: 992px) {
+  .col-md-3 {
+    width: 25%;
+    float: left;
+  }
+  .col-md-6 {
+    width: 50%;
+    float: left;
+  }
+}

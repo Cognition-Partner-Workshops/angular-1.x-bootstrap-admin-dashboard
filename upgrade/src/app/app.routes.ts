@@ -148,6 +148,11 @@ export const routes: Routes = [
         path: 'maps/leaflet',
         loadChildren: () => import('./features/maps/leaflet/leaflet.routes').then(m => m.LEAFLET_ROUTES),
         data: { breadcrumb: 'Maps' }
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('./features/profile/profile.routes').then(m => m.PROFILE_ROUTES),
+        data: { breadcrumb: 'Profile' }
       }
     ]
   },
