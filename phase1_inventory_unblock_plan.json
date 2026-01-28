@@ -1,0 +1,216 @@
+{
+  "metadata": {
+    "generated": "2026-01-28",
+    "phase": "phase1_inventory",
+    "description": "Unblock plan for screens blocked by missing foundations"
+  },
+  "summary": {
+    "total_blocked_screens": 0,
+    "screens_ready_after_wave0": 32,
+    "description": "All screens are unblocked once Wave 0 foundations are migrated. No screens have circular dependencies or missing foundations that would prevent migration."
+  },
+  "wave0_unblock_tasks": {
+    "description": "Minimal foundational work required to unblock all screens",
+    "tasks": [
+      {
+        "id": "task-1",
+        "name": "Migrate colorHelper constant",
+        "priority": 1,
+        "estimated_effort": "small",
+        "description": "Convert colorHelper constant to Angular InjectionToken or utility service. Required by baConfig.",
+        "blocks": ["baConfig"],
+        "implementation_notes": "Pure functions for tint/shade color manipulation. No external dependencies."
+      },
+      {
+        "id": "task-2",
+        "name": "Migrate layoutSizes constant",
+        "priority": 1,
+        "estimated_effort": "small",
+        "description": "Convert layoutSizes constant to Angular InjectionToken. Required by baSidebarService.",
+        "blocks": ["baSidebarService", "baSidebar"],
+        "implementation_notes": "Simple object with responsive breakpoint values. Consider using Angular CDK BreakpointObserver as alternative."
+      },
+      {
+        "id": "task-3",
+        "name": "Migrate layoutPaths constant",
+        "priority": 1,
+        "estimated_effort": "small",
+        "description": "Convert layoutPaths constant to Angular InjectionToken with environment configuration.",
+        "blocks": ["dashboard", "charts.amCharts", "maps.bubble", "maps.line", "profile", "image filters"],
+        "implementation_notes": "Asset path configuration. Consider using Angular's asset handling and environment files."
+      },
+      {
+        "id": "task-4",
+        "name": "Migrate baConfig provider",
+        "priority": 2,
+        "estimated_effort": "medium",
+        "description": "Convert baConfig provider to Angular injectable service. Central theme configuration.",
+        "blocks": ["dashboard", "all chart screens", "maps.bubble", "maps.line", "baPanel"],
+        "dependencies": ["colorHelper"],
+        "implementation_notes": "Provider pattern needs conversion to service with InjectionToken for configuration. Consider APP_INITIALIZER for theme setup."
+      },
+      {
+        "id": "task-5",
+        "name": "Migrate baUtil service",
+        "priority": 2,
+        "estimated_effort": "small",
+        "description": "Convert baUtil service to Angular service. Utility functions for DOM and colors.",
+        "blocks": ["baSidebar", "dashboard"],
+        "implementation_notes": "Replace jQuery-dependent methods with native DOM or Angular Renderer2. hexToRGB function is pure."
+      },
+      {
+        "id": "task-6",
+        "name": "Migrate baSidebarService provider",
+        "priority": 3,
+        "estimated_effort": "medium",
+        "description": "Convert baSidebarService provider to Angular service with reactive state.",
+        "blocks": ["baSidebar", "all screens (navigation)"],
+        "dependencies": ["layoutSizes"],
+        "implementation_notes": "Use BehaviorSubject for menu state. Integrate with Angular Router for dynamic menu generation from route config."
+      },
+      {
+        "id": "task-7",
+        "name": "Migrate baSidebar directive",
+        "priority": 4,
+        "estimated_effort": "large",
+        "description": "Convert baSidebar directive to Angular component. Main navigation component.",
+        "blocks": ["all screens"],
+        "dependencies": ["baSidebarService", "baUtil", "layoutSizes"],
+        "implementation_notes": "Complex directive with controller. Convert to standalone component. Handle responsive behavior with BreakpointObserver."
+      },
+      {
+        "id": "task-8",
+        "name": "Migrate baPanel directive",
+        "priority": 4,
+        "estimated_effort": "medium",
+        "description": "Convert baPanel directive to Angular component. Used by ALL screens.",
+        "blocks": ["all screens"],
+        "dependencies": ["baConfig"],
+        "implementation_notes": "Panel container with blur effect support. Convert to component with content projection."
+      }
+    ]
+  },
+  "dependency_resolution_order": [
+    {
+      "phase": 1,
+      "items": ["colorHelper", "layoutSizes", "layoutPaths"],
+      "description": "Constants with no dependencies - can be migrated in parallel"
+    },
+    {
+      "phase": 2,
+      "items": ["baConfig", "baUtil"],
+      "description": "Services depending only on Phase 1 constants"
+    },
+    {
+      "phase": 3,
+      "items": ["baSidebarService"],
+      "description": "Service depending on Phase 1 constants"
+    },
+    {
+      "phase": 4,
+      "items": ["baSidebar", "baPanel"],
+      "description": "Directives depending on Phase 2-3 services"
+    }
+  ],
+  "blocked_screens_analysis": {
+    "description": "Analysis of screens and their blocking dependencies",
+    "screens": {
+      "dashboard": {
+        "blocked_by": ["baConfig", "baUtil", "layoutPaths", "colorHelper", "baPanel"],
+        "unblocked_after": "wave0 phase 4",
+        "notes": "Heavy dependency on theme services for chart colors"
+      },
+      "charts.amCharts": {
+        "blocked_by": ["baConfig", "layoutPaths", "baPanel"],
+        "unblocked_after": "wave0 phase 4",
+        "notes": "AmCharts theme configuration depends on baConfig colors"
+      },
+      "charts.chartJs": {
+        "blocked_by": ["baConfig", "baPanel"],
+        "unblocked_after": "wave0 phase 4",
+        "notes": "Chart.js configuration depends on baConfig colors"
+      },
+      "charts.chartist": {
+        "blocked_by": ["baConfig", "baPanel"],
+        "unblocked_after": "wave0 phase 4",
+        "notes": "Chartist options use baConfig colors"
+      },
+      "charts.morris": {
+        "blocked_by": ["baConfig", "baPanel"],
+        "unblocked_after": "wave0 phase 4",
+        "notes": "Morris defaults configured with baConfig colors"
+      },
+      "maps.bubble": {
+        "blocked_by": ["baConfig", "layoutPaths", "baPanel"],
+        "unblocked_after": "wave0 phase 4",
+        "notes": "AmCharts map uses baConfig colors"
+      },
+      "maps.line": {
+        "blocked_by": ["baConfig", "layoutPaths", "baPanel"],
+        "unblocked_after": "wave0 phase 4",
+        "notes": "AmCharts map uses baConfig colors"
+      },
+      "profile": {
+        "blocked_by": ["baPanel", "layoutPaths (via filters)"],
+        "unblocked_after": "wave0 phase 4",
+        "notes": "Image filters depend on layoutPaths"
+      },
+      "ui.*": {
+        "blocked_by": ["baPanel"],
+        "unblocked_after": "wave0 phase 4",
+        "notes": "All UI screens use baPanel for layout"
+      },
+      "form.*": {
+        "blocked_by": ["baPanel"],
+        "unblocked_after": "wave0 phase 4",
+        "notes": "All form screens use baPanel for layout"
+      },
+      "tables.*": {
+        "blocked_by": ["baPanel"],
+        "unblocked_after": "wave0 phase 4",
+        "notes": "All table screens use baPanel for layout"
+      },
+      "components.*": {
+        "blocked_by": ["baPanel"],
+        "unblocked_after": "wave0 phase 4",
+        "notes": "All component screens use baPanel for layout"
+      },
+      "maps.gmap": {
+        "blocked_by": ["baPanel"],
+        "unblocked_after": "wave0 phase 4",
+        "notes": "Only depends on baPanel, no baConfig usage"
+      },
+      "maps.leaflet": {
+        "blocked_by": ["baPanel"],
+        "unblocked_after": "wave0 phase 4",
+        "notes": "Only depends on baPanel, no baConfig usage"
+      }
+    }
+  },
+  "risk_mitigation": {
+    "high_risk_items": [
+      {
+        "item": "baConfig",
+        "risk": "Central configuration used everywhere",
+        "mitigation": "Create adapter/facade that can work with both AngularJS and Angular during hybrid phase"
+      },
+      {
+        "item": "baSidebar",
+        "risk": "Complex navigation with responsive behavior",
+        "mitigation": "Consider using Angular CDK for responsive behavior. Test thoroughly on all breakpoints."
+      }
+    ],
+    "external_library_risks": [
+      {
+        "library": "AmCharts",
+        "risk": "Heavy integration with baConfig for theming",
+        "mitigation": "Create Angular wrapper service for AmCharts theme configuration"
+      },
+      {
+        "library": "ui.bootstrap",
+        "risk": "Modal and tab components used across screens",
+        "mitigation": "Replace with ngx-bootstrap or Angular Material equivalents"
+      }
+    ]
+  }
+}

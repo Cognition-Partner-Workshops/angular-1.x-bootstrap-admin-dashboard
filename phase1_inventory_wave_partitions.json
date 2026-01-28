@@ -1,0 +1,381 @@
+{
+  "metadata": {
+    "generated": "2026-01-28",
+    "phase": "phase1_inventory",
+    "description": "Wave partitions for AngularJS to Angular migration - screens grouped by dependency readiness"
+  },
+  "wave_summary": {
+    "total_waves": 4,
+    "wave0_count": 8,
+    "wave1_count": 8,
+    "wave2_count": 10,
+    "wave3_count": 6
+  },
+  "waves": {
+    "wave0": {
+      "name": "Foundations",
+      "description": "Core services, theme infrastructure, and navigation that all other screens depend on. Must be migrated first to unblock all subsequent waves.",
+      "priority": "critical",
+      "estimated_complexity": "high",
+      "items": [
+        {
+          "id": "baConfig",
+          "type": "service",
+          "path": "src/app/theme/theme.configProvider.js",
+          "justification": "Central configuration provider used by 14+ components. All chart screens and theme components depend on this for colors and theme settings. Foundation port candidate due to high usage.",
+          "dependencies": ["colorHelper"],
+          "blocks": ["dashboard", "charts.*", "maps.bubble", "maps.line"]
+        },
+        {
+          "id": "baSidebarService",
+          "type": "service",
+          "path": "src/app/theme/components/baSidebar/baSidebar.service.js",
+          "justification": "Navigation service managing sidebar menu state. Critical for application navigation - all screens require working navigation.",
+          "dependencies": ["$state", "layoutSizes"],
+          "blocks": ["all screens"]
+        },
+        {
+          "id": "layoutPaths",
+          "type": "constant",
+          "path": "src/app/theme/theme.constants.js",
+          "justification": "Asset path configuration used by 8 components including image filters and chart controllers.",
+          "dependencies": [],
+          "blocks": ["dashboard", "charts.amCharts", "maps.*", "profile"]
+        },
+        {
+          "id": "layoutSizes",
+          "type": "constant",
+          "path": "src/app/theme/theme.constants.js",
+          "justification": "Responsive breakpoint constants required by sidebar service and directive.",
+          "dependencies": [],
+          "blocks": ["baSidebarService", "baSidebar"]
+        },
+        {
+          "id": "colorHelper",
+          "type": "constant",
+          "path": "src/app/theme/theme.constants.js",
+          "justification": "Color utility functions required by baConfig provider for theme color calculations.",
+          "dependencies": [],
+          "blocks": ["baConfig"]
+        },
+        {
+          "id": "baUtil",
+          "type": "service",
+          "path": "src/app/theme/services/baUtil.js",
+          "justification": "Utility service with DOM helpers used by sidebar and dashboard charts.",
+          "dependencies": [],
+          "blocks": ["baSidebar", "dashboard"]
+        },
+        {
+          "id": "baSidebar",
+          "type": "directive",
+          "path": "src/app/theme/components/baSidebar/",
+          "justification": "Main navigation directive - required for all screens to have working navigation.",
+          "dependencies": ["baSidebarService", "baUtil", "layoutSizes"],
+          "blocks": ["all screens"]
+        },
+        {
+          "id": "baPanel",
+          "type": "directive",
+          "path": "src/app/theme/components/baPanel/",
+          "justification": "Panel container directive used by ALL screens for content layout. Foundation port candidate.",
+          "dependencies": ["baConfig"],
+          "blocks": ["all screens"]
+        }
+      ]
+    },
+    "wave1": {
+      "name": "Simple UI Screens",
+      "description": "UI screens with minimal service dependencies. Only depend on Wave 0 foundations (baPanel, baConfig).",
+      "priority": "high",
+      "estimated_complexity": "low",
+      "items": [
+        {
+          "id": "ui.typography",
+          "type": "screen",
+          "path": "src/app/pages/ui/typography/",
+          "justification": "Static content screen with no controllers or service dependencies. Only requires baPanel directive from Wave 0.",
+          "dependencies": ["baPanel"],
+          "wave0_dependencies_met": true
+        },
+        {
+          "id": "ui.grid",
+          "type": "screen",
+          "path": "src/app/pages/ui/grid/",
+          "justification": "Static grid layout examples with no controllers or service dependencies. Only requires baPanel.",
+          "dependencies": ["baPanel"],
+          "wave0_dependencies_met": true
+        },
+        {
+          "id": "ui.alerts",
+          "type": "screen",
+          "path": "src/app/pages/ui/alerts/",
+          "justification": "Static alert examples with no controllers or service dependencies. Only requires baPanel.",
+          "dependencies": ["baPanel"],
+          "wave0_dependencies_met": true
+        },
+        {
+          "id": "ui.progressBars",
+          "type": "screen",
+          "path": "src/app/pages/ui/progressBars/",
+          "justification": "Progress bar examples. Requires baPanel and progressBarRound directive (simple, self-contained).",
+          "dependencies": ["baPanel", "progressBarRound"],
+          "wave0_dependencies_met": true
+        },
+        {
+          "id": "ui.tabs",
+          "type": "screen",
+          "path": "src/app/pages/ui/tabs/",
+          "justification": "Tab examples using ui.bootstrap tabs. No custom service dependencies.",
+          "dependencies": ["baPanel", "ui.bootstrap"],
+          "wave0_dependencies_met": true
+        },
+        {
+          "id": "ui.panels",
+          "type": "screen",
+          "path": "src/app/pages/ui/panels/",
+          "justification": "Panel examples demonstrating baPanel variations. Only requires baPanel.",
+          "dependencies": ["baPanel"],
+          "wave0_dependencies_met": true
+        },
+        {
+          "id": "form.layouts",
+          "type": "screen",
+          "path": "src/app/pages/form/layouts/",
+          "justification": "Form layout examples with no controllers. Only requires baPanel.",
+          "dependencies": ["baPanel"],
+          "wave0_dependencies_met": true
+        },
+        {
+          "id": "components.timeline",
+          "type": "screen",
+          "path": "src/app/pages/components/timeline/",
+          "justification": "Timeline component with simple controller (TimelineCtrl) that has no service dependencies.",
+          "dependencies": ["baPanel"],
+          "wave0_dependencies_met": true
+        }
+      ]
+    },
+    "wave2": {
+      "name": "Interactive UI & Forms",
+      "description": "Screens with controllers and moderate service dependencies. May require additional directives or external library wrappers.",
+      "priority": "medium",
+      "estimated_complexity": "medium",
+      "items": [
+        {
+          "id": "ui.buttons",
+          "type": "screen",
+          "path": "src/app/pages/ui/buttons/",
+          "justification": "Button examples with ButtonPageCtrl. Depends on angular-progress-button-styles external library.",
+          "dependencies": ["baPanel", "angular-progress-button-styles"],
+          "wave0_dependencies_met": true,
+          "external_dependencies": ["angular-progress-button-styles"]
+        },
+        {
+          "id": "ui.icons",
+          "type": "screen",
+          "path": "src/app/pages/ui/icons/",
+          "justification": "Icon gallery with IconsPageCtrl. Simple controller with no service dependencies.",
+          "dependencies": ["baPanel"],
+          "wave0_dependencies_met": true
+        },
+        {
+          "id": "ui.slider",
+          "type": "screen",
+          "path": "src/app/pages/ui/slider/",
+          "justification": "Slider examples requiring ionSlider directive wrapper for ion.rangeSlider library.",
+          "dependencies": ["baPanel", "ionSlider"],
+          "wave0_dependencies_met": true,
+          "external_dependencies": ["ion.rangeSlider"]
+        },
+        {
+          "id": "ui.modals",
+          "type": "screen",
+          "path": "src/app/pages/ui/modals/",
+          "justification": "Modal examples with ModalsPageCtrl. Depends on $uibModal and baProgressModal service.",
+          "dependencies": ["baPanel", "$uibModal", "baProgressModal"],
+          "wave0_dependencies_met": true,
+          "additional_services": ["baProgressModal"]
+        },
+        {
+          "id": "ui.notifications",
+          "type": "screen",
+          "path": "src/app/pages/ui/notifications/",
+          "justification": "Notification examples with NotificationsPageCtrl. Depends on toastr external library.",
+          "dependencies": ["baPanel", "toastr", "toastrConfig"],
+          "wave0_dependencies_met": true,
+          "external_dependencies": ["angular-toastr"]
+        },
+        {
+          "id": "form.inputs",
+          "type": "screen",
+          "path": "src/app/pages/form/inputs/",
+          "justification": "Form input examples. Requires baSwitcher directive and ui.select external library.",
+          "dependencies": ["baPanel", "baSwitcher", "ui.select"],
+          "wave0_dependencies_met": true,
+          "external_dependencies": ["ui.select", "bootstrap-tagsinput"]
+        },
+        {
+          "id": "form.wizard",
+          "type": "screen",
+          "path": "src/app/pages/form/wizard/",
+          "justification": "Multi-step wizard form. Requires baWizard and baWizardStep directives.",
+          "dependencies": ["baPanel", "baWizard", "baWizardStep"],
+          "wave0_dependencies_met": true,
+          "additional_directives": ["baWizard", "baWizardStep"]
+        },
+        {
+          "id": "components.tree",
+          "type": "screen",
+          "path": "src/app/pages/components/tree/",
+          "justification": "Tree view component. Depends on ngJsTree external library wrapper.",
+          "dependencies": ["baPanel", "ngJsTree"],
+          "wave0_dependencies_met": true,
+          "external_dependencies": ["ngJsTree", "jstree"]
+        },
+        {
+          "id": "tables.basic",
+          "type": "screen",
+          "path": "src/app/pages/tables/basic/",
+          "justification": "Basic tables with TablesPageCtrl. Depends on xeditable for inline editing.",
+          "dependencies": ["baPanel", "editableOptions", "editableThemes"],
+          "wave0_dependencies_met": true,
+          "external_dependencies": ["xeditable"]
+        },
+        {
+          "id": "tables.smart",
+          "type": "screen",
+          "path": "src/app/pages/tables/smart/",
+          "justification": "Smart tables with sorting/filtering. Depends on smart-table and xeditable libraries.",
+          "dependencies": ["baPanel", "smart-table", "editableOptions", "editableThemes"],
+          "wave0_dependencies_met": true,
+          "external_dependencies": ["smart-table", "xeditable"]
+        }
+      ]
+    },
+    "wave3": {
+      "name": "Complex Screens with Charts & Maps",
+      "description": "Screens with heavy external library dependencies (AmCharts, Chart.js, Google Maps, etc.) and deep baConfig integration.",
+      "priority": "medium",
+      "estimated_complexity": "high",
+      "items": [
+        {
+          "id": "dashboard",
+          "type": "screen",
+          "path": "src/app/pages/dashboard/",
+          "justification": "Main dashboard with 8 widgets. Heavy dependencies on baConfig, baUtil, layoutPaths, colorHelper. Requires AmCharts, Chart.js, fullCalendar, easyPieChart.",
+          "dependencies": ["baConfig", "baUtil", "layoutPaths", "colorHelper", "baPanel"],
+          "wave0_dependencies_met": true,
+          "external_dependencies": ["AmCharts", "Chart.js", "fullCalendar", "easyPieChart"],
+          "complexity_notes": "Multiple widget controllers, each with chart library integration"
+        },
+        {
+          "id": "charts.amCharts",
+          "type": "screen",
+          "path": "src/app/pages/charts/amCharts/",
+          "justification": "AmCharts examples. Depends on baConfig for theme colors and layoutPaths for assets. Heavy AmCharts integration.",
+          "dependencies": ["baConfig", "layoutPaths", "baPanel"],
+          "wave0_dependencies_met": true,
+          "external_dependencies": ["AmCharts"],
+          "complexity_notes": "7 chart controllers, custom AmCharts theme configuration"
+        },
+        {
+          "id": "charts.chartJs",
+          "type": "screen",
+          "path": "src/app/pages/charts/chartJs/",
+          "justification": "Chart.js examples. Depends on baConfig for colors and stopableInterval for animations.",
+          "dependencies": ["baConfig", "stopableInterval", "baPanel"],
+          "wave0_dependencies_met": true,
+          "external_dependencies": ["chart.js", "angular-chart.js"],
+          "additional_services": ["stopableInterval"]
+        },
+        {
+          "id": "charts.chartist",
+          "type": "screen",
+          "path": "src/app/pages/charts/chartist/",
+          "justification": "Chartist examples. Depends on baConfig for colors.",
+          "dependencies": ["baConfig", "baPanel"],
+          "wave0_dependencies_met": true,
+          "external_dependencies": ["angular-chartist", "Chartist"]
+        },
+        {
+          "id": "charts.morris",
+          "type": "screen",
+          "path": "src/app/pages/charts/morris/",
+          "justification": "Morris chart examples. Depends on baConfig for colors.",
+          "dependencies": ["baConfig", "baPanel"],
+          "wave0_dependencies_met": true,
+          "external_dependencies": ["angular.morris-chart", "Morris", "Raphael"]
+        },
+        {
+          "id": "maps.gmap",
+          "type": "screen",
+          "path": "src/app/pages/maps/google-maps/",
+          "justification": "Google Maps integration. Minimal internal dependencies but requires Google Maps API.",
+          "dependencies": ["baPanel"],
+          "wave0_dependencies_met": true,
+          "external_dependencies": ["google.maps"],
+          "complexity_notes": "Requires Google Maps API key and external script loading"
+        },
+        {
+          "id": "maps.leaflet",
+          "type": "screen",
+          "path": "src/app/pages/maps/leaflet/",
+          "justification": "Leaflet map integration. Minimal internal dependencies.",
+          "dependencies": ["baPanel"],
+          "wave0_dependencies_met": true,
+          "external_dependencies": ["Leaflet"]
+        },
+        {
+          "id": "maps.bubble",
+          "type": "screen",
+          "path": "src/app/pages/maps/map-bubbles/",
+          "justification": "AmCharts map with bubble visualization. Depends on baConfig and layoutPaths.",
+          "dependencies": ["baConfig", "layoutPaths", "baPanel"],
+          "wave0_dependencies_met": true,
+          "external_dependencies": ["AmCharts", "ammap"]
+        },
+        {
+          "id": "maps.line",
+          "type": "screen",
+          "path": "src/app/pages/maps/map-lines/",
+          "justification": "AmCharts map with flight lines. Depends on baConfig and layoutPaths.",
+          "dependencies": ["baConfig", "layoutPaths", "baPanel"],
+          "wave0_dependencies_met": true,
+          "external_dependencies": ["AmCharts", "ammap"]
+        },
+        {
+          "id": "components.mail",
+          "type": "screen",
+          "path": "src/app/pages/components/mail/",
+          "justification": "Mail client component with multiple views. Depends on textAngular for rich text editing.",
+          "dependencies": ["baPanel", "mailMessages"],
+          "wave0_dependencies_met": true,
+          "external_dependencies": ["textAngular"],
+          "complexity_notes": "3 controllers (MailTabCtrl, MailListCtrl, MailDetailCtrl), nested routes"
+        },
+        {
+          "id": "profile",
+          "type": "screen",
+          "path": "src/app/pages/profile/",
+          "justification": "User profile page. Depends on fileReader service, image filters, and $uibModal.",
+          "dependencies": ["baPanel", "fileReader", "$uibModal", "baSwitcher", "ngFileSelect"],
+          "wave0_dependencies_met": true,
+          "filter_dependencies": ["profilePicture", "appImage"],
+          "additional_services": ["fileReader"]
+        }
+      ]
+    }
+  },
+  "migration_order": [
+    "wave0: Foundation services and directives",
+    "wave1: Simple static UI screens",
+    "wave2: Interactive UI screens with moderate complexity",
+    "wave3: Complex screens with chart/map integrations"
+  ],
+  "parallel_migration_opportunities": {
+    "wave1": "All 8 screens can be migrated in parallel after Wave 0 completes",
+    "wave2": "All 10 screens can be migrated in parallel after Wave 0 completes (no inter-dependencies)",
+    "wave3": "Charts screens can be parallelized. Maps screens can be parallelized. Dashboard should be last due to widget complexity."
+  }
+}
