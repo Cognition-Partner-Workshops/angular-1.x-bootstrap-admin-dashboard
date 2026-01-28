@@ -1,31 +1,47 @@
 <div class="dashboard">
   <h2 class="page-title">Dashboard</h2>
 
-  <div class="stats-grid" *ngIf="stats.length > 0">
-    <div class="stat-card" *ngFor="let stat of stats">
-      <div class="stat-label">{{ stat.label }}</div>
-      <div class="stat-value">{{ stat.value | number }}</div>
-      <div class="stat-change" [ngClass]="getChangeClass(stat.changeType)">
-        <span *ngIf="stat.changeType === 'increase'">+</span>
-        <span *ngIf="stat.changeType === 'decrease'">-</span>
-        {{ stat.change | number:'1.1-1' }}%
-      </div>
+  @if (stats.length > 0) {
+    <div class="stats-grid">
+      @for (stat of stats; track stat.id) {
+        <div class="stat-card">
+          <div class="stat-label">{{ stat.label }}</div>
+          <div class="stat-value">{{ stat.value | number }}</div>
+          <div class="stat-change" [ngClass]="getChangeClass(stat.changeType)">
+            @if (stat.changeType === 'increase') {
+              <span>+</span>
+            }
+            @if (stat.changeType === 'decrease') {
+              <span>-</span>
+            }
+            {{ stat.change | number:'1.1-1' }}%
+          </div>
+        </div>
+      }
     </div>
-  </div>
+  }
 
   <div class="activities-section">
     <h3 class="section-title">Recent Activity</h3>
-    <div class="loading" *ngIf="loading">Loading...</div>
-    <div class="activities-list" *ngIf="!loading">
-      <div class="activity-item" *ngFor="let activity of activities">
-        <div class="activity-user">{{ activity.userName }}</div>
-        <div class="activity-action">{{ activity.action }}</div>
-        <div class="activity-target">{{ activity.target }}</div>
-        <div class="activity-time">{{ activity.timestamp | date:'short' }}</div>
+    @if (loading) {
+      <div class="loading">Loading...</div>
+    }
+    @if (!loading) {
+      <div class="activities-list">
+        @for (activity of activities; track activity.id) {
+          <div class="activity-item">
+            <div class="activity-user">{{ activity.userName }}</div>
+            <div class="activity-action">{{ activity.action }}</div>
+            <div class="activity-target">{{ activity.target }}</div>
+            <div class="activity-time">{{ activity.timestamp | date:'short' }}</div>
+          </div>
+        }
+        @if (activities.length === 0) {
+          <div class="no-activities">
+            No recent activities
+          </div>
+        }
       </div>
-      <div class="no-activities" *ngIf="activities.length === 0">
-        No recent activities
-      </div>
-    </div>
+    }
   </div>
 </div>

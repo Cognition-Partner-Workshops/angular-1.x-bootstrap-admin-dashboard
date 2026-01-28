@@ -41,14 +41,20 @@
 
   <div class="settings-section">
     <h3 class="section-title">Feature Flags</h3>
-    <div class="loading" *ngIf="loading">Loading feature flags...</div>
-    <div class="feature-flags-list" *ngIf="!loading">
-      <div class="feature-flag" *ngFor="let flag of featureFlags">
-        <div class="flag-name">{{ flag.name }}</div>
-        <div class="flag-status" [class.enabled]="flag.enabled">
-          {{ flag.enabled ? 'Enabled' : 'Disabled' }}
-        </div>
+    @if (loading) {
+      <div class="loading">Loading feature flags...</div>
+    }
+    @if (!loading) {
+      <div class="feature-flags-list">
+        @for (flag of featureFlags; track flag.name) {
+          <div class="feature-flag">
+            <div class="flag-name">{{ flag.name }}</div>
+            <div class="flag-status" [class.enabled]="flag.enabled">
+              {{ flag.enabled ? 'Enabled' : 'Disabled' }}
+            </div>
+          </div>
+        }
       </div>
-    </div>
+    }
   </div>
 </div>

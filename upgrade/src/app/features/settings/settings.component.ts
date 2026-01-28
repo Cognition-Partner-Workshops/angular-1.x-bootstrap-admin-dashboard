@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FeatureFlagsPort, FeatureFlag } from '../../core/ports/feature-flags.port';
@@ -10,7 +10,7 @@ import { FeatureFlagsPort, FeatureFlag } from '../../core/ports/feature-flags.po
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss'
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnInit {
   private featureFlagsPort = inject(FeatureFlagsPort);
 
   featureFlags: FeatureFlag[] = [];

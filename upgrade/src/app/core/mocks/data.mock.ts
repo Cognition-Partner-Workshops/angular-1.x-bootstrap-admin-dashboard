@@ -5,6 +5,7 @@ import { MOCK_DATA } from './fixtures';
 
 @Injectable({ providedIn: 'root' })
 export class MockDataService extends DataPort {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   get<T>(endpoint: string, options?: QueryOptions): Observable<T> {
     const data = this.getDataForEndpoint(endpoint);
     return of(data as T).pipe(delay(200));
@@ -17,7 +18,7 @@ export class MockDataService extends DataPort {
     const startIndex = (page - 1) * pageSize;
     const endIndex = startIndex + pageSize;
 
-    let filteredData = [...allData];
+    const filteredData = [...allData];
 
     if (options?.sortBy) {
       filteredData.sort((a, b) => {
@@ -59,6 +60,7 @@ export class MockDataService extends DataPort {
     return of(updatedItem).pipe(delay(300));
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   delete(endpoint: string, id: string): Observable<void> {
     return of(undefined).pipe(delay(200));
   }

@@ -20,6 +20,7 @@ export class MockAuthService extends AuthPort {
   private authState$ = new BehaviorSubject<AuthState>(INITIAL_STATE);
   private tokenStorage: string | null = null;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   login(email: string, password: string): Observable<AuthState> {
     const mockToken = 'mock-jwt-token-' + Date.now();
     const newState: AuthState = {
