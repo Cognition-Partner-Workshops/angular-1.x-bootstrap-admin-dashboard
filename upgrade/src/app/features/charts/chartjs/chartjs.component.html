@@ -1,0 +1,123 @@
+<div class="chartjs-page" data-testid="chartjs-page">
+  <!-- Row 1: Pie, Doughnut, Polar -->
+  <div class="row">
+    <div class="col-md-4">
+      <app-ba-panel panelTitle="Pie" panelClass="with-scroll">
+        <div class="chartjs-canvas-holder-first-row" data-testid="pie-chart-container">
+          <canvas
+            baseChart
+            [data]="pieChartData"
+            [options]="pieChartOptions"
+            [type]="pieChartType"
+            (chartClick)="onPieChartClick()"
+            data-testid="pie-chart">
+          </canvas>
+        </div>
+      </app-ba-panel>
+    </div>
+    <div class="col-md-4">
+      <app-ba-panel panelTitle="Doughnut" panelClass="with-scroll">
+        <div class="chartjs-canvas-holder-first-row" data-testid="doughnut-chart-container">
+          <canvas
+            baseChart
+            [data]="doughnutChartData"
+            [options]="doughnutChartOptions"
+            [type]="doughnutChartType"
+            (chartClick)="onDoughnutChartClick()"
+            data-testid="doughnut-chart">
+          </canvas>
+        </div>
+      </app-ba-panel>
+    </div>
+    <div class="col-md-4">
+      <app-ba-panel panelTitle="Polar" panelClass="with-scroll">
+        <div class="chartjs-canvas-holder-first-row" data-testid="polar-chart-container">
+          <canvas
+            baseChart
+            [data]="polarChartData"
+            [options]="polarChartOptions"
+            [type]="polarChartType"
+            (chartClick)="onPolarChartClick()"
+            data-testid="polar-chart">
+          </canvas>
+        </div>
+      </app-ba-panel>
+    </div>
+  </div>
+
+  <!-- Row 2: Animated Radar, Animated Bars -->
+  <div class="row">
+    <div class="col-md-6">
+      <app-ba-panel panelTitle="Animated Radar" panelClass="col-eq-height">
+        <div class="chartjs-canvas-holder-second-row" data-testid="animated-radar-chart-container">
+          <canvas
+            baseChart
+            [data]="animatedRadarChartData"
+            [options]="animatedRadarChartOptions"
+            [type]="radarChartType"
+            data-testid="animated-radar-chart">
+          </canvas>
+        </div>
+      </app-ba-panel>
+    </div>
+    <div class="col-md-6">
+      <app-ba-panel panelTitle="Animated Bars" panelClass="col-eq-height">
+        <div class="chartjs-canvas-holder-second-row" data-testid="animated-bar-chart-container">
+          <canvas
+            baseChart
+            [data]="animatedBarChartData"
+            [options]="animatedBarChartOptions"
+            [type]="barChartType"
+            data-testid="animated-bar-chart">
+          </canvas>
+        </div>
+      </app-ba-panel>
+    </div>
+  </div>
+
+  <!-- Row 3: Radar, Line, Bars -->
+  <div class="row">
+    <div class="col-lg-4 col-md-6">
+      <app-ba-panel panelTitle="Radar" panelClass="with-scroll">
+        <div class="chartjs-canvas-holder-third-row" data-testid="static-radar-chart-container">
+          <canvas
+            baseChart
+            [data]="staticRadarChartData"
+            [options]="staticRadarChartOptions"
+            [type]="radarChartType"
+            (chartClick)="onStaticRadarChartClick()"
+            data-testid="static-radar-chart">
+          </canvas>
+        </div>
+      </app-ba-panel>
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <app-ba-panel panelTitle="Line" panelClass="with-scroll">
+        <div class="chartjs-canvas-holder-third-row" data-testid="line-chart-container">
+          <canvas
+            baseChart
+            [data]="lineChartData"
+            [options]="lineChartOptions"
+            [type]="lineChartType"
+            (chartClick)="onLineChartClick()"
+            data-testid="line-chart">
+          </canvas>
+        </div>
+      </app-ba-panel>
+    </div>
+    <div class="col-lg-4 col-md-12">
+      <app-ba-panel panelTitle="Bars" panelClass="with-scroll">
+        <div class="chartjs-canvas-holder-third-row" data-testid="static-bar-chart-container">
+          <canvas
+            baseChart
+            [data]="staticBarChartData"
+            [options]="staticBarChartOptions"
+            [type]="barChartType"
+            (chartClick)="onStaticBarChartClick()"
+            data-testid="static-bar-chart">
+          </canvas>
+        </div>
+      </app-ba-panel>
+    </div>
+  </div>
+</div>

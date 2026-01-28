@@ -178,6 +178,11 @@ export const routes: Routes = [
         path: 'charts/chartist',
         loadChildren: () => import('./features/charts/chartist/chartist.routes').then(m => m.CHARTIST_ROUTES),
         data: { breadcrumb: 'Charts' }
+      },
+      {
+        path: 'charts/chartjs',
+        loadChildren: () => import('./features/charts/chartjs/chartjs.routes').then(m => m.CHARTJS_ROUTES),
+        data: { breadcrumb: 'Charts' }
       }
     ]
   },
