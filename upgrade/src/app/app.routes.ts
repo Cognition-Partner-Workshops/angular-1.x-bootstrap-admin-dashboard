@@ -63,6 +63,13 @@ export const routes: Routes = [
         data: {
           breadcrumb: 'UI'
         }
+      },
+      {
+        path: 'ui/progress-bars',
+        loadChildren: () => import('./features/ui/progress-bars/progress-bars.routes').then(m => m.PROGRESS_BARS_ROUTES),
+        data: {
+          breadcrumb: 'UI'
+        }
       }
     ]
   },

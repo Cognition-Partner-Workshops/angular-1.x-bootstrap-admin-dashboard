@@ -1,0 +1,137 @@
+<app-page-container title="Progress Bars">
+  <div class="widgets">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="panel" data-testid="panel-basic">
+          <div class="panel-heading">Basic</div>
+          <div class="panel-body">
+            <div class="progress" data-testid="progress-basic-success">
+              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                <span class="sr-only">40% Complete (success)</span>
+              </div>
+            </div>
+            <div class="progress" data-testid="progress-basic-info">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                <span class="sr-only">20% Complete</span>
+              </div>
+            </div>
+            <div class="progress" data-testid="progress-basic-warning">
+              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                <span class="sr-only">60% Complete (warning)</span>
+              </div>
+            </div>
+            <div class="progress" data-testid="progress-basic-danger">
+              <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                <span class="sr-only">80% Complete (danger)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" data-testid="panel-striped">
+          <div class="panel-heading">Striped</div>
+          <div class="panel-body">
+            <div class="progress" data-testid="progress-striped-success">
+              <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                <span class="sr-only">40% Complete (success)</span>
+              </div>
+            </div>
+            <div class="progress" data-testid="progress-striped-info">
+              <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                <span class="sr-only">20% Complete</span>
+              </div>
+            </div>
+            <div class="progress" data-testid="progress-striped-warning">
+              <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                <span class="sr-only">60% Complete (warning)</span>
+              </div>
+            </div>
+            <div class="progress" data-testid="progress-striped-danger">
+              <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                <span class="sr-only">80% Complete (danger)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="panel" data-testid="panel-label">
+          <div class="panel-heading">With label</div>
+          <div class="panel-body">
+            <div class="progress" data-testid="progress-label-success">
+              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                40% Complete (success)
+              </div>
+            </div>
+            <div class="progress" data-testid="progress-label-info">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                20% Complete
+              </div>
+            </div>
+            <div class="progress" data-testid="progress-label-warning">
+              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                60% Complete (warning)
+              </div>
+            </div>
+            <div class="progress" data-testid="progress-label-danger">
+              <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                80% Complete (danger)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" data-testid="panel-animated">
+          <div class="panel-heading">Animated</div>
+          <div class="panel-body">
+            <div class="progress" data-testid="progress-animated-success">
+              <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                <span class="sr-only">40% Complete (success)</span>
+              </div>
+            </div>
+            <div class="progress" data-testid="progress-animated-info">
+              <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                <span class="sr-only">20% Complete</span>
+              </div>
+            </div>
+            <div class="progress" data-testid="progress-animated-warning">
+              <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                <span class="sr-only">60% Complete (warning)</span>
+              </div>
+            </div>
+            <div class="progress" data-testid="progress-animated-danger">
+              <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                <span class="sr-only">80% Complete (danger)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel" data-testid="panel-stacked">
+          <div class="panel-heading">Stacked</div>
+          <div class="panel-body">
+            <div class="progress" data-testid="progress-stacked">
+              <div class="progress-bar progress-bar-success" style="width: 35%">
+                <span class="sr-only">35% Complete (success)</span>
+              </div>
+              <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 20%">
+                <span class="sr-only">20% Complete (warning)</span>
+              </div>
+              <div class="progress-bar progress-bar-danger" style="width: 10%">
+                <span class="sr-only">10% Complete (danger)</span>
+              </div>
+              <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: 20%">
+                <span class="sr-only">20% Complete (warning)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-page-container>
