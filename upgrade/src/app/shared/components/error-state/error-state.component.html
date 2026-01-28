@@ -1,0 +1,17 @@
+<div class="error-state" [class]="'severity-' + severity">
+  <div class="error-state-icon">
+    <span class="icon-letter">{{ getSeverityIcon() }}</span>
+  </div>
+  <h3 class="error-state-title">{{ title }}</h3>
+  @if (message) {
+    <p class="error-state-message">{{ message }}</p>
+  }
+  @if (errorCode) {
+    <p class="error-state-code">Error code: {{ errorCode }}</p>
+  }
+  @if (showRetry) {
+    <button class="error-state-retry" (click)="onRetryClick()" type="button">
+      {{ retryLabel }}
+    </button>
+  }
+</div>

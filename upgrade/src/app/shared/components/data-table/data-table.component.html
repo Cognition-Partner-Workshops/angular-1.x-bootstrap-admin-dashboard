@@ -1,0 +1,103 @@
+<div class="data-table-container">
+  @if (loading) {
+    <app-loading-spinner message="Loading data..."></app-loading-spinner>
+  } @else if (error) {
+    <app-error-state
+      [title]="'Failed to load data'"
+      [message]="error"
+      (retryClick)="onRetry()">
+    </app-error-state>
+  } @else if (data.length === 0) {
+    <app-empty-state
+      [title]="emptyMessage"
+      icon="empty">
+    </app-empty-state>
+  } @else {
+    <div class="table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            @if (selectable) {
+              <th class="checkbox-cell">
+                <input
+                  type="checkbox"
+                  [checked]="allSelected"
+                  (change)="toggleAllSelection()"
+                  aria-label="Select all rows">
+              </th>
+            }
+            @for (column of columns; track trackByColumnKey($index, column)) {
+              <th
+                [class.sortable]="column.sortable"
+                [style.width]="column.width"
+                [style.text-align]="column.align || 'left'"
+                (click)="onSort(column)">
+                <span class="column-label">{{ column.label }}</span>
+                @if (column.sortable) {
+                  <span class="sort-icon">{{ getSortIcon(column) }}</span>
+                }
+              </th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of data; track trackByRowKey($index, row)) {
+            <tr
+              [class.selected]="isRowSelected(row)"
+              (click)="onRowClick(row)">
+              @if (selectable) {
+                <td class="checkbox-cell" (click)="$event.stopPropagation()">
+                  <input
+                    type="checkbox"
+                    [checked]="isRowSelected(row)"
+                    (change)="toggleRowSelection(row)"
+                    aria-label="Select row">
+                </td>
+              }
+              @for (column of columns; track trackByColumnKey($index, column)) {
+                <td [style.text-align]="column.align || 'left'">
+                  {{ getCellValue(row, column) }}
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    @if (pagination) {
+      <div class="pagination">
+        <span class="pagination-info">
+          Showing {{ (pagination.page - 1) * pagination.pageSize + 1 }} to
+          {{ Math.min(pagination.page * pagination.pageSize, pagination.total) }} of
+          {{ pagination.total }} entries
+        </span>
+        <div class="pagination-controls">
+          <button
+            class="pagination-btn"
+            [disabled]="pagination.page <= 1"
+            (click)="onPageChange(pagination.page - 1)"
+            type="button">
+            Prev
+          </button>
+          @for (pageNum of pageNumbers; track pageNum) {
+            <button
+              class="pagination-btn"
+              [class.active]="pageNum === pagination.page"
+              (click)="onPageChange(pageNum)"
+              type="button">
+              {{ pageNum }}
+            </button>
+          }
+          <button
+            class="pagination-btn"
+            [disabled]="pagination.page >= totalPages"
+            (click)="onPageChange(pagination.page + 1)"
+            type="button">
+            Next
+          </button>
+        </div>
+      </div>
+    }
+  }
+</div>

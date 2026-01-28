@@ -1,0 +1,42 @@
+<aside class="sidebar" [class.collapsed]="navState.collapsed">
+  <div class="sidebar-header">
+    <h1 class="logo">
+      @if (navState.collapsed) {
+        <span class="logo-short">UA</span>
+      } @else {
+        <span class="logo-full">Upgrade App</span>
+      }
+    </h1>
+    <button 
+      class="toggle-btn" 
+      (click)="toggleSidebar()"
+      [attr.aria-label]="navState.collapsed ? 'Expand sidebar' : 'Collapse sidebar'"
+      type="button">
+      <span class="toggle-icon">{{ navState.collapsed ? '>' : '<' }}</span>
+    </button>
+  </div>
+  <nav class="sidebar-nav" role="navigation" aria-label="Main navigation">
+    @for (item of navState.items; track trackByItemId($index, item)) {
+      <a 
+        [routerLink]="item.path" 
+        routerLinkActive="active"
+        class="nav-item"
+        [attr.aria-current]="navState.activeItemId === item.id ? 'page' : null">
+        <span class="nav-icon" [attr.aria-hidden]="true">{{ getIconLetter(item.icon) }}</span>
+        @if (!navState.collapsed) {
+          <span class="nav-text">{{ item.label }}</span>
+          @if (item.badge) {
+            <span class="nav-badge" [class]="'badge-' + (item.badgeType || 'info')">
+              {{ item.badge }}
+            </span>
+          }
+        }
+      </a>
+    }
+  </nav>
+  <div class="sidebar-footer">
+    @if (!navState.collapsed) {
+      <span class="version-info">v1.0.0</span>
+    }
+  </div>
+</aside>

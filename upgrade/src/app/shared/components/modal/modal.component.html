@@ -1,0 +1,27 @@
+<div 
+  class="modal-backdrop" 
+  (click)="onBackdropClick($event)"
+  (keydown.escape)="close()"
+  tabindex="-1"
+  role="presentation">
+  <div class="modal-container" [class]="'modal-' + size" role="dialog" aria-modal="true">
+    <div class="modal-header">
+      @if (title) {
+        <h2 class="modal-title">{{ title }}</h2>
+      }
+      @if (closable) {
+        <button class="modal-close" (click)="close()" type="button" aria-label="Close modal">
+          <span aria-hidden="true">X</span>
+        </button>
+      }
+    </div>
+    <div class="modal-body">
+      <ng-content></ng-content>
+    </div>
+    @if (showFooter) {
+      <div class="modal-footer">
+        <ng-content select="[modalFooter]"></ng-content>
+      </div>
+    }
+  </div>
+</div>

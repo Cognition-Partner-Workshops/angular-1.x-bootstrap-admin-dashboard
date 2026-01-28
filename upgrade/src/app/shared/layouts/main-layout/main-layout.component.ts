@@ -1,18 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
+import { SidebarComponent } from '../../components/sidebar';
+import { HeaderComponent } from '../../components/header';
+import { NavigationService } from '../../../core/services/navigation.service';
 
 @Component({
   selector: 'app-main-layout',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [CommonModule, RouterOutlet, SidebarComponent, HeaderComponent],
   templateUrl: './main-layout.component.html',
   styleUrl: './main-layout.component.scss'
 })
-export class MainLayoutComponent {
+export class MainLayoutComponent implements OnInit, OnDestroy {
   sidebarCollapsed = false;
+  private destroy$ = new Subject<void>();
+  private navigationService = inject(NavigationService);
 
-  toggleSidebar(): void {
-    this.sidebarCollapsed = !this.sidebarCollapsed;
+  ngOnInit(): void {
+    this.navigationService.getState()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(state => {
+        this.sidebarCollapsed = state.collapsed;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

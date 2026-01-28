@@ -1,0 +1,45 @@
+<header class="top-header">
+  <div class="header-left">
+    @if (pageTitle) {
+      <h2 class="header-title">{{ pageTitle }}</h2>
+    }
+  </div>
+  <div class="header-right">
+    <div class="user-menu-container">
+      <button 
+        class="user-menu-trigger"
+        (click)="toggleUserMenu()"
+        [attr.aria-expanded]="showUserMenu"
+        aria-haspopup="true"
+        type="button">
+        <span class="user-avatar">{{ getUserInitials() }}</span>
+        <span class="user-name">{{ currentUser?.name || 'Guest' }}</span>
+        <span class="dropdown-arrow">{{ showUserMenu ? '^' : 'v' }}</span>
+      </button>
+      @if (showUserMenu) {
+        <div class="user-menu-dropdown" role="menu">
+          <div class="user-menu-header">
+            <span class="user-email">{{ currentUser?.email || 'Not logged in' }}</span>
+            @if (currentUser?.roles?.length) {
+              <span class="user-role">{{ currentUser!.roles[0] }}</span>
+            }
+          </div>
+          <div class="user-menu-divider"></div>
+          <button class="user-menu-item" role="menuitem" type="button">
+            <span class="menu-icon">P</span>
+            Profile
+          </button>
+          <button class="user-menu-item" role="menuitem" type="button">
+            <span class="menu-icon">S</span>
+            Settings
+          </button>
+          <div class="user-menu-divider"></div>
+          <button class="user-menu-item logout" (click)="logout()" role="menuitem" type="button">
+            <span class="menu-icon">X</span>
+            Logout
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+</header>
