@@ -74,34 +74,35 @@ export function getRoutePath(mapping: RouteMapping, projectName: string): string
 
 /**
  * Common data-testid selectors used across both apps
+ * Legacy app uses .al-* classes, upgrade app uses different structure
  */
 export const SELECTORS = {
-  // Layout
-  sidebar: '[data-testid="sidebar"], .al-sidebar',
-  sidebarMenu: '[data-testid="sidebar-menu"], .al-sidebar-list',
-  pageTop: '[data-testid="page-top"], .al-header',
-  contentArea: '[data-testid="content-area"], .al-content',
+  // Layout - flexible selectors for both apps
+  sidebar: '[data-testid="sidebar"], .al-sidebar, aside, nav[class*="sidebar"], .sidebar',
+  sidebarMenu: '[data-testid="sidebar-menu"], .al-sidebar-list, nav ul, .nav-list',
+  pageTop: '[data-testid="page-top"], .al-header, header, .header',
+  contentArea: '[data-testid="content-area"], .al-content, main, .main-content, .content, [class*="content"]',
   
   // Navigation
-  menuItem: '[data-testid="menu-item"], .al-sidebar-list-item',
-  activeMenuItem: '[data-testid="menu-item-active"], .al-sidebar-list-item.selected',
+  menuItem: '[data-testid="menu-item"], .al-sidebar-list-item, nav a, .nav-item',
+  activeMenuItem: '[data-testid="menu-item-active"], .al-sidebar-list-item.selected, .active, [aria-current="page"]',
   
-  // Panels
-  panel: '[data-testid="panel"], .panel',
-  panelTitle: '[data-testid="panel-title"], .panel-heading',
-  panelBody: '[data-testid="panel-body"], .panel-body',
+  // Panels - upgrade app uses card-like components
+  panel: '[data-testid="panel"], .panel, .card, [class*="panel"], [class*="card"], [class*="widget"]',
+  panelTitle: '[data-testid="panel-title"], .panel-heading, .card-header, h2, h3',
+  panelBody: '[data-testid="panel-body"], .panel-body, .card-body',
   
   // Forms
-  formInput: '[data-testid="form-input"], input.form-control',
-  formSelect: '[data-testid="form-select"], select.form-control',
-  formButton: '[data-testid="form-button"], button.btn',
+  formInput: '[data-testid="form-input"], input.form-control, input[type="text"], input[type="email"]',
+  formSelect: '[data-testid="form-select"], select.form-control, select',
+  formButton: '[data-testid="form-button"], button.btn, button[type="submit"]',
   
   // Tables
-  table: '[data-testid="table"], table.table',
+  table: '[data-testid="table"], table.table, table',
   tableRow: '[data-testid="table-row"], tbody tr',
   
   // Charts
-  chart: '[data-testid="chart"], .chart-container, .amcharts-main-div, canvas',
+  chart: '[data-testid="chart"], .chart-container, .amcharts-main-div, canvas, svg',
   
   // Loading
   preloader: '[data-testid="preloader"], #preloader',

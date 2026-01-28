@@ -10,8 +10,8 @@ import { defineConfig, devices } from '@playwright/test';
  * Tests are run against both targets to validate behavioral parity.
  */
 
-const LEGACY_BASE_URL = 'http://localhost:3000';
-const UPGRADE_BASE_URL = 'http://localhost:4200';
+const LEGACY_BASE_URL = process.env.LEGACY_BASE_URL || 'http://localhost:3000';
+const UPGRADE_BASE_URL = process.env.UPGRADE_BASE_URL || 'http://localhost:4200';
 
 export default defineConfig({
   testDir: './e2e',
