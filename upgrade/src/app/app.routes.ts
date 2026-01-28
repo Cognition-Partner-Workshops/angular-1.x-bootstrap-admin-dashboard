@@ -92,6 +92,11 @@ export const routes: Routes = [
         path: 'ui/slider',
         loadChildren: () => import('./features/ui/slider/slider.routes').then(m => m.SLIDER_ROUTES),
         data: { breadcrumb: 'UI' }
+      },
+      {
+        path: 'tables/basic',
+        loadChildren: () => import('./features/tables/basic/basic-tables.routes').then(m => m.BASIC_TABLES_ROUTES),
+        data: { breadcrumb: 'Tables' }
       }
     ]
   },
