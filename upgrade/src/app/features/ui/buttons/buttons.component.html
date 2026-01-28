@@ -1,0 +1,236 @@
+<div class="widgets" data-testid="buttons-page" (click)="onDocumentClick()" (keydown)="onDocumentClick()" tabindex="0" role="region">
+  <div class="row">
+    <div class="col-md-3">
+      <app-ba-panel panelTitle="Flat Buttons" panelClass="with-scroll button-panel" data-testid="flat-buttons-panel">
+        <div class="button-wrapper"><button type="button" class="btn btn-default" data-testid="btn-flat-default">Default</button></div>
+        <div class="button-wrapper"><button type="button" class="btn btn-primary" data-testid="btn-flat-primary">Primary</button></div>
+        <div class="button-wrapper"><button type="button" class="btn btn-success" data-testid="btn-flat-success">Success</button></div>
+        <div class="button-wrapper"><button type="button" class="btn btn-info" data-testid="btn-flat-info">Info</button></div>
+        <div class="button-wrapper"><button type="button" class="btn btn-warning" data-testid="btn-flat-warning">Warning</button></div>
+        <div class="button-wrapper"><button type="button" class="btn btn-danger" data-testid="btn-flat-danger">Danger</button></div>
+      </app-ba-panel>
+    </div>
+    <div class="col-md-3">
+      <app-ba-panel panelTitle="Raised Buttons" panelClass="with-scroll button-panel" data-testid="raised-buttons-panel">
+        <div class="button-wrapper"><button type="button" class="btn btn-default btn-raised" data-testid="btn-raised-default">Default</button></div>
+        <div class="button-wrapper"><button type="button" class="btn btn-primary btn-raised" data-testid="btn-raised-primary">Primary</button></div>
+        <div class="button-wrapper"><button type="button" class="btn btn-success btn-raised" data-testid="btn-raised-success">Success</button></div>
+        <div class="button-wrapper"><button type="button" class="btn btn-info btn-raised" data-testid="btn-raised-info">Info</button></div>
+        <div class="button-wrapper"><button type="button" class="btn btn-warning btn-raised" data-testid="btn-raised-warning">Warning</button></div>
+        <div class="button-wrapper"><button type="button" class="btn btn-danger btn-raised" data-testid="btn-raised-danger">Danger</button></div>
+      </app-ba-panel>
+    </div>
+    <div class="col-md-3">
+      <app-ba-panel panelTitle="Different sizes" panelClass="with-scroll button-panel df-size-button-panel" data-testid="sizes-buttons-panel">
+        <div class="button-wrapper"><button type="button" class="btn btn-default btn-xs" data-testid="btn-size-xs">Default</button></div>
+        <div class="button-wrapper"><button type="button" class="btn btn-primary btn-sm" data-testid="btn-size-sm">Primary</button></div>
+        <div class="button-wrapper"><button type="button" class="btn btn-success btn-mm" data-testid="btn-size-mm">Success</button></div>
+        <div class="button-wrapper"><button type="button" class="btn btn-info btn-md" data-testid="btn-size-md">Info</button></div>
+        <div class="button-wrapper"><button type="button" class="btn btn-warning btn-xm" data-testid="btn-size-xm">Warning</button></div>
+        <div class="button-wrapper"><button type="button" class="btn btn-danger btn-lg" data-testid="btn-size-lg">Danger</button></div>
+      </app-ba-panel>
+    </div>
+    <div class="col-md-3">
+      <app-ba-panel panelTitle="Disabled" panelClass="with-scroll button-panel" data-testid="disabled-buttons-panel">
+        <div class="button-wrapper"><button type="button" class="btn btn-default" disabled data-testid="btn-disabled-default">Default</button></div>
+        <div class="button-wrapper"><button type="button" class="btn btn-primary" disabled data-testid="btn-disabled-primary">Primary</button></div>
+        <div class="button-wrapper"><button type="button" class="btn btn-success" disabled data-testid="btn-disabled-success">Success</button></div>
+        <div class="button-wrapper"><button type="button" class="btn btn-info" disabled data-testid="btn-disabled-info">Info</button></div>
+        <div class="button-wrapper"><button type="button" class="btn btn-warning" disabled data-testid="btn-disabled-warning">Warning</button></div>
+        <div class="button-wrapper"><button type="button" class="btn btn-danger" disabled data-testid="btn-disabled-danger">Danger</button></div>
+      </app-ba-panel>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <app-ba-panel panelTitle="Icon Buttons" panelClass="with-scroll" data-testid="icon-buttons-panel">
+        <ul class="btn-list clearfix">
+          <li><button type="button" class="btn btn-primary btn-icon" data-testid="btn-icon-primary"><i class="ion-android-download"></i></button></li>
+          <li><button type="button" class="btn btn-default btn-icon" data-testid="btn-icon-default"><i class="ion-stats-bars"></i></button></li>
+          <li><button type="button" class="btn btn-success btn-icon" data-testid="btn-icon-success"><i class="ion-android-checkmark-circle"></i></button></li>
+          <li><button type="button" class="btn btn-info btn-icon" data-testid="btn-icon-info"><i class="ion-information"></i></button></li>
+          <li><button type="button" class="btn btn-warning btn-icon" data-testid="btn-icon-warning"><i class="ion-android-warning"></i></button></li>
+          <li><button type="button" class="btn btn-danger btn-icon" data-testid="btn-icon-danger"><i class="ion-nuclear"></i></button></li>
+        </ul>
+
+        <h5 class="panel-subtitle">Buttons with icons</h5>
+
+        <ul class="btn-list clearfix">
+          <li><button type="button" class="btn btn-primary btn-with-icon" data-testid="btn-with-icon-primary"><i class="ion-android-download"></i>Primary</button></li>
+          <li><button type="button" class="btn btn-default btn-with-icon" data-testid="btn-with-icon-default"><i class="ion-stats-bars"></i>Default</button></li>
+          <li><button type="button" class="btn btn-success btn-with-icon" data-testid="btn-with-icon-success"><i class="ion-android-checkmark-circle"></i>Success</button></li>
+          <li><button type="button" class="btn btn-info btn-with-icon" data-testid="btn-with-icon-info"><i class="ion-information"></i>Info</button></li>
+          <li><button type="button" class="btn btn-warning btn-with-icon" data-testid="btn-with-icon-warning"><i class="ion-android-warning"></i>Warning</button></li>
+          <li><button type="button" class="btn btn-danger btn-with-icon" data-testid="btn-with-icon-danger"><i class="ion-nuclear"></i>Danger</button></li>
+        </ul>
+      </app-ba-panel>
+      <app-ba-panel panelTitle="Large Buttons" panelClass="with-scroll large-buttons-panel" data-testid="large-buttons-panel">
+        <div class="row btns-row btns-same-width-lg">
+          <div class="col-sm-4 col-xs-6"><button type="button" class="btn btn-primary btn-lg" data-testid="btn-large-primary">Primary</button></div>
+          <div class="col-sm-4 col-xs-6"><button type="button" class="btn btn-success btn-lg" data-testid="btn-large-success">Success</button></div>
+          <div class="col-sm-4 col-xs-6"><button type="button" class="btn btn-info btn-lg" data-testid="btn-large-info">Info</button></div>
+          <div class="col-sm-4 col-xs-6"><button type="button" class="btn btn-default btn-lg" data-testid="btn-large-default">Default</button></div>
+          <div class="col-sm-4 col-xs-6"><button type="button" class="btn btn-warning btn-lg" data-testid="btn-large-warning">Warning</button></div>
+          <div class="col-sm-4 col-xs-6"><button type="button" class="btn btn-danger btn-lg" data-testid="btn-large-danger">Danger</button></div>
+        </div>
+      </app-ba-panel>
+    </div>
+    <div class="col-md-6">
+      <app-ba-panel panelTitle="Button Dropdowns" panelClass="with-scroll" data-testid="dropdown-buttons-panel">
+        <div class="row btns-row">
+          @for (dropdown of dropdownButtons; track dropdown.label) {
+            <div class="col-sm-4 col-xs-6">
+              <div class="btn-group" [class.open]="dropdown.isOpen">
+                <button type="button" class="btn btn-{{dropdown.variant}} dropdown-toggle" (click)="toggleDropdown(dropdown, $event)" [attr.data-testid]="'btn-dropdown-' + dropdown.variant">
+                  {{dropdown.label}} <span class="caret"></span>
+                </button>
+                @if (dropdown.isOpen) {
+                  <ul class="dropdown-menu show">
+                    @for (item of dropdown.items; track item.label) {
+                      @if (item.divider) {
+                        <li role="separator" class="divider"></li>
+                      } @else {
+                        <li><a href="javascript:void(0)">{{item.label}}</a></li>
+                      }
+                    }
+                  </ul>
+                }
+              </div>
+            </div>
+          }
+        </div>
+
+        <h5 class="panel-subtitle">Split button dropdowns</h5>
+
+        <div class="row btns-row">
+          @for (dropdown of splitDropdownButtons; track dropdown.label) {
+            <div class="col-sm-4 col-xs-6">
+              <div class="btn-group" [class.open]="dropdown.isOpen">
+                <button type="button" class="btn btn-{{dropdown.variant}}" [attr.data-testid]="'btn-split-' + dropdown.variant">{{dropdown.label}}</button>
+                <button type="button" class="btn btn-{{dropdown.variant}} dropdown-toggle" (click)="toggleDropdown(dropdown, $event)" [attr.data-testid]="'btn-split-toggle-' + dropdown.variant">
+                  <span class="caret"></span>
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                @if (dropdown.isOpen) {
+                  <ul class="dropdown-menu show">
+                    @for (item of dropdown.items; track item.label) {
+                      @if (item.divider) {
+                        <li role="separator" class="divider"></li>
+                      } @else {
+                        <li><a href="javascript:void(0)">{{item.label}}</a></li>
+                      }
+                    }
+                  </ul>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </app-ba-panel>
+      <app-ba-panel panelTitle="Button Groups" panelClass="with-scroll" data-testid="button-groups-panel">
+        <div class="btn-group-example">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-danger" data-testid="btn-group-left">Left</button>
+            <button type="button" class="btn btn-danger" data-testid="btn-group-middle">Middle</button>
+            <button type="button" class="btn btn-danger" data-testid="btn-group-right">Right</button>
+          </div>
+        </div>
+
+        <div class="btn-toolbar-example">
+          <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group" role="group" aria-label="First group">
+              <button type="button" class="btn btn-primary" data-testid="btn-toolbar-1">1</button>
+              <button type="button" class="btn btn-primary" data-testid="btn-toolbar-2">2</button>
+              <button type="button" class="btn btn-primary" data-testid="btn-toolbar-3">3</button>
+              <button type="button" class="btn btn-primary" data-testid="btn-toolbar-4">4</button>
+            </div>
+            <div class="btn-group" role="group" aria-label="Second group">
+              <button type="button" class="btn btn-primary" data-testid="btn-toolbar-5">5</button>
+              <button type="button" class="btn btn-primary" data-testid="btn-toolbar-6">6</button>
+              <button type="button" class="btn btn-primary" data-testid="btn-toolbar-7">7</button>
+            </div>
+            <div class="btn-group" role="group" aria-label="Third group">
+              <button type="button" class="btn btn-primary" data-testid="btn-toolbar-8">8</button>
+            </div>
+          </div>
+        </div>
+      </app-ba-panel>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <app-ba-panel panelTitle="Progress Buttons" panelClass="with-scroll" data-testid="progress-buttons-panel">
+        <div class="progress-buttons-container text-center default-text">
+          <div class="row">
+            @for (btn of progressButtonStyles; track btn.title) {
+              <section class="col-md-6 col-lg-3">
+                <span class="button-title">{{btn.title}}</span>
+                <app-progress-button 
+                  [variant]="btn.variant" 
+                  [pbStyle]="btn.style" 
+                  [pbDirection]="btn.direction"
+                  [attr.data-testid]="'progress-btn-' + btn.style + '-' + (btn.direction || 'default')">
+                  Submit
+                </app-progress-button>
+              </section>
+            }
+          </div>
+          <div class="row">
+            @for (btn of progressButtonPerspective1; track btn.title) {
+              <section class="col-md-6 col-lg-3">
+                <span class="button-title" [innerHTML]="btn.title.replace(' ', '<br/>')"></span>
+                <app-progress-button 
+                  [variant]="btn.variant" 
+                  [pbStyle]="btn.style"
+                  [attr.data-testid]="'progress-btn-' + btn.style">
+                  Submit
+                </app-progress-button>
+              </section>
+            }
+          </div>
+          <div class="row">
+            @for (btn of progressButtonPerspective2; track btn.title) {
+              <section class="col-md-6 col-lg-3">
+                <span class="button-title" [innerHTML]="btn.title.replace(' ', '<br/>')"></span>
+                <app-progress-button 
+                  [variant]="btn.variant" 
+                  [pbStyle]="btn.style"
+                  [attr.data-testid]="'progress-btn-' + btn.style">
+                  Submit
+                </app-progress-button>
+              </section>
+            }
+          </div>
+          <div class="row">
+            @for (btn of progressButtonPerspective3; track btn.title) {
+              <section class="col-md-6 col-lg-3">
+                <span class="button-title" [innerHTML]="btn.title.replace(' ', '<br/>')"></span>
+                <app-progress-button 
+                  [variant]="btn.variant" 
+                  [pbStyle]="btn.style"
+                  [attr.data-testid]="'progress-btn-' + btn.style">
+                  Submit
+                </app-progress-button>
+              </section>
+            }
+          </div>
+          <div class="row">
+            @for (btn of progressButtonLines; track btn.title) {
+              <section class="col-md-6">
+                <span class="button-title" [innerHTML]="btn.title.replace(' ', '<br/>')"></span>
+                <app-progress-button 
+                  [variant]="btn.variant" 
+                  [pbStyle]="btn.style"
+                  [attr.data-testid]="'progress-btn-' + btn.style">
+                  Submit
+                </app-progress-button>
+              </section>
+            }
+          </div>
+        </div>
+      </app-ba-panel>
+    </div>
+  </div>
+</div>

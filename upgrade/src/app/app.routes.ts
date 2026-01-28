@@ -121,6 +121,11 @@ export const routes: Routes = [
         path: 'ui/notifications',
         loadChildren: () => import('./features/ui/notifications/notifications.routes').then(m => m.NOTIFICATIONS_ROUTES),
         data: { breadcrumb: 'UI' }
+      },
+      {
+        path: 'ui/buttons',
+        loadChildren: () => import('./features/ui/buttons/buttons.routes').then(m => m.BUTTONS_ROUTES),
+        data: { breadcrumb: 'UI' }
       }
     ]
   },

@@ -1,0 +1,477 @@
+$primary: #209e91;
+$success: #90b93e;
+$info: #2ca8db;
+$warning: #dfb81c;
+$danger: #e85656;
+$default: #ffffff;
+
+$progress-btn-height: 46px;
+
+.progress-button {
+  position: relative;
+  display: inline-block;
+  padding: 0 60px;
+  outline: none;
+  border: none;
+  background: transparent;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1em;
+  line-height: $progress-btn-height;
+  height: $progress-btn-height;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 0;
+
+  &:hover {
+    transform: none;
+  }
+
+  .content {
+    position: relative;
+    display: block;
+    z-index: 10;
+
+    &::before,
+    &::after {
+      position: absolute;
+      right: 20px;
+      color: inherit;
+      font-family: 'Ionicons';
+      opacity: 0;
+      transition: opacity 0.3s 0.3s;
+    }
+
+    &::before {
+      content: '\f374';
+    }
+
+    &::after {
+      content: '\f122';
+    }
+  }
+
+  .progress {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.2);
+    margin-bottom: 0;
+    border-radius: 0;
+  }
+
+  .progress-inner {
+    position: absolute;
+    left: 0;
+    background: rgba(0, 0, 0, 0.3);
+    transition: width 0.1s, height 0.1s;
+  }
+
+  &.state-loading {
+    cursor: default;
+
+    .content::before {
+      opacity: 1;
+      animation: spin 1s infinite linear;
+    }
+  }
+
+  &.state-success {
+    .content::after {
+      opacity: 1;
+    }
+    .content::before {
+      opacity: 0;
+    }
+  }
+
+  &.progress-button-dir-horizontal {
+    .progress {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .progress-inner {
+      top: 0;
+      width: 0;
+      height: 100%;
+    }
+  }
+
+  &.progress-button-dir-vertical {
+    .progress {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .progress-inner {
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+    }
+  }
+
+  &.progress-button-style-shrink {
+    overflow: visible;
+    transition: transform 0.2s;
+
+    .content {
+      transition: opacity 0.3s;
+    }
+
+    .progress {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    &.state-loading {
+      &.progress-button-dir-horizontal {
+        transform: scaleY(0.3);
+      }
+      &.progress-button-dir-vertical {
+        transform: scaleX(0.1);
+      }
+
+      .content {
+        opacity: 0;
+      }
+    }
+  }
+
+  &.progress-button-perspective {
+    position: relative;
+    background: none;
+    perspective: 900px;
+
+    .content {
+      padding: 0 60px;
+      background: inherit;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .progress {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .progress-inner {
+      top: 0;
+      width: 0;
+      height: 100%;
+    }
+  }
+
+  &.progress-button-style-rotate-angle-bottom,
+  &.progress-button-style-rotate-angle-top,
+  &.progress-button-style-rotate-angle-left,
+  &.progress-button-style-rotate-angle-right {
+    .content {
+      transform-origin: 50% 0;
+    }
+
+    &.state-loading .content {
+      opacity: 0;
+      transform: rotateX(90deg);
+    }
+  }
+
+  &.progress-button-style-rotate-angle-bottom .content {
+    transform-origin: 50% 100%;
+  }
+
+  &.progress-button-style-rotate-angle-left .content {
+    transform-origin: 0 50%;
+  }
+
+  &.progress-button-style-rotate-angle-right .content {
+    transform-origin: 100% 50%;
+  }
+
+  &.progress-button-style-rotate-side-down,
+  &.progress-button-style-rotate-side-up,
+  &.progress-button-style-rotate-side-left,
+  &.progress-button-style-rotate-side-right {
+    .content {
+      transform-origin: 50% 50%;
+      transform-style: preserve-3d;
+    }
+
+    &.state-loading .content {
+      opacity: 0;
+      transform: rotateY(180deg);
+    }
+  }
+
+  &.progress-button-style-rotate-side-down.state-loading .content {
+    transform: rotateX(180deg);
+  }
+
+  &.progress-button-style-rotate-side-up.state-loading .content {
+    transform: rotateX(-180deg);
+  }
+
+  &.progress-button-style-rotate-back {
+    .content {
+      transform-origin: 50% 50%;
+    }
+
+    &.state-loading .content {
+      opacity: 0;
+      transform: scale(0.8) rotateZ(180deg);
+    }
+  }
+
+  &.progress-button-style-flip-open {
+    .content {
+      transform-origin: 50% 0;
+      transform-style: preserve-3d;
+    }
+
+    &.state-loading .content {
+      opacity: 0;
+      transform: rotateX(-90deg);
+    }
+  }
+
+  &.progress-button-style-slide-down {
+    overflow: visible;
+
+    .content {
+      z-index: 10;
+      background: inherit;
+    }
+
+    .progress {
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .progress-inner {
+      top: 0;
+      width: 0;
+      height: 100%;
+    }
+
+    &.state-loading .content {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+  }
+
+  &.progress-button-style-move-up {
+    overflow: visible;
+
+    .content {
+      z-index: 10;
+      background: inherit;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .progress {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .progress-inner {
+      top: 0;
+      width: 0;
+      height: 100%;
+    }
+
+    &.state-loading .content {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+  }
+
+  &.progress-button-style-top-line {
+    overflow: visible;
+
+    .progress {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+    }
+
+    .progress-inner {
+      top: 0;
+      width: 0;
+      height: 100%;
+    }
+  }
+
+  &.progress-button-style-lateral-lines {
+    overflow: visible;
+
+    .progress {
+      top: 0;
+      width: 3px;
+      height: 100%;
+      background: transparent;
+      border-left: 3px solid rgba(0, 0, 0, 0.2);
+      border-right: 3px solid rgba(0, 0, 0, 0.2);
+    }
+
+    .progress-inner {
+      bottom: 0;
+      left: -3px;
+      width: calc(100% + 6px);
+      height: 0;
+      border-left: 3px solid rgba(0, 0, 0, 0.4);
+      border-right: 3px solid rgba(0, 0, 0, 0.4);
+      background: transparent;
+    }
+
+    &.state-loading .progress {
+      left: -3px;
+    }
+  }
+
+  &.btn-primary {
+    background-color: $primary;
+
+    .content {
+      background-color: $primary;
+
+      &::before,
+      &::after {
+        color: darken($primary, 40%);
+      }
+    }
+
+    .progress {
+      background-color: darken($primary, 10%);
+    }
+
+    .progress-inner {
+      background-color: darken($primary, 20%);
+    }
+  }
+
+  &.btn-success {
+    background-color: $success;
+
+    .content {
+      background-color: $success;
+
+      &::before,
+      &::after {
+        color: darken($success, 40%);
+      }
+    }
+
+    .progress {
+      background-color: darken($success, 10%);
+    }
+
+    .progress-inner {
+      background-color: darken($success, 20%);
+    }
+  }
+
+  &.btn-info {
+    background-color: $info;
+
+    .content {
+      background-color: $info;
+
+      &::before,
+      &::after {
+        color: darken($info, 40%);
+      }
+    }
+
+    .progress {
+      background-color: darken($info, 10%);
+    }
+
+    .progress-inner {
+      background-color: darken($info, 20%);
+    }
+  }
+
+  &.btn-warning {
+    background-color: $warning;
+
+    .content {
+      background-color: $warning;
+
+      &::before,
+      &::after {
+        color: darken($warning, 40%);
+      }
+    }
+
+    .progress {
+      background-color: darken($warning, 10%);
+    }
+
+    .progress-inner {
+      background-color: darken($warning, 20%);
+    }
+  }
+
+  &.btn-danger {
+    background-color: $danger;
+
+    .content {
+      background-color: $danger;
+
+      &::before,
+      &::after {
+        color: darken($danger, 40%);
+      }
+    }
+
+    .progress {
+      background-color: darken($danger, 10%);
+    }
+
+    .progress-inner {
+      background-color: darken($danger, 20%);
+    }
+  }
+
+  &.btn-default {
+    background-color: $default;
+
+    .content {
+      background-color: $default;
+
+      &::before,
+      &::after {
+        color: darken($default, 40%);
+      }
+    }
+
+    .progress {
+      background-color: darken($default, 10%);
+    }
+
+    .progress-inner {
+      background-color: darken($default, 20%);
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
