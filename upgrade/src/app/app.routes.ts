@@ -1,11 +1,12 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './shared/layouts';
 import { DashboardComponent } from './features/dashboard';
+import { CUTOVER_ENABLED, getDefaultRoute } from './core/config/cutover.config';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'upgrade/dashboard',
+    redirectTo: getDefaultRoute().replace(/^\//, ''),
     pathMatch: 'full'
   },
   {

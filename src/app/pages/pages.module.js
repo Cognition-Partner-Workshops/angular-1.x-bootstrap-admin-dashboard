@@ -17,11 +17,14 @@
     'BlurAdmin.pages.maps',
     'BlurAdmin.pages.profile',
   ])
-      .config(routeConfig);
+      .config(routeConfig)
+      .run(cutoverRedirectRun);
 
   /** @ngInject */
-  function routeConfig($urlRouterProvider, baSidebarServiceProvider) {
-    $urlRouterProvider.otherwise('/dashboard');
+  function routeConfig($urlRouterProvider, baSidebarServiceProvider, CUTOVER_CONFIG) {
+    // Redirect to upgrade dashboard if cutover is enabled, otherwise legacy dashboard
+    var defaultRoute = CUTOVER_CONFIG.enabled ? '/upgrade/dashboard' : '/dashboard';
+    $urlRouterProvider.otherwise(defaultRoute);
 
     baSidebarServiceProvider.addStaticItem({
       title: 'Pages',
@@ -56,6 +59,16 @@
           disabled: true
         }]
       }]
+    });
+  }
+
+  /** @ngInject */
+  function cutoverRedirectRun($rootScope, cutoverService) {
+    // Listen for state changes and redirect to upgrade routes if cutover is enabled
+    $rootScope.$on('$stateChangeStart', function(event, toState) {
+      if (cutoverService.redirectIfCutover(toState.name)) {
+        event.preventDefault();
+      }
     });
   }
 

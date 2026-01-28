@@ -2,13 +2,16 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { FeatureFlagsPort, FeatureFlag } from '../ports/feature-flags.port';
 
+import { CUTOVER_ENABLED } from '../config/cutover.config';
+
 const MOCK_FLAGS: FeatureFlag[] = [
   { name: 'new-dashboard', enabled: true, metadata: { rolloutPercentage: 100 } },
   { name: 'dark-mode', enabled: true },
   { name: 'beta-features', enabled: false },
   { name: 'advanced-analytics', enabled: true },
   { name: 'export-pdf', enabled: true },
-  { name: 'multi-language', enabled: false }
+  { name: 'multi-language', enabled: false },
+  { name: 'cutover-enabled', enabled: CUTOVER_ENABLED, metadata: { description: 'Angular upgrade is primary routing target' } }
 ];
 
 @Injectable({ providedIn: 'root' })
