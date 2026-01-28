@@ -1,0 +1,116 @@
+.chartist {
+  h5 {
+    font-weight: 400;
+  }
+}
+
+.ct-area {
+  fill-opacity: 0.5;
+}
+
+.ct-label {
+  color: #666666;
+  opacity: 0.9;
+  fill: #666666;
+}
+
+.ct-chart .ct-label {
+  font-size: 1em;
+}
+
+.ct-chart svg {
+  width: 100%;
+  display: block;
+}
+
+.ct-series-a {
+  .ct-bar, .ct-line, .ct-point, .ct-slice-donut, .ct-slice-pie {
+    stroke: #209e91;
+  }
+  .ct-slice-pie, .ct-area {
+    fill: #209e91;
+  }
+}
+
+.ct-series-b {
+  .ct-bar, .ct-line, .ct-point, .ct-slice-donut, .ct-slice-pie {
+    stroke: #90b900;
+  }
+  .ct-slice-pie, .ct-area {
+    fill: #90b900;
+  }
+}
+
+.ct-series-c {
+  .ct-bar, .ct-line, .ct-point, .ct-slice-donut, .ct-slice-pie {
+    stroke: #e85656;
+  }
+  .ct-slice-pie, .ct-area {
+    fill: #e85656;
+  }
+}
+
+.ct-series-d {
+  .ct-bar, .ct-line, .ct-point, .ct-slice-donut, .ct-slice-pie {
+    stroke: #dfb81c;
+  }
+  .ct-slice-pie, .ct-area {
+    fill: #dfb81c;
+  }
+}
+
+.ct-series-e {
+  .ct-bar, .ct-line, .ct-point, .ct-slice-donut, .ct-slice-pie {
+    stroke: #2dacd1;
+  }
+  .ct-slice-pie, .ct-area {
+    fill: #2dacd1;
+  }
+}
+
+.stacked-bar .ct-bar {
+  stroke-width: 30px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.col-md-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding-right: 15px;
+  padding-left: 15px;
+  box-sizing: border-box;
+}
+
+.col-md-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  box-sizing: border-box;
+}
+
+.col-lg-4 {
+  flex: 0 0 33.333333%;
+  max-width: 33.333333%;
+  padding-right: 15px;
+  padding-left: 15px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 991px) {
+  .col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  
+  .col-lg-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}

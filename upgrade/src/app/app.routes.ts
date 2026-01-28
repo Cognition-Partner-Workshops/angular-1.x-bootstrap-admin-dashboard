@@ -173,6 +173,11 @@ export const routes: Routes = [
         path: 'charts/morris',
         loadChildren: () => import('./features/charts/morris/morris.routes').then(m => m.MORRIS_ROUTES),
         data: { breadcrumb: 'Charts' }
+      },
+      {
+        path: 'charts/chartist',
+        loadChildren: () => import('./features/charts/chartist/chartist.routes').then(m => m.CHARTIST_ROUTES),
+        data: { breadcrumb: 'Charts' }
       }
     ]
   },
