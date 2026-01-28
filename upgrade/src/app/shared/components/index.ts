@@ -10,3 +10,4 @@ export * from './modal';
 export * from './notification';
 export * from './form-field';
 export * from './button';
+export * from './ba-panel';

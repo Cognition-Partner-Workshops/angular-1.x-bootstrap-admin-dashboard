@@ -49,6 +49,13 @@ export const routes: Routes = [
         data: {
           breadcrumb: 'Form'
         }
+      },
+      {
+        path: 'ui/panels',
+        loadChildren: () => import('./features/ui/panels/panels.routes').then(m => m.PANELS_ROUTES),
+        data: {
+          breadcrumb: 'UI'
+        }
       }
     ]
   },
