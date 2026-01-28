@@ -387,7 +387,7 @@ export class AmchartsComponent implements AfterViewInit, OnDestroy {
     const chart = root.container.children.push(
       am5percent.PieChart.new(root, {
         innerRadius: am5.percent(40),
-        layout: root.horizontalLayout
+        layout: root.verticalLayout
       })
     );
 
@@ -434,9 +434,13 @@ export class AmchartsComponent implements AfterViewInit, OnDestroy {
 
     const legend = chart.children.push(
       am5.Legend.new(root, {
-        centerY: am5.percent(50),
-        y: am5.percent(50),
-        layout: root.verticalLayout
+        centerX: am5.percent(50),
+        x: am5.percent(50),
+        marginTop: 15,
+        layout: am5.GridLayout.new(root, {
+          maxColumns: 4,
+          fixedWidthGrid: true
+        })
       })
     );
     legend.data.setAll(series.dataItems);
@@ -451,9 +455,7 @@ export class AmchartsComponent implements AfterViewInit, OnDestroy {
     root.setThemes([am5themes_Animated.new(root)]);
 
     const chart = root.container.children.push(
-      am5percent.SlicedChart.new(root, {
-        layout: root.verticalLayout
-      })
+      am5percent.SlicedChart.new(root, {})
     );
 
     const data = [
@@ -467,7 +469,7 @@ export class AmchartsComponent implements AfterViewInit, OnDestroy {
     ];
 
     const series = chart.series.push(
-      am5percent.FunnelSeries.new(root, {
+      am5percent.PyramidSeries.new(root, {
         name: 'Funnel',
         valueField: 'value',
         categoryField: 'title',
@@ -480,7 +482,15 @@ export class AmchartsComponent implements AfterViewInit, OnDestroy {
     );
 
     series.slices.template.setAll({
-      fillOpacity: 0.9
+      fillOpacity: 0.9,
+      strokeWidth: 1,
+      stroke: am5.color('#ffffff')
+    });
+
+    series.labels.template.setAll({
+      fontSize: 11,
+      text: '{category}',
+      fill: am5.color(this.layoutColors.defaultText)
     });
 
     series.set('colors', am5.ColorSet.new(root, {
