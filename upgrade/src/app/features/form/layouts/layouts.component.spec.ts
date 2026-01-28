@@ -35,7 +35,7 @@ describe('LayoutsComponent', () => {
       expect(panel).toBeTruthy();
       
       const heading = panel?.querySelector('.panel-heading');
-      expect(heading?.textContent).toBe('Inline Form');
+      expect(heading?.textContent).toBe('INLINE FORM');
     });
 
     it('should render Basic Form panel', () => {
@@ -44,7 +44,7 @@ describe('LayoutsComponent', () => {
       expect(panel).toBeTruthy();
       
       const heading = panel?.querySelector('.panel-heading');
-      expect(heading?.textContent).toBe('Basic Form');
+      expect(heading?.textContent).toBe('BASIC FORM');
     });
 
     it('should render Horizontal Form panel', () => {
@@ -53,7 +53,7 @@ describe('LayoutsComponent', () => {
       expect(panel).toBeTruthy();
       
       const heading = panel?.querySelector('.panel-heading');
-      expect(heading?.textContent).toBe('Horizontal Form');
+      expect(heading?.textContent).toBe('HORIZONTAL FORM');
     });
 
     it('should render Form Without Labels panel', () => {
@@ -62,7 +62,7 @@ describe('LayoutsComponent', () => {
       expect(panel).toBeTruthy();
       
       const heading = panel?.querySelector('.panel-heading');
-      expect(heading?.textContent).toBe('Form Without Labels');
+      expect(heading?.textContent).toBe('FORM WITHOUT LABELS');
     });
 
     it('should render Block Form panel', () => {
@@ -71,7 +71,7 @@ describe('LayoutsComponent', () => {
       expect(panel).toBeTruthy();
       
       const heading = panel?.querySelector('.panel-heading');
-      expect(heading?.textContent).toBe('Block Form');
+      expect(heading?.textContent).toBe('BLOCK FORM');
     });
   });
 
