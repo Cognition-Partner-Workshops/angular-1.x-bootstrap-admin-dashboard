@@ -44,8 +44,6 @@ export class DataTableComponent<T extends Record<string, unknown>> implements On
   @Input() selectable = false;
   @Input() rowKey = 'id';
 
-  Math = Math;
-
   @Output() sortChange = new EventEmitter<SortState>();
   @Output() pageChange = new EventEmitter<number>();
   @Output() rowClick = new EventEmitter<T>();
