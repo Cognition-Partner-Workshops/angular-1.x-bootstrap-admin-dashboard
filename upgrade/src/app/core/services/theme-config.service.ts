@@ -124,4 +124,14 @@ export class ThemeConfigService {
       amChart: 'assets/img/theme/vendor/amcharts/dist/amcharts/images/'
     }
   };
+
+  getChartColors(): string[] {
+    return [
+      this.colors.primary,
+      this.colors.info,
+      this.colors.success,
+      this.colors.warning,
+      this.colors.danger
+    ];
+  }
 }
