@@ -97,6 +97,13 @@ export const routes: Routes = [
         path: 'tables/basic',
         loadChildren: () => import('./features/tables/basic/basic-tables.routes').then(m => m.BASIC_TABLES_ROUTES),
         data: { breadcrumb: 'Tables' }
+      },
+      {
+        path: 'components/tree',
+        loadChildren: () => import('./features/components/tree/tree.routes').then(m => m.TREE_ROUTES),
+        data: {
+          breadcrumb: 'Components'
+        }
       }
     ]
   },

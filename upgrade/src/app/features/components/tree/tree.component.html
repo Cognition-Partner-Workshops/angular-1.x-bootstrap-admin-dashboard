@@ -1,0 +1,67 @@
+<div class="row" data-testid="tree-view-page">
+  <div class="col-md-6">
+    <app-ba-panel panelTitle="Basic Action" panelClass="with-scroll tree-panel">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="control-side text-center">
+            <div>
+              <button
+                class="btn btn-primary"
+                data-testid="tree-add-btn"
+                (click)="addNewNode()"
+              >Add</button>
+            </div>
+            <div>
+              <button
+                class="btn btn-primary"
+                data-testid="tree-collapse-btn"
+                (click)="collapseAll()"
+              >Collapse All</button>
+            </div>
+            <div>
+              <button
+                class="btn btn-primary"
+                data-testid="tree-expand-btn"
+                (click)="expandAll()"
+              >Expand All</button>
+            </div>
+            <div>
+              <button
+                class="btn btn-primary"
+                data-testid="tree-refresh-btn"
+                (click)="refresh()"
+              >Refresh</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div id="tree-root" data-testid="basic-tree">
+            <app-tree-node
+              [nodes]="getRootNodes(basicTreeData)"
+              [allNodes]="basicTreeData"
+              [selectedNodeId]="selectedNodeId"
+              [draggable]="false"
+              (nodeSelect)="onNodeSelect($event)"
+              (nodeToggle)="onNodeToggle($event)"
+            ></app-tree-node>
+          </div>
+        </div>
+      </div>
+    </app-ba-panel>
+  </div>
+  <div class="col-md-6">
+    <app-ba-panel panelTitle="Drag & Drop" panelClass="with-scroll tree-panel">
+      <div id="drag-tree-root" data-testid="drag-tree">
+        <app-tree-node
+          [nodes]="getRootNodes(dragTreeData)"
+          [allNodes]="dragTreeData"
+          [selectedNodeId]="dragSelectedNodeId"
+          [draggable]="true"
+          (nodeSelect)="onDragNodeSelect($event)"
+          (nodeToggle)="onDragNodeToggle($event)"
+          (nodeDrop)="onDragDrop($event)"
+        ></app-tree-node>
+      </div>
+    </app-ba-panel>
+  </div>
+</div>

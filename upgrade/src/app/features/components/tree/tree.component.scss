@@ -1,0 +1,22 @@
+.tree-panel {
+  height: 500px;
+}
+
+.control-side > div {
+  margin-top: 5px;
+  margin-bottom: 10px;
+
+  .btn {
+    width: 100px;
+  }
+}
+
+#tree-root,
+#drag-tree-root {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  padding-left: 10px;
+}
+
+.search-container {
+  margin-top: 10px;
+}
