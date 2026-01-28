@@ -10,7 +10,12 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test --browsers=ChromeHeadless --watch=false",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "e2e": "npx playwright test",
+    "e2e:legacy": "npx playwright test --project=legacy",
+    "e2e:upgrade": "npx playwright test --project=upgrade",
+    "e2e:parity": "npx playwright test --project=legacy --project=upgrade",
+    "e2e:report": "npx playwright show-report"
   },
   "private": true,
   "dependencies": {
@@ -39,6 +44,7 @@
     "@angular-devkit/build-angular": "^17.3.17",
     "@angular/cli": "^17.3.17",
     "@angular/compiler-cli": "^17.3.0",
+    "@playwright/test": "^1.58.0",
     "@types/jasmine": "~5.1.0",
     "angular-eslint": "21.0.1",
     "eslint": "^9.39.1",
