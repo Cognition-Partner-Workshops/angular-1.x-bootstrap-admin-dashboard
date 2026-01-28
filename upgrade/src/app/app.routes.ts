@@ -116,6 +116,11 @@ export const routes: Routes = [
         path: 'ui/icons',
         loadChildren: () => import('./features/ui/icons/icons.routes').then(m => m.ICONS_ROUTES),
         data: { breadcrumb: 'UI' }
+      },
+      {
+        path: 'ui/notifications',
+        loadChildren: () => import('./features/ui/notifications/notifications.routes').then(m => m.NOTIFICATIONS_ROUTES),
+        data: { breadcrumb: 'UI' }
       }
     ]
   },
