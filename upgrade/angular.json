@@ -29,13 +29,14 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
+                      "styles": [
+                        "src/styles.scss",
+                        "node_modules/leaflet/dist/leaflet.css"
+                      ],
+                      "scripts": []
+                    },
+                    "configurations": {
+                      "production": {
               "budgets": [
                 {
                   "type": "initial",
@@ -93,13 +94,14 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": []
-          }
-        },
-        "lint": {
+                    "styles": [
+                      "src/styles.scss",
+                      "node_modules/leaflet/dist/leaflet.css"
+                    ],
+                    "scripts": []
+                  }
+                },
+                "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [

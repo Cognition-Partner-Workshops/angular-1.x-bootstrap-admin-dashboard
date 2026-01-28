@@ -143,6 +143,11 @@ export const routes: Routes = [
         path: 'maps/google-maps',
         loadChildren: () => import('./features/maps/google-maps/google-maps.routes').then(m => m.GOOGLE_MAPS_ROUTES),
         data: { breadcrumb: 'Maps' }
+      },
+      {
+        path: 'maps/leaflet',
+        loadChildren: () => import('./features/maps/leaflet/leaflet.routes').then(m => m.LEAFLET_ROUTES),
+        data: { breadcrumb: 'Maps' }
       }
     ]
   },

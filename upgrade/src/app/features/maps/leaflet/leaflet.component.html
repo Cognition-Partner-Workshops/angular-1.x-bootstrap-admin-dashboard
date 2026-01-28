@@ -1,0 +1,10 @@
+<app-ba-panel panelTitle="Leaflet" panelClass="viewport100">
+  <div
+    id="leaflet-map"
+    data-testid="leaflet-map"
+    leaflet
+    [leafletOptions]="options"
+    [leafletLayers]="layers"
+    (leafletMapReady)="onMapReady($event)">
+  </div>
+</app-ba-panel>
