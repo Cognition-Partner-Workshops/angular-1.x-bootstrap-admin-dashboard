@@ -3,7 +3,7 @@
 
     <div class="col-md-6">
       <div class="panel panel-blur with-scroll" data-testid="basic-alerts-panel">
-        <div class="panel-heading">Basic</div>
+        <div class="panel-heading">BASIC</div>
         <div class="panel-body">
           @for (alert of basicAlerts; track alert.id) {
             <div [class]="getAlertClass(alert.type)" [attr.data-testid]="'alert-' + alert.type">
@@ -16,7 +16,7 @@
 
     <div class="col-md-6">
       <div class="panel panel-blur with-scroll" data-testid="dismissible-alerts-panel">
-        <div class="panel-heading">Dismissible alerts</div>
+        <div class="panel-heading">DISMISSIBLE ALERTS</div>
         <div class="panel-body">
           @for (alert of dismissibleAlerts; track alert.id) {
             @if (alert.visible) {
@@ -38,7 +38,7 @@
 
     <div class="col-md-6">
       <div class="panel panel-blur with-scroll" data-testid="links-alerts-panel">
-        <div class="panel-heading">Links in alerts</div>
+        <div class="panel-heading">LINKS IN ALERTS</div>
         <div class="panel-body">
           @for (alert of linkAlerts; track alert.id) {
             <div [class]="getAlertClass(alert.type)" [attr.data-testid]="'link-alert-' + alert.type">
@@ -51,7 +51,7 @@
 
     <div class="col-md-6">
       <div class="panel panel-blur with-scroll" data-testid="composite-alerts-panel">
-        <div class="panel-heading">Composite alerts</div>
+        <div class="panel-heading">COMPOSITE ALERTS</div>
         <div class="panel-body">
           <div class="alert bg-warning" data-testid="composite-alert">
             <h4>Warning!</h4>

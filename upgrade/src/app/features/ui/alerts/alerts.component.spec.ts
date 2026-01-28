@@ -59,28 +59,28 @@ describe('AlertsComponent', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const panel = compiled.querySelector('[data-testid="basic-alerts-panel"]');
     expect(panel).toBeTruthy();
-    expect(panel?.querySelector('.panel-heading')?.textContent).toContain('Basic');
+    expect(panel?.querySelector('.panel-heading')?.textContent).toContain('BASIC');
   });
 
   it('should render dismissible alerts panel', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const panel = compiled.querySelector('[data-testid="dismissible-alerts-panel"]');
     expect(panel).toBeTruthy();
-    expect(panel?.querySelector('.panel-heading')?.textContent).toContain('Dismissible alerts');
+    expect(panel?.querySelector('.panel-heading')?.textContent).toContain('DISMISSIBLE ALERTS');
   });
 
   it('should render links alerts panel', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const panel = compiled.querySelector('[data-testid="links-alerts-panel"]');
     expect(panel).toBeTruthy();
-    expect(panel?.querySelector('.panel-heading')?.textContent).toContain('Links in alerts');
+    expect(panel?.querySelector('.panel-heading')?.textContent).toContain('LINKS IN ALERTS');
   });
 
   it('should render composite alerts panel', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const panel = compiled.querySelector('[data-testid="composite-alerts-panel"]');
     expect(panel).toBeTruthy();
-    expect(panel?.querySelector('.panel-heading')?.textContent).toContain('Composite alerts');
+    expect(panel?.querySelector('.panel-heading')?.textContent).toContain('COMPOSITE ALERTS');
   });
 
   it('should render close buttons for dismissible alerts', () => {
