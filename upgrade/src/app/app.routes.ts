@@ -153,6 +153,11 @@ export const routes: Routes = [
         path: 'profile',
         loadChildren: () => import('./features/profile/profile.routes').then(m => m.PROFILE_ROUTES),
         data: { breadcrumb: 'Profile' }
+      },
+      {
+        path: 'charts/amcharts',
+        loadChildren: () => import('./features/charts/amcharts/amcharts.routes').then(m => m.AMCHARTS_ROUTES),
+        data: { breadcrumb: 'Charts' }
       }
     ]
   },
