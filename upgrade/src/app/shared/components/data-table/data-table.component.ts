@@ -32,6 +32,8 @@ export interface PaginationState {
   styleUrl: './data-table.component.scss'
 })
 export class DataTableComponent<T extends Record<string, unknown>> implements OnChanges {
+  Math = Math;
+
   @Input() columns: TableColumn<T>[] = [];
   @Input() data: T[] = [];
   @Input() loading = false;
