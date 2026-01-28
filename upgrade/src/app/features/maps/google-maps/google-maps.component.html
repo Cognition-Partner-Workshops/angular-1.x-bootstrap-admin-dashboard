@@ -1,0 +1,27 @@
+<app-ba-panel panelTitle="Google Maps" panelClass="viewport100">
+  <div class="google-maps-container" data-testid="google-maps-container">
+    <google-map
+      data-testid="google-map"
+      height="100%"
+      width="100%"
+      [center]="center"
+      [zoom]="zoom"
+      [options]="options"
+      (mapClick)="onMapClick($event)">
+      <map-marker
+        data-testid="map-marker"
+        [position]="markerPosition"
+        [options]="markerOptions"
+        (mapClick)="openInfoWindow(marker)"
+        #marker="mapMarker">
+      </map-marker>
+      <map-info-window data-testid="map-info-window">
+        <div>
+          <strong>Location</strong><br>
+          Lat: {{ markerPosition.lat | number:'1.4-4' }}<br>
+          Lng: {{ markerPosition.lng | number:'1.4-4' }}
+        </div>
+      </map-info-window>
+    </google-map>
+  </div>
+</app-ba-panel>
