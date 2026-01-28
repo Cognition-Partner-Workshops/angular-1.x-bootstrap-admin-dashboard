@@ -1,0 +1,129 @@
+<div class="panel panel-blur with-scroll notification-panel" data-testid="notifications-page">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-3 col-sm-4">
+        <div class="control">
+          <label for="title">Title</label>
+          <input [(ngModel)]="options.title" type="text" class="form-control" id="title" placeholder="Enter a title ..." data-testid="title-input">
+        </div>
+        <div class="control">
+          <label for="message">Message</label>
+          <textarea [(ngModel)]="options.msg" class="form-control" id="message" rows="3" placeholder="Enter a message ..." data-testid="message-input"></textarea>
+        </div>
+        <div class="control-group">
+          <div class="control">
+            <label class="checkbox-inline custom-checkbox nowrap">
+              <input [(ngModel)]="options.closeButton" type="checkbox" id="closeButton" data-testid="close-button-checkbox">
+              <span>Close Button</span>
+            </label>
+          </div>
+          <div class="control">
+            <label class="checkbox-inline custom-checkbox nowrap">
+              <input [(ngModel)]="options.allowHtml" type="checkbox" id="html" data-testid="allow-html-checkbox">
+              <span>Allow html</span>
+            </label>
+          </div>
+          <div class="control">
+            <label class="checkbox-inline custom-checkbox nowrap">
+              <input [(ngModel)]="options.progressBar" type="checkbox" id="progressBar" data-testid="progress-bar-checkbox">
+              <span>Progress bar</span>
+            </label>
+          </div>
+          <div class="control">
+            <label class="checkbox-inline custom-checkbox nowrap">
+              <input [(ngModel)]="options.preventDuplicates" type="checkbox" id="preventDuplicates" data-testid="prevent-duplicates-checkbox">
+              <span>Prevent duplicates</span>
+            </label>
+          </div>
+          <div class="control">
+            <label class="checkbox-inline custom-checkbox nowrap">
+              <input [(ngModel)]="options.preventOpenDuplicates" type="checkbox" id="preventOpenDuplicates" data-testid="prevent-open-duplicates-checkbox">
+              <span>Prevent open duplicates</span>
+            </label>
+          </div>
+          <div class="control">
+            <label class="checkbox-inline custom-checkbox nowrap">
+              <input [(ngModel)]="options.tapToDismiss" type="checkbox" id="tapToDismiss" data-testid="tap-to-dismiss-checkbox">
+              <span>Tap to dismiss</span>
+            </label>
+          </div>
+          <div class="control">
+            <label class="checkbox-inline custom-checkbox nowrap">
+              <input [(ngModel)]="options.newestOnTop" type="checkbox" id="newestOnTop" data-testid="newest-on-top-checkbox">
+              <span>Newest on top</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-3 toastr-radio-setup">
+        <div id="toastTypeGroup">
+          <div class="controls radio-controls">
+            <span class="radio-header">Toast Type</span>
+            <label class="radio custom-radio">
+              <input type="radio" [(ngModel)]="options.type" name="toasts" value="success" data-testid="type-success-radio"/>
+              <span>Success</span>
+            </label>
+            <label class="radio custom-radio">
+              <input type="radio" [(ngModel)]="options.type" name="toasts" value="info" data-testid="type-info-radio"/>
+              <span>Info</span>
+            </label>
+            <label class="radio custom-radio">
+              <input type="radio" [(ngModel)]="options.type" name="toasts" value="warning" data-testid="type-warning-radio"/>
+              <span>Warning</span>
+            </label>
+            <label class="radio custom-radio">
+              <input type="radio" [(ngModel)]="options.type" name="toasts" value="error" data-testid="type-error-radio"/>
+              <span>Error</span>
+            </label>
+          </div>
+        </div>
+        <div id="positionGroup">
+          <div class="controls radio-controls">
+            <span class="radio-header position-header">Position</span>
+            @for (pos of positionOptions; track pos.value) {
+              <label class="radio custom-radio">
+                <input type="radio" [(ngModel)]="options.positionClass" name="positions" [value]="pos.value" [attr.data-testid]="'position-' + pos.value + '-radio'"/>
+                <span>{{ pos.label }}</span>
+              </label>
+            }
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-3">
+        <div class="control">
+          <label for="timeOut">Time out</label>
+          <input type="text" class="form-control" id="timeOut" [(ngModel)]="options.timeOut" placeholder="ms" data-testid="timeout-input">
+          <label class="sub-label" for="timeOut">If you set it to 0, it will stick</label>
+        </div>
+        <div class="control">
+          <label for="extendedTimeOut">Extended time out</label>
+          <input type="text" class="form-control" id="extendedTimeOut" [(ngModel)]="options.extendedTimeOut" placeholder="ms" data-testid="extended-timeout-input">
+        </div>
+        <div class="control">
+          <label for="maxOpened">Maximum number of toasts</label>
+          <input type="text" class="form-control" id="maxOpened" [(ngModel)]="options.maxOpened" value="0" data-testid="max-opened-input">
+          <label for="maxOpened" class="sub-label">0 means no limit</label>
+        </div>
+        <div class="control">
+          <label class="checkbox-inline custom-checkbox nowrap">
+            <input [(ngModel)]="options.autoDismiss" type="checkbox" id="autoDismiss" data-testid="auto-dismiss-checkbox">
+            <span>Auto dismiss</span>
+          </label>
+        </div>
+      </div>
+      <div class="col-md-5 col-sm-12">
+        <span class="result-label">Result:</span>
+        <pre class="result-toastr" id="toastrOptions" data-testid="result-display">{{ optionsStr }}</pre>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 button-row">
+        <button (click)="openToast()" class="btn btn-primary" data-testid="open-toast-button">Open Toast</button>
+        <button (click)="openRandomToast()" class="btn btn-primary" data-testid="random-toast-button">Random Toast</button>
+        <button (click)="clearToasts()" class="btn btn-danger" data-testid="clear-toasts-button">Clear Toasts</button>
+        <button (click)="clearLastToast()" class="btn btn-danger" data-testid="clear-last-toast-button">Clear Last Toast</button>
+      </div>
+    </div>
+  </div>
+</div>

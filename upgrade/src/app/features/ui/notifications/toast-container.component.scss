@@ -1,0 +1,213 @@
+#toast-container {
+  position: fixed;
+  z-index: 999999;
+  pointer-events: none;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  > .toast {
+    pointer-events: auto;
+  }
+
+  &.toast-top-center {
+    top: 0;
+    right: 0;
+    width: 100%;
+
+    > .toast {
+      width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  &.toast-bottom-center {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+
+    > .toast {
+      width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  &.toast-top-full-width {
+    top: 0;
+    right: 0;
+    width: 100%;
+
+    > .toast {
+      width: 96%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  &.toast-bottom-full-width {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+
+    > .toast {
+      width: 96%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  &.toast-top-left {
+    top: 12px;
+    left: 12px;
+  }
+
+  &.toast-top-right {
+    top: 12px;
+    right: 12px;
+  }
+
+  &.toast-bottom-right {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  &.toast-bottom-left {
+    bottom: 12px;
+    left: 12px;
+  }
+}
+
+.toast {
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 6px;
+  padding: 15px 15px 15px 50px;
+  width: 300px;
+  border-radius: 3px;
+  background-position: 15px center;
+  background-repeat: no-repeat;
+  background-size: 24px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  opacity: 0.9;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 1;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.toast-success {
+  background-color: #51a351;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+}
+
+.toast-error {
+  background-color: #bd362f;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/%3E%3C/svg%3E");
+}
+
+.toast-info {
+  background-color: #2f96b4;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z'/%3E%3C/svg%3E");
+}
+
+.toast-warning {
+  background-color: #f89406;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z'/%3E%3C/svg%3E");
+}
+
+.toast-title {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.toast-message {
+  word-wrap: break-word;
+
+  a,
+  label {
+    color: #fff;
+  }
+
+  a:hover {
+    color: #ccc;
+    text-decoration: none;
+  }
+}
+
+.toast-close-button {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  opacity: 0.8;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  line-height: 1;
+
+  &:hover,
+  &:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.4;
+  }
+}
+
+.toast-progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: width 0.05s linear;
+}
+
+@media all and (max-width: 240px) {
+  #toast-container {
+    > .toast {
+      padding: 8px 8px 8px 50px;
+      width: 11em;
+    }
+
+    .toast-close-button {
+      right: 2px;
+      top: 2px;
+    }
+  }
+}
+
+@media all and (min-width: 241px) and (max-width: 480px) {
+  #toast-container {
+    > .toast {
+      padding: 8px 8px 8px 50px;
+      width: 18em;
+    }
+
+    .toast-close-button {
+      right: 2px;
+      top: 2px;
+    }
+  }
+}
+
+@media all and (min-width: 481px) and (max-width: 768px) {
+  #toast-container {
+    > .toast {
+      padding: 15px 15px 15px 50px;
+      width: 25em;
+    }
+  }
+}

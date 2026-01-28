@@ -1,0 +1,43 @@
+<div id="toast-container" [class]="positionClass" data-testid="toast-container">
+  @for (toast of toasts; track trackById($index, toast)) {
+    <div
+      [class]="getToastClass(toast)"
+      [attr.data-testid]="'toast-' + toast.type"
+      role="alert"
+      tabindex="0"
+      (click)="onToastClick(toast)"
+      (keydown.enter)="onToastClick(toast)"
+      (keydown.space)="onToastClick(toast)"
+      (mouseenter)="onMouseEnter(toast)"
+      (mouseleave)="onMouseLeave(toast)">
+      @if (hasCloseButton(toast)) {
+        <button
+          type="button"
+          class="toast-close-button"
+          (click)="onCloseClick($event, toast)"
+          data-testid="toast-close-button">
+          &times;
+        </button>
+      }
+      @if (hasProgressBar(toast)) {
+        <div class="toast-progress" [style.width.%]="toast.progress" data-testid="toast-progress"></div>
+      }
+      @if (toast.title) {
+        <div class="toast-title" data-testid="toast-title">
+          @if (allowsHtml(toast)) {
+            <span [innerHTML]="toast.title"></span>
+          } @else {
+            {{ toast.title }}
+          }
+        </div>
+      }
+      <div class="toast-message" data-testid="toast-message">
+        @if (allowsHtml(toast)) {
+          <span [innerHTML]="toast.message"></span>
+        } @else {
+          {{ toast.message }}
+        }
+      </div>
+    </div>
+  }
+</div>
