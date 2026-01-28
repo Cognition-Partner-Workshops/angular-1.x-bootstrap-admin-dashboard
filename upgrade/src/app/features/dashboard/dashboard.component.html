@@ -1,47 +1,55 @@
-<div class="dashboard">
-  <h2 class="page-title">Dashboard</h2>
+<div class="dashboard" data-testid="dashboard-page">
+  <!-- Pie Charts Row -->
+  <app-pie-charts data-testid="pie-charts-widget"></app-pie-charts>
 
-  @if (stats.length > 0) {
-    <div class="stats-grid">
-      @for (stat of stats; track stat.id) {
-        <div class="stat-card">
-          <div class="stat-label">{{ stat.label }}</div>
-          <div class="stat-value">{{ stat.value | number }}</div>
-          <div class="stat-change" [ngClass]="getChangeClass(stat.changeType)">
-            @if (stat.changeType === 'increase') {
-              <span>+</span>
-            }
-            @if (stat.changeType === 'decrease') {
-              <span>-</span>
-            }
-            {{ stat.change | number:'1.1-1' }}%
-          </div>
-        </div>
-      }
+  <!-- Traffic Chart and Users Map Row -->
+  <div class="row">
+    <div class="col-lg-6 col-md-12 col-sm-12">
+      <app-ba-panel panelTitle="Acquisition Channels" panelClass="medium-panel traffic-panel">
+        <app-traffic-chart data-testid="traffic-chart-widget"></app-traffic-chart>
+      </app-ba-panel>
     </div>
-  }
+    <div class="col-lg-6 col-md-12 col-sm-12">
+      <app-ba-panel panelTitle="Users by Country" panelClass="medium-panel">
+        <app-users-map data-testid="users-map-widget"></app-users-map>
+      </app-ba-panel>
+    </div>
+  </div>
 
-  <div class="activities-section">
-    <h3 class="section-title">Recent Activity</h3>
-    @if (loading) {
-      <div class="loading">Loading...</div>
-    }
-    @if (!loading) {
-      <div class="activities-list">
-        @for (activity of activities; track activity.id) {
-          <div class="activity-item">
-            <div class="activity-user">{{ activity.userName }}</div>
-            <div class="activity-action">{{ activity.action }}</div>
-            <div class="activity-target">{{ activity.target }}</div>
-            <div class="activity-time">{{ activity.timestamp | date:'short' }}</div>
-          </div>
-        }
-        @if (activities.length === 0) {
-          <div class="no-activities">
-            No recent activities
-          </div>
-        }
+  <!-- Revenue, Popular App, and Feed Row -->
+  <div class="row">
+    <div class="col-xlg-9 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="row">
+        <div class="col-xlg-8 col-lg-12 col-md-12 col-sm-7 col-xs-12">
+          <app-ba-panel panelTitle="Revenue" panelClass="medium-panel">
+            <app-line-chart data-testid="line-chart-widget"></app-line-chart>
+          </app-ba-panel>
+        </div>
+        <div class="col-xlg-4 col-lg-12 col-md-12 col-sm-5 col-xs-12">
+          <app-ba-panel panelClass="popular-app medium-panel">
+            <app-popular-app data-testid="popular-app-widget"></app-popular-app>
+          </app-ba-panel>
+        </div>
       </div>
-    }
+    </div>
+    <div class="col-xlg-3 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <app-ba-panel panelTitle="Feed" panelClass="large-panel with-scroll feed-panel">
+        <app-blur-feed data-testid="blur-feed-widget"></app-blur-feed>
+      </app-ba-panel>
+    </div>
+  </div>
+
+  <!-- Todo and Calendar Row -->
+  <div class="row shift-up">
+    <div class="col-xlg-3 col-lg-6 col-md-6 col-xs-12">
+      <app-ba-panel panelTitle="To Do List" panelClass="xmedium-panel feed-comply-panel with-scroll todo-panel">
+        <app-todo-list data-testid="todo-list-widget"></app-todo-list>
+      </app-ba-panel>
+    </div>
+    <div class="col-xlg-6 col-lg-6 col-md-6 col-xs-12">
+      <app-ba-panel panelTitle="Calendar" panelClass="xmedium-panel feed-comply-panel with-scroll calendar-panel">
+        <app-calendar data-testid="calendar-widget"></app-calendar>
+      </app-ba-panel>
+    </div>
   </div>
 </div>

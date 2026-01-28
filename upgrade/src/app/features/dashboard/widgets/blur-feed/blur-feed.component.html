@@ -1,0 +1,49 @@
+<div class="feed-messages-container">
+  @for (message of feed; track message.text) {
+    <div class="feed-message" 
+         role="button"
+         tabindex="0"
+         (click)="expandMessage(message)"
+         (keydown.enter)="expandMessage(message)"
+         (keydown.space)="expandMessage(message)">
+      <div class="message-icon">
+        <div class="photo-icon">{{ getProfilePicture(message.author) }}</div>
+        @if (message.type !== 'text-message') {
+          <span class="sub-photo-icon" [class]="message.type">
+            @switch (message.type) {
+              @case ('video-message') { <span class="icon-play">&#9658;</span> }
+              @case ('image-message') { <span class="icon-image">&#128247;</span> }
+              @case ('geo-message') { <span class="icon-location">&#128205;</span> }
+            }
+          </span>
+        }
+      </div>
+      <div class="text-block text-message">
+        <div class="message-header">
+          <span class="author">{{ message.author }} {{ message.surname }}</span>
+        </div>
+        <div class="message-content" [class.line-clamp-2]="!message.expanded">
+          @if (message.preview) {
+            <span>{{ message.header }} </span>
+          }
+          {{ message.text }}
+        </div>
+        @if (message.expanded && message.preview) {
+          <div class="preview">
+            <a [href]="message.link" target="_blank">
+              <div class="preview-placeholder">
+                <span>{{ message.header }}</span>
+              </div>
+            </a>
+          </div>
+        }
+        @if (message.expanded) {
+          <div class="message-time">
+            <div class="post-time">{{ message.time }}</div>
+            <div class="ago-time">{{ message.ago }}</div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

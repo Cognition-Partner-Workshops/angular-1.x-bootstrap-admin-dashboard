@@ -1,0 +1,117 @@
+.pie-charts {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
+.pie-chart-item-container {
+  flex: 1;
+  min-width: 200px;
+  padding: 0 10px;
+  margin-bottom: 20px;
+}
+
+.panel {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  height: 100%;
+}
+
+.pie-chart-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.chart-wrapper {
+  position: relative;
+  width: 84px;
+  height: 84px;
+  flex-shrink: 0;
+}
+
+.pie-chart-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.pie-chart-bg {
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.1);
+  stroke-width: 9;
+}
+
+.pie-chart-progress {
+  fill: none;
+  stroke: #209e91;
+  stroke-width: 9;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.3s ease;
+}
+
+.percent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+
+  &::after {
+    content: '%';
+    font-size: 12px;
+  }
+}
+
+.description {
+  margin-left: 16px;
+  flex: 1;
+
+  > div:first-child {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 4px;
+  }
+}
+
+.description-stats {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.chart-icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 48px;
+  color: rgba(0, 0, 0, 0.1);
+  font-style: normal;
+
+  &.i-person::before {
+    content: '\1F464';
+  }
+
+  &.i-money::before {
+    content: '\1F4B0';
+  }
+
+  &.i-face::before {
+    content: '\1F60A';
+  }
+
+  &.i-refresh::before {
+    content: '\21BB';
+  }
+}
+
+@media (max-width: 768px) {
+  .pie-chart-item-container {
+    min-width: 100%;
+  }
+}

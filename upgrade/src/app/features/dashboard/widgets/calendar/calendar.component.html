@@ -1,0 +1,37 @@
+<div class="calendar-container">
+  <div class="calendar-header">
+    <div class="calendar-nav">
+      <button class="nav-btn" (click)="previousMonth()">&lt;</button>
+      <button class="nav-btn" (click)="nextMonth()">&gt;</button>
+      <button class="today-btn" (click)="goToToday()">today</button>
+    </div>
+    <h3 class="calendar-title">{{ currentMonth }} {{ currentYear }}</h3>
+    <div class="view-buttons">
+      <button [class.active]="viewMode === 'month'" (click)="setViewMode('month')">month</button>
+      <button [class.active]="viewMode === 'week'" (click)="setViewMode('week')">week</button>
+      <button [class.active]="viewMode === 'day'" (click)="setViewMode('day')">day</button>
+    </div>
+  </div>
+
+  <div class="calendar-grid">
+    <div class="weekday-header">
+      @for (day of weekDays; track day) {
+        <div class="weekday">{{ day }}</div>
+      }
+    </div>
+    <div class="days-grid">
+      @for (day of calendarDays; track $index) {
+        <div class="day-cell"
+             [class.other-month]="!day.isCurrentMonth"
+             [class.today]="day.isToday">
+          <span class="day-number">{{ day.date }}</span>
+          @for (event of day.events; track event.title) {
+            <div class="event" [style.background-color]="event.color">
+              {{ event.title }}
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="users-map-container">
+  <div class="map-placeholder">
+    <div class="map-visual">
+      <svg viewBox="0 0 400 300" class="europe-map">
+        <rect x="0" y="0" width="400" height="300" fill="#f5f5f5"/>
+        <text x="200" y="150" text-anchor="middle" fill="#999" font-size="14">Users by Country (Europe)</text>
+      </svg>
+    </div>
+    <div class="countries-list">
+      @for (country of countries; track country.id) {
+        <div class="country-item">
+          <span class="country-dot" [style.background-color]="country.color"></span>
+          <span class="country-name">{{ country.title }}</span>
+          <span class="country-users">{{ country.users }} users</span>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="map-legend">
+    @for (item of legend; track item.title) {
+      <div class="legend-item">
+        <span class="legend-color" [style.background-color]="item.color"></span>
+        <span class="legend-text">{{ item.title }}</span>
+      </div>
+    }
+  </div>
+</div>

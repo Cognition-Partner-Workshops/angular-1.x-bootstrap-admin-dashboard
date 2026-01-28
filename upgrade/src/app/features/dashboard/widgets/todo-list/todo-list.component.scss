@@ -1,0 +1,153 @@
+.task-todo-container {
+  position: relative;
+
+  &.transparent {
+    .blur-container {
+      display: block;
+    }
+  }
+}
+
+.task-todo {
+  width: 100%;
+  padding: 12px 40px 12px 16px;
+  border: none;
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.05);
+  font-size: 14px;
+
+  &:focus {
+    outline: none;
+    background: rgba(0, 0, 0, 0.08);
+  }
+
+  &::placeholder {
+    color: #999;
+  }
+}
+
+.add-item-icon {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  font-size: 20px;
+  color: #209e91;
+  cursor: pointer;
+  transition: transform 0.2s;
+  background: none;
+  border: none;
+  padding: 4px 8px;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+.box-shadow-border {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.1), transparent);
+  margin: 8px 0;
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.todo-list li {
+  position: relative;
+  padding: 12px 40px 12px 32px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition: background 0.2s;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.02);
+
+    .remove-todo {
+      opacity: 1;
+    }
+  }
+
+  &.checked {
+    .cut-with-dots {
+      text-decoration: line-through;
+      color: #999;
+    }
+  }
+}
+
+.blur-container {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.blur-box {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: rgba(255, 255, 255, 0.1);
+  filter: blur(5px);
+}
+
+.mark {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.todo-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 0;
+
+  input[type="checkbox"] {
+    margin-right: 12px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: #209e91;
+  }
+}
+
+.cut-with-dots {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  color: #333;
+}
+
+.remove-todo {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  color: #e74c3c;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+  background: none;
+  border: none;
+  padding: 0;
+
+  &:hover {
+    color: #c0392b;
+  }
+}

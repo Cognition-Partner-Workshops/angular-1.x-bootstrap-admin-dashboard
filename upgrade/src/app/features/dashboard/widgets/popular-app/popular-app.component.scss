@@ -1,0 +1,80 @@
+.popular-app-img-container {
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 8px 8px 0 0;
+  text-align: center;
+}
+
+.popular-app-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app-logo {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.logo-icon {
+  font-size: 40px;
+}
+
+.logo-text {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.popular-app-cost {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: rgba(0, 0, 0, 0.03);
+  font-size: 14px;
+}
+
+.col-left {
+  color: #666;
+}
+
+.col-right {
+  font-weight: 600;
+  color: #333;
+}
+
+.popular-app-info {
+  display: flex;
+  padding: 16px 20px;
+}
+
+.col-info {
+  flex: 1;
+
+  &.center {
+    text-align: center;
+  }
+
+  &.right {
+    text-align: right;
+  }
+}
+
+.info-label {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 4px;
+}
+
+.info-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}

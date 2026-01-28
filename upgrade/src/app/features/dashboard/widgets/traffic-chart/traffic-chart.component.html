@@ -1,0 +1,36 @@
+<div class="channels-block">
+  <div class="chart-bg"></div>
+  <div class="traffic-chart">
+    <div class="canvas-holder">
+      <canvas baseChart
+        [data]="doughnutChartData"
+        [options]="doughnutChartOptions"
+        type="doughnut">
+      </canvas>
+      <div class="traffic-text">
+        {{ totalViews }}
+        <span>Views Total</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="channels-info">
+    <div>
+      @for (channel of channelData; track channel.label) {
+        <div class="channels-info-item">
+          <div class="legend-color" [style.background-color]="channel.color"></div>
+          <p>{{ channel.label }}<span class="channel-number">+{{ channel.percentage }}%</span></p>
+          <div class="progress progress-sm channel-progress">
+            <div class="progress-bar"
+                 role="progressbar"
+                 [attr.aria-valuenow]="channel.percentage"
+                 aria-valuemin="0"
+                 aria-valuemax="100"
+                 [style.width.%]="channel.percentage">
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

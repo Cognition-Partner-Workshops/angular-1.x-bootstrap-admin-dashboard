@@ -1,0 +1,28 @@
+<div class="task-todo-container">
+  <input type="text"
+         class="form-control task-todo"
+         placeholder="Task to do.."
+         [(ngModel)]="newTodoText"
+         (keyup)="addTodoItem($event)" />
+  <button type="button" 
+          class="add-item-icon" 
+          (click)="addTodoItem(undefined, true)"
+          aria-label="Add todo item">+</button>
+  <div class="box-shadow-border"></div>
+  <ul class="todo-list">
+    @for (item of visibleTodos; track item.text) {
+      <li [class.checked]="item.checked">
+        <div class="blur-container"><div class="blur-box"></div></div>
+        <i class="mark" [style.background-color]="item.color"></i>
+        <label class="todo-checkbox custom-checkbox">
+          <input type="checkbox" [(ngModel)]="item.checked">
+          <span class="cut-with-dots">{{ item.text }}</span>
+        </label>
+        <button type="button" 
+                class="remove-todo" 
+                (click)="deleteTodoItem(item)"
+                aria-label="Remove todo item">&times;</button>
+      </li>
+    }
+  </ul>
+</div>

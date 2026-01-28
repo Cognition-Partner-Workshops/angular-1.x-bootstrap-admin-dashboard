@@ -1,0 +1,93 @@
+.users-map-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.map-placeholder {
+  flex: 1;
+  display: flex;
+  gap: 16px;
+  overflow: hidden;
+}
+
+.map-visual {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.europe-map {
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+}
+
+.countries-list {
+  flex: 1;
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.country-item {
+  display: flex;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.country-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.country-name {
+  flex: 1;
+  font-size: 12px;
+  color: #333;
+}
+
+.country-users {
+  font-size: 11px;
+  color: #666;
+  white-space: nowrap;
+}
+
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 4px;
+  margin-top: 12px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  margin-right: 8px;
+}
+
+.legend-text {
+  font-size: 12px;
+  color: #666;
+}

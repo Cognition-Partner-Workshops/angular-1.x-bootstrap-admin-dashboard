@@ -1,0 +1,107 @@
+.channels-block {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+
+  &.transparent {
+    .chart-bg {
+      background: rgba(0, 0, 0, 0.35);
+    }
+  }
+}
+
+.chart-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.traffic-chart {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.canvas-holder {
+  position: relative;
+  width: 280px;
+  height: 280px;
+}
+
+.traffic-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+
+  span {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    color: #666;
+    margin-top: 4px;
+  }
+}
+
+.channels-info {
+  flex: 1;
+  min-width: 200px;
+  padding: 20px;
+}
+
+.channels-info-item {
+  margin-bottom: 16px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.legend-color {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  margin-right: 8px;
+  vertical-align: middle;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.channels-info-item p {
+  display: inline-block;
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #333;
+  vertical-align: middle;
+}
+
+.channel-number {
+  margin-left: 8px;
+  color: #27ae60;
+  font-weight: 500;
+}
+
+.channel-progress {
+  height: 4px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #209e91;
+  transition: width 0.3s ease;
+}
