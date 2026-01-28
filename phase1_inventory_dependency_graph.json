@@ -1,0 +1,889 @@
+{
+  "metadata": {
+    "generated": "2026-01-28",
+    "phase": "phase1_inventory",
+    "description": "Dependency graph for AngularJS to Angular migration",
+    "source_repo": "angular-1.x-bootstrap-admin-dashboard"
+  },
+  "modules": {
+    "BlurAdmin": {
+      "type": "root",
+      "path": "src/app/app.js",
+      "dependencies": [
+        "ngAnimate",
+        "ui.bootstrap",
+        "ui.sortable",
+        "ui.router",
+        "ngTouch",
+        "toastr",
+        "smart-table",
+        "xeditable",
+        "ui.slimscroll",
+        "ngJsTree",
+        "angular-progress-button-styles",
+        "BlurAdmin.theme",
+        "BlurAdmin.pages"
+      ]
+    },
+    "BlurAdmin.theme": {
+      "type": "theme",
+      "path": "src/app/theme/theme.module.js",
+      "dependencies": [
+        "toastr",
+        "chart.js",
+        "angular-chartist",
+        "angular.morris-chart",
+        "textAngular",
+        "BlurAdmin.theme.components",
+        "BlurAdmin.theme.inputs"
+      ]
+    },
+    "BlurAdmin.theme.components": {
+      "type": "theme-components",
+      "path": "src/app/theme/components/components.module.js",
+      "dependencies": []
+    },
+    "BlurAdmin.theme.inputs": {
+      "type": "theme-inputs",
+      "path": "src/app/theme/inputs/inputs.module.js",
+      "dependencies": []
+    },
+    "BlurAdmin.pages": {
+      "type": "pages",
+      "path": "src/app/pages/pages.module.js",
+      "dependencies": [
+        "ui.router",
+        "BlurAdmin.pages.dashboard",
+        "BlurAdmin.pages.ui",
+        "BlurAdmin.pages.components",
+        "BlurAdmin.pages.form",
+        "BlurAdmin.pages.tables",
+        "BlurAdmin.pages.charts",
+        "BlurAdmin.pages.maps",
+        "BlurAdmin.pages.profile"
+      ]
+    },
+    "BlurAdmin.pages.dashboard": {
+      "type": "page",
+      "path": "src/app/pages/dashboard/dashboard.module.js",
+      "dependencies": []
+    },
+    "BlurAdmin.pages.ui": {
+      "type": "page",
+      "path": "src/app/pages/ui/ui.module.js",
+      "dependencies": [
+        "BlurAdmin.pages.ui.typography",
+        "BlurAdmin.pages.ui.buttons",
+        "BlurAdmin.pages.ui.icons",
+        "BlurAdmin.pages.ui.modals",
+        "BlurAdmin.pages.ui.grid",
+        "BlurAdmin.pages.ui.alerts",
+        "BlurAdmin.pages.ui.progressBars",
+        "BlurAdmin.pages.ui.notifications",
+        "BlurAdmin.pages.ui.tabs",
+        "BlurAdmin.pages.ui.slider",
+        "BlurAdmin.pages.ui.panels"
+      ]
+    },
+    "BlurAdmin.pages.components": {
+      "type": "page",
+      "path": "src/app/pages/components/components.module.js",
+      "dependencies": [
+        "BlurAdmin.pages.components.mail",
+        "BlurAdmin.pages.components.timeline",
+        "BlurAdmin.pages.components.tree"
+      ]
+    },
+    "BlurAdmin.pages.form": {
+      "type": "page",
+      "path": "src/app/pages/form/form.module.js",
+      "dependencies": [
+        "ui.select",
+        "ngSanitize"
+      ]
+    },
+    "BlurAdmin.pages.tables": {
+      "type": "page",
+      "path": "src/app/pages/tables/tables.module.js",
+      "dependencies": []
+    },
+    "BlurAdmin.pages.charts": {
+      "type": "page",
+      "path": "src/app/pages/charts/charts.module.js",
+      "dependencies": [
+        "BlurAdmin.pages.charts.amCharts",
+        "BlurAdmin.pages.charts.chartJs",
+        "BlurAdmin.pages.charts.chartist",
+        "BlurAdmin.pages.charts.morris"
+      ]
+    },
+    "BlurAdmin.pages.maps": {
+      "type": "page",
+      "path": "src/app/pages/maps/maps.module.js",
+      "dependencies": []
+    },
+    "BlurAdmin.pages.profile": {
+      "type": "page",
+      "path": "src/app/pages/profile/profile.module.js",
+      "dependencies": []
+    }
+  },
+  "services": {
+    "baConfig": {
+      "type": "provider",
+      "path": "src/app/theme/theme.configProvider.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": true,
+      "risk": "high",
+      "description": "Central theme configuration provider - colors, theme settings",
+      "injected_dependencies": ["colorHelper"],
+      "used_by": [
+        "TrafficChartCtrl",
+        "DashboardTodoCtrl",
+        "DashboardLineChartCtrl",
+        "DashboardCalendarCtrl",
+        "DashboardPieChartCtrl",
+        "DashboardMapCtrl",
+        "MapBubblePageCtrl",
+        "MapLinesPageCtrl",
+        "chartistCtrl",
+        "amChartConfig",
+        "chartJsConfig",
+        "morrisConfig",
+        "baPanel",
+        "themeLayoutSettings"
+      ]
+    },
+    "baSidebarService": {
+      "type": "provider",
+      "path": "src/app/theme/components/baSidebar/baSidebar.service.js",
+      "module": "BlurAdmin.theme.components",
+      "foundation_critical": true,
+      "risk": "high",
+      "description": "Sidebar navigation service - menu items, collapse state",
+      "injected_dependencies": ["$state", "layoutSizes"],
+      "used_by": [
+        "baSidebar",
+        "themeRun",
+        "pages.module routeConfig"
+      ]
+    },
+    "themeLayoutSettings": {
+      "type": "service",
+      "path": "src/app/theme/theme.service.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": true,
+      "risk": "medium",
+      "description": "Theme layout settings - mobile detection, blur theme",
+      "injected_dependencies": ["baConfig"],
+      "used_by": ["themeRun"]
+    },
+    "baUtil": {
+      "type": "service",
+      "path": "src/app/theme/services/baUtil.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": true,
+      "risk": "low",
+      "description": "Utility service - DOM helpers, color conversion",
+      "injected_dependencies": [],
+      "used_by": [
+        "baSidebar",
+        "DashboardLineChartCtrl",
+        "DashboardPieChartCtrl",
+        "uiViewScrollDecorator"
+      ]
+    },
+    "preloader": {
+      "type": "service",
+      "path": "src/app/theme/services/preloader.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": true,
+      "risk": "medium",
+      "description": "Preloader service - image and AmCharts loading",
+      "injected_dependencies": ["$q"],
+      "used_by": ["themeRun"]
+    },
+    "baProgressModal": {
+      "type": "factory",
+      "path": "src/app/theme/services/baProgressModal.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": false,
+      "risk": "low",
+      "description": "Progress modal service",
+      "injected_dependencies": ["$uibModal"],
+      "used_by": ["ModalsPageCtrl"]
+    },
+    "fileReader": {
+      "type": "service",
+      "path": "src/app/theme/services/fileReader.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": false,
+      "risk": "low",
+      "description": "File reader service for uploads",
+      "injected_dependencies": ["$q"],
+      "used_by": ["ProfilePageCtrl"]
+    },
+    "stopableInterval": {
+      "type": "service",
+      "path": "src/app/theme/services/stopableInterval.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": false,
+      "risk": "low",
+      "description": "Stoppable interval service for animations",
+      "injected_dependencies": ["$window"],
+      "used_by": ["chartJsWaveCtrl"]
+    },
+    "layoutSizes": {
+      "type": "constant",
+      "path": "src/app/theme/theme.constants.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": true,
+      "risk": "low",
+      "description": "Layout size constants for responsive breakpoints",
+      "used_by": ["baSidebarService", "baSidebar"]
+    },
+    "layoutPaths": {
+      "type": "constant",
+      "path": "src/app/theme/theme.constants.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": true,
+      "risk": "low",
+      "description": "Layout paths for images and assets",
+      "used_by": [
+        "themeRun",
+        "DashboardLineChartCtrl",
+        "DashboardMapCtrl",
+        "MapBubblePageCtrl",
+        "MapLinesPageCtrl",
+        "appImage",
+        "kameleonImg",
+        "profilePicture"
+      ]
+    },
+    "colorHelper": {
+      "type": "constant",
+      "path": "src/app/theme/theme.constants.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": true,
+      "risk": "low",
+      "description": "Color helper functions - tint, shade",
+      "used_by": ["baConfigProvider", "TrafficChartCtrl"]
+    }
+  },
+  "directives": {
+    "baSidebar": {
+      "path": "src/app/theme/components/baSidebar/baSidebar.directive.js",
+      "module": "BlurAdmin.theme.components",
+      "foundation_critical": true,
+      "risk": "high",
+      "description": "Main sidebar navigation directive",
+      "injected_dependencies": ["$timeout", "baSidebarService", "baUtil", "layoutSizes"],
+      "template": "app/theme/components/baSidebar/ba-sidebar.html",
+      "controller": "BaSidebarCtrl"
+    },
+    "baPanel": {
+      "path": "src/app/theme/components/baPanel/baPanel.directive.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": true,
+      "risk": "medium",
+      "description": "Panel container directive",
+      "injected_dependencies": ["baPanel", "baConfig"]
+    },
+    "baPanelBlur": {
+      "path": "src/app/theme/components/baPanel/baPanelBlur.directive.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": false,
+      "risk": "low",
+      "description": "Panel blur effect directive"
+    },
+    "baPanelSelf": {
+      "path": "src/app/theme/components/baPanel/baPanelSelf.directive.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": false,
+      "risk": "low",
+      "description": "Panel self directive"
+    },
+    "baWizard": {
+      "path": "src/app/theme/components/baWizard/baWizard.directive.js",
+      "module": "BlurAdmin.theme.components",
+      "foundation_critical": false,
+      "risk": "medium",
+      "description": "Multi-step wizard directive",
+      "template": "app/theme/components/baWizard/baWizard.html",
+      "controller": "baWizardCtrl"
+    },
+    "baWizardStep": {
+      "path": "src/app/theme/components/baWizard/baWizardStep.directive.js",
+      "module": "BlurAdmin.theme.components",
+      "foundation_critical": false,
+      "risk": "low",
+      "description": "Wizard step directive"
+    },
+    "pageTop": {
+      "path": "src/app/theme/components/pageTop/pageTop.directive.js",
+      "module": "BlurAdmin.theme.components",
+      "foundation_critical": true,
+      "risk": "medium",
+      "description": "Page header directive",
+      "template": "app/theme/components/pageTop/pageTop.html"
+    },
+    "contentTop": {
+      "path": "src/app/theme/components/contentTop/contentTop.directive.js",
+      "module": "BlurAdmin.theme.components",
+      "foundation_critical": true,
+      "risk": "low",
+      "description": "Content header with page title",
+      "injected_dependencies": ["$location", "$state"],
+      "template": "app/theme/components/contentTop/contentTop.html"
+    },
+    "msgCenter": {
+      "path": "src/app/theme/components/msgCenter/msgCenter.directive.js",
+      "module": "BlurAdmin.theme.components",
+      "foundation_critical": false,
+      "risk": "low",
+      "description": "Message center directive",
+      "controller": "MsgCenterCtrl"
+    },
+    "backTop": {
+      "path": "src/app/theme/components/backTop/backTop.directive.js",
+      "module": "BlurAdmin.theme.components",
+      "foundation_critical": false,
+      "risk": "low",
+      "description": "Back to top button directive"
+    },
+    "progressBarRound": {
+      "path": "src/app/theme/components/progressBarRound/progressBarRound.directive.js",
+      "module": "BlurAdmin.theme.components",
+      "foundation_critical": false,
+      "risk": "low",
+      "description": "Round progress bar directive"
+    },
+    "animatedChange": {
+      "path": "src/app/theme/directives/animatedChange.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": false,
+      "risk": "low",
+      "description": "Animated value change directive",
+      "injected_dependencies": ["$timeout"]
+    },
+    "autoExpand": {
+      "path": "src/app/theme/directives/autoExpand.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": false,
+      "risk": "low",
+      "description": "Auto-expand textarea directive"
+    },
+    "autoFocus": {
+      "path": "src/app/theme/directives/autoFocus.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": false,
+      "risk": "low",
+      "description": "Auto-focus input directive"
+    },
+    "includeWithScope": {
+      "path": "src/app/theme/directives/includeWithScope.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": false,
+      "risk": "low",
+      "description": "Include with scope directive"
+    },
+    "ionSlider": {
+      "path": "src/app/theme/directives/ionSlider.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": false,
+      "risk": "low",
+      "description": "Ion slider directive"
+    },
+    "ngFileSelect": {
+      "path": "src/app/theme/directives/ngFileSelect.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": false,
+      "risk": "low",
+      "description": "File select directive"
+    },
+    "scrollPosition": {
+      "path": "src/app/theme/directives/scrollPosition.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": false,
+      "risk": "low",
+      "description": "Scroll position directive"
+    },
+    "trackWidth": {
+      "path": "src/app/theme/directives/trackWidth.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": false,
+      "risk": "low",
+      "description": "Track width directive"
+    },
+    "zoomIn": {
+      "path": "src/app/theme/directives/zoomIn.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": false,
+      "risk": "low",
+      "description": "Zoom in animation directive",
+      "injected_dependencies": ["$timeout", "$rootScope"]
+    },
+    "baSwitcher": {
+      "path": "src/app/theme/inputs/baSwitcher/baSwitcher.directive.js",
+      "module": "BlurAdmin.theme.inputs",
+      "foundation_critical": false,
+      "risk": "low",
+      "description": "Toggle switch input directive"
+    }
+  },
+  "filters": {
+    "appImage": {
+      "path": "src/app/theme/filters/image/appImage.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": false,
+      "risk": "low",
+      "description": "App image path filter",
+      "injected_dependencies": ["layoutPaths"]
+    },
+    "kameleonImg": {
+      "path": "src/app/theme/filters/image/kameleonImg.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": false,
+      "risk": "low",
+      "description": "Kameleon icon path filter",
+      "injected_dependencies": ["layoutPaths"]
+    },
+    "profilePicture": {
+      "path": "src/app/theme/filters/image/profilePicture.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": false,
+      "risk": "low",
+      "description": "Profile picture path filter",
+      "injected_dependencies": ["layoutPaths"]
+    },
+    "plainText": {
+      "path": "src/app/theme/filters/text/removeHtml.js",
+      "module": "BlurAdmin.theme",
+      "foundation_critical": false,
+      "risk": "low",
+      "description": "Remove HTML tags filter"
+    }
+  },
+  "screens": {
+    "dashboard": {
+      "state": "dashboard",
+      "url": "/dashboard",
+      "path": "src/app/pages/dashboard/",
+      "template": "app/pages/dashboard/dashboard.html",
+      "module": "BlurAdmin.pages.dashboard",
+      "sidebar_order": 0,
+      "widgets": [
+        "dashboard-pie-chart",
+        "traffic-chart",
+        "dashboard-map",
+        "dashboard-line-chart",
+        "popular-app",
+        "blur-feed",
+        "dashboard-todo",
+        "dashboard-calendar"
+      ],
+      "controllers": [
+        "DashboardPieChartCtrl",
+        "TrafficChartCtrl",
+        "DashboardMapCtrl",
+        "DashboardLineChartCtrl",
+        "DashboardTodoCtrl",
+        "DashboardCalendarCtrl",
+        "BlurFeedCtrl"
+      ],
+      "service_dependencies": ["baConfig", "baUtil", "layoutPaths", "colorHelper"],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": ["AmCharts", "Chart", "fullCalendar", "easyPieChart"]
+    },
+    "ui.typography": {
+      "state": "ui.typography",
+      "url": "/ui/typography",
+      "path": "src/app/pages/ui/typography/",
+      "template": "app/pages/ui/typography/typography.html",
+      "module": "BlurAdmin.pages.ui.typography",
+      "sidebar_order": 0,
+      "controllers": [],
+      "service_dependencies": [],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": []
+    },
+    "ui.buttons": {
+      "state": "ui.buttons",
+      "url": "/ui/buttons",
+      "path": "src/app/pages/ui/buttons/",
+      "template": "app/pages/ui/buttons/buttons.html",
+      "module": "BlurAdmin.pages.ui.buttons",
+      "sidebar_order": 100,
+      "controllers": ["ButtonPageCtrl"],
+      "service_dependencies": [],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": ["angular-progress-button-styles"]
+    },
+    "ui.icons": {
+      "state": "ui.icons",
+      "url": "/ui/icons",
+      "path": "src/app/pages/ui/icons/",
+      "template": "app/pages/ui/icons/icons.html",
+      "module": "BlurAdmin.pages.ui.icons",
+      "sidebar_order": 200,
+      "controllers": ["IconsPageCtrl"],
+      "service_dependencies": [],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": []
+    },
+    "ui.modals": {
+      "state": "ui.modals",
+      "url": "/ui/modals",
+      "path": "src/app/pages/ui/modals/",
+      "template": "app/pages/ui/modals/modals.html",
+      "module": "BlurAdmin.pages.ui.modals",
+      "sidebar_order": 300,
+      "controllers": ["ModalsPageCtrl"],
+      "service_dependencies": ["baProgressModal", "$uibModal"],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": ["ui.bootstrap"]
+    },
+    "ui.grid": {
+      "state": "ui.grid",
+      "url": "/ui/grid",
+      "path": "src/app/pages/ui/grid/",
+      "template": "app/pages/ui/grid/grid.html",
+      "module": "BlurAdmin.pages.ui.grid",
+      "sidebar_order": 400,
+      "controllers": [],
+      "service_dependencies": [],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": []
+    },
+    "ui.alerts": {
+      "state": "ui.alerts",
+      "url": "/ui/alerts",
+      "path": "src/app/pages/ui/alerts/",
+      "template": "app/pages/ui/alerts/alerts.html",
+      "module": "BlurAdmin.pages.ui.alerts",
+      "sidebar_order": 500,
+      "controllers": [],
+      "service_dependencies": [],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": []
+    },
+    "ui.progressBars": {
+      "state": "ui.progressBars",
+      "url": "/ui/progressBars",
+      "path": "src/app/pages/ui/progressBars/",
+      "template": "app/pages/ui/progressBars/progressBars.html",
+      "module": "BlurAdmin.pages.ui.progressBars",
+      "sidebar_order": 600,
+      "controllers": [],
+      "service_dependencies": [],
+      "directive_dependencies": ["baPanel", "progressBarRound"],
+      "external_dependencies": []
+    },
+    "ui.notifications": {
+      "state": "ui.notifications",
+      "url": "/ui/notifications",
+      "path": "src/app/pages/ui/notifications/",
+      "template": "app/pages/ui/notifications/notifications.html",
+      "module": "BlurAdmin.pages.ui.notifications",
+      "sidebar_order": 700,
+      "controllers": ["NotificationsPageCtrl"],
+      "service_dependencies": ["toastr", "toastrConfig"],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": ["toastr"]
+    },
+    "ui.tabs": {
+      "state": "ui.tabs",
+      "url": "/ui/tabs",
+      "path": "src/app/pages/ui/tabs/",
+      "template": "app/pages/ui/tabs/tabs.html",
+      "module": "BlurAdmin.pages.ui.tabs",
+      "sidebar_order": 800,
+      "controllers": [],
+      "service_dependencies": [],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": ["ui.bootstrap"]
+    },
+    "ui.slider": {
+      "state": "ui.slider",
+      "url": "/ui/slider",
+      "path": "src/app/pages/ui/slider/",
+      "template": "app/pages/ui/slider/slider.html",
+      "module": "BlurAdmin.pages.ui.slider",
+      "sidebar_order": 1000,
+      "controllers": [],
+      "service_dependencies": [],
+      "directive_dependencies": ["baPanel", "ionSlider"],
+      "external_dependencies": ["ion.rangeSlider"]
+    },
+    "ui.panels": {
+      "state": "ui.panels",
+      "url": "/ui/panels",
+      "path": "src/app/pages/ui/panels/",
+      "template": "app/pages/ui/panels/panels.html",
+      "module": "BlurAdmin.pages.ui.panels",
+      "sidebar_order": 900,
+      "controllers": [],
+      "service_dependencies": [],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": []
+    },
+    "components.mail": {
+      "state": "components.mail",
+      "url": "/components/mail",
+      "path": "src/app/pages/components/mail/",
+      "template": "app/pages/components/mail/mail.html",
+      "module": "BlurAdmin.pages.components.mail",
+      "sidebar_order": 0,
+      "controllers": ["MailTabCtrl", "MailListCtrl", "MailDetailCtrl"],
+      "service_dependencies": ["mailMessages"],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": ["textAngular"]
+    },
+    "components.timeline": {
+      "state": "components.timeline",
+      "url": "/components/timeline",
+      "path": "src/app/pages/components/timeline/",
+      "template": "app/pages/components/timeline/timeline.html",
+      "module": "BlurAdmin.pages.components.timeline",
+      "sidebar_order": 100,
+      "controllers": ["TimelineCtrl"],
+      "service_dependencies": [],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": []
+    },
+    "components.tree": {
+      "state": "components.tree",
+      "url": "/components/tree",
+      "path": "src/app/pages/components/tree/",
+      "template": "app/pages/components/tree/tree.html",
+      "module": "BlurAdmin.pages.components.tree",
+      "sidebar_order": 200,
+      "controllers": ["treeCtrl"],
+      "service_dependencies": [],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": ["ngJsTree", "jstree"]
+    },
+    "form.inputs": {
+      "state": "form.inputs",
+      "url": "/form/inputs",
+      "path": "src/app/pages/form/inputs/",
+      "template": "app/pages/form/inputs/inputs.html",
+      "module": "BlurAdmin.pages.form",
+      "sidebar_order": 0,
+      "controllers": [],
+      "service_dependencies": [],
+      "directive_dependencies": ["baPanel", "baSwitcher"],
+      "external_dependencies": ["ui.select", "ngSanitize", "bootstrap-tagsinput"]
+    },
+    "form.layouts": {
+      "state": "form.layouts",
+      "url": "/form/layouts",
+      "path": "src/app/pages/form/layouts/",
+      "template": "app/pages/form/layouts/layouts.html",
+      "module": "BlurAdmin.pages.form",
+      "sidebar_order": 100,
+      "controllers": [],
+      "service_dependencies": [],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": []
+    },
+    "form.wizard": {
+      "state": "form.wizard",
+      "url": "/form/wizard",
+      "path": "src/app/pages/form/wizard/",
+      "template": "app/pages/form/wizard/wizard.html",
+      "module": "BlurAdmin.pages.form",
+      "sidebar_order": 200,
+      "controllers": ["WizardCtrl"],
+      "service_dependencies": [],
+      "directive_dependencies": ["baPanel", "baWizard", "baWizardStep"],
+      "external_dependencies": []
+    },
+    "tables.basic": {
+      "state": "tables.basic",
+      "url": "/tables/basic",
+      "path": "src/app/pages/tables/basic/",
+      "template": "app/pages/tables/basic/tables.html",
+      "module": "BlurAdmin.pages.tables",
+      "sidebar_order": 0,
+      "controllers": ["TablesPageCtrl"],
+      "service_dependencies": ["$filter", "editableOptions", "editableThemes"],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": ["xeditable"]
+    },
+    "tables.smart": {
+      "state": "tables.smart",
+      "url": "/tables/smart",
+      "path": "src/app/pages/tables/smart/",
+      "template": "app/pages/tables/smart/tables.html",
+      "module": "BlurAdmin.pages.tables",
+      "sidebar_order": 100,
+      "controllers": ["TablesPageCtrl"],
+      "service_dependencies": ["$filter", "editableOptions", "editableThemes"],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": ["smart-table", "xeditable"]
+    },
+    "charts.amCharts": {
+      "state": "charts.amCharts",
+      "url": "/charts/amCharts",
+      "path": "src/app/pages/charts/amCharts/",
+      "template": "app/pages/charts/amCharts/charts.html",
+      "module": "BlurAdmin.pages.charts.amCharts",
+      "sidebar_order": 0,
+      "controllers": [
+        "AreaChartCtrl",
+        "BarChartCtrl",
+        "LineChartCtrl",
+        "PieChartCtrl",
+        "FunnelChartCtrl",
+        "CombinedChartCtrl",
+        "GanttChartCtrl"
+      ],
+      "service_dependencies": ["baConfig", "layoutPaths"],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": ["AmCharts"]
+    },
+    "charts.chartJs": {
+      "state": "charts.chartJs",
+      "url": "/charts/chartJs",
+      "path": "src/app/pages/charts/chartJs/",
+      "template": "app/pages/charts/chartJs/chartJs.html",
+      "module": "BlurAdmin.pages.charts.chartJs",
+      "sidebar_order": 200,
+      "controllers": ["chartJs1DCtrl", "chartJs2DCtrl", "chartJsWaveCtrl"],
+      "service_dependencies": ["baConfig", "stopableInterval", "$interval"],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": ["chart.js"]
+    },
+    "charts.chartist": {
+      "state": "charts.chartist",
+      "url": "/charts/chartist",
+      "path": "src/app/pages/charts/chartist/",
+      "template": "app/pages/charts/chartist/chartist.html",
+      "module": "BlurAdmin.pages.charts.chartist",
+      "sidebar_order": 100,
+      "controllers": ["chartistCtrl"],
+      "service_dependencies": ["baConfig", "$timeout"],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": ["angular-chartist", "Chartist"]
+    },
+    "charts.morris": {
+      "state": "charts.morris",
+      "url": "/charts/morris",
+      "path": "src/app/pages/charts/morris/",
+      "template": "app/pages/charts/morris/morris.html",
+      "module": "BlurAdmin.pages.charts.morris",
+      "sidebar_order": 300,
+      "controllers": ["morrisCtrl"],
+      "service_dependencies": ["baConfig"],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": ["angular.morris-chart", "Morris"]
+    },
+    "maps.gmap": {
+      "state": "maps.gmap",
+      "url": "/maps/gmap",
+      "path": "src/app/pages/maps/google-maps/",
+      "template": "app/pages/maps/google-maps/google-maps.html",
+      "module": "BlurAdmin.pages.maps",
+      "sidebar_order": 0,
+      "controllers": ["GmapPageCtrl"],
+      "service_dependencies": ["$timeout"],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": ["google.maps"]
+    },
+    "maps.leaflet": {
+      "state": "maps.leaflet",
+      "url": "/maps/leaflet",
+      "path": "src/app/pages/maps/leaflet/",
+      "template": "app/pages/maps/leaflet/leaflet.html",
+      "module": "BlurAdmin.pages.maps",
+      "sidebar_order": 100,
+      "controllers": ["LeafletPageCtrl"],
+      "service_dependencies": ["$timeout"],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": ["Leaflet"]
+    },
+    "maps.bubble": {
+      "state": "maps.bubble",
+      "url": "/maps/bubble",
+      "path": "src/app/pages/maps/map-bubbles/",
+      "template": "app/pages/maps/map-bubbles/map-bubbles.html",
+      "module": "BlurAdmin.pages.maps",
+      "sidebar_order": 200,
+      "controllers": ["MapBubblePageCtrl"],
+      "service_dependencies": ["baConfig", "$timeout", "layoutPaths"],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": ["AmCharts", "ammap"]
+    },
+    "maps.line": {
+      "state": "maps.line",
+      "url": "/maps/line",
+      "path": "src/app/pages/maps/map-lines/",
+      "template": "app/pages/maps/map-lines/map-lines.html",
+      "module": "BlurAdmin.pages.maps",
+      "sidebar_order": 300,
+      "controllers": ["MapLinesPageCtrl"],
+      "service_dependencies": ["baConfig", "$timeout", "layoutPaths"],
+      "directive_dependencies": ["baPanel"],
+      "external_dependencies": ["AmCharts", "ammap"]
+    },
+    "profile": {
+      "state": "profile",
+      "url": "/profile",
+      "path": "src/app/pages/profile/",
+      "template": "app/pages/profile/profile.html",
+      "module": "BlurAdmin.pages.profile",
+      "sidebar_order": null,
+      "controllers": ["ProfilePageCtrl", "ProfileModalCtrl"],
+      "service_dependencies": ["fileReader", "$filter", "$uibModal"],
+      "directive_dependencies": ["baPanel", "baSwitcher", "ngFileSelect"],
+      "filter_dependencies": ["profilePicture", "appImage"],
+      "external_dependencies": ["ui.bootstrap"]
+    }
+  },
+  "edges": [
+    {"from": "BlurAdmin", "to": "BlurAdmin.theme", "type": "module_dependency"},
+    {"from": "BlurAdmin", "to": "BlurAdmin.pages", "type": "module_dependency"},
+    {"from": "BlurAdmin.theme", "to": "BlurAdmin.theme.components", "type": "module_dependency"},
+    {"from": "BlurAdmin.theme", "to": "BlurAdmin.theme.inputs", "type": "module_dependency"},
+    {"from": "BlurAdmin.pages", "to": "BlurAdmin.pages.dashboard", "type": "module_dependency"},
+    {"from": "BlurAdmin.pages", "to": "BlurAdmin.pages.ui", "type": "module_dependency"},
+    {"from": "BlurAdmin.pages", "to": "BlurAdmin.pages.components", "type": "module_dependency"},
+    {"from": "BlurAdmin.pages", "to": "BlurAdmin.pages.form", "type": "module_dependency"},
+    {"from": "BlurAdmin.pages", "to": "BlurAdmin.pages.tables", "type": "module_dependency"},
+    {"from": "BlurAdmin.pages", "to": "BlurAdmin.pages.charts", "type": "module_dependency"},
+    {"from": "BlurAdmin.pages", "to": "BlurAdmin.pages.maps", "type": "module_dependency"},
+    {"from": "BlurAdmin.pages", "to": "BlurAdmin.pages.profile", "type": "module_dependency"},
+    {"from": "dashboard", "to": "baConfig", "type": "service_dependency"},
+    {"from": "dashboard", "to": "baUtil", "type": "service_dependency"},
+    {"from": "dashboard", "to": "layoutPaths", "type": "service_dependency"},
+    {"from": "dashboard", "to": "colorHelper", "type": "service_dependency"},
+    {"from": "dashboard", "to": "baPanel", "type": "directive_dependency"},
+    {"from": "charts.amCharts", "to": "baConfig", "type": "service_dependency"},
+    {"from": "charts.amCharts", "to": "layoutPaths", "type": "service_dependency"},
+    {"from": "charts.chartJs", "to": "baConfig", "type": "service_dependency"},
+    {"from": "charts.chartJs", "to": "stopableInterval", "type": "service_dependency"},
+    {"from": "charts.chartist", "to": "baConfig", "type": "service_dependency"},
+    {"from": "charts.morris", "to": "baConfig", "type": "service_dependency"},
+    {"from": "maps.bubble", "to": "baConfig", "type": "service_dependency"},
+    {"from": "maps.bubble", "to": "layoutPaths", "type": "service_dependency"},
+    {"from": "maps.line", "to": "baConfig", "type": "service_dependency"},
+    {"from": "maps.line", "to": "layoutPaths", "type": "service_dependency"},
+    {"from": "profile", "to": "fileReader", "type": "service_dependency"},
+    {"from": "profile", "to": "profilePicture", "type": "filter_dependency"},
+    {"from": "profile", "to": "appImage", "type": "filter_dependency"},
+    {"from": "ui.modals", "to": "baProgressModal", "type": "service_dependency"},
+    {"from": "ui.notifications", "to": "toastr", "type": "service_dependency"},
+    {"from": "form.wizard", "to": "baWizard", "type": "directive_dependency"},
+    {"from": "baConfig", "to": "colorHelper", "type": "service_dependency"},
+    {"from": "baSidebarService", "to": "layoutSizes", "type": "service_dependency"},
+    {"from": "baSidebar", "to": "baSidebarService", "type": "service_dependency"},
+    {"from": "baSidebar", "to": "baUtil", "type": "service_dependency"},
+    {"from": "baSidebar", "to": "layoutSizes", "type": "service_dependency"},
+    {"from": "themeLayoutSettings", "to": "baConfig", "type": "service_dependency"},
+    {"from": "themeRun", "to": "preloader", "type": "service_dependency"},
+    {"from": "themeRun", "to": "layoutPaths", "type": "service_dependency"},
+    {"from": "themeRun", "to": "baSidebarService", "type": "service_dependency"},
+    {"from": "themeRun", "to": "themeLayoutSettings", "type": "service_dependency"}
+  ]
+}

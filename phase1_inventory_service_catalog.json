@@ -1,0 +1,272 @@
+{
+  "metadata": {
+    "generated": "2026-01-28",
+    "phase": "phase1_inventory",
+    "description": "Service catalog for AngularJS to Angular migration - identifies cross-cutting services"
+  },
+  "foundation_critical_services": {
+    "description": "Services that must be migrated in Wave 0 as they are used across multiple screens and form the foundation of the application",
+    "services": [
+      {
+        "name": "baConfig",
+        "type": "provider",
+        "path": "src/app/theme/theme.configProvider.js",
+        "category": "configuration",
+        "foundation_critical": true,
+        "risk_level": "high",
+        "usage_count": 14,
+        "description": "Central theme configuration provider managing colors and theme settings. Used by nearly all chart controllers and theme components.",
+        "migration_notes": "Convert to Angular injectable service with InjectionToken for configuration. Consider using Angular's APP_INITIALIZER for theme setup.",
+        "consumers": [
+          "TrafficChartCtrl",
+          "DashboardTodoCtrl", 
+          "DashboardLineChartCtrl",
+          "DashboardCalendarCtrl",
+          "DashboardPieChartCtrl",
+          "DashboardMapCtrl",
+          "MapBubblePageCtrl",
+          "MapLinesPageCtrl",
+          "chartistCtrl",
+          "amChartConfig",
+          "chartJsConfig",
+          "morrisConfig",
+          "baPanel directive",
+          "themeLayoutSettings"
+        ]
+      },
+      {
+        "name": "baSidebarService",
+        "type": "provider",
+        "path": "src/app/theme/components/baSidebar/baSidebar.service.js",
+        "category": "navigation",
+        "foundation_critical": true,
+        "risk_level": "high",
+        "usage_count": 3,
+        "description": "Sidebar navigation service managing menu items and collapse state. Critical for application navigation.",
+        "migration_notes": "Convert to Angular service with BehaviorSubject for reactive state management. Integrate with Angular Router for dynamic menu generation.",
+        "consumers": [
+          "baSidebar directive",
+          "themeRun",
+          "pages.module routeConfig"
+        ]
+      },
+      {
+        "name": "layoutPaths",
+        "type": "constant",
+        "path": "src/app/theme/theme.constants.js",
+        "category": "configuration",
+        "foundation_critical": true,
+        "risk_level": "low",
+        "usage_count": 8,
+        "description": "Constant defining paths for images and assets used throughout the application.",
+        "migration_notes": "Convert to InjectionToken with environment-based configuration. Consider using Angular's asset handling.",
+        "consumers": [
+          "themeRun",
+          "DashboardLineChartCtrl",
+          "DashboardMapCtrl",
+          "MapBubblePageCtrl",
+          "MapLinesPageCtrl",
+          "appImage filter",
+          "kameleonImg filter",
+          "profilePicture filter"
+        ]
+      },
+      {
+        "name": "layoutSizes",
+        "type": "constant",
+        "path": "src/app/theme/theme.constants.js",
+        "category": "configuration",
+        "foundation_critical": true,
+        "risk_level": "low",
+        "usage_count": 2,
+        "description": "Constant defining responsive breakpoint sizes for sidebar behavior.",
+        "migration_notes": "Convert to InjectionToken. Consider using CSS custom properties or Angular CDK BreakpointObserver.",
+        "consumers": [
+          "baSidebarService",
+          "baSidebar directive"
+        ]
+      },
+      {
+        "name": "colorHelper",
+        "type": "constant",
+        "path": "src/app/theme/theme.constants.js",
+        "category": "utility",
+        "foundation_critical": true,
+        "risk_level": "low",
+        "usage_count": 2,
+        "description": "Color manipulation utility functions (tint, shade) used for theme color calculations.",
+        "migration_notes": "Convert to pure utility functions or Angular service. Consider using a color manipulation library.",
+        "consumers": [
+          "baConfigProvider",
+          "TrafficChartCtrl"
+        ]
+      },
+      {
+        "name": "themeLayoutSettings",
+        "type": "service",
+        "path": "src/app/theme/theme.service.js",
+        "category": "configuration",
+        "foundation_critical": true,
+        "risk_level": "medium",
+        "usage_count": 1,
+        "description": "Service that applies theme classes to body element based on device type and theme settings.",
+        "migration_notes": "Convert to Angular service. Use Renderer2 for DOM manipulation. Consider using Angular CDK Platform for device detection.",
+        "consumers": [
+          "themeRun"
+        ]
+      },
+      {
+        "name": "baUtil",
+        "type": "service",
+        "path": "src/app/theme/services/baUtil.js",
+        "category": "utility",
+        "foundation_critical": true,
+        "risk_level": "low",
+        "usage_count": 4,
+        "description": "Utility service providing DOM helpers and color conversion functions.",
+        "migration_notes": "Convert to Angular service. Replace jQuery-dependent methods with native DOM or Angular Renderer2.",
+        "consumers": [
+          "baSidebar directive",
+          "DashboardLineChartCtrl",
+          "DashboardPieChartCtrl",
+          "uiViewScrollDecorator"
+        ]
+      },
+      {
+        "name": "preloader",
+        "type": "service",
+        "path": "src/app/theme/services/preloader.js",
+        "category": "initialization",
+        "foundation_critical": true,
+        "risk_level": "medium",
+        "usage_count": 1,
+        "description": "Service for preloading images and waiting for AmCharts to be ready.",
+        "migration_notes": "Convert to Angular service using Promises/Observables. Consider using APP_INITIALIZER for preloading.",
+        "consumers": [
+          "themeRun"
+        ]
+      }
+    ]
+  },
+  "cross_cutting_services": {
+    "description": "Services used across multiple features but not strictly foundation-critical",
+    "services": [
+      {
+        "name": "baProgressModal",
+        "type": "factory",
+        "path": "src/app/theme/services/baProgressModal.js",
+        "category": "ui",
+        "foundation_critical": false,
+        "risk_level": "low",
+        "usage_count": 1,
+        "description": "Factory for displaying progress modal dialogs.",
+        "migration_notes": "Convert to Angular service using Angular Material Dialog or custom modal component.",
+        "consumers": [
+          "ModalsPageCtrl"
+        ]
+      },
+      {
+        "name": "fileReader",
+        "type": "service",
+        "path": "src/app/theme/services/fileReader.js",
+        "category": "utility",
+        "foundation_critical": false,
+        "risk_level": "low",
+        "usage_count": 1,
+        "description": "Service for reading files as data URLs for upload previews.",
+        "migration_notes": "Convert to Angular service. Use native FileReader API with Observables.",
+        "consumers": [
+          "ProfilePageCtrl"
+        ]
+      },
+      {
+        "name": "stopableInterval",
+        "type": "service",
+        "path": "src/app/theme/services/stopableInterval.js",
+        "category": "utility",
+        "foundation_critical": false,
+        "risk_level": "low",
+        "usage_count": 1,
+        "description": "Service for creating intervals that pause when window loses focus.",
+        "migration_notes": "Convert to Angular service using RxJS interval with takeUntil for cleanup.",
+        "consumers": [
+          "chartJsWaveCtrl"
+        ]
+      }
+    ]
+  },
+  "external_services": {
+    "description": "Third-party services and libraries that need migration strategies",
+    "services": [
+      {
+        "name": "$uibModal",
+        "source": "ui.bootstrap",
+        "category": "ui",
+        "usage_count": 3,
+        "description": "Bootstrap modal service from angular-ui-bootstrap.",
+        "migration_notes": "Replace with Angular Material Dialog or ngx-bootstrap modal.",
+        "consumers": [
+          "ModalsPageCtrl",
+          "ProfilePageCtrl",
+          "baProgressModal"
+        ]
+      },
+      {
+        "name": "toastr",
+        "source": "angular-toastr",
+        "category": "notifications",
+        "usage_count": 2,
+        "description": "Toast notification service.",
+        "migration_notes": "Replace with ngx-toastr or Angular Material Snackbar.",
+        "consumers": [
+          "NotificationsPageCtrl",
+          "toastrLibConfig"
+        ]
+      },
+      {
+        "name": "editableOptions/editableThemes",
+        "source": "xeditable",
+        "category": "forms",
+        "usage_count": 1,
+        "description": "In-place editing configuration.",
+        "migration_notes": "Replace with Angular-compatible inline editing solution or custom implementation.",
+        "consumers": [
+          "TablesPageCtrl"
+        ]
+      }
+    ]
+  },
+  "http_interceptors": {
+    "description": "HTTP interceptors found in the codebase",
+    "interceptors": []
+  },
+  "route_guards": {
+    "description": "Route guards found in the codebase",
+    "guards": []
+  },
+  "global_stores": {
+    "description": "Global state management patterns found",
+    "stores": [
+      {
+        "name": "$rootScope.$pageFinishedLoading",
+        "path": "src/app/theme/theme.run.js",
+        "description": "Flag indicating page preloading is complete",
+        "migration_notes": "Convert to BehaviorSubject in a LoadingService"
+      },
+      {
+        "name": "$rootScope.$baSidebarService",
+        "path": "src/app/theme/theme.run.js",
+        "description": "Sidebar service exposed on root scope",
+        "migration_notes": "Remove - inject service directly where needed"
+      }
+    ]
+  },
+  "caching_services": {
+    "description": "Caching mechanisms found in the codebase",
+    "services": []
+  },
+  "analytics_services": {
+    "description": "Analytics services found in the codebase",
+    "services": []
+  }
+}
