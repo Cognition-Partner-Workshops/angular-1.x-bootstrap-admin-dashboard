@@ -56,6 +56,13 @@ export const routes: Routes = [
         data: {
           breadcrumb: 'UI'
         }
+      },
+      {
+        path: 'ui/typography',
+        loadChildren: () => import('./features/ui/typography/typography.routes').then(m => m.TYPOGRAPHY_ROUTES),
+        data: {
+          breadcrumb: 'UI'
+        }
       }
     ]
   },
