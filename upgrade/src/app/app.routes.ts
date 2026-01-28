@@ -158,6 +158,11 @@ export const routes: Routes = [
         path: 'charts/amcharts',
         loadChildren: () => import('./features/charts/amcharts/amcharts.routes').then(m => m.AMCHARTS_ROUTES),
         data: { breadcrumb: 'Charts' }
+      },
+      {
+        path: 'maps/lines',
+        loadChildren: () => import('./features/maps/lines/lines.routes').then(m => m.LINES_ROUTES),
+        data: { breadcrumb: 'Maps' }
       }
     ]
   },
