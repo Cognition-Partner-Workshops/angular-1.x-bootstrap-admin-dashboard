@@ -1,0 +1,253 @@
+<div class="widgets" data-testid="form-wizard-page">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel" data-testid="wizard-panel">
+        <div class="panel-heading">FORM WIZARD</div>
+        <div class="panel-body with-scroll">
+          <div class="ba-wizard" data-testid="wizard-container">
+            <div class="ba-wizard-navigation-container" role="tablist">
+              @for (title of getStepTitles(); track title; let i = $index) {
+                <button 
+                  type="button"
+                  class="ba-wizard-navigation"
+                  [class.active]="currentStep === i"
+                  (click)="selectStep(i)"
+                  role="tab"
+                  [attr.aria-selected]="currentStep === i"
+                  [attr.data-testid]="'wizard-nav-step-' + i">
+                  {{ title }}
+                </button>
+              }
+            </div>
+
+            <div class="progress ba-wizard-progress">
+              <div 
+                class="progress-bar progress-bar-danger active" 
+                role="progressbar"
+                aria-valuemin="0" 
+                aria-valuemax="100" 
+                [style.width.%]="progress"
+                data-testid="wizard-progress-bar">
+              </div>
+            </div>
+
+            <div class="steps">
+              <!-- Step 1: Personal Info -->
+              @if (currentStep === 0) {
+                <section class="step" data-testid="wizard-step-personal-info">
+                  <form #personalInfoForm="ngForm" novalidate>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group has-feedback"
+                             [class.has-error]="personalInfoForm.controls['username']?.invalid && (personalInfoForm.controls['username']?.dirty || personalInfoSubmitted)">
+                          <label for="exampleUsername1">Username</label>
+                          <input 
+                            type="text" 
+                            class="form-control" 
+                            id="exampleUsername1" 
+                            name="username" 
+                            placeholder="Username" 
+                            [(ngModel)]="personalInfo.username" 
+                            required
+                            data-testid="wizard-username-input">
+                          <span class="help-block error-block basic-block">Required</span>
+                        </div>
+                        <div class="form-group"
+                             [class.has-error]="personalInfoForm.controls['email']?.invalid && (personalInfoForm.controls['email']?.dirty || personalInfoSubmitted)">
+                          <label for="exampleInputEmail1">Email address</label>
+                          <input 
+                            type="email" 
+                            class="form-control" 
+                            id="exampleInputEmail1" 
+                            name="email" 
+                            placeholder="Email" 
+                            [(ngModel)]="personalInfo.email" 
+                            required
+                            email
+                            data-testid="wizard-email-input">
+                          <span class="help-block error-block basic-block">Proper email required</span>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group"
+                             [class.has-error]="personalInfoForm.controls['password']?.invalid && (personalInfoForm.controls['password']?.dirty || personalInfoSubmitted)">
+                          <label for="exampleInputPassword1">Password</label>
+                          <input 
+                            type="password" 
+                            class="form-control" 
+                            id="exampleInputPassword1" 
+                            name="password" 
+                            placeholder="Password" 
+                            [(ngModel)]="personalInfo.password" 
+                            required
+                            data-testid="wizard-password-input">
+                          <span class="help-block error-block basic-block">Required</span>
+                        </div>
+                        <div class="form-group"
+                             [class.has-error]="!arePersonalInfoPasswordsEqual() && (personalInfoForm.controls['confirmPassword']?.dirty || personalInfoSubmitted)">
+                          <label for="exampleInputConfirmPassword1">Confirm Password</label>
+                          <input 
+                            type="password" 
+                            class="form-control" 
+                            id="exampleInputConfirmPassword1" 
+                            name="confirmPassword" 
+                            placeholder="Confirm Password" 
+                            [(ngModel)]="personalInfo.confirmPassword" 
+                            required
+                            data-testid="wizard-confirm-password-input">
+                          <span class="help-block error-block basic-block">Passwords should match</span>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </section>
+              }
+
+              <!-- Step 2: Product Info -->
+              @if (currentStep === 1) {
+                <section class="step" data-testid="wizard-step-product-info">
+                  <form #productInfoForm="ngForm" novalidate>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group has-feedback"
+                             [class.has-error]="productInfoForm.controls['productName']?.invalid && (productInfoForm.controls['productName']?.dirty || productInfoSubmitted)">
+                          <label for="productName">Product name</label>
+                          <input 
+                            type="text" 
+                            class="form-control" 
+                            id="productName" 
+                            name="productName" 
+                            placeholder="Product name" 
+                            [(ngModel)]="productInfo.productName" 
+                            required
+                            data-testid="wizard-product-name-input">
+                          <span class="help-block error-block basic-block">Required</span>
+                        </div>
+                        <div class="form-group"
+                             [class.has-error]="productInfoForm.controls['productId']?.invalid && (productInfoForm.controls['productId']?.dirty || productInfoSubmitted)">
+                          <label for="productId">Product id</label>
+                          <input 
+                            type="text" 
+                            class="form-control" 
+                            id="productId" 
+                            name="productId" 
+                            placeholder="productId" 
+                            [(ngModel)]="productInfo.productId" 
+                            required
+                            data-testid="wizard-product-id-input">
+                          <span class="help-block error-block basic-block">Required</span>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="category">Category</label>
+                          <select 
+                            class="form-control" 
+                            id="category"
+                            name="category"
+                            [(ngModel)]="productInfo.category"
+                            data-testid="wizard-category-select">
+                            @for (cat of categories; track cat) {
+                              <option [value]="cat">{{ cat }}</option>
+                            }
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </section>
+              }
+
+              <!-- Step 3: Shipment -->
+              @if (currentStep === 2) {
+                <section class="step" data-testid="wizard-step-shipment">
+                  <form #shipmentForm="ngForm" novalidate>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group has-feedback"
+                             [class.has-error]="shipmentForm.controls['address']?.invalid && (shipmentForm.controls['address']?.dirty || shipmentSubmitted)">
+                          <label for="address">Shipment address</label>
+                          <input 
+                            type="text" 
+                            class="form-control" 
+                            id="address" 
+                            name="address" 
+                            placeholder="Shipment address" 
+                            [(ngModel)]="shipment.address" 
+                            required
+                            data-testid="wizard-address-input">
+                          <span class="help-block error-block basic-block">Required</span>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="shipmentMethod">Shipment method</label>
+                          <select 
+                            class="form-control" 
+                            id="shipmentMethod"
+                            name="shipmentMethod"
+                            [(ngModel)]="shipment.shipmentMethod"
+                            data-testid="wizard-shipment-method-select">
+                            @for (method of shipmentMethods; track method) {
+                              <option [value]="method">{{ method }}</option>
+                            }
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="checkbox">
+                      <label class="custom-checkbox">
+                        <input 
+                          type="checkbox"
+                          name="saveShipmentInfo"
+                          [(ngModel)]="shipment.saveShipmentInfo"
+                          data-testid="wizard-save-shipment-checkbox">
+                        <span>Save shipment info</span>
+                      </label>
+                    </div>
+                  </form>
+                </section>
+              }
+
+              <!-- Step 4: Finish -->
+              @if (currentStep === 3) {
+                <section class="step" data-testid="wizard-step-finish">
+                  <form class="form-horizontal" novalidate>
+                    <div data-testid="wizard-completion-message">
+                      Congratulations! You have successfully filled the form!
+                    </div>
+                  </form>
+                </section>
+              }
+            </div>
+
+            <nav>
+              <ul class="pager ba-wizard-pager">
+                <li class="previous">
+                  <button 
+                    [disabled]="isFirstStep()" 
+                    (click)="previousStep()" 
+                    type="button" 
+                    class="btn btn-primary"
+                    data-testid="wizard-previous-btn">
+                    <span aria-hidden="true">&larr;</span> previous
+                  </button>
+                </li>
+                <li class="next">
+                  <button 
+                    [disabled]="isLastStep()" 
+                    (click)="nextStep()" 
+                    type="button" 
+                    class="btn btn-primary"
+                    data-testid="wizard-next-btn">
+                    next <span aria-hidden="true">&rarr;</span>
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

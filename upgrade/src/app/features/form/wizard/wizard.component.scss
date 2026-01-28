@@ -1,0 +1,60 @@
+.ba-wizard-progress {
+  margin-top: 10px;
+  height: 10px;
+}
+
+.ba-wizard-pager {
+  .previous {
+    float: left;
+  }
+  .next {
+    float: right;
+  }
+}
+
+.ba-wizard-navigation-container {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  padding: 15px 0;
+  
+  .ba-wizard-navigation {
+    cursor: pointer;
+    display: table-cell;
+    line-height: 1;
+    text-align: center;
+    font-weight: 300;
+    font-size: 18px;
+    opacity: 0.7;
+    background: none;
+    border: none;
+    color: inherit;
+    padding: 0;
+    
+    &.active {
+      opacity: 0.95;
+    }
+
+    &:focus {
+      outline: 2px solid #209e91;
+      outline-offset: 2px;
+    }
+  }
+}
+
+.steps {
+  min-height: 200px;
+  padding: 20px 0;
+}
+
+.step {
+  display: block;
+}
+
+.help-block.error-block {
+  display: none;
+}
+
+.has-error .help-block.error-block {
+  display: block;
+}
