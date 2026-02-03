@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgChartsModule } from 'ng2-charts';
+import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration, ChartData } from 'chart.js';
 import { BaPanelComponent } from '../../../shared/components/ba-panel';
 import { ThemeConfigService, StopableIntervalService } from '../../../core/services';
@@ -8,7 +8,7 @@ import { ThemeConfigService, StopableIntervalService } from '../../../core/servi
 @Component({
   selector: 'app-chartjs',
   standalone: true,
-  imports: [CommonModule, NgChartsModule, BaPanelComponent],
+  imports: [CommonModule, BaseChartDirective, BaPanelComponent],
   templateUrl: './chartjs.component.html',
   styleUrls: ['./chartjs.component.scss'],
 })
