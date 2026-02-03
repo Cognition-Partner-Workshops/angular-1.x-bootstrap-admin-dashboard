@@ -1,0 +1,147 @@
+.taskTodoContainer {
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 0;
+  overflow: hidden;
+}
+
+.inputWrapper {
+  position: relative;
+  padding: 15px;
+  background-color: #f8f8f8;
+}
+
+.taskTodoInput {
+  width: 100%;
+  padding: 12px 45px 12px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.taskTodoInput:focus {
+  border-color: #209e91;
+}
+
+.taskTodoInput::placeholder {
+  color: #999;
+}
+
+.addItemIcon {
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: #209e91;
+  color: white;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.addItemIcon:hover {
+  background-color: #1a8a7e;
+}
+
+.boxShadowBorder {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #e0e0e0, transparent);
+}
+
+.todoList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.todoItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s ease;
+}
+
+.todoItem:last-child {
+  border-bottom: none;
+}
+
+.todoItem:hover,
+.todoItem.active {
+  background-color: #f8f8f8;
+}
+
+.todoItem.checked .cutWithDots {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.mark {
+  display: inline-block;
+  width: 4px;
+  height: 100%;
+  min-height: 20px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.todoCheckbox {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  cursor: pointer;
+  padding-left: 10px;
+}
+
+.todoCheckbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-right: 12px;
+  cursor: pointer;
+  accent-color: #209e91;
+}
+
+.cutWithDots {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  color: #333;
+}
+
+.removeTodo {
+  opacity: 0;
+  border: none;
+  background: none;
+  color: #e85656;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0 5px;
+  transition: opacity 0.2s ease;
+  line-height: 1;
+}
+
+.todoItem:hover .removeTodo,
+.todoItem.active .removeTodo {
+  opacity: 1;
+}
+
+.removeTodo:hover {
+  color: #c94444;
+}
