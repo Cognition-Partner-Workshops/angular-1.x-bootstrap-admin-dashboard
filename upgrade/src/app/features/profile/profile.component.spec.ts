@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testin
 import { ProfileComponent } from './profile.component';
 import { ModalService } from '../../shared/components/modal';
 import { of } from 'rxjs';
+import { provideRouter } from '@angular/router';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
@@ -18,6 +19,7 @@ describe('ProfileComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ProfileComponent],
       providers: [
+        provideRouter([]),
         { provide: ModalService, useValue: modalServiceSpy }
       ]
     }).compileComponents();

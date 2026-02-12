@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { ProgressButtonComponent } from './progress-button.component';
+import { provideRouter } from '@angular/router';
 
 describe('ProgressButtonComponent', () => {
   let component: ProgressButtonComponent;
@@ -7,7 +8,8 @@ describe('ProgressButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProgressButtonComponent]
+      imports: [ProgressButtonComponent],
+      providers: [provideRouter([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProgressButtonComponent);

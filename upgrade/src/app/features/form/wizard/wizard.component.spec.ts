@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { WizardComponent } from './wizard.component';
+import { provideRouter } from '@angular/router';
 
 describe('WizardComponent', () => {
   let component: WizardComponent;
@@ -8,7 +9,8 @@ describe('WizardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WizardComponent, FormsModule]
+      imports: [WizardComponent, FormsModule],
+      providers: [provideRouter([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(WizardComponent);

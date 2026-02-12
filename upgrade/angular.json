@@ -29,14 +29,14 @@
               "src/favicon.ico",
               "src/assets"
             ],
-                      "styles": [
-                        "src/styles.scss",
-                        "node_modules/leaflet/dist/leaflet.css"
-                      ],
-                      "scripts": []
-                    },
-                    "configurations": {
-                      "production": {
+            "styles": [
+              "src/styles.scss",
+              "node_modules/leaflet/dist/leaflet.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
               "budgets": [
                 {
                   "type": "initial",
@@ -84,24 +84,26 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
+            "karmaConfig": "karma.conf.js",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
             ],
             "tsConfig": "tsconfig.spec.json",
+            "codeCoverage": true,
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
-                    "styles": [
-                      "src/styles.scss",
-                      "node_modules/leaflet/dist/leaflet.css"
-                    ],
-                    "scripts": []
-                  }
-                },
-                "lint": {
+            "styles": [
+              "src/styles.scss",
+              "node_modules/leaflet/dist/leaflet.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [

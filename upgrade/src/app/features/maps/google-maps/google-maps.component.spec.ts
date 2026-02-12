@@ -1,18 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { GoogleMapsComponent } from './google-maps.component';
-import { GoogleMapsModule } from '@angular/google-maps';
+import { provideRouter } from '@angular/router';
 
 describe('GoogleMapsComponent', () => {
   let component: GoogleMapsComponent;
-  let fixture: ComponentFixture<GoogleMapsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GoogleMapsComponent, GoogleMapsModule]
+      providers: [provideRouter([])]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(GoogleMapsComponent);
-    component = fixture.componentInstance;
+    component = new GoogleMapsComponent();
   });
 
   it('should create', () => {

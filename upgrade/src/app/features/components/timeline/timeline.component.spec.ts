@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { TimelineComponent } from './timeline.component';
 import { PLATFORM_ID } from '@angular/core';
+import { provideRouter } from '@angular/router';
 
 describe('TimelineComponent', () => {
   let component: TimelineComponent;
@@ -10,6 +11,7 @@ describe('TimelineComponent', () => {
     await TestBed.configureTestingModule({
       imports: [TimelineComponent],
       providers: [
+        provideRouter([]),
         { provide: PLATFORM_ID, useValue: 'browser' }
       ]
     }).compileComponents();

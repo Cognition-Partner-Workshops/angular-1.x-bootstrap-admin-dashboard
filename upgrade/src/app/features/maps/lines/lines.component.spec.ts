@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MapLinesComponent } from './lines.component';
+import { provideRouter } from '@angular/router';
 
 describe('MapLinesComponent', () => {
   let component: MapLinesComponent;
@@ -7,7 +8,8 @@ describe('MapLinesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MapLinesComponent]
+      imports: [MapLinesComponent],
+      providers: [provideRouter([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(MapLinesComponent);

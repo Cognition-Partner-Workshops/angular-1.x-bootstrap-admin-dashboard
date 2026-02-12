@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testin
 import { FormsModule } from '@angular/forms';
 import { NotificationsComponent } from './notifications.component';
 import { ToastService } from './toast.service';
+import { provideRouter } from '@angular/router';
 
 describe('NotificationsComponent', () => {
   let component: NotificationsComponent;
@@ -10,7 +11,8 @@ describe('NotificationsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NotificationsComponent, FormsModule]
+      imports: [NotificationsComponent, FormsModule],
+      providers: [provideRouter([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(NotificationsComponent);

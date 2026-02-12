@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TypographyComponent } from './typography.component';
+import { provideRouter } from '@angular/router';
 
 describe('TypographyComponent', () => {
   let component: TypographyComponent;
@@ -7,7 +8,8 @@ describe('TypographyComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TypographyComponent]
+      imports: [TypographyComponent],
+      providers: [provideRouter([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(TypographyComponent);

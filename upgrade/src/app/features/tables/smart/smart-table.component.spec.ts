@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SmartTableComponent } from './smart-table.component';
+import { provideRouter } from '@angular/router';
 
 describe('SmartTableComponent', () => {
   let component: SmartTableComponent;
@@ -7,7 +8,8 @@ describe('SmartTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SmartTableComponent]
+      imports: [SmartTableComponent],
+      providers: [provideRouter([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(SmartTableComponent);

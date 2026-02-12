@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BubbleComponent } from './bubble.component';
+import { provideRouter } from '@angular/router';
 
 describe('BubbleComponent', () => {
   let component: BubbleComponent;
@@ -7,7 +8,8 @@ describe('BubbleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BubbleComponent]
+      imports: [BubbleComponent],
+      providers: [provideRouter([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(BubbleComponent);

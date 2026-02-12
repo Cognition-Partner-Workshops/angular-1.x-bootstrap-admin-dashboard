@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { TreeComponent } from './tree.component';
+import { provideRouter } from '@angular/router';
 
 describe('TreeComponent', () => {
   let component: TreeComponent;
@@ -7,7 +8,8 @@ describe('TreeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TreeComponent]
+      imports: [TreeComponent],
+      providers: [provideRouter([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(TreeComponent);

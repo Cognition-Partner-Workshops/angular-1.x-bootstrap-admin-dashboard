@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { LeafletComponent } from './leaflet.component';
+import { provideRouter } from '@angular/router';
 
 describe('LeafletComponent', () => {
   let component: LeafletComponent;
@@ -7,7 +8,8 @@ describe('LeafletComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LeafletComponent]
+      imports: [LeafletComponent],
+      providers: [provideRouter([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(LeafletComponent);

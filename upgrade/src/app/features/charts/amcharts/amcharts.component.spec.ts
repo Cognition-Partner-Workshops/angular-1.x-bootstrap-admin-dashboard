@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { AmchartsComponent } from './amcharts.component';
+import { provideRouter } from '@angular/router';
 
 describe('AmchartsComponent', () => {
   let component: AmchartsComponent;
@@ -7,7 +8,8 @@ describe('AmchartsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AmchartsComponent]
+      imports: [AmchartsComponent],
+      providers: [provideRouter([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(AmchartsComponent);
@@ -16,6 +18,13 @@ describe('AmchartsComponent', () => {
   });
 
   afterEach(() => {
+    try {
+      const comp = component as unknown as { roots: { dispose: () => void }[] };
+      if (comp.roots) {
+        comp.roots.forEach(r => { try { r.dispose(); } catch {} });
+        comp.roots.length = 0;
+      }
+    } catch {}
     fixture.destroy();
   });
 

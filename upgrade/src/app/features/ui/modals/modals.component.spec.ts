@@ -6,6 +6,7 @@ import { NotificationService } from '../../../shared/components/notification';
 import { BasicModalComponent } from './modal-templates/basic-modal.component';
 import { MessageModalComponent } from './modal-templates/message-modal.component';
 import { ProgressModalComponent } from './progress-modal/progress-modal.component';
+import { provideRouter } from '@angular/router';
 
 describe('ModalsComponent', () => {
   let component: ModalsComponent;
@@ -20,6 +21,7 @@ describe('ModalsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ModalsComponent],
       providers: [
+        provideRouter([]),
         { provide: ModalService, useValue: modalServiceSpy },
         { provide: NotificationService, useValue: notificationServiceSpy }
       ]

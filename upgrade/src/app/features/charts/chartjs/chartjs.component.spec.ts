@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { ChartjsComponent } from './chartjs.component';
 import { ThemeConfigService, StopableIntervalService } from '../../../core/services';
+import { provideRouter } from '@angular/router';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 describe('ChartjsComponent', () => {
   let component: ChartjsComponent;
@@ -9,7 +11,9 @@ describe('ChartjsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ChartjsComponent],
-      providers: [ThemeConfigService, StopableIntervalService],
+      providers: [
+        provideRouter([]),
+        provideCharts(withDefaultRegisterables()),ThemeConfigService, StopableIntervalService],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ChartjsComponent);

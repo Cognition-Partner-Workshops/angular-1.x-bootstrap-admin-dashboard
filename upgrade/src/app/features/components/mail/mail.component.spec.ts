@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testin
 import { RouterTestingModule } from '@angular/router/testing';
 import { MailComponent } from './mail.component';
 import { MailMessagesService } from './mail-messages.service';
+import { provideRouter } from '@angular/router';
 
 describe('MailComponent', () => {
   let component: MailComponent;
@@ -9,7 +10,8 @@ describe('MailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MailComponent, RouterTestingModule]
+      imports: [MailComponent, RouterTestingModule],
+      providers: [provideRouter([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(MailComponent);
