@@ -37,6 +37,7 @@
     "gulp-util": "~3.0.6",
     "gulp-zip": "^3.0.2",
     "http-proxy-middleware": "~0.17.2",
+    "jest": "^29.7.0",
     "lodash": "~4.17.2",
     "main-bower-files": "~2.13.1",
     "uglify-save-license": "~0.4.1",
@@ -44,6 +45,7 @@
     "wrench": "~1.5.8"
   },
   "scripts": {
-    "postinstall": "bower install"
+    "postinstall": "bower install",
+    "test": "jest --coverage"
   }
 }
