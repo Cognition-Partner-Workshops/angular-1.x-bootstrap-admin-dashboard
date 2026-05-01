@@ -62,6 +62,9 @@ export class SmartTableComponent {
       const cmp = valA < valB ? -1 : valA > valB ? 1 : 0;
       return this.sortDirection === 'asc' ? cmp : -cmp;
     });
+    if (this.currentPage > Math.ceil(data.length / this.pageSize)) {
+      this.currentPage = 1;
+    }
     return data;
   }
 

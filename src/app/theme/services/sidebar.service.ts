@@ -1,4 +1,4 @@
-import { Injectable, signal, computed } from '@angular/core';
+import { Injectable, inject, signal, computed, type WritableSignal, type Signal } from '@angular/core';
 import { ThemeConfigService } from './theme-config.service';
 
 export interface MenuItem {
@@ -16,11 +16,11 @@ export interface MenuItem {
 
 @Injectable({ providedIn: 'root' })
 export class SidebarService {
-  private menuCollapsed = signal(this.shouldMenuBeCollapsed());
+  private themeConfig = inject(ThemeConfigService);
 
-  isMenuCollapsed = computed(() => this.menuCollapsed());
+  private menuCollapsed: WritableSignal<boolean> = signal(this.shouldMenuBeCollapsed());
 
-  constructor(private themeConfig: ThemeConfigService) {}
+  isMenuCollapsed: Signal<boolean> = computed(() => this.menuCollapsed());
 
   getMenuItems(): MenuItem[] {
     return [
