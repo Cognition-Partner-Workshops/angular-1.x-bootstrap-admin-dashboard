@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -21,10 +22,12 @@ import { RouterModule } from '@angular/router';
 })
 export class ContentTopComponent {
   activePageTitle = '';
+  private destroyRef = inject(DestroyRef);
 
   constructor(private router: Router, private route: ActivatedRoute) {
     this.router.events
       .pipe(
+        takeUntilDestroyed(this.destroyRef),
         filter((event): event is NavigationEnd => event instanceof NavigationEnd),
         map(() => {
           let child = this.route.firstChild;
