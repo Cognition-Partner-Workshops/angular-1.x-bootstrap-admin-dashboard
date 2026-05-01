@@ -8,6 +8,7 @@
 .irs-line-mid,
 .irs-line-right,
 .irs-slider {
-  background-image: url(../assets/img/theme/vendor/ionrangeslider/img/sprite-skin-flat.png);
+  // Vendor sprite removed during migration - using CSS-only styling
+  background-color: $primary;
   background-repeat: repeat-x;
 }

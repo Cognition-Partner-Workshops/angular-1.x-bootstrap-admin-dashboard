@@ -1,48 +1,59 @@
-[![Build Status](https://travis-ci.org/akveo/blur-admin.svg?branch=master)](https://travis-ci.org/akveo/blur-admin)
+# BlurAdminAngular
 
-# BlurAdmin Angular admin panel front-end framework
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.9.
 
-Customizable admin panel framework made with :heart: by [Akveo team](http://akveo.com/). Follow us on [Twitter](https://twitter.com/akveo_inc) to get latest news about this template first!
+## Development server
 
-### Demo
-**[Mint version demo](http://akveo.com/blur-admin-mint/)**             |  **[Blur version demo](http://akveo.com/blur-admin/)**
-:-------------------------:|:-------------------------:
-![Mint version demo](http://i.imgur.com/A3TMviJ.png)  |  ![Blur version demo](http://i.imgur.com/EAoiK2O.jpg)
+To start a local development server, run:
 
-## Angular 2 version
-Here you can find Angular2 based version: [ng2-admin](https://github.com/akveo/ng2-admin).
+```bash
+ng serve
+```
 
-### Documentation
-Installation, customization and other useful articles: https://akveo.github.io/blur-admin/
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-*If you have problems installing and just want to download JS and css files, you can find download links here*: http://akveo.github.io/blur-admin/articles/091-downloads/
+## Code scaffolding
 
-## How can I support developers?
-- Star our GitHub repo
-- Create pull requests, submit bugs, suggest new features or documentation updates
-- Follow us on [Twitter](https://twitter.com/akveo_inc)
-- Like our page on [Facebook](https://www.facebook.com/akveo/)
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
-## Can I hire you guys?
-Yes! We are available for hire. Visit [our homepage](http://akveo.com/) or simply leave us a note to contact@akveo.com. We will be happy to work with you!
+```bash
+ng generate component component-name
+```
 
-## Features
-* Responsive layout
-* High resolution
-* Bootstrap CSS Framework
-* Sass
-* Gulp build
-* AngularJS
-* Jquery
-* Charts (amChart, Chartist, Chart.js, Morris)
-* Maps (Google, Leaflet, amMap)
-* etc
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-License
--------------
-<a href=/LICENSE.txt target="_blank">MIT</a> license.
+```bash
+ng generate --help
+```
 
-### From akveo
+## Building
 
-Enjoy!
-We're always happy to hear your feedback.
+To build the project run:
+
+```bash
+ng build
+```
+
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+
+## Running unit tests
+
+To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+
+```bash
+ng test
+```
+
+## Running end-to-end tests
+
+For end-to-end (e2e) testing, run:
+
+```bash
+ng e2e
+```
+
+Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+
+## Additional Resources
+
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

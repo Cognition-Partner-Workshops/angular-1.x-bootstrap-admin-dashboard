@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-lg-3">
+    <app-panel panelClass="with-scroll">
+      <button class="btn btn-primary w-100 mb-3">Compose</button>
+      <ul class="list-group">
+        <li class="list-group-item active">Inbox <span class="badge bg-light text-dark float-end">12</span></li>
+        <li class="list-group-item">Starred</li>
+        <li class="list-group-item">Sent</li>
+        <li class="list-group-item">Drafts <span class="badge bg-secondary float-end">3</span></li>
+        <li class="list-group-item">Trash</li>
+      </ul>
+      <h6 class="mt-3">Labels</h6>
+      <ul class="list-group">
+        <li class="list-group-item"><span class="badge bg-danger me-2">&nbsp;</span> Work</li>
+        <li class="list-group-item"><span class="badge bg-success me-2">&nbsp;</span> Personal</li>
+        <li class="list-group-item"><span class="badge bg-warning me-2">&nbsp;</span> Urgent</li>
+      </ul>
+    </app-panel>
+  </div>
+  <div class="col-lg-9">
+    <app-panel title="Inbox" panelClass="with-scroll">
+      <table class="table table-hover">
+        <tbody>
+          <tr><td><input type="checkbox"></td><td><strong>John Doe</strong></td><td>Meeting Tomorrow - Please review the agenda...</td><td>10:30 AM</td></tr>
+          <tr><td><input type="checkbox"></td><td><strong>Jane Smith</strong></td><td>Project Update - The latest sprint results are...</td><td>9:15 AM</td></tr>
+          <tr><td><input type="checkbox"></td><td><strong>Bob Wilson</strong></td><td>Invoice #1234 - Please find attached the invoice...</td><td>Yesterday</td></tr>
+          <tr><td><input type="checkbox"></td><td><strong>Alice Brown</strong></td><td>Welcome! - Thanks for joining our platform...</td><td>2 days ago</td></tr>
+        </tbody>
+      </table>
+    </app-panel>
+  </div>
+</div>
