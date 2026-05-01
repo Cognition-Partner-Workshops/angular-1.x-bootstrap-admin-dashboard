@@ -1,0 +1,65 @@
+<div class="row mail-container">
+  <div class="col-md-3">
+    <app-ba-panel>
+      <button class="btn btn-primary w-100 mb-3" (click)="openCompose()">Compose</button>
+      <ul class="mail-nav">
+        @for (label of labels; track label) {
+          <li [class.active]="activeLabel === label" (click)="activeLabel = label; selectedMessage = null">
+            <i class="fa" [ngClass]="{
+              'fa-inbox': label === 'inbox',
+              'fa-paper-plane': label === 'sent',
+              'fa-file-text-o': label === 'drafts',
+              'fa-exclamation-circle': label === 'spam',
+              'fa-trash': label === 'trash'
+            }"></i>
+            {{ label | titlecase }}
+          </li>
+        }
+      </ul>
+    </app-ba-panel>
+  </div>
+  <div class="col-md-9">
+    @if (!selectedMessage && !showCompose) {
+      <app-ba-panel [title]="activeLabel | titlecase">
+        @if (filteredMessages.length === 0) {
+          <p class="text-muted">No messages in {{ activeLabel }}.</p>
+        }
+        @for (msg of filteredMessages; track msg.id) {
+          <div class="mail-item" [class.unread]="!msg.read" (click)="openMessage(msg)">
+            <div class="mail-from">{{ msg.from }}</div>
+            <div class="mail-subject">{{ msg.subject }}</div>
+            <div class="mail-date">{{ msg.date }}</div>
+          </div>
+        }
+      </app-ba-panel>
+    }
+
+    @if (selectedMessage) {
+      <app-ba-panel>
+        <button class="btn btn-sm btn-secondary mb-3" (click)="backToList()">
+          <i class="fa fa-arrow-left"></i> Back
+        </button>
+        <h4>{{ selectedMessage.subject }}</h4>
+        <p class="text-muted">From: {{ selectedMessage.from }} &middot; {{ selectedMessage.date }}</p>
+        <hr>
+        <p>{{ selectedMessage.body }}</p>
+      </app-ba-panel>
+    }
+
+    @if (showCompose) {
+      <app-ba-panel title="New Message">
+        <div class="mb-3">
+          <input type="text" class="form-control" placeholder="To:">
+        </div>
+        <div class="mb-3">
+          <input type="text" class="form-control" placeholder="Subject:">
+        </div>
+        <div class="mb-3">
+          <textarea class="form-control" rows="8" placeholder="Message..." [(ngModel)]="composeText"></textarea>
+        </div>
+        <button class="btn btn-primary me-2">Send</button>
+        <button class="btn btn-secondary" (click)="showCompose = false">Cancel</button>
+      </app-ba-panel>
+    }
+  </div>
+</div>

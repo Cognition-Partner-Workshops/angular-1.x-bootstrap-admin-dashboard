@@ -1,0 +1,129 @@
+<div class="row">
+  <div class="col-lg-6">
+    <app-ba-panel title="Standard Fields">
+      <div class="mb-3">
+        <label class="form-label">Text Input</label>
+        <input type="text" class="form-control" placeholder="Text input" [(ngModel)]="textInput">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" placeholder="Email" [(ngModel)]="emailInput">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" placeholder="Password" [(ngModel)]="passwordInput">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Textarea</label>
+        <textarea class="form-control" rows="3" placeholder="Textarea" [(ngModel)]="textareaInput"></textarea>
+      </div>
+    </app-ba-panel>
+  </div>
+  <div class="col-lg-6">
+    <app-ba-panel title="Checkboxes & Radios">
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="check1" [(ngModel)]="checkboxValue">
+          <label class="form-check-label" for="check1">Default checkbox</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="check2" checked disabled>
+          <label class="form-check-label" for="check2">Disabled checkbox</label>
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="radioGroup" id="radio1" value="option1" [(ngModel)]="radioValue">
+          <label class="form-check-label" for="radio1">Option one</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="radioGroup" id="radio2" value="option2" [(ngModel)]="radioValue">
+          <label class="form-check-label" for="radio2">Option two</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="radioGroup" id="radio3" value="option3" [(ngModel)]="radioValue" disabled>
+          <label class="form-check-label" for="radio3">Disabled option</label>
+        </div>
+      </div>
+    </app-ba-panel>
+
+    <app-ba-panel title="Selects">
+      <div class="mb-3">
+        <label class="form-label">Select</label>
+        <select class="form-select" [(ngModel)]="selectValue">
+          <option value="">Choose...</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+        </select>
+      </div>
+    </app-ba-panel>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <app-ba-panel title="Input Groups">
+      <div class="mb-3 input-group">
+        <span class="input-group-text">&#64;</span>
+        <input type="text" class="form-control" placeholder="Username">
+      </div>
+      <div class="mb-3 input-group">
+        <input type="text" class="form-control" placeholder="Amount">
+        <span class="input-group-text">.00</span>
+      </div>
+      <div class="mb-3 input-group">
+        <span class="input-group-text">$</span>
+        <input type="text" class="form-control" placeholder="Amount">
+        <span class="input-group-text">.00</span>
+      </div>
+    </app-ba-panel>
+  </div>
+  <div class="col-lg-6">
+    <app-ba-panel title="Date Pickers">
+      <div class="mb-3">
+        <label class="form-label">Date</label>
+        <input type="date" class="form-control" [(ngModel)]="dateValue">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Date & Time</label>
+        <input type="datetime-local" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Month</label>
+        <input type="month" class="form-control">
+      </div>
+    </app-ba-panel>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <app-ba-panel title="Switches">
+      <div class="form-check form-switch mb-3">
+        <input class="form-check-input" type="checkbox" id="switch1" [(ngModel)]="switchValue">
+        <label class="form-check-label" for="switch1">Toggle switch</label>
+      </div>
+      <div class="form-check form-switch mb-3">
+        <input class="form-check-input" type="checkbox" id="switch2" checked disabled>
+        <label class="form-check-label" for="switch2">Disabled switch</label>
+      </div>
+    </app-ba-panel>
+  </div>
+  <div class="col-lg-6">
+    <app-ba-panel title="Validation States">
+      <div class="mb-3">
+        <label class="form-label">Valid input</label>
+        <input type="text" class="form-control is-valid" value="Correct value">
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Invalid input</label>
+        <input type="text" class="form-control is-invalid" value="">
+        <div class="invalid-feedback">Please provide a valid value.</div>
+      </div>
+    </app-ba-panel>
+  </div>
+</div>

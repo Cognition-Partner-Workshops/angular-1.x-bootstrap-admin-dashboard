@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-lg-6">
+    <app-ba-panel title="Tabs">
+      <ul class="nav nav-tabs">
+        @for (tab of tabs; track tab.title; let i = $index) {
+          <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === i" (click)="activeTab = i" href="javascript:void(0)">
+              {{ tab.title }}
+            </a>
+          </li>
+        }
+      </ul>
+      <div class="tab-content">
+        @for (tab of tabs; track tab.title; let i = $index) {
+          @if (activeTab === i) {
+            <div class="tab-pane active">
+              <p>{{ tab.content }}</p>
+            </div>
+          }
+        }
+      </div>
+    </app-ba-panel>
+  </div>
+  <div class="col-lg-6">
+    <app-ba-panel title="Accordion">
+      <div class="accordion">
+        @for (item of accordions; track item.title; let i = $index) {
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button" [class.collapsed]="openAccordion !== i" (click)="toggleAccordion(i)">
+                {{ item.title }}
+              </button>
+            </h2>
+            @if (openAccordion === i) {
+              <div class="accordion-collapse">
+                <div class="accordion-body">{{ item.content }}</div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </app-ba-panel>
+  </div>
+</div>

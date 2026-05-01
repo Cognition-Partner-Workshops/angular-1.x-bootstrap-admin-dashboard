@@ -1,0 +1,68 @@
+:host {
+  display: block;
+}
+
+main {
+  min-height: 100vh;
+  padding-left: 180px;
+  transition: padding-left 0.3s;
+
+  &.menu-collapsed {
+    padding-left: 50px;
+  }
+}
+
+.al-main {
+  padding: 66px 0 0;
+  min-height: calc(100vh - 60px);
+}
+
+.al-content {
+  padding: 15px 32px 0;
+}
+
+.al-footer {
+  padding: 10px 32px;
+  background: transparent;
+  font-size: 13px;
+  color: #666;
+}
+
+.al-footer-right {
+  float: right;
+
+  i {
+    color: #e85656;
+    margin: 0 3px;
+  }
+}
+
+.al-footer-main {
+  float: left;
+}
+
+.al-copy {
+  float: left;
+}
+
+.al-share {
+  float: left;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0 15px;
+
+  li {
+    display: inline-block;
+    margin-right: 8px;
+
+    a {
+      color: #666;
+      text-decoration: none;
+      font-size: 14px;
+
+      &:hover {
+        color: #209e91;
+      }
+    }
+  }
+}

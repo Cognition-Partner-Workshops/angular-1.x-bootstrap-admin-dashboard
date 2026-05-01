@@ -1,0 +1,47 @@
+.feed-container {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.feed-message {
+  border-bottom: 1px solid #f5f5f5;
+  &:last-child { border-bottom: none; }
+}
+
+.feed-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  cursor: pointer;
+
+  &:hover { background: #fafafa; }
+}
+
+.feed-photo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-right: 12px;
+  object-fit: cover;
+}
+
+.feed-header-info {
+  flex: 1;
+  .feed-author { font-size: 13px; font-weight: 500; color: #666; display: block; }
+  .feed-time { font-size: 11px; color: #999; }
+}
+
+.feed-type-icon {
+  color: #999;
+  font-size: 16px;
+}
+
+.feed-body {
+  padding: 0 0 10px 48px;
+  p { font-size: 13px; color: #666; margin: 0 0 8px; }
+}
+
+.feed-preview {
+  max-width: 100%;
+  border-radius: 4px;
+}

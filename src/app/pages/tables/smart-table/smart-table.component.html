@@ -1,0 +1,41 @@
+<app-ba-panel title="Smart Table">
+  <div class="smart-table-header">
+    <input type="text" class="form-control search-input" placeholder="Search..." [(ngModel)]="searchQuery">
+  </div>
+
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th (click)="sort('id')" class="sortable">ID <i [class]="getSortIcon('id')"></i></th>
+        <th (click)="sort('firstName')" class="sortable">First Name <i [class]="getSortIcon('firstName')"></i></th>
+        <th (click)="sort('lastName')" class="sortable">Last Name <i [class]="getSortIcon('lastName')"></i></th>
+        <th (click)="sort('username')" class="sortable">Username <i [class]="getSortIcon('username')"></i></th>
+        <th (click)="sort('email')" class="sortable">Email <i [class]="getSortIcon('email')"></i></th>
+        <th (click)="sort('age')" class="sortable">Age <i [class]="getSortIcon('age')"></i></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of pagedData; track row.id) {
+        <tr>
+          <td>{{ row.id }}</td>
+          <td>{{ row.firstName }}</td>
+          <td>{{ row.lastName }}</td>
+          <td>{{ row.username }}</td>
+          <td>{{ row.email }}</td>
+          <td>{{ row.age }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <nav class="pagination-container">
+    <ul class="pagination pagination-sm">
+      @for (page of [].constructor(totalPages); track $index; let i = $index) {
+        <li class="page-item" [class.active]="currentPage === i + 1">
+          <a class="page-link" (click)="currentPage = i + 1" href="javascript:void(0)">{{ i + 1 }}</a>
+        </li>
+      }
+    </ul>
+    <span class="page-info">Showing {{ pagedData.length }} of {{ filteredData.length }} entries</span>
+  </nav>
+</app-ba-panel>
