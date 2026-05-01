@@ -62,15 +62,19 @@ export class SmartTableComponent {
       const cmp = valA < valB ? -1 : valA > valB ? 1 : 0;
       return this.sortDirection === 'asc' ? cmp : -cmp;
     });
-    if (this.currentPage > Math.ceil(data.length / this.pageSize)) {
-      this.currentPage = 1;
-    }
     return data;
   }
 
   get pagedData(): TableRow[] {
-    const start = (this.currentPage - 1) * this.pageSize;
-    return this.filteredData.slice(start, start + this.pageSize);
+    const data = this.filteredData;
+    const totalPages = Math.ceil(data.length / this.pageSize);
+    const page = this.currentPage > totalPages ? 1 : this.currentPage;
+    const start = (page - 1) * this.pageSize;
+    return data.slice(start, start + this.pageSize);
+  }
+
+  onSearch(): void {
+    this.currentPage = 1;
   }
 
   get totalPages(): number {

@@ -17,7 +17,7 @@
 
       @if (activeTab === 'notifications') {
         <div class="msg-tab-content">
-          @for (n of notifications; track n.time) {
+          @for (n of notifications; track $index) {
             <div class="msg-item">
               @if (n.userId !== undefined) {
                 <img class="msg-photo" [src]="getProfilePicture(n.userId)" alt="">
@@ -36,7 +36,7 @@
 
       @if (activeTab === 'messages') {
         <div class="msg-tab-content">
-          @for (m of messages; track m.time) {
+          @for (m of messages; track $index) {
             <div class="msg-item">
               <img class="msg-photo" [src]="getProfilePicture(m.userId)" alt="">
               <div class="msg-body">
