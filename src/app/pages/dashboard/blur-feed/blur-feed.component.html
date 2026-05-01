@@ -1,0 +1,23 @@
+<div class="feed-container">
+  @for (item of feed; track item.time + item.author) {
+    <div class="feed-message" [class.expanded]="item.expanded">
+      <div class="feed-header" (click)="toggleExpand(item)">
+        <img class="feed-photo" [src]="getProfilePicture(item.author)" [alt]="item.author">
+        <div class="feed-header-info">
+          <span class="feed-author">{{ item.author }} {{ item.surname }}</span>
+          <span class="feed-time">{{ item.ago }}</span>
+        </div>
+        <i [class]="getFeedIcon(item.type)" class="feed-type-icon"></i>
+      </div>
+
+      @if (item.expanded) {
+        <div class="feed-body">
+          <p>{{ item.text }}</p>
+          @if (item.preview) {
+            <img class="feed-preview" [src]="item.preview" alt="Preview">
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

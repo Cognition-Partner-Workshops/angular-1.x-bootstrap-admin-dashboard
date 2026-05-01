@@ -1,0 +1,38 @@
+.tree-list {
+  list-style: none;
+  padding-left: 20px;
+  margin: 0;
+}
+
+:host > app-ba-panel .tree-list {
+  padding-left: 0;
+}
+
+.tree-node {
+  display: flex;
+  align-items: center;
+  padding: 4px 0;
+  cursor: pointer;
+  font-size: 13px;
+  color: #666;
+
+  &:hover {
+    color: #209e91;
+  }
+
+  .fa-caret-right, .fa-caret-down {
+    width: 16px;
+    text-align: center;
+    margin-right: 4px;
+  }
+
+  .tree-spacer {
+    width: 20px;
+    display: inline-block;
+  }
+
+  .tree-icon {
+    margin-right: 6px;
+    color: #999;
+  }
+}

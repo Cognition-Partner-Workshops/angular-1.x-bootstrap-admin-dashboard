@@ -1,0 +1,37 @@
+.content-top {
+  padding: 10px 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.al-title {
+  font-size: 24px;
+  font-weight: 300;
+  color: #666;
+  margin: 0;
+}
+
+.al-breadcrumb {
+  background: none;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+
+  li {
+    color: #999;
+
+    a {
+      color: #209e91;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &.active {
+      color: #666;
+    }
+  }
+}

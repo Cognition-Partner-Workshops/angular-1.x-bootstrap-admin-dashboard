@@ -1,0 +1,25 @@
+<div class="todo-container">
+  <div class="add-todo">
+    <input type="text"
+           class="form-control"
+           placeholder="Add a new task..."
+           [(ngModel)]="newTodoText"
+           (keyup)="addItem($event)">
+    <button class="btn btn-primary btn-sm" (click)="addItem()">
+      <i class="fa fa-plus"></i>
+    </button>
+  </div>
+
+  <ul class="todo-list">
+    @for (item of todoList; track $index) {
+      <li [class.done]="item.done">
+        <div class="todo-checkbox" [style.border-color]="item.color" [style.background]="item.done ? item.color : 'transparent'" (click)="item.done = !item.done">
+          @if (item.done) {
+            <i class="fa fa-check" style="color: #fff; font-size: 10px;"></i>
+          }
+        </div>
+        <span class="todo-text" [class.line-through]="item.done">{{ item.text }}</span>
+      </li>
+    }
+  </ul>
+</div>

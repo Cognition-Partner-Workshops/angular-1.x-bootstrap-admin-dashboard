@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-lg-4">
+    <app-ba-panel>
+      <div class="profile-card">
+        <img src="assets/img/app/profile/Nasta.png" alt="Profile" class="profile-avatar">
+        <h3>{{ profile.firstName }} {{ profile.lastName }}</h3>
+        <p class="text-muted">{{ profile.bio }}</p>
+        <div class="social-links">
+          @for (link of socialLinks; track link.label) {
+            <a [href]="link.url" class="social-link" [title]="link.label">
+              <i [class]="link.icon"></i>
+            </a>
+          }
+        </div>
+      </div>
+    </app-ba-panel>
+  </div>
+  <div class="col-lg-8">
+    <app-ba-panel title="Edit Profile">
+      <form>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-control" [(ngModel)]="profile.firstName" name="firstName">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-control" [(ngModel)]="profile.lastName" name="lastName">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Username</label>
+          <input type="text" class="form-control" [(ngModel)]="profile.username" name="username">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" [(ngModel)]="profile.email" name="email">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Bio</label>
+          <textarea class="form-control" rows="3" [(ngModel)]="profile.bio" name="bio"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Profile</button>
+      </form>
+    </app-ba-panel>
+  </div>
+</div>

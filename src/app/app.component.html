@@ -1,0 +1,28 @@
+<div class="body-bg"></div>
+
+<main [class.menu-collapsed]="sidebarService.isMenuCollapsed()">
+  <app-sidebar></app-sidebar>
+  <app-page-top></app-page-top>
+
+  <div class="al-main">
+    <div class="al-content">
+      <app-content-top></app-content-top>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <footer class="al-footer clearfix">
+    <div class="al-footer-right">Created with <i class="fa fa-heart"></i></div>
+    <div class="al-footer-main clearfix">
+      <div class="al-copy">Blur Admin {{ currentYear }}</div>
+      <ul class="al-share clearfix">
+        <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="javascript:void(0)"><i class="fa fa-google"></i></a></li>
+        <li><a href="javascript:void(0)"><i class="fa fa-github"></i></a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <app-back-top></app-back-top>
+</main>

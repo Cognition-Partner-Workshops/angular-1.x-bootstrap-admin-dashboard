@@ -1,0 +1,52 @@
+<div class="msg-center" [class.open]="isOpen">
+  <a class="al-msg-center-toggle" (click)="toggle()">
+    <i class="fa fa-bell-o"></i>
+    <span class="notification-count">{{ notifications.length }}</span>
+  </a>
+
+  @if (isOpen) {
+    <div class="al-msg-center-dropdown">
+      <div class="msg-tab-nav">
+        <button [class.active]="activeTab === 'notifications'" (click)="activeTab = 'notifications'">
+          Notifications ({{ notifications.length }})
+        </button>
+        <button [class.active]="activeTab === 'messages'" (click)="activeTab = 'messages'">
+          Messages ({{ messages.length }})
+        </button>
+      </div>
+
+      @if (activeTab === 'notifications') {
+        <div class="msg-tab-content">
+          @for (n of notifications; track $index) {
+            <div class="msg-item">
+              @if (n.userId !== undefined) {
+                <img class="msg-photo" [src]="getProfilePicture(n.userId)" alt="">
+              }
+              @if (n.image) {
+                <img class="msg-photo" [src]="n.image" alt="">
+              }
+              <div class="msg-body">
+                <p [innerHTML]="getNotificationText(n)"></p>
+                <small>{{ n.time }}</small>
+              </div>
+            </div>
+          }
+        </div>
+      }
+
+      @if (activeTab === 'messages') {
+        <div class="msg-tab-content">
+          @for (m of messages; track $index) {
+            <div class="msg-item">
+              <img class="msg-photo" [src]="getProfilePicture(m.userId)" alt="">
+              <div class="msg-body">
+                <p>{{ m.text }}</p>
+                <small>{{ m.time }}</small>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

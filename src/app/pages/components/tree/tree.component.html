@@ -1,0 +1,26 @@
+<app-ba-panel title="Tree View">
+  <p class="text-muted mb-3">Previously powered by ng-js-tree, now using a native Angular recursive tree component.</p>
+  <ng-container *ngTemplateOutlet="treeTemplate; context: { nodes: treeData }"></ng-container>
+</app-ba-panel>
+
+<ng-template #treeTemplate let-nodes="nodes">
+  <ul class="tree-list">
+    @for (node of nodes; track node.name) {
+      <li>
+        <div class="tree-node" (click)="toggleNode(node)">
+          @if (node.children) {
+            <i class="fa" [class.fa-caret-right]="!node.expanded" [class.fa-caret-down]="node.expanded"></i>
+          }
+          @if (!node.children) {
+            <span class="tree-spacer"></span>
+          }
+          <i [class]="node.icon || 'fa fa-file-text-o'" class="tree-icon"></i>
+          <span>{{ node.name }}</span>
+        </div>
+        @if (node.children && node.expanded) {
+          <ng-container *ngTemplateOutlet="treeTemplate; context: { nodes: node.children }"></ng-container>
+        }
+      </li>
+    }
+  </ul>
+</ng-template>

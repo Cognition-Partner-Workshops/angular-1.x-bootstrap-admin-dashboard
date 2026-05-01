@@ -1,0 +1,96 @@
+.msg-center {
+  position: relative;
+}
+
+.al-msg-center-toggle {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  color: #666;
+  font-size: 18px;
+
+  .notification-count {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background: #e85656;
+    color: #fff;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+    line-height: 16px;
+    text-align: center;
+  }
+}
+
+.al-msg-center-dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  width: 320px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  margin-top: 10px;
+}
+
+.msg-tab-nav {
+  display: flex;
+  border-bottom: 1px solid #eee;
+
+  button {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 10px;
+    font-size: 12px;
+    cursor: pointer;
+    color: #666;
+
+    &.active {
+      color: #209e91;
+      border-bottom: 2px solid #209e91;
+    }
+  }
+}
+
+.msg-tab-content {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.msg-item {
+  display: flex;
+  padding: 10px 15px;
+  border-bottom: 1px solid #f5f5f5;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .msg-photo {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-right: 12px;
+    flex-shrink: 0;
+    object-fit: cover;
+  }
+
+  .msg-body {
+    flex: 1;
+
+    p {
+      margin: 0;
+      font-size: 12px;
+      color: #666;
+    }
+
+    small {
+      color: #999;
+      font-size: 11px;
+    }
+  }
+}

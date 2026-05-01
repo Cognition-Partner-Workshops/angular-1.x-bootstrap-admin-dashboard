@@ -1,0 +1,136 @@
+// Global styles migrated from BlurAdmin SASS
+$primary: #209e91;
+$bg-color: #ecf0f1;
+$sidebar-width: 180px;
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #666;
+  background: $bg-color;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  cursor: pointer;
+}
+
+.body-bg {
+  display: none;
+}
+
+.clearfix::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+// Bootstrap overrides
+.btn {
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.btn-primary {
+  background-color: $primary;
+  border-color: $primary;
+
+  &:hover, &:focus {
+    background-color: #1a8679;
+    border-color: #1a8679;
+  }
+}
+
+.form-control {
+  font-size: 13px;
+
+  &:focus {
+    border-color: $primary;
+    box-shadow: 0 0 0 0.2rem rgba($primary, 0.25);
+  }
+}
+
+// Panel styles
+.panel {
+  margin-bottom: 0;
+  border: none;
+}
+
+// Manual sidebar collapse toggle
+.menu-collapsed {
+  .al-sidebar {
+    width: 50px !important;
+
+    .al-sidebar-list-link span,
+    .al-sidebar-list-link .fa-angle-down,
+    .al-sidebar-list-link .fa-angle-up,
+    .al-sidebar-sublist {
+      display: none;
+    }
+  }
+
+  .page-top {
+    left: 50px !important;
+  }
+
+  .al-footer {
+    padding-left: 83px;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 1200px) {
+  main {
+    padding-left: 50px !important;
+  }
+
+  .page-top {
+    left: 50px !important;
+  }
+
+  .al-sidebar {
+    width: 50px !important;
+
+    .al-sidebar-list-link span,
+    .al-sidebar-list-link .fa-angle-down,
+    .al-sidebar-list-link .fa-angle-up,
+    .al-sidebar-sublist {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  main {
+    padding-left: 0 !important;
+  }
+
+  .page-top {
+    left: 0 !important;
+  }
+
+  .al-sidebar {
+    display: none !important;
+  }
+}
+
+// Scrollbar styles
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}

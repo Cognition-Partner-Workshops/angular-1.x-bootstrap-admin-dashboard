@@ -1,0 +1,15 @@
+<div class="row pie-charts">
+  @for (chart of charts; track chart.description) {
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+      <div class="pie-chart-item">
+        <div class="chart-icon" [style.background]="chart.color">
+          <i [class]="chart.icon"></i>
+        </div>
+        <div class="chart-details">
+          <div class="chart-stats">{{ chart.stats }}</div>
+          <div class="chart-description">{{ chart.description }}</div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

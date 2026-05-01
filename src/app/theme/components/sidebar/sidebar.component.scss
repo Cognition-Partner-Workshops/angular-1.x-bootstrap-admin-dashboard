@@ -1,0 +1,123 @@
+$sidebar-width: 180px;
+$sidebar-bg: #2d353c;
+$sidebar-link-color: #b4bcc8;
+$sidebar-active-color: #63b4cf;
+$sidebar-hover-bg: rgba(0, 0, 0, 0.15);
+
+:host {
+  display: block;
+}
+
+.al-sidebar {
+  width: $sidebar-width;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1000;
+  background: $sidebar-bg;
+  overflow: hidden;
+  transition: width 0.3s;
+}
+
+.al-sidebar-list {
+  list-style: none;
+  padding: 66px 0 0 0;
+  margin: 0;
+  overflow: auto;
+  max-height: 100vh;
+}
+
+.al-sidebar-list-item {
+  display: block;
+}
+
+.al-sidebar-list-link {
+  display: block;
+  padding: 8px 16px;
+  color: $sidebar-link-color;
+  text-decoration: none;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #fff;
+    background: $sidebar-hover-bg;
+  }
+
+  i {
+    margin-right: 10px;
+    width: 16px;
+    text-align: center;
+  }
+
+  .fa-angle-down, .fa-angle-up {
+    float: right;
+    margin-top: 3px;
+  }
+
+  &.active, &.disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+}
+
+.al-sidebar-list-item.selected > .al-sidebar-list-link,
+.ba-sidebar-sublist-item.selected > a {
+  color: $sidebar-active-color;
+  border-left: 3px solid $sidebar-active-color;
+}
+
+.al-sidebar-sublist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: none;
+  background: rgba(0, 0, 0, 0.1);
+
+  &.expanded {
+    display: block;
+  }
+
+  a {
+    display: block;
+    padding: 6px 16px 6px 42px;
+    color: $sidebar-link-color;
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #fff;
+    }
+
+    &.active {
+      color: $sidebar-active-color;
+    }
+  }
+
+  .subitem-submenu-list {
+    display: none;
+    &.expanded {
+      display: block;
+    }
+    a {
+      padding-left: 60px;
+    }
+  }
+}
+
+.sidebar-hover-elem {
+  position: absolute;
+  left: 0;
+  width: 3px;
+  background: $sidebar-active-color;
+  transition: top 0.2s, height 0.2s;
+  opacity: 0;
+
+  &.show-hover-elem {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,40 @@
+<app-dashboard-pie-chart></app-dashboard-pie-chart>
+
+<div class="row">
+  <div class="col-lg-6 col-md-12">
+    <app-ba-panel title="Acquisition Channels" panelClass="medium-panel traffic-panel">
+      <app-traffic-chart></app-traffic-chart>
+    </app-ba-panel>
+  </div>
+  <div class="col-lg-6 col-md-12">
+    <app-ba-panel title="Statistics" panelClass="medium-panel">
+      <app-dashboard-line-chart></app-dashboard-line-chart>
+    </app-ba-panel>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-12">
+    <app-ba-panel panelClass="popular-app medium-panel">
+      <app-popular-app></app-popular-app>
+    </app-ba-panel>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-12">
+    <app-ba-panel title="Feed" panelClass="large-panel with-scroll feed-panel">
+      <app-blur-feed></app-blur-feed>
+    </app-ba-panel>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-12">
+    <app-ba-panel title="To Do List" panelClass="xmedium-panel feed-comply-panel with-scroll todo-panel">
+      <app-dashboard-todo></app-dashboard-todo>
+    </app-ba-panel>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-12">
+    <app-ba-panel title="Calendar" panelClass="xmedium-panel feed-comply-panel calendar-panel">
+      <p class="text-muted">Calendar widget placeholder. Previously used FullCalendar AngularJS directive.</p>
+    </app-ba-panel>
+  </div>
+</div>

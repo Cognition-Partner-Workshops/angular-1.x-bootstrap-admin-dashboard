@@ -1,0 +1,31 @@
+<app-ba-panel title="Modals">
+  <div class="modal-buttons">
+    <button class="btn btn-primary" (click)="openModal('basic')">Basic Modal</button>
+    <button class="btn btn-info" (click)="openModal('info')">Info Modal</button>
+    <button class="btn btn-success" (click)="openModal('success')">Success Modal</button>
+    <button class="btn btn-warning" (click)="openModal('warning')">Warning Modal</button>
+    <button class="btn btn-danger" (click)="openModal('danger')">Danger Modal</button>
+    <button class="btn btn-secondary" (click)="openModal('large')">Large Modal</button>
+    <button class="btn btn-secondary" (click)="openModal('small')">Small Modal</button>
+  </div>
+</app-ba-panel>
+
+@if (activeModal) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-dialog" [class.modal-lg]="activeModal === 'large'" [class.modal-sm]="activeModal === 'small'" (click)="$event.stopPropagation()">
+      <div class="modal-content">
+        <div class="modal-header" [ngClass]="'modal-header-' + activeModal">
+          <h5 class="modal-title">{{ activeModal | titlecase }} Modal</h5>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+          <p>This is a {{ activeModal }} modal dialog. It demonstrates the modal component migrated from AngularJS ui-bootstrap to Angular.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+}
