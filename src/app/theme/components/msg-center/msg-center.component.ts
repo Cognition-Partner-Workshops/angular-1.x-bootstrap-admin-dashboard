@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
@@ -51,7 +51,14 @@ export class MsgCenterComponent {
     { userId: 1, text: 'Need some support to reach your goals? Apply for scholarships across a variety of...', time: '2 days ago' },
   ];
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private sanitizer: DomSanitizer, private elementRef: ElementRef) {}
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: Event): void {
+    if (this.isOpen && !this.elementRef.nativeElement.contains(event.target)) {
+      this.isOpen = false;
+    }
+  }
 
   toggle(): void {
     this.isOpen = !this.isOpen;

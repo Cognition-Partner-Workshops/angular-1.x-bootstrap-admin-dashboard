@@ -1,4 +1,4 @@
-import { Component, HostListener, signal } from '@angular/core';
+import { Component, ElementRef, HostListener, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SidebarService } from '../../services/sidebar.service';
@@ -15,11 +15,21 @@ export class PageTopComponent {
   scrolled = signal(false);
   isProfileOpen = false;
 
-  constructor(public sidebarService: SidebarService) {}
+  constructor(public sidebarService: SidebarService, private elementRef: ElementRef) {}
 
   @HostListener('window:scroll')
   onScroll(): void {
     this.scrolled.set(window.scrollY > 50);
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: Event): void {
+    if (this.isProfileOpen) {
+      const profileEl = this.elementRef.nativeElement.querySelector('.al-user-profile');
+      if (profileEl && !profileEl.contains(event.target)) {
+        this.isProfileOpen = false;
+      }
+    }
   }
 
   toggleSidebar(): void {
