@@ -1,0 +1,58 @@
+<ul class="al-msg-center clearfix">
+  <li class="dropdown" [class.show]="notificationsOpen">
+    <a (click)="toggleNotifications()" class="dropdown-toggle">
+      <i class="fa fa-bell-o"></i><span>{{ notifications.length }}</span>
+      <div class="notification-ring"></div>
+    </a>
+    <div class="dropdown-menu top-dropdown-menu" [class.show]="notificationsOpen">
+      <i class="dropdown-arr"></i>
+      <div class="header clearfix">
+        <strong>Notifications</strong>
+        <a href="javascript:void(0)">Mark All as Read</a>
+        <a href="javascript:void(0)">Settings</a>
+      </div>
+      <div class="msg-list">
+        @for (msg of notifications; track msg.time) {
+          <a href="javascript:void(0)" class="clearfix">
+            <div class="img-area">
+              <img [class.photo-msg-item]="!msg.image" [src]="getNotificationImage(msg)" alt="">
+            </div>
+            <div class="msg-area">
+              <div [innerHTML]="getMessage(msg)"></div>
+              <span>{{ msg.time }}</span>
+            </div>
+          </a>
+        }
+      </div>
+      <a href="javascript:void(0)">See all notifications</a>
+    </div>
+  </li>
+  <li class="dropdown" [class.show]="messagesOpen">
+    <a (click)="toggleMessages()" class="dropdown-toggle msg">
+      <i class="fa fa-envelope-o"></i><span>{{ messages.length }}</span>
+      <div class="notification-ring"></div>
+    </a>
+    <div class="dropdown-menu top-dropdown-menu" [class.show]="messagesOpen">
+      <i class="dropdown-arr"></i>
+      <div class="header clearfix">
+        <strong>Messages</strong>
+        <a href="javascript:void(0)">Mark All as Read</a>
+        <a href="javascript:void(0)">Settings</a>
+      </div>
+      <div class="msg-list">
+        @for (msg of messages; track msg.time) {
+          <a href="javascript:void(0)" class="clearfix">
+            <div class="img-area">
+              <img class="photo-msg-item" [src]="users[msg.userId].name | profilePicture" alt="">
+            </div>
+            <div class="msg-area">
+              <div>{{ msg.text }}</div>
+              <span>{{ msg.time }}</span>
+            </div>
+          </a>
+        }
+      </div>
+      <a href="javascript:void(0)">See all messages</a>
+    </div>
+  </li>
+</ul>

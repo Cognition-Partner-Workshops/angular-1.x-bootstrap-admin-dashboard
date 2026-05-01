@@ -299,13 +299,15 @@
 }
 
 .leaflet-control-layers-toggle {
-  background-image: url(../img/layers.png);
+  // Leaflet vendor image removed during migration
+  background-color: $default;
   width: 36px;
   height: 36px;
 }
 
 .leaflet-retina .leaflet-control-layers-toggle {
-  background-image: url(../img/layers-2x.png);
+  // Leaflet vendor image removed during migration
+  background-color: $default;
   background-size: 26px 26px;
 }
 

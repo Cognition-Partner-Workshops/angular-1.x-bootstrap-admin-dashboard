@@ -1,0 +1,72 @@
+<aside class="al-sidebar">
+  <ul class="al-sidebar-list">
+    @for (item of menuItems; track item.title) {
+      <li class="al-sidebar-list-item" [class.with-sub-menu]="item.subMenu">
+        @if (!item.subMenu) {
+          <a (mouseenter)="hoverItem($event, item)"
+             [routerLink]="item.stateRef"
+             routerLinkActive="selected"
+             class="al-sidebar-list-link">
+            <i [class]="item.icon ?? ''"></i><span>{{ item.title }}</span>
+          </a>
+        }
+        @if (item.subMenu) {
+          <a (mouseenter)="hoverItem($event, item)"
+             class="al-sidebar-list-link"
+             (click)="toggleSubMenu(item)">
+            <i [class]="item.icon ?? ''"></i><span>{{ item.title }}</span>
+            <b class="fa" [class.fa-angle-up]="item.expanded" [class.fa-angle-down]="!item.expanded"></b>
+          </a>
+          <ul class="al-sidebar-sublist" [class.expanded]="item.expanded">
+            @for (subitem of item.subMenu; track subitem.title) {
+              <li class="ba-sidebar-sublist-item" [class.with-sub-menu]="subitem.subMenu">
+                @if (subitem.subMenu) {
+                  <a (mouseenter)="hoverItem($event, item)"
+                     (click)="toggleSubMenu(subitem)"
+                     class="al-sidebar-list-link subitem-submenu-link">
+                    <span>{{ subitem.title }}</span>
+                    <b class="fa" [class.fa-angle-up]="subitem.expanded" [class.fa-angle-down]="!subitem.expanded"></b>
+                  </a>
+                  <ul class="al-sidebar-sublist subitem-submenu-list" [class.expanded]="subitem.expanded">
+                    @for (subSubitem of subitem.subMenu; track subSubitem.title) {
+                      <li>
+                        @if (subSubitem.disabled) {
+                          <a class="al-sidebar-list-link disabled">{{ subSubitem.title }}</a>
+                        } @else {
+                          <a [routerLink]="subSubitem.stateRef" routerLinkActive="selected">{{ subSubitem.title }}</a>
+                        }
+                      </li>
+                    }
+                  </ul>
+                }
+                @if (!subitem.subMenu && subitem.disabled) {
+                  <a class="al-sidebar-list-link disabled">{{ subitem.title }}</a>
+                }
+                @if (!subitem.subMenu && !subitem.disabled) {
+                  @if (subitem.fixedHref) {
+                    <a (mouseenter)="hoverItem($event, item)"
+                       [attr.href]="subitem.fixedHref"
+                       [attr.target]="subitem.blank ? '_blank' : '_self'"
+                       routerLinkActive="selected">
+                      {{ subitem.title }}
+                    </a>
+                  } @else {
+                    <a (mouseenter)="hoverItem($event, item)"
+                       [routerLink]="subitem.stateRef"
+                       routerLinkActive="selected">
+                      {{ subitem.title }}
+                    </a>
+                  }
+                }
+              </li>
+            }
+          </ul>
+        }
+      </li>
+    }
+  </ul>
+  <div class="sidebar-hover-elem"
+       [style.top.px]="hoverElemTop"
+       [style.height.px]="hoverElemHeight"
+       [class.show-hover-elem]="showHoverElem"></div>
+</aside>

@@ -1,0 +1,26 @@
+<div class="page-top clearfix" [class.scrolled]="scrolled">
+  <a routerLink="/dashboard" class="al-logo clearfix"><span>Blur</span>Admin</a>
+  <a class="collapse-menu-link ion-navicon" (click)="toggleMenu()">
+    <i class="fa fa-bars"></i>
+  </a>
+
+  <div class="search">
+    <i class="fa fa-search"></i>
+    <input id="searchInput" type="text" placeholder="Search for...">
+  </div>
+
+  <div class="user-profile clearfix">
+    <div class="al-user-profile dropdown" [class.show]="profileDropdownOpen">
+      <a (click)="toggleProfileDropdown()" class="profile-toggle-link dropdown-toggle">
+        <img [src]="'Nasta' | profilePicture" alt="profile">
+      </a>
+      <ul class="dropdown-menu top-dropdown-menu profile-dropdown" [class.show]="profileDropdownOpen">
+        <li><i class="dropdown-arr"></i></li>
+        <li><a routerLink="/profile"><i class="fa fa-user"></i>Profile</a></li>
+        <li><a href="javascript:void(0)"><i class="fa fa-cog"></i>Settings</a></li>
+        <li><a href="javascript:void(0)" class="signout"><i class="fa fa-power-off"></i>Sign out</a></li>
+      </ul>
+    </div>
+    <app-msg-center></app-msg-center>
+  </div>
+</div>
