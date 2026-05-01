@@ -24,7 +24,7 @@ interface ToastNotification {
     </app-ba-panel>
 
     <div class="toast-container">
-      @for (toast of toasts; track toast.title + toast.type) {
+      @for (toast of toasts; track $index) {
         <div class="toast-item" [ngClass]="'toast-' + toast.type">
           <div class="toast-header">
             <strong>{{ toast.title }}</strong>

@@ -11,7 +11,7 @@
   </div>
 
   <ul class="todo-list">
-    @for (item of todoList; track item.text) {
+    @for (item of todoList; track $index) {
       <li [class.done]="item.done">
         <div class="todo-checkbox" [style.border-color]="item.color" [style.background]="item.done ? item.color : 'transparent'" (click)="item.done = !item.done">
           @if (item.done) {
