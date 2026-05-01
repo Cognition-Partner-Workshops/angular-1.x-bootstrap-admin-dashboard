@@ -12,7 +12,7 @@
         <a href="javascript:void(0)">Settings</a>
       </div>
       <div class="msg-list">
-        @for (msg of notifications; track msg.time) {
+        @for (msg of notifications; track $index) {
           <a href="javascript:void(0)" class="clearfix">
             <div class="img-area">
               <img [class.photo-msg-item]="!msg.image" [src]="getNotificationImage(msg)" alt="">
@@ -40,7 +40,7 @@
         <a href="javascript:void(0)">Settings</a>
       </div>
       <div class="msg-list">
-        @for (msg of messages; track msg.time) {
+        @for (msg of messages; track $index) {
           <a href="javascript:void(0)" class="clearfix">
             <div class="img-area">
               <img class="photo-msg-item" [src]="users[msg.userId].name | profilePicture" alt="">
