@@ -13,7 +13,7 @@ var colorValues = Object.keys(dashboardColors).map(function (key) {
 });
 
 function getRandomColor() {
-  var i = Math.floor(Math.random() * (colorValues.length - 1));
+  var i = Math.floor(Math.random() * colorValues.length);
   return colorValues[i];
 }
 

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 var layoutColors = {
   primary: '#209e91',
-  successLight: '#b6d852',
+  successLight: '#b1ce4c',
   success: '#90b900',
   danger: '#e85656',
   defaultText: '#666666',
