@@ -224,7 +224,7 @@ function Notifications() {
       <div style={containerStyle}>
         {openedToasts.map(function (toast) {
           return (
-            <div key={toast.id} className={'toast toast-' + toast.type} style={{ pointerEvents: 'auto', cursor: options.tapToDismiss ? 'pointer' : 'default', marginBottom: 6, padding: '15px 15px 15px 50px', minWidth: 300, borderRadius: 3, color: '#fff', background: toast.type === 'success' ? '#51a351' : toast.type === 'info' ? '#2f96b4' : toast.type === 'warning' ? '#f89406' : '#bd362f' }}
+            <div key={toast.id} className={'toast toast-' + toast.type} style={{ pointerEvents: 'auto', position: 'relative', cursor: options.tapToDismiss ? 'pointer' : 'default', marginBottom: 6, padding: '15px 15px 15px 50px', minWidth: 300, borderRadius: 3, color: '#fff', background: toast.type === 'success' ? '#51a351' : toast.type === 'info' ? '#2f96b4' : toast.type === 'warning' ? '#f89406' : '#bd362f' }}
               onClick={options.tapToDismiss ? function () { dismissToast(toast.id); } : undefined}>
               {options.closeButton && (
                 <button type="button" className="toast-close-button" style={{ position: 'absolute', right: 4, top: 2, color: '#fff', background: 'none', border: 'none', fontSize: 20 }} onClick={function (e) { e.stopPropagation(); dismissToast(toast.id); }}>&times;</button>
