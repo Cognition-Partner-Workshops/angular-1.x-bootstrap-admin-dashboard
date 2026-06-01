@@ -533,10 +533,11 @@
   }
 
   // --- DashboardTodo component ---
+  var nextTodoId = { current: 0 };
   function DashboardTodo() {
     var todoState = React.useState(
       initialTodos.map(function (item) {
-        return { text: item.text, color: getRandomColor(), deleted: false };
+        return { id: nextTodoId.current++, text: item.text, color: getRandomColor(), deleted: false };
       })
     );
     var todoList = todoState[0];
@@ -549,7 +550,7 @@
     function addTodoItem(event, clickPlus) {
       if (clickPlus || (event && event.which === 13)) {
         setTodoList(function (prev) {
-          return [{ text: newTodoText, color: getRandomColor(), deleted: false }].concat(prev);
+          return [{ id: nextTodoId.current++, text: newTodoText, color: getRandomColor(), deleted: false }].concat(prev);
         });
         setNewTodoText('');
       }
@@ -573,7 +574,7 @@
         todoList.map(function (item, i) {
           if (item.deleted) return null;
           return h(TodoItem, {
-            key: i,
+            key: item.id,
             item: item,
             onDelete: function () {
               setTodoList(function (prev) {
