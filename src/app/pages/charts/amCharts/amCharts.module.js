@@ -13,12 +13,29 @@
     $stateProvider
         .state('charts.amCharts', {
           url: '/amCharts',
-          templateUrl: 'app/pages/charts/amCharts/charts.html',
+          template: '<div id="react-amcharts-root"></div>',
+          controller: 'AmChartsBridgeCtrl',
           title: 'amCharts',
           sidebarMeta: {
             order: 0,
           },
         });
+  }
+
+  angular.module('BlurAdmin.pages.charts.amCharts')
+    .controller('AmChartsBridgeCtrl', AmChartsBridgeCtrl);
+
+  /** @ngInject */
+  function AmChartsBridgeCtrl($scope, baConfig) {
+    var el = document.getElementById('react-amcharts-root');
+    if (el && window.mountAmChartsReact) {
+      window.mountAmChartsReact(el, baConfig.colors);
+    }
+    $scope.$on('$destroy', function () {
+      if (window.unmountAmChartsReact) {
+        window.unmountAmChartsReact();
+      }
+    });
   }
 
   function amChartConfig(baConfigProvider) {
@@ -109,7 +126,6 @@
         lineAlpha: 0.8
       },
 
-      // ammap
       AreasSettings: {
         alpha: 0.8,
         color: layoutColors.info,
@@ -163,8 +179,6 @@
         borderAlpha: 0.8
       },
 
-      // the defaults below are set using CSS syntax, you can use any existing css property
-      // if you don't use Stock chart, you can delete lines below
       PeriodSelector: {
         color: "#FFFFFF"
       },
