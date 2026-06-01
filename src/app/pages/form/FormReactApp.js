@@ -613,7 +613,7 @@
           h('thead', null,
             h('tr', null,
               h('th', null, h('button', { type: 'button', tabIndex: -1, onClick: function () { setViewDate(new Date(year, month - 1, 1)); } }, '<')),
-              h('th', null, h('button', { type: 'button', tabIndex: -1 }, h('strong', null, monthNames[month] + ' ' + year))),
+              h('th', { colSpan: 5 }, h('button', { type: 'button', tabIndex: -1 }, h('strong', null, monthNames[month] + ' ' + year))),
               h('th', null, h('button', { type: 'button', tabIndex: -1, onClick: function () { setViewDate(new Date(year, month + 1, 1)); } }, '>'))
             ),
             h('tr', null,
