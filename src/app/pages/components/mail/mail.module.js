@@ -9,16 +9,25 @@
     .config(routeConfig);
 
   /** @ngInject */
-  function routeConfig($stateProvider) {
+  function routeConfig($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.when('/components/mail', '/components/mail/inbox');
+
     $stateProvider
         .state('components.mail', {
-          url: '/mail/{path:.*}',
+          url: '/mail',
+          abstract: true,
           template: '<div id="react-mail-root"></div>',
           controller: MailBridgeCtrl,
           title: 'Mail',
           sidebarMeta: {
             order: 0,
           },
+        })
+        .state('components.mail.label', {
+          url: '/:label',
+        })
+        .state('components.mail.detail', {
+          url: '/:label/:id',
         });
   }
 

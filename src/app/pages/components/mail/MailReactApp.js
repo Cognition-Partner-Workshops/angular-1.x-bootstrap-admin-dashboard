@@ -107,11 +107,18 @@
     var to = toState[0]; var setTo = toState[1];
     var subjectState = _s(props.initialSubject || '');
     var subject = subjectState[0]; var setSubject = subjectState[1];
+    var editorRef = React.useRef(null);
 
     React.useEffect(function() {
       setTo(props.initialTo || '');
       setSubject(props.initialSubject || '');
     }, [props.initialTo, props.initialSubject]);
+
+    React.useEffect(function() {
+      if (editorRef.current) {
+        editorRef.current.innerHTML = props.initialText || '';
+      }
+    }, [props.initialText]);
 
     if (!props.isOpen) return null;
 
@@ -131,7 +138,7 @@
             h('input', { type: 'text', className: 'form-control compose-input default-color', placeholder: 'Subject', value: subject, onChange: function(e) { setSubject(e.target.value); } }),
             h('div', { className: 'compose-container' },
               h('div', { className: 'toolbarMain' }),
-              h('div', { className: 'ta-editor', contentEditable: true, style: { minHeight: '150px', border: '1px solid #ccc', padding: '10px' } })
+              h('div', { ref: editorRef, className: 'ta-editor', contentEditable: true, style: { minHeight: '150px', border: '1px solid #ccc', padding: '10px' } })
             )
           ),
           h('div', { className: 'compose-footer clearfix' },
@@ -418,6 +425,7 @@
         isOpen: compose.isOpen,
         initialTo: compose.to,
         initialSubject: compose.subject,
+        initialText: compose.text,
         onDismiss: dismissCompose
       })
     );
