@@ -127,8 +127,8 @@
             )
           ),
           h('div', null,
-            h('input', { type: 'text', className: 'form-control compose-input default-color', placeholder: 'To', defaultValue: to }),
-            h('input', { type: 'text', className: 'form-control compose-input default-color', placeholder: 'Subject', defaultValue: subject }),
+            h('input', { type: 'text', className: 'form-control compose-input default-color', placeholder: 'To', value: to, onChange: function(e) { setTo(e.target.value); } }),
+            h('input', { type: 'text', className: 'form-control compose-input default-color', placeholder: 'Subject', value: subject, onChange: function(e) { setSubject(e.target.value); } }),
             h('div', { className: 'compose-container' },
               h('div', { className: 'toolbarMain' }),
               h('div', { className: 'ta-editor', contentEditable: true, style: { minHeight: '150px', border: '1px solid #ccc', padding: '10px' } })
