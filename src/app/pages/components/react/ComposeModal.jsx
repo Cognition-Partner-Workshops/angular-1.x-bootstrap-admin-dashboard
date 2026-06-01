@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
 
 function ComposeModal({ isOpen, onClose, subject: initialSubject, to: initialTo, text: initialText }) {
   var [to, setTo] = useState(initialTo || '');
   var [subject, setSubject] = useState(initialSubject || '');
   var [text, setText] = useState(initialText || '');
+
+  useEffect(function () {
+    setTo(initialTo || '');
+    setSubject(initialSubject || '');
+    setText(initialText || '');
+  }, [initialTo, initialSubject, initialText]);
 
   function handleSend() {
     onClose();

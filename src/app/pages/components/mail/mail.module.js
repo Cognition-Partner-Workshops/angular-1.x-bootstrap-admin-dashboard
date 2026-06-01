@@ -9,7 +9,7 @@
     .config(routeConfig);
 
   /** @ngInject */
-  function routeConfig($stateProvider,$urlRouterProvider) {
+  function routeConfig($stateProvider) {
     $stateProvider
         .state('components.mail', {
           url: '/mail',
@@ -19,7 +19,6 @@
             order: 0,
           },
         });
-    $urlRouterProvider.when('/components/mail','/components/mail');
   }
 
 })();
