@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Panel from './Panel';
 
 function shuffle(arr) {
@@ -7,7 +7,7 @@ function shuffle(arr) {
   return o;
 }
 
-function ChartJs1D({ chartType, title }) {
+function ChartJs1D({ chartType, layoutColors }) {
   var canvasRef = useRef(null);
   var chartRef = useRef(null);
   var labels = ['Sleeping', 'Designing', 'Coding', 'Cycling'];
@@ -16,7 +16,6 @@ function ChartJs1D({ chartType, title }) {
   useEffect(function () {
     if (!canvasRef.current || !window.Chart) return;
     var ctx = canvasRef.current.getContext('2d');
-    var layoutColors = window.baConfig ? window.baConfig.colors : {};
     var chartColors = [
       layoutColors.primary, layoutColors.danger, layoutColors.warning,
       layoutColors.success, layoutColors.info, layoutColors.default
@@ -60,14 +59,13 @@ function ChartJs1D({ chartType, title }) {
   );
 }
 
-function ChartJsWave({ chartType }) {
+function ChartJsWave({ chartType, layoutColors }) {
   var canvasRef = useRef(null);
   var chartRef = useRef(null);
 
   useEffect(function () {
     if (!canvasRef.current || !window.Chart) return;
     var ctx = canvasRef.current.getContext('2d');
-    var layoutColors = window.baConfig ? window.baConfig.colors : {};
     var chartColors = [
       layoutColors.primary, layoutColors.danger, layoutColors.warning,
       layoutColors.success, layoutColors.info, layoutColors.default
@@ -115,14 +113,13 @@ function ChartJsWave({ chartType }) {
   );
 }
 
-function ChartJs2D({ chartType }) {
+function ChartJs2D({ chartType, layoutColors }) {
   var canvasRef = useRef(null);
   var chartRef = useRef(null);
 
   useEffect(function () {
     if (!canvasRef.current || !window.Chart) return;
     var ctx = canvasRef.current.getContext('2d');
-    var layoutColors = window.baConfig ? window.baConfig.colors : {};
     var chartColors = [
       layoutColors.primary, layoutColors.danger, layoutColors.warning,
       layoutColors.success, layoutColors.info, layoutColors.default
@@ -193,23 +190,25 @@ function ChartJs2D({ chartType }) {
   );
 }
 
-function ChartJsPage() {
+function ChartJsPage({ baConfig }) {
+  var layoutColors = baConfig ? baConfig.colors : {};
+
   return (
     <div>
       <div className="row">
         <div className="col-md-4">
           <Panel title="Pie" panelClass="with-scroll">
-            <ChartJs1D chartType="pie" />
+            <ChartJs1D chartType="pie" layoutColors={layoutColors} />
           </Panel>
         </div>
         <div className="col-md-4">
           <Panel title="Doughnut" panelClass="with-scroll">
-            <ChartJs1D chartType="doughnut" />
+            <ChartJs1D chartType="doughnut" layoutColors={layoutColors} />
           </Panel>
         </div>
         <div className="col-md-4">
           <Panel title="Polar" panelClass="with-scroll">
-            <ChartJs1D chartType="polarArea" />
+            <ChartJs1D chartType="polarArea" layoutColors={layoutColors} />
           </Panel>
         </div>
       </div>
@@ -217,12 +216,12 @@ function ChartJsPage() {
       <div className="row">
         <div className="col-md-6">
           <Panel title="Animated Radar" panelClass="col-eq-height">
-            <ChartJsWave chartType="radar" />
+            <ChartJsWave chartType="radar" layoutColors={layoutColors} />
           </Panel>
         </div>
         <div className="col-md-6">
           <Panel title="Animated Bars" panelClass="col-eq-height">
-            <ChartJsWave chartType="bar" />
+            <ChartJsWave chartType="bar" layoutColors={layoutColors} />
           </Panel>
         </div>
       </div>
@@ -230,17 +229,17 @@ function ChartJsPage() {
       <div className="row">
         <div className="col-lg-4 col-md-6">
           <Panel title="Radar" panelClass="with-scroll">
-            <ChartJs2D chartType="radar" />
+            <ChartJs2D chartType="radar" layoutColors={layoutColors} />
           </Panel>
         </div>
         <div className="col-lg-4 col-md-6">
           <Panel title="Line" panelClass="with-scroll">
-            <ChartJs2D chartType="line" />
+            <ChartJs2D chartType="line" layoutColors={layoutColors} />
           </Panel>
         </div>
         <div className="col-lg-4 col-md-12">
           <Panel title="Bars" panelClass="with-scroll">
-            <ChartJs2D chartType="bar" />
+            <ChartJs2D chartType="bar" layoutColors={layoutColors} />
           </Panel>
         </div>
       </div>

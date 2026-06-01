@@ -79,8 +79,8 @@ function MorrisAreaChart({ data, xkey, ykeys, labels, colors }) {
   return <div ref={ref}></div>;
 }
 
-function MorrisPage() {
-  var layoutColors = window.baConfig ? window.baConfig.colors : {};
+function MorrisPage({ baConfig }) {
+  var layoutColors = baConfig ? baConfig.colors : {};
   var colors = [
     layoutColors.primary, layoutColors.warning, layoutColors.danger,
     layoutColors.info, layoutColors.success, layoutColors.primaryDark

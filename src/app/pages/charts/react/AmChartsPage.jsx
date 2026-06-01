@@ -24,9 +24,8 @@ function useAmChart(configFn) {
   return ref;
 }
 
-function BarChart() {
+function BarChart({ layoutColors }) {
   var ref = useAmChart(function (id) {
-    var layoutColors = window.baConfig ? window.baConfig.colors : {};
     return AmCharts.makeChart(id, {
       type: 'serial',
       theme: 'blur',
@@ -76,9 +75,8 @@ function BarChart() {
   return <div ref={ref} className="admin-chart"></div>;
 }
 
-function AreaChart() {
+function AreaChart({ layoutColors }) {
   var ref = useAmChart(function (id) {
-    var layoutColors = window.baConfig ? window.baConfig.colors : {};
     var chart = AmCharts.makeChart(id, {
       type: 'serial',
       theme: 'blur',
@@ -149,9 +147,8 @@ function AreaChart() {
   return <div ref={ref} className="admin-chart"></div>;
 }
 
-function LineChart() {
+function LineChart({ layoutColors }) {
   var ref = useAmChart(function (id) {
-    var layoutColors = window.baConfig ? window.baConfig.colors : {};
     var chart = AmCharts.makeChart(id, {
       type: 'serial',
       theme: 'blur',
@@ -244,9 +241,8 @@ function LineChart() {
   return <div ref={ref} className="admin-chart"></div>;
 }
 
-function PieChart() {
+function PieChart({ layoutColors }) {
   var ref = useAmChart(function (id) {
-    var layoutColors = window.baConfig ? window.baConfig.colors : {};
     var chart = AmCharts.makeChart(id, {
       type: 'pie',
       startDuration: 0,
@@ -325,9 +321,8 @@ function PieChart() {
   return <div ref={ref} className="admin-chart"></div>;
 }
 
-function FunnelChart() {
+function FunnelChart({ layoutColors }) {
   var ref = useAmChart(function (id) {
-    var layoutColors = window.baConfig ? window.baConfig.colors : {};
     return AmCharts.makeChart(id, {
       type: 'funnel',
       theme: 'blur',
@@ -364,9 +359,8 @@ function FunnelChart() {
   return <div ref={ref} className="admin-chart"></div>;
 }
 
-function CombinedChart() {
+function CombinedChart({ layoutColors }) {
   var ref = useAmChart(function (id) {
-    var layoutColors = window.baConfig ? window.baConfig.colors : {};
     return AmCharts.makeChart(id, {
       type: 'serial',
       theme: 'none',
@@ -522,23 +516,25 @@ function CombinedChart() {
   return <div ref={ref} className="admin-chart"></div>;
 }
 
-function AmChartsPage() {
+function AmChartsPage({ baConfig }) {
+  var layoutColors = baConfig ? baConfig.colors : {};
+
   return (
     <div className="widgets">
       <div className="row">
         <div className="col-lg-4 col-md-6">
           <Panel title="Bar Chart" panelClass="with-scroll">
-            <BarChart />
+            <BarChart layoutColors={layoutColors} />
           </Panel>
         </div>
         <div className="col-lg-4 col-md-6">
           <Panel title="Area Chart" panelClass="with-scroll">
-            <AreaChart />
+            <AreaChart layoutColors={layoutColors} />
           </Panel>
         </div>
         <div className="col-lg-4 col-md-12">
           <Panel title="Line Chart" panelClass="with-scroll">
-            <LineChart />
+            <LineChart layoutColors={layoutColors} />
           </Panel>
         </div>
       </div>
@@ -546,12 +542,12 @@ function AmChartsPage() {
       <div className="row">
         <div className="col-md-6">
           <Panel title="Pie Chart" panelClass="with-scroll">
-            <PieChart />
+            <PieChart layoutColors={layoutColors} />
           </Panel>
         </div>
         <div className="col-md-6">
           <Panel title="Funnel Chart" panelClass="with-scroll">
-            <FunnelChart />
+            <FunnelChart layoutColors={layoutColors} />
           </Panel>
         </div>
       </div>
@@ -559,7 +555,7 @@ function AmChartsPage() {
       <div className="row">
         <div className="col-md-12">
           <Panel title="Combined bullet/column and line graphs with multiple value axes" panelClass="with-scroll">
-            <CombinedChart />
+            <CombinedChart layoutColors={layoutColors} />
           </Panel>
         </div>
       </div>

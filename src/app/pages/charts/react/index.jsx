@@ -5,13 +5,13 @@ import ChartistPage from './ChartistPage';
 import MorrisPage from './MorrisPage';
 
 angular.module('BlurAdmin.pages.charts.amCharts')
-  .component('amChartsPage', react2angular(AmChartsPage, []));
+  .component('amChartsPage', react2angular(AmChartsPage, [], ['baConfig']));
 
 angular.module('BlurAdmin.pages.charts.chartJs')
-  .component('chartJsPage', react2angular(ChartJsPage, []));
+  .component('chartJsPage', react2angular(ChartJsPage, [], ['baConfig']));
 
 angular.module('BlurAdmin.pages.charts.chartist')
-  .component('chartistPage', react2angular(ChartistPage, []));
+  .component('chartistPage', react2angular(ChartistPage, [], ['baConfig']));
 
 angular.module('BlurAdmin.pages.charts.morris')
-  .component('morrisPage', react2angular(MorrisPage, []));
+  .component('morrisPage', react2angular(MorrisPage, [], ['baConfig']));

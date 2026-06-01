@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Panel from './Panel';
 
-function ChartistPage() {
+function ChartistPage({ baConfig }) {
   useEffect(function () {
     if (!window.Chartist) return;
 
