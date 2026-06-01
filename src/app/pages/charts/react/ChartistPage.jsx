@@ -117,17 +117,22 @@ function ChartistPage({ baConfig }) {
     var donutResponsive = getResponsive(5, 40);
     var pieResponsive = getResponsive(20, 80);
 
-    new Chartist.Line('#react-line-chart', simpleLineData, simpleLineOptions);
-    new Chartist.Line('#react-area-chart', areaLineData, areaLineOptions);
-    new Chartist.Line('#react-bi-chart', biLineData, biLineOptions);
+    var charts = [];
+    charts.push(new Chartist.Line('#react-line-chart', simpleLineData, simpleLineOptions));
+    charts.push(new Chartist.Line('#react-area-chart', areaLineData, areaLineOptions));
+    charts.push(new Chartist.Line('#react-bi-chart', biLineData, biLineOptions));
 
-    new Chartist.Bar('#react-simple-bar', simpleBarData, simpleBarOptions);
-    new Chartist.Bar('#react-multi-bar', multiBarData, multiBarOptions, multiBarResponsive);
-    new Chartist.Bar('#react-stacked-bar', stackedBarData, stackedBarOptions);
+    charts.push(new Chartist.Bar('#react-simple-bar', simpleBarData, simpleBarOptions));
+    charts.push(new Chartist.Bar('#react-multi-bar', multiBarData, multiBarOptions, multiBarResponsive));
+    charts.push(new Chartist.Bar('#react-stacked-bar', stackedBarData, stackedBarOptions));
 
-    new Chartist.Pie('#react-simple-pie', simplePieData, simplePieOptions, pieResponsive);
-    new Chartist.Pie('#react-label-pie', labelsPieData, labelsPieOptions);
-    new Chartist.Pie('#react-donut', simpleDonutData, simpleDonutOptions, donutResponsive);
+    charts.push(new Chartist.Pie('#react-simple-pie', simplePieData, simplePieOptions, pieResponsive));
+    charts.push(new Chartist.Pie('#react-label-pie', labelsPieData, labelsPieOptions));
+    charts.push(new Chartist.Pie('#react-donut', simpleDonutData, simpleDonutOptions, donutResponsive));
+
+    return function () {
+      charts.forEach(function (c) { if (c && c.detach) c.detach(); });
+    };
   }, []);
 
   var blur = baConfig ? baConfig.theme.blur : false;
