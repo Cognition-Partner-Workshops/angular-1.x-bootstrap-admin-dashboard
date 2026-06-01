@@ -23,8 +23,8 @@
         })
         .state('maps.gmap', {
           url: '/gmap',
-          templateUrl: 'app/pages/maps/google-maps/google-maps.html',
-          controller: 'GmapPageCtrl',
+          template: '<div id="react-maps-gmap-root"></div>',
+          controller: 'GmapBridgeCtrl',
           title: 'Google Maps',
           sidebarMeta: {
             order: 0,
@@ -32,8 +32,8 @@
         })
         .state('maps.leaflet', {
           url: '/leaflet',
-          templateUrl: 'app/pages/maps/leaflet/leaflet.html',
-          controller: 'LeafletPageCtrl',
+          template: '<div id="react-maps-leaflet-root"></div>',
+          controller: 'LeafletBridgeCtrl',
           title: 'Leaflet Maps',
           sidebarMeta: {
             order: 100,
@@ -41,8 +41,8 @@
         })
         .state('maps.bubble', {
           url: '/bubble',
-          templateUrl: 'app/pages/maps/map-bubbles/map-bubbles.html',
-          controller: 'MapBubblePageCtrl',
+          template: '<div id="react-maps-bubble-root"></div>',
+          controller: 'BubbleBridgeCtrl',
           title: 'Bubble Maps',
           sidebarMeta: {
             order: 200,
@@ -50,13 +50,59 @@
         })
         .state('maps.line', {
           url: '/line',
-          templateUrl: 'app/pages/maps/map-lines/map-lines.html',
-          controller: 'MapLinesPageCtrl',
+          template: '<div id="react-maps-line-root"></div>',
+          controller: 'LineBridgeCtrl',
           title: 'Line Maps',
           sidebarMeta: {
             order: 300,
           },
         });
   }
+
+  angular.module('BlurAdmin.pages.maps')
+    .controller('GmapBridgeCtrl', function ($scope) {
+      var el = document.getElementById('react-maps-gmap-root');
+      if (el && window.mountMapsReact) {
+        window.mountMapsReact(el);
+      }
+      $scope.$on('$destroy', function () {
+        if (window.unmountMapsReact) {
+          window.unmountMapsReact();
+        }
+      });
+    })
+    .controller('LeafletBridgeCtrl', function ($scope) {
+      var el = document.getElementById('react-maps-leaflet-root');
+      if (el && window.mountMapsReact) {
+        window.mountMapsReact(el);
+      }
+      $scope.$on('$destroy', function () {
+        if (window.unmountMapsReact) {
+          window.unmountMapsReact();
+        }
+      });
+    })
+    .controller('BubbleBridgeCtrl', function ($scope) {
+      var el = document.getElementById('react-maps-bubble-root');
+      if (el && window.mountMapsReact) {
+        window.mountMapsReact(el);
+      }
+      $scope.$on('$destroy', function () {
+        if (window.unmountMapsReact) {
+          window.unmountMapsReact();
+        }
+      });
+    })
+    .controller('LineBridgeCtrl', function ($scope) {
+      var el = document.getElementById('react-maps-line-root');
+      if (el && window.mountMapsReact) {
+        window.mountMapsReact(el);
+      }
+      $scope.$on('$destroy', function () {
+        if (window.unmountMapsReact) {
+          window.unmountMapsReact();
+        }
+      });
+    });
 
 })();
