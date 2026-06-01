@@ -1,7 +1,3 @@
-/**
- * @author v.lugovsky
- * created on 23.12.2015
- */
 (function () {
   'use strict';
 
@@ -13,8 +9,8 @@
     $stateProvider
         .state('ui.panels', {
           url: '/panels',
-          templateUrl: 'app/pages/ui/panels/panels.html',
-          controller: 'NotificationsPageCtrl',
+          template: '<div id="react-ui-root"></div>',
+          controller: 'UIBridgeCtrl',
           title: 'Panels',
           sidebarMeta: {
             order: 1100,

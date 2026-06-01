@@ -1,7 +1,3 @@
-/**
- * @author v.lugovsky
- * created on 16.12.2015
- */
 (function () {
   'use strict';
 
@@ -13,8 +9,8 @@
     $stateProvider
         .state('ui.icons', {
           url: '/icons',
-          templateUrl: 'app/pages/ui/icons/icons.html',
-          controller: 'IconsPageCtrl',
+          template: '<div id="react-ui-root"></div>',
+          controller: 'UIBridgeCtrl',
           title: 'Icons',
           sidebarMeta: {
             order: 200,

@@ -1,7 +1,3 @@
-/**
- * @author k.danovsky
- * created on 12.01.2016
- */
 (function () {
   'use strict';
 
@@ -18,7 +14,8 @@
     'BlurAdmin.pages.ui.slider',
     'BlurAdmin.pages.ui.panels',
   ])
-      .config(routeConfig);
+      .config(routeConfig)
+      .controller('UIBridgeCtrl', UIBridgeCtrl);
 
   /** @ngInject */
   function routeConfig($stateProvider) {
@@ -33,6 +30,19 @@
             order: 200,
           },
         });
+  }
+
+  /** @ngInject */
+  function UIBridgeCtrl($scope) {
+    var el = document.getElementById('react-ui-root');
+    if (el && window.mountUIReact) {
+      window.mountUIReact(el);
+    }
+    $scope.$on('$destroy', function() {
+      if (window.unmountUIReact) {
+        window.unmountUIReact();
+      }
+    });
   }
 
 })();

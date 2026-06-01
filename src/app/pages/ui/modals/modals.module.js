@@ -1,7 +1,3 @@
-/**
- * @author v.lugovsky
- * created on 16.12.2015
- */
 (function () {
   'use strict';
 
@@ -13,8 +9,8 @@
     $stateProvider
         .state('ui.modals', {
           url: '/modals',
-          templateUrl: 'app/pages/ui/modals/modals.html',
-          controller: 'ModalsPageCtrl',
+          template: '<div id="react-ui-root"></div>',
+          controller: 'UIBridgeCtrl',
           title: 'Modals',
           sidebarMeta: {
             order: 300,

@@ -1,7 +1,3 @@
-/**
- * @author v.lugovsky
- * created on 16.12.2015
- */
 (function () {
   'use strict';
 
@@ -13,8 +9,8 @@
     $stateProvider
         .state('ui.notifications', {
           url: '/notifications',
-          templateUrl: 'app/pages/ui/notifications/notifications.html',
-          controller: 'NotificationsPageCtrl',
+          template: '<div id="react-ui-root"></div>',
+          controller: 'UIBridgeCtrl',
           title: 'Notifications',
           sidebarMeta: {
             order: 700,

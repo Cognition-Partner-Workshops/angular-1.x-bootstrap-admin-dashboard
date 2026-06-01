@@ -1,7 +1,3 @@
-/**
- * @author v.lugovsky
- * created on 21.12.2015
- */
 (function () {
   'use strict';
 
@@ -13,7 +9,8 @@
     $stateProvider
         .state('ui.tabs', {
           url: '/tabs',
-          templateUrl: 'app/pages/ui/tabs/tabs.html',
+          template: '<div id="react-ui-root"></div>',
+          controller: 'UIBridgeCtrl',
           title: 'Tabs & Accordions',
           sidebarMeta: {
             order: 800,

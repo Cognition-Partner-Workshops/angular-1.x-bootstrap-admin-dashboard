@@ -1,7 +1,3 @@
-/**
- * @author v.lugovsky
- * created on 16.12.2015
- */
 (function () {
   'use strict';
 
@@ -13,7 +9,8 @@
     $stateProvider
         .state('ui.grid', {
           url: '/grid',
-          templateUrl: 'app/pages/ui/grid/grid.html',
+          template: '<div id="react-ui-root"></div>',
+          controller: 'UIBridgeCtrl',
           title: 'Grid',
           sidebarMeta: {
             order: 400,

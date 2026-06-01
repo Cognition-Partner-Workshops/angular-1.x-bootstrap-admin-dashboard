@@ -1,7 +1,3 @@
-/**
- * @author a.demeshko
- * created on 12/22/15
- */
 (function () {
   'use strict';
 
@@ -13,7 +9,8 @@
     $stateProvider
         .state('ui.slider', {
           url: '/slider',
-          templateUrl: 'app/pages/ui/slider/slider.html',
+          template: '<div id="react-ui-root"></div>',
+          controller: 'UIBridgeCtrl',
           title: 'Sliders',
           sidebarMeta: {
             order: 1000,

@@ -1,7 +1,3 @@
-/**
- * @author v.lugovsky
- * created on 16.12.2015
- */
 (function () {
   'use strict';
 
@@ -13,8 +9,8 @@
     $stateProvider
         .state('ui.buttons', {
           url: '/buttons',
-          templateUrl: 'app/pages/ui/buttons/buttons.html',
-          controller: 'ButtonPageCtrl',
+          template: '<div id="react-ui-root"></div>',
+          controller: 'UIBridgeCtrl',
           title: 'Buttons',
           sidebarMeta: {
             order: 100,
