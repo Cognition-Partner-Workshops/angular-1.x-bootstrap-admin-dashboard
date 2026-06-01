@@ -23,8 +23,7 @@
         })
         .state('maps.gmap', {
           url: '/gmap',
-          templateUrl: 'app/pages/maps/google-maps/google-maps.html',
-          controller: 'GmapPageCtrl',
+          template: '<react-google-maps></react-google-maps>',
           title: 'Google Maps',
           sidebarMeta: {
             order: 0,
@@ -32,8 +31,7 @@
         })
         .state('maps.leaflet', {
           url: '/leaflet',
-          templateUrl: 'app/pages/maps/leaflet/leaflet.html',
-          controller: 'LeafletPageCtrl',
+          template: '<react-leaflet-map></react-leaflet-map>',
           title: 'Leaflet Maps',
           sidebarMeta: {
             order: 100,
@@ -41,8 +39,7 @@
         })
         .state('maps.bubble', {
           url: '/bubble',
-          templateUrl: 'app/pages/maps/map-bubbles/map-bubbles.html',
-          controller: 'MapBubblePageCtrl',
+          template: '<react-map-bubbles></react-map-bubbles>',
           title: 'Bubble Maps',
           sidebarMeta: {
             order: 200,
@@ -50,8 +47,7 @@
         })
         .state('maps.line', {
           url: '/line',
-          templateUrl: 'app/pages/maps/map-lines/map-lines.html',
-          controller: 'MapLinesPageCtrl',
+          template: '<react-map-lines></react-map-lines>',
           title: 'Line Maps',
           sidebarMeta: {
             order: 300,

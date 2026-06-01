@@ -53,3 +53,7 @@ build
 /src/release
 /release
 /bower_components
+
+# React webpack bundle
+src/app/pages/maps/react/maps-bundle.js
+src/app/pages/maps/react/maps-bundle.js.LICENSE.txt
