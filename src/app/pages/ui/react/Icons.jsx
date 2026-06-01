@@ -102,7 +102,7 @@ function Icons() {
           <Panel title="Font Awesome Icons" panelClass="with-scroll">
             <div className="row icons-list success awesomeIcons">
               {fontAwesomeIcons.map(function (icon) {
-                return <div className="col-xs-2" key={icon}><i className={'fa ' + icon}></i></div>;
+                return <div className="col-xs-2" key={icon}><i className={icon}></i></div>;
               })}
             </div>
             <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank" className="see-all-icons">See all Font Awesome icons</a>

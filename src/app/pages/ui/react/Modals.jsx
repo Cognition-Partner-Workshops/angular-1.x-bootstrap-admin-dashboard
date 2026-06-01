@@ -95,17 +95,17 @@ function ProgressModal({ isOpen, onClose }) {
   useEffect(function () {
     if (!isOpen) { setProgress(0); return; }
     var timer = setInterval(function () {
-      setProgress(function (prev) {
-        if (prev >= 100) {
-          clearInterval(timer);
-          onClose();
-          return 0;
-        }
-        return prev + 10;
-      });
+      setProgress(function (prev) { return prev + 10; });
     }, 300);
     return function () { clearInterval(timer); };
-  }, [isOpen, onClose]);
+  }, [isOpen]);
+
+  useEffect(function () {
+    if (progress >= 100) {
+      onClose();
+      setProgress(0);
+    }
+  }, [progress, onClose]);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="sm">
