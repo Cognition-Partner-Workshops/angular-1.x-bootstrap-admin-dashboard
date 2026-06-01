@@ -9,10 +9,16 @@ function ProgressButton({ className, style, direction, children }) {
     setTimeout(function () { setLoading(false); }, 3000);
   }, []);
 
+  var cls = 'progress-button'
+    + (style ? ' progress-button-style-' + style : '')
+    + (direction ? ' progress-button-dir-' + direction : '')
+    + (className ? ' ' + className : '')
+    + (loading ? ' state-loading' : '');
+
   return (
     <button
       type="button"
-      className={className + (loading ? ' progress-button-loading' : '')}
+      className={cls}
       onClick={handleClick}
     >
       {children}
