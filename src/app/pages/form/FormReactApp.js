@@ -815,7 +815,7 @@
       h('div', { className: 'row' },
         h('div', { className: 'col-sm-6' },
           h('div', { className: 'form-group' },
-            h('label', { htmlFor: 'inputFirstName' }, 'Email'),
+            h('label', { htmlFor: 'inputEmail' }, 'Email'),
             h('input', { type: 'email', className: 'form-control', id: 'inputEmail', placeholder: 'Email', defaultValue: '' })
           )
         ),
@@ -1014,7 +1014,7 @@
                     h('div', { className: 'row' },
                       h('div', { className: 'col-md-6' },
                         h('div', { className: 'form-group has-feedback' + (shipmentInvalid && !shipment.address ? ' has-error' : '') },
-                          h('label', { htmlFor: 'productName' }, 'Shipment address'),
+                          h('label', { htmlFor: 'address' }, 'Shipment address'),
                           h('input', { type: 'text', className: 'form-control', id: 'address', name: 'address', placeholder: 'Shipment address', value: shipment.address, onChange: function (e) { updateShipment('address', e.target.value); } }),
                           h('span', { className: 'help-block error-block basic-block' }, 'Required')
                         )
