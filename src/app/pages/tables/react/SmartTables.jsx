@@ -122,6 +122,7 @@ function EditableRowTable() {
   function removeUser(index) {
     setUsers(users.filter(function (_, i) { return i !== index; }));
     if (editingIndex === index) setEditingIndex(null);
+    else if (editingIndex !== null && index < editingIndex) setEditingIndex(editingIndex - 1);
   }
 
   function startEdit(index) {
