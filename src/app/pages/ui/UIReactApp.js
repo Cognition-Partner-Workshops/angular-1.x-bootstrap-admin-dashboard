@@ -544,6 +544,8 @@
     var optionsStr = _optStr[0];
     var setOptionsStr = _optStr[1];
 
+    var openedToastsRef = React.useRef([]);
+
     function updateOpt(key, value) {
       setOptions(function(prev) {
         var next = Object.assign({}, prev);
@@ -564,7 +566,8 @@
           preventDuplicates: options.preventDuplicates,
           tapToDismiss: options.tapToDismiss
         };
-        toastr[options.type](options.msg, options.title);
+        var toast = toastr[options.type](options.msg, options.title);
+        openedToastsRef.current.push(toast);
       }
       var strOptions = {};
       Object.keys(options).forEach(function(o) { if (o !== 'msg' && o !== 'title') strOptions[o] = options[o]; });
@@ -586,13 +589,14 @@
       var type = types[Math.floor(Math.random() * types.length)];
       var quote = quotes[Math.floor(Math.random() * quotes.length)];
       if (window.toastr) {
-        toastr[type](quote.message, quote.title);
+        var toast = toastr[type](quote.message, quote.title);
+        openedToastsRef.current.push(toast);
       }
       setOptionsStr('toastr.' + type + "('" + quote.message + "', '" + quote.title + "')");
     }
 
-    function clearToasts() { if (window.toastr) toastr.clear(); }
-    function clearLastToast() { if (window.toastr) toastr.clear(); }
+    function clearToasts() { if (window.toastr) { toastr.clear(); openedToastsRef.current = []; } }
+    function clearLastToast() { var toast = openedToastsRef.current.pop(); if (toast && window.toastr) toastr.clear(toast); }
 
     return h('div', { className: 'panel with-scroll notification-panel animated zoomIn' },
       h('div', { className: 'panel-body' },
