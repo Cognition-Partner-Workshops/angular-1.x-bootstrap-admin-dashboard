@@ -72,9 +72,9 @@ function SplitDropdownButton({ label, btnClass }) {
 
 var progressStyles = [
   { title: 'fill horizontal', style: '', btnClass: 'btn-success' },
-  { title: 'fill vertical', style: 'vertical', btnClass: 'btn-danger' },
+  { title: 'fill vertical', style: '', direction: 'vertical', btnClass: 'btn-danger' },
   { title: 'shrink horizontal', style: 'shrink', btnClass: 'btn-warning' },
-  { title: 'shrink vertical', style: 'shrink vertical', btnClass: 'btn-info' },
+  { title: 'shrink vertical', style: 'shrink', direction: 'vertical', btnClass: 'btn-info' },
   { title: 'rotate-angle-bottom perspective', style: 'rotate-angle-bottom', btnClass: 'btn-success' },
   { title: 'rotate-angle-top perspective', style: 'rotate-angle-top', btnClass: 'btn-danger' },
   { title: 'rotate-angle-left perspective', style: 'rotate-angle-left', btnClass: 'btn-warning' },
@@ -91,7 +91,7 @@ var progressStyles = [
 
 var progressLastRow = [
   { title: 'top-line horizontal', style: 'top-line', btnClass: 'btn-success' },
-  { title: 'lateral-lines vertical', style: 'lateral-lines', btnClass: 'btn-info' },
+  { title: 'lateral-lines vertical', style: 'lateral-lines', direction: 'vertical', btnClass: 'btn-info' },
 ];
 
 function Buttons() {
