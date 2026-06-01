@@ -126,7 +126,7 @@
   // --- Helper: getRandomColor from dashboard colors ---
   function getRandomColor() {
     var keys = Object.keys(dashboardColors);
-    var i = Math.floor(Math.random() * (keys.length - 1));
+    var i = Math.floor(Math.random() * keys.length);
     return dashboardColors[keys[i]];
   }
 
@@ -654,7 +654,7 @@
             { title: 'All Day Event', start: '2016-03-01', color: dashboardColors.silverTree },
             { title: 'Long Event', start: '2016-03-07', end: '2016-03-10', color: dashboardColors.blueStone },
             { title: 'Dinner', start: '2016-03-14T20:00:00', color: dashboardColors.surfieGreen },
-            { title: 'Birthday Party', start: '2016-04-01T07:00:00', color: dashboardColors.gossipDark }
+            { title: 'Birthday Party', start: '2016-04-01T07:00:00', color: dashboardColors.gossip }
           ]
         });
       }
