@@ -13,13 +13,30 @@
     $stateProvider
         .state('dashboard', {
           url: '/dashboard',
-          templateUrl: 'app/pages/dashboard/dashboard.html',
+          template: '<div id="react-dashboard-root"></div>',
+          controller: 'DashboardBridgeCtrl',
           title: 'Dashboard',
           sidebarMeta: {
             icon: 'ion-android-home',
             order: 0,
           },
         });
+  }
+
+  angular.module('BlurAdmin.pages.dashboard')
+      .controller('DashboardBridgeCtrl', DashboardBridgeCtrl);
+
+  /** @ngInject */
+  function DashboardBridgeCtrl($scope) {
+    var el = document.getElementById('react-dashboard-root');
+    if (el && window.mountDashboardReact) {
+      window.mountDashboardReact(el);
+    }
+    $scope.$on('$destroy', function () {
+      if (window.unmountDashboardReact) {
+        window.unmountDashboardReact();
+      }
+    });
   }
 
 })();
