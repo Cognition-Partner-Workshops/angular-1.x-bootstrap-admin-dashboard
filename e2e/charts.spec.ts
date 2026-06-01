@@ -213,7 +213,7 @@ test.describe('Chartist page', () => {
 test.describe('Morris page', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/#/charts/morris');
-    await page.waitForSelector('.panel-title', { hasText: 'Line Chart' }, { timeout: 15000 });
+    await page.locator('.panel-title', { hasText: 'Line Chart' }).waitFor({ timeout: 15000 });
   });
 
   test('should display Line Chart panel', async ({ page }) => {

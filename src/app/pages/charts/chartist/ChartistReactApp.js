@@ -62,8 +62,7 @@
       var pieResponsive = getResponsive(20, 80);
 
       var charts = [];
-      // Use setTimeout to match the original $timeout behavior
-      setTimeout(function () {
+      var timeoutId = setTimeout(function () {
         charts.push(new Chartist.Line('#line-chart', simpleLineData, simpleLineOptions));
         charts.push(new Chartist.Line('#area-chart', areaLineData, areaLineOptions));
         charts.push(new Chartist.Line('#bi-chart', biLineData, biLineOptions));
@@ -76,6 +75,7 @@
       }, 0);
 
       return function () {
+        clearTimeout(timeoutId);
         charts.forEach(function (c) { if (c && c.detach) c.detach(); });
       };
     }, []);
