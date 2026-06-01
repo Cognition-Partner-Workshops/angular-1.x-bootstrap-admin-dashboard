@@ -7,10 +7,12 @@ function ComposeModal({ isOpen, onClose, subject: initialSubject, to: initialTo,
   var [text, setText] = useState(initialText || '');
 
   useEffect(function () {
-    setTo(initialTo || '');
-    setSubject(initialSubject || '');
-    setText(initialText || '');
-  }, [initialTo, initialSubject, initialText]);
+    if (isOpen) {
+      setTo(initialTo || '');
+      setSubject(initialSubject || '');
+      setText(initialText || '');
+    }
+  }, [isOpen, initialTo, initialSubject, initialText]);
 
   function handleSend() {
     onClose();

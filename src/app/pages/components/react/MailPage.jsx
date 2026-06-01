@@ -18,7 +18,7 @@ function plainText(html) {
 function formatDate(dateStr) {
   var d = new Date(dateStr);
   var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  var hours = d.getHours();
+  var hours = d.getHours().toString().padStart(2, '0');
   var minutes = d.getMinutes().toString().padStart(2, '0');
   return months[d.getMonth()] + ' ' + d.getDate() + ' ' + hours + ':' + minutes;
 }
