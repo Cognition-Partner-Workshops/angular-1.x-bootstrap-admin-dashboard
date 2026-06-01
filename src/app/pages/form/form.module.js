@@ -23,7 +23,7 @@
         })
         .state('form.inputs', {
           url: '/inputs',
-          templateUrl: 'app/pages/form/inputs/inputs.html',
+          template: '<react-form-inputs></react-form-inputs>',
           title: 'Form Inputs',
           sidebarMeta: {
             order: 0,
@@ -31,7 +31,7 @@
         })
         .state('form.layouts', {
           url: '/layouts',
-          templateUrl: 'app/pages/form/layouts/layouts.html',
+          template: '<react-form-layouts></react-form-layouts>',
           title: 'Form Layouts',
           sidebarMeta: {
             order: 100,
@@ -40,9 +40,7 @@
         .state('form.wizard',
         {
           url: '/wizard',
-          templateUrl: 'app/pages/form/wizard/wizard.html',
-          controller: 'WizardCtrl',
-          controllerAs: 'vm',
+          template: '<react-form-wizard></react-form-wizard>',
           title: 'Form Wizard',
           sidebarMeta: {
             order: 200,
