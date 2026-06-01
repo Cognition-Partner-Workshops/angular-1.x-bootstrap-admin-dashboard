@@ -25,6 +25,28 @@
     return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
   }
 
+  function baseOptions(colors, type) {
+    var opts = {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 2500 },
+      scale: {
+        gridLines: { color: colors.border },
+        scaleLabel: { fontColor: colors.defaultText },
+        ticks: { fontColor: colors.defaultText, showLabelBackdrop: false }
+      }
+    };
+    if (type === 'radar') {
+      opts.scale.pointLabels = { fontColor: colors.defaultText };
+      opts.scale.ticks.maxTicksLimit = 5;
+      opts.scale.ticks.display = false;
+    }
+    if (type === 'bar') {
+      opts.tooltips = { enabled: false };
+    }
+    return opts;
+  }
+
   function ChartJs1D(props) {
     var canvasRef = useRef(null);
     var chartRef = useRef(null);
@@ -39,12 +61,10 @@
           labels: ['Sleeping', 'Designing', 'Coding', 'Cycling'],
           datasets: [{ data: [20, 40, 5, 35], backgroundColor: [colors.primary, colors.danger, colors.warning, colors.success] }]
         },
-        options: {
+        options: Object.assign({}, baseOptions(colors, props.type), {
           elements: { arc: { borderWidth: 0 } },
-          legend: { display: true, position: 'bottom', labels: { fontColor: colors.defaultText } },
-          responsive: true,
-          maintainAspectRatio: false
-        }
+          legend: { display: true, position: 'bottom', labels: { fontColor: colors.defaultText } }
+        })
       });
       return function () { if (chartRef.current) chartRef.current.destroy(); };
     }, []);
@@ -68,7 +88,7 @@
           labels: labels,
           datasets: [{ data: data, backgroundColor: colors.primary, borderColor: colors.primary, fill: chartType !== 'radar' }]
         },
-        options: { responsive: true, maintainAspectRatio: false }
+        options: baseOptions(colors, chartType)
       });
       var interval = setInterval(function () {
         var ds = chartRef.current.data.datasets[0].data;
@@ -101,7 +121,7 @@
             { label: 'Product B', data: [28, 48, 40, 19, 88], backgroundColor: colors.danger, borderColor: colors.danger, fill: false }
           ]
         },
-        options: { responsive: true, maintainAspectRatio: false }
+        options: baseOptions(colors, props.type)
       });
       return function () { if (chartRef.current) chartRef.current.destroy(); };
     }, []);
@@ -177,35 +197,9 @@
     );
   }
 
-  function configureChartJsDefaults(colors) {
-    if (!window.Chart) return;
-    var defaults = Chart.defaults;
-    defaults.global.responsive = true;
-    defaults.global.maintainAspectRatio = false;
-    defaults.global.animation.duration = 2500;
-    defaults.scale.gridLines.color = colors.border;
-    defaults.scale.scaleLabel = defaults.scale.scaleLabel || {};
-    defaults.scale.scaleLabel.fontColor = colors.defaultText;
-    defaults.scale.ticks.fontColor = colors.defaultText;
-    defaults.scale.ticks.showLabelBackdrop = false;
-    defaults.line = defaults.line || {};
-    defaults.line.datasetFill = false;
-    defaults.radar = defaults.radar || {};
-    defaults.radar.scale = defaults.radar.scale || {};
-    defaults.radar.scale.pointLabels = defaults.radar.scale.pointLabels || {};
-    defaults.radar.scale.pointLabels.fontColor = colors.defaultText;
-    defaults.radar.scale.ticks = defaults.radar.scale.ticks || {};
-    defaults.radar.scale.ticks.maxTicksLimit = 5;
-    defaults.radar.scale.ticks.display = false;
-    defaults.bar = defaults.bar || {};
-    defaults.bar.tooltips = defaults.bar.tooltips || {};
-    defaults.bar.tooltips.enabled = false;
-  }
-
   var mountEl = null;
   window.mountChartJsReact = function (element, colors) {
     mountEl = element;
-    configureChartJsDefaults(colors);
     ReactDOM.render(h(ChartJsApp, { colors: colors }), element);
   };
   window.unmountChartJsReact = function () {
