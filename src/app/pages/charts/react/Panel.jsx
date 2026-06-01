@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-function Panel({ title, panelClass, children }) {
+function Panel({ title, panelClass, blur, children }) {
   var _panelClass = panelClass || '';
   var _title = title || '';
-  var baseClass = 'panel panel-blur full-invisible ' + _panelClass;
+  var baseClass = 'panel ' + (blur ? 'panel-blur ' : '') + 'full-invisible ' + _panelClass;
 
   var ref = React.useRef(null);
 

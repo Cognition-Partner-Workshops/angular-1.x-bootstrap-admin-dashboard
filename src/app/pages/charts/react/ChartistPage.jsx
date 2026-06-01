@@ -130,11 +130,13 @@ function ChartistPage({ baConfig }) {
     new Chartist.Pie('#react-donut', simpleDonutData, simpleDonutOptions, donutResponsive);
   }, []);
 
+  var blur = baConfig ? baConfig.theme.blur : false;
+
   return (
     <section className="chartist">
       <div className="row">
         <div className="col-md-6">
-          <Panel title="Lines" panelClass="with-scroll">
+          <Panel title="Lines" panelClass="with-scroll" blur={blur}>
             <h5>Simple line chart</h5>
             <div id="react-line-chart" className="ct-chart"></div>
             <h5>Line chart with area</h5>
@@ -144,7 +146,7 @@ function ChartistPage({ baConfig }) {
           </Panel>
         </div>
         <div className="col-md-6">
-          <Panel title="Bars" panelClass="with-scroll">
+          <Panel title="Bars" panelClass="with-scroll" blur={blur}>
             <h5>Simple bar chart</h5>
             <div id="react-simple-bar" className="ct-chart"></div>
             <h5>Multi-line labels bar chart</h5>
@@ -157,7 +159,7 @@ function ChartistPage({ baConfig }) {
 
       <div className="row">
         <div className="col-md-12">
-          <Panel title="Pies &amp; Donuts" panelClass="with-scroll">
+          <Panel title="Pies &amp; Donuts" panelClass="with-scroll" blur={blur}>
             <div className="row">
               <div className="col-md-12 col-lg-4">
                 <h5>Simple Pie</h5>

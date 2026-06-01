@@ -81,6 +81,7 @@ function MorrisAreaChart({ data, xkey, ykeys, labels, colors }) {
 
 function MorrisPage({ baConfig }) {
   var layoutColors = baConfig ? baConfig.colors : {};
+  var blur = baConfig ? baConfig.theme.blur : false;
   var colors = [
     layoutColors.primary, layoutColors.warning, layoutColors.danger,
     layoutColors.info, layoutColors.success, layoutColors.primaryDark
@@ -126,26 +127,26 @@ function MorrisPage({ baConfig }) {
     <section>
       <div className="row">
         <div className="col-md-12">
-          <Panel title="Line Chart" panelClass="with-scroll">
+          <Panel title="Line Chart" panelClass="with-scroll" blur={blur}>
             <MorrisLineChart data={lineData} xkey="y" ykeys={['a', 'b']} labels={['Serie A', 'Serie B']} colors={colors} />
           </Panel>
         </div>
       </div>
       <div className="row">
         <div className="col-md-4">
-          <Panel title="Donut" panelClass="with-scroll">
+          <Panel title="Donut" panelClass="with-scroll" blur={blur}>
             <MorrisDonutChart data={donutData} colors={colors} />
           </Panel>
         </div>
         <div className="col-md-8">
-          <Panel title="Bar Chart" panelClass="with-scroll">
+          <Panel title="Bar Chart" panelClass="with-scroll" blur={blur}>
             <MorrisBarChart data={barData} x="y" y={['a', 'b']} labels={['Series A', 'Series B']} colors={colors} />
           </Panel>
         </div>
       </div>
       <div className="row">
         <div className="col-md-12">
-          <Panel title="Area Chart" panelClass="with-scroll">
+          <Panel title="Area Chart" panelClass="with-scroll" blur={blur}>
             <MorrisAreaChart data={areaData} xkey="y" ykeys={['a', 'b']} labels={['Serie A', 'Serie B']} colors={colors} />
           </Panel>
         </div>

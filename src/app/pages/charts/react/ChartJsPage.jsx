@@ -192,22 +192,23 @@ function ChartJs2D({ chartType, layoutColors }) {
 
 function ChartJsPage({ baConfig }) {
   var layoutColors = baConfig ? baConfig.colors : {};
+  var blur = baConfig ? baConfig.theme.blur : false;
 
   return (
     <div>
       <div className="row">
         <div className="col-md-4">
-          <Panel title="Pie" panelClass="with-scroll">
+          <Panel title="Pie" panelClass="with-scroll" blur={blur}>
             <ChartJs1D chartType="pie" layoutColors={layoutColors} />
           </Panel>
         </div>
         <div className="col-md-4">
-          <Panel title="Doughnut" panelClass="with-scroll">
+          <Panel title="Doughnut" panelClass="with-scroll" blur={blur}>
             <ChartJs1D chartType="doughnut" layoutColors={layoutColors} />
           </Panel>
         </div>
         <div className="col-md-4">
-          <Panel title="Polar" panelClass="with-scroll">
+          <Panel title="Polar" panelClass="with-scroll" blur={blur}>
             <ChartJs1D chartType="polarArea" layoutColors={layoutColors} />
           </Panel>
         </div>
@@ -215,12 +216,12 @@ function ChartJsPage({ baConfig }) {
 
       <div className="row">
         <div className="col-md-6">
-          <Panel title="Animated Radar" panelClass="col-eq-height">
+          <Panel title="Animated Radar" panelClass="col-eq-height" blur={blur}>
             <ChartJsWave chartType="radar" layoutColors={layoutColors} />
           </Panel>
         </div>
         <div className="col-md-6">
-          <Panel title="Animated Bars" panelClass="col-eq-height">
+          <Panel title="Animated Bars" panelClass="col-eq-height" blur={blur}>
             <ChartJsWave chartType="bar" layoutColors={layoutColors} />
           </Panel>
         </div>
@@ -228,17 +229,17 @@ function ChartJsPage({ baConfig }) {
 
       <div className="row">
         <div className="col-lg-4 col-md-6">
-          <Panel title="Radar" panelClass="with-scroll">
+          <Panel title="Radar" panelClass="with-scroll" blur={blur}>
             <ChartJs2D chartType="radar" layoutColors={layoutColors} />
           </Panel>
         </div>
         <div className="col-lg-4 col-md-6">
-          <Panel title="Line" panelClass="with-scroll">
+          <Panel title="Line" panelClass="with-scroll" blur={blur}>
             <ChartJs2D chartType="line" layoutColors={layoutColors} />
           </Panel>
         </div>
         <div className="col-lg-4 col-md-12">
-          <Panel title="Bars" panelClass="with-scroll">
+          <Panel title="Bars" panelClass="with-scroll" blur={blur}>
             <ChartJs2D chartType="bar" layoutColors={layoutColors} />
           </Panel>
         </div>

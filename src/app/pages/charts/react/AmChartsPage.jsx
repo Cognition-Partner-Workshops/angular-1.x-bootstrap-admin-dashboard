@@ -518,22 +518,23 @@ function CombinedChart({ layoutColors }) {
 
 function AmChartsPage({ baConfig }) {
   var layoutColors = baConfig ? baConfig.colors : {};
+  var blur = baConfig ? baConfig.theme.blur : false;
 
   return (
     <div className="widgets">
       <div className="row">
         <div className="col-lg-4 col-md-6">
-          <Panel title="Bar Chart" panelClass="with-scroll">
+          <Panel title="Bar Chart" panelClass="with-scroll" blur={blur}>
             <BarChart layoutColors={layoutColors} />
           </Panel>
         </div>
         <div className="col-lg-4 col-md-6">
-          <Panel title="Area Chart" panelClass="with-scroll">
+          <Panel title="Area Chart" panelClass="with-scroll" blur={blur}>
             <AreaChart layoutColors={layoutColors} />
           </Panel>
         </div>
         <div className="col-lg-4 col-md-12">
-          <Panel title="Line Chart" panelClass="with-scroll">
+          <Panel title="Line Chart" panelClass="with-scroll" blur={blur}>
             <LineChart layoutColors={layoutColors} />
           </Panel>
         </div>
@@ -541,12 +542,12 @@ function AmChartsPage({ baConfig }) {
 
       <div className="row">
         <div className="col-md-6">
-          <Panel title="Pie Chart" panelClass="with-scroll">
+          <Panel title="Pie Chart" panelClass="with-scroll" blur={blur}>
             <PieChart layoutColors={layoutColors} />
           </Panel>
         </div>
         <div className="col-md-6">
-          <Panel title="Funnel Chart" panelClass="with-scroll">
+          <Panel title="Funnel Chart" panelClass="with-scroll" blur={blur}>
             <FunnelChart layoutColors={layoutColors} />
           </Panel>
         </div>
@@ -554,7 +555,7 @@ function AmChartsPage({ baConfig }) {
 
       <div className="row">
         <div className="col-md-12">
-          <Panel title="Combined bullet/column and line graphs with multiple value axes" panelClass="with-scroll">
+          <Panel title="Combined bullet/column and line graphs with multiple value axes" panelClass="with-scroll" blur={blur}>
             <CombinedChart layoutColors={layoutColors} />
           </Panel>
         </div>
