@@ -177,9 +177,35 @@
     );
   }
 
+  function configureChartJsDefaults(colors) {
+    if (!window.Chart) return;
+    var defaults = Chart.defaults;
+    defaults.global.responsive = true;
+    defaults.global.maintainAspectRatio = false;
+    defaults.global.animation.duration = 2500;
+    defaults.scale.gridLines.color = colors.border;
+    defaults.scale.scaleLabel = defaults.scale.scaleLabel || {};
+    defaults.scale.scaleLabel.fontColor = colors.defaultText;
+    defaults.scale.ticks.fontColor = colors.defaultText;
+    defaults.scale.ticks.showLabelBackdrop = false;
+    defaults.line = defaults.line || {};
+    defaults.line.datasetFill = false;
+    defaults.radar = defaults.radar || {};
+    defaults.radar.scale = defaults.radar.scale || {};
+    defaults.radar.scale.pointLabels = defaults.radar.scale.pointLabels || {};
+    defaults.radar.scale.pointLabels.fontColor = colors.defaultText;
+    defaults.radar.scale.ticks = defaults.radar.scale.ticks || {};
+    defaults.radar.scale.ticks.maxTicksLimit = 5;
+    defaults.radar.scale.ticks.display = false;
+    defaults.bar = defaults.bar || {};
+    defaults.bar.tooltips = defaults.bar.tooltips || {};
+    defaults.bar.tooltips.enabled = false;
+  }
+
   var mountEl = null;
   window.mountChartJsReact = function (element, colors) {
     mountEl = element;
+    configureChartJsDefaults(colors);
     ReactDOM.render(h(ChartJsApp, { colors: colors }), element);
   };
   window.unmountChartJsReact = function () {
