@@ -235,7 +235,9 @@ function EditableCellsTable() {
     return data.slice().sort(function (a, b) {
       var va = a[sortCol];
       var vb = b[sortCol];
-      if (typeof va === 'number' && typeof vb === 'number') return sortAsc ? va - vb : vb - va;
+      var na = Number(va);
+      var nb = Number(vb);
+      if (!isNaN(na) && !isNaN(nb)) return sortAsc ? na - nb : nb - na;
       va = String(va).toLowerCase();
       vb = String(vb).toLowerCase();
       if (va < vb) return sortAsc ? -1 : 1;
@@ -366,7 +368,9 @@ function SmartTableWithFiltering() {
     return filtered.slice().sort(function (a, b) {
       var va = a[sortCol];
       var vb = b[sortCol];
-      if (typeof va === 'number' && typeof vb === 'number') return sortAsc ? va - vb : vb - va;
+      var na = Number(va);
+      var nb = Number(vb);
+      if (!isNaN(na) && !isNaN(nb)) return sortAsc ? na - nb : nb - na;
       va = String(va).toLowerCase();
       vb = String(vb).toLowerCase();
       if (va < vb) return sortAsc ? -1 : 1;
