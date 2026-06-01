@@ -245,7 +245,7 @@ function Buttons() {
                   return (
                     <section className="col-md-6" key={item.title}>
                       <span className="button-title" dangerouslySetInnerHTML={{ __html: item.title.replace(' horizontal', ' <br/>horizontal').replace(' vertical', ' <br/>vertical') }}></span>
-                      <ProgressButton className={'btn ' + item.btnClass} style={item.style}>Submit</ProgressButton>
+                      <ProgressButton className={'btn ' + item.btnClass} style={item.style} direction={item.direction}>Submit</ProgressButton>
                     </section>
                   );
                 })}

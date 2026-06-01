@@ -123,10 +123,21 @@ function ProgressModal({ isOpen, onClose }) {
   );
 }
 
+var toastColors = { success: '#51a351', info: '#2f96b4', warning: '#f89406', error: '#bd362f' };
+
 function Modals() {
   var [activeModal, setActiveModal] = useState(null);
+  var [toasts, setToasts] = useState([]);
 
   var close = useCallback(function () { setActiveModal(null); }, []);
+
+  var showToast = useCallback(function (type, title, msg) {
+    var id = Date.now();
+    setToasts(function (prev) { return [{ id: id, type: type, title: title, msg: msg }].concat(prev); });
+    setTimeout(function () {
+      setToasts(function (prev) { return prev.filter(function (t) { return t.id !== id; }); });
+    }, 5000);
+  }, []);
 
   return (
     <div className="widgets">
@@ -156,10 +167,10 @@ function Modals() {
         <div className="col-md-6">
           <Panel title="Notifications" panelClass="with-scroll">
             <div className="modal-buttons same-width clearfix">
-              <button type="button" className="btn btn-success" onClick={function () { alert('Your information has been saved successfully!'); }}>Success Notification</button>
-              <button type="button" className="btn btn-info" onClick={function () { alert("You've got a new email!"); }}>Info Notification</button>
-              <button type="button" className="btn btn-warning" onClick={function () { alert('Your computer is about to explode!'); }}>Warning Notification</button>
-              <button type="button" className="btn btn-danger" onClick={function () { alert("Your information hasn't been saved!"); }}>Danger Notification</button>
+              <button type="button" className="btn btn-success" onClick={function () { showToast('success', 'Success', 'Your information has been saved successfully!'); }}>Success Notification</button>
+              <button type="button" className="btn btn-info" onClick={function () { showToast('info', 'Info', "You've got a new email!"); }}>Info Notification</button>
+              <button type="button" className="btn btn-warning" onClick={function () { showToast('warning', 'Warning', 'Your computer is about to explode!'); }}>Warning Notification</button>
+              <button type="button" className="btn btn-danger" onClick={function () { showToast('error', 'Error', "Your information hasn't been saved!"); }}>Danger Notification</button>
             </div>
           </Panel>
         </div>
@@ -183,6 +194,18 @@ function Modals() {
       <MessageModal isOpen={activeModal === 'warning'} onClose={close} type="warning" title="Warning!" message="Better check yourself, you're not looking too good." />
       <MessageModal isOpen={activeModal === 'danger'} onClose={close} type="danger" title="Oh snap!" message="Change a few things up and try submitting again." />
       <ProgressModal isOpen={activeModal === 'progress'} onClose={close} />
+
+      <div style={{ position: 'fixed', top: 12, right: 12, zIndex: 9999, pointerEvents: 'none' }}>
+        {toasts.map(function (t) {
+          return (
+            <div key={t.id} className={'toast toast-' + t.type} style={{ pointerEvents: 'auto', position: 'relative', marginBottom: 6, padding: '15px 15px 15px 50px', minWidth: 300, borderRadius: 3, color: '#fff', background: toastColors[t.type] || '#333' }}>
+              <button type="button" style={{ position: 'absolute', right: 4, top: 2, color: '#fff', background: 'none', border: 'none', fontSize: 20, cursor: 'pointer' }} onClick={function () { setToasts(function (prev) { return prev.filter(function (x) { return x.id !== t.id; }); }); }}>&times;</button>
+              <div><strong>{t.title}</strong></div>
+              <div>{t.msg}</div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
