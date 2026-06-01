@@ -198,7 +198,7 @@ function MailPage() {
                   )}
                   <div className="answer-container">
                     <button type="button" className="btn btn-with-icon" onClick={function () { showCompose(selectedMessage.subject, selectedMessage.email, ''); }}><i className="ion-reply"></i>Reply</button>
-                    <button type="button" className="btn btn-with-icon" onClick={function () { showCompose(selectedMessage.subject, '', selectedMessage.body); }}><i className="ion-forward"></i>Forward</button>
+                    <button type="button" className="btn btn-with-icon" onClick={function () { showCompose(selectedMessage.subject, '', plainText(selectedMessage.body)); }}><i className="ion-forward"></i>Forward</button>
                     <button type="button" className="btn btn-with-icon"><i className="ion-printer"></i>Print</button>
                     <button type="button" className="btn btn-with-icon"><i className="ion-android-remove-circle"></i>Spam</button>
                     <button type="button" className="btn btn-with-icon"><i className="ion-android-delete"></i>Delete</button>

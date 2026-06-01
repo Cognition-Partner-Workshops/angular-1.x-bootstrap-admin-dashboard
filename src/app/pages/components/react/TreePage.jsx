@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Panel from './Panel';
 
 function getDefaultData() {
@@ -44,8 +44,6 @@ function getDragData() {
   ];
 }
 
-var newIdCounter = 0;
-
 function TreeNode({ node, nodes, selected, onSelect, level }) {
   var children = nodes.filter(function (n) { return n.parent === node.id; });
   var isFolder = node.type === 'folder';
@@ -87,12 +85,14 @@ function TreePage() {
   var [treeData, setTreeData] = useState(getDefaultData);
   var [dragData] = useState(getDragData);
   var [selected, setSelected] = useState(null);
+  var newIdCounterRef = useRef(0);
 
   function addNewNode() {
     if (!selected) return;
-    var newId = 'new_' + (++newIdCounter);
+    newIdCounterRef.current++;
+    var newId = 'new_' + newIdCounterRef.current;
     setTreeData(function (prev) {
-      return prev.concat([{ id: newId, parent: selected, type: 'default', text: 'New node ' + newIdCounter, opened: true }]);
+      return prev.concat([{ id: newId, parent: selected, type: 'default', text: 'New node ' + newIdCounterRef.current, opened: true }]);
     });
   }
 
@@ -109,7 +109,7 @@ function TreePage() {
   }
 
   function refresh() {
-    newIdCounter = 0;
+    newIdCounterRef.current = 0;
     setTreeData(getDefaultData());
     setSelected(null);
   }
