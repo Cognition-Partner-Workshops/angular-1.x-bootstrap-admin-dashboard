@@ -126,11 +126,11 @@ var latlong = {
 
 var LAYOUT_COLORS = {
   primary: '#209e91',
-  primaryDark: '#1a7e74',
+  primaryDark: '#1b867b',
   success: '#90b900',
   warning: '#dfb81c',
-  warningDark: '#b89516',
-  warningLight: '#e6c829',
+  warningDark: '#bd9c17',
+  warningLight: '#e8cd60',
   danger: '#e85656',
   info: '#2dacd1',
   defaultText: '#666666'
