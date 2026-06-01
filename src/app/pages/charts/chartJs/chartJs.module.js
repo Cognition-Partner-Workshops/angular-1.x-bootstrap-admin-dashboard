@@ -13,7 +13,7 @@
         $stateProvider
             .state('charts.chartJs', {
                 url: '/chartJs',
-                templateUrl: 'app/pages/charts/chartJs/chartJs.html',
+                template: '<chart-js-page></chart-js-page>',
                 title: 'Chart.js',
                 sidebarMeta: {
                     order: 200
