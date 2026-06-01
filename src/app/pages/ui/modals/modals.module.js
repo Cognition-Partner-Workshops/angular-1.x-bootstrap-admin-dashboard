@@ -13,8 +13,7 @@
     $stateProvider
         .state('ui.modals', {
           url: '/modals',
-          templateUrl: 'app/pages/ui/modals/modals.html',
-          controller: 'ModalsPageCtrl',
+          template: '<ui-modals></ui-modals>',
           title: 'Modals',
           sidebarMeta: {
             order: 300,
