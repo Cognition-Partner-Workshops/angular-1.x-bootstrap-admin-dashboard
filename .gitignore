@@ -53,3 +53,7 @@ build
 /src/release
 /release
 /bower_components
+
+# React webpack bundle
+src/app/pages/components/react/components-bundle.js
+src/app/pages/components/react/components-bundle.js.LICENSE.txt
