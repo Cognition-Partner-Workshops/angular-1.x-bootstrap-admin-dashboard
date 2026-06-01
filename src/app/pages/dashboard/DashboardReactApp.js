@@ -535,11 +535,11 @@
   // --- DashboardTodo component ---
   var nextTodoId = { current: 0 };
   function DashboardTodo() {
-    var todoState = React.useState(
-      initialTodos.map(function (item) {
+    var todoState = React.useState(function () {
+      return initialTodos.map(function (item) {
         return { id: nextTodoId.current++, text: item.text, color: getRandomColor(), deleted: false };
-      })
-    );
+      });
+    });
     var todoList = todoState[0];
     var setTodoList = todoState[1];
 
@@ -579,7 +579,7 @@
             onDelete: function () {
               setTodoList(function (prev) {
                 return prev.map(function (it, idx) {
-                  if (idx === i) return { text: it.text, color: it.color, deleted: true };
+                  if (idx === i) return { id: it.id, text: it.text, color: it.color, deleted: true };
                   return it;
                 });
               });
