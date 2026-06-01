@@ -13,12 +13,26 @@
     $stateProvider
       .state('components.timeline', {
         url: '/timeline',
-        templateUrl: 'app/pages/components/timeline/timeline.html',
-          title: 'Timeline',
-          sidebarMeta: {
-            icon: 'ion-ios-pulse',
-            order: 100,
-          },
+        template: '<div id="react-timeline-root"></div>',
+        controller: TimelineBridgeCtrl,
+        title: 'Timeline',
+        sidebarMeta: {
+          icon: 'ion-ios-pulse',
+          order: 100,
+        },
       });
+  }
+
+  /** @ngInject */
+  function TimelineBridgeCtrl($scope) {
+    var el = document.getElementById('react-timeline-root');
+    if (el && window.mountTimelineReact) {
+      window.mountTimelineReact(el);
+    }
+    $scope.$on('$destroy', function() {
+      if (window.unmountTimelineReact) {
+        window.unmountTimelineReact();
+      }
+    });
   }
 })();
