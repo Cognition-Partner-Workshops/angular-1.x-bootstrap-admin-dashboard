@@ -53,3 +53,6 @@ build
 /src/release
 /release
 /bower_components
+
+# React webpack bundles
+src/app/pages/dashboard/react/dashboard-bundle.js
