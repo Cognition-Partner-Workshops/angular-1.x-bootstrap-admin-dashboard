@@ -76,8 +76,11 @@ function Notifications() {
 
   var clearToasts = useCallback(function () { setOpenedToasts([]); }, []);
   var clearLastToast = useCallback(function () {
-    setOpenedToasts(function (prev) { return prev.slice(0, prev.length - 1); });
-  }, []);
+    setOpenedToasts(function (prev) {
+      if (prev.length === 0) return prev;
+      return options.newestOnTop ? prev.slice(1) : prev.slice(0, prev.length - 1);
+    });
+  }, [options.newestOnTop]);
 
   var dismissToast = useCallback(function (id) {
     setOpenedToasts(function (prev) { return prev.filter(function (t) { return t.id !== id; }); });
@@ -87,6 +90,7 @@ function Notifications() {
   var isTop = positionClass.indexOf('top') !== -1;
   var isRight = positionClass.indexOf('right') !== -1;
   var isCenter = positionClass.indexOf('center') !== -1;
+  var isFullWidth = positionClass.indexOf('full-width') !== -1;
 
   var containerStyle = {
     position: 'fixed',
@@ -95,7 +99,8 @@ function Notifications() {
   };
   if (isTop) containerStyle.top = '12px';
   else containerStyle.bottom = '12px';
-  if (isCenter) { containerStyle.left = '50%'; containerStyle.transform = 'translateX(-50%)'; }
+  if (isFullWidth) { containerStyle.left = 0; containerStyle.right = 0; }
+  else if (isCenter) { containerStyle.left = '50%'; containerStyle.transform = 'translateX(-50%)'; }
   else if (isRight) containerStyle.right = '12px';
   else containerStyle.left = '12px';
 
