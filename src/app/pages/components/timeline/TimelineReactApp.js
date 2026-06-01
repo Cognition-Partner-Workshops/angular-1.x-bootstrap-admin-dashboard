@@ -115,11 +115,13 @@
       };
     }, []);
 
-    return h('div', { 'ba-panel': '' },
-      h('section', { id: 'cd-timeline', className: 'cd-container cssanimations', ref: ref },
-        timelineData.map(function(item, i) {
-          return h(TimelineBlock, { key: i, item: item });
-        })
+    return h('div', { className: 'panel panel-default' },
+      h('div', { className: 'panel-body' },
+        h('section', { id: 'cd-timeline', className: 'cd-container cssanimations', ref: ref },
+          timelineData.map(function(item, i) {
+            return h(TimelineBlock, { key: i, item: item });
+          })
+        )
       )
     );
   }
