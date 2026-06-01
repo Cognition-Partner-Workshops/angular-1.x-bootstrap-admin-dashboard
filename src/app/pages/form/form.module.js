@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.form', ['ui.select', 'ngSanitize'])
+  angular.module('BlurAdmin.pages.form', [])
       .config(routeConfig);
 
   /** @ngInject */
@@ -23,7 +23,8 @@
         })
         .state('form.inputs', {
           url: '/inputs',
-          templateUrl: 'app/pages/form/inputs/inputs.html',
+          template: '<div id="react-form-root"></div>',
+          controller: 'FormBridgeCtrl',
           title: 'Form Inputs',
           sidebarMeta: {
             order: 0,
@@ -31,22 +32,36 @@
         })
         .state('form.layouts', {
           url: '/layouts',
-          templateUrl: 'app/pages/form/layouts/layouts.html',
+          template: '<div id="react-form-root"></div>',
+          controller: 'FormBridgeCtrl',
           title: 'Form Layouts',
           sidebarMeta: {
             order: 100,
           },
         })
-        .state('form.wizard',
-        {
+        .state('form.wizard', {
           url: '/wizard',
-          templateUrl: 'app/pages/form/wizard/wizard.html',
-          controller: 'WizardCtrl',
-          controllerAs: 'vm',
+          template: '<div id="react-form-root"></div>',
+          controller: 'FormBridgeCtrl',
           title: 'Form Wizard',
           sidebarMeta: {
             order: 200,
           },
         });
+  }
+
+  angular.module('BlurAdmin.pages.form').controller('FormBridgeCtrl', FormBridgeCtrl);
+
+  /** @ngInject */
+  function FormBridgeCtrl($scope) {
+    var el = document.getElementById('react-form-root');
+    if (el && window.mountFormReact) {
+      window.mountFormReact(el);
+    }
+    $scope.$on('$destroy', function () {
+      if (window.unmountFormReact) {
+        window.unmountFormReact();
+      }
+    });
   }
 })();
