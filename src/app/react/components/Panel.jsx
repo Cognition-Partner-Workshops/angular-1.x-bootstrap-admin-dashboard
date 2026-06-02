@@ -20,10 +20,14 @@
  */
 import React from 'react';
 
-export function Panel({ title, panelClass, children }) {
+export function Panel({ title, panelClass, baPanelTitle, children }) {
   var classes = 'panel ' + (panelClass || '');
+  var outerProps = { className: classes.trim() };
+  if (baPanelTitle) {
+    outerProps['ba-panel-title'] = baPanelTitle;
+  }
 
-  return React.createElement('div', { className: classes.trim() },
+  return React.createElement('div', outerProps,
     title
       ? React.createElement('div', { className: 'panel-heading clearfix' },
           React.createElement('h3', { className: 'panel-title' }, title)
