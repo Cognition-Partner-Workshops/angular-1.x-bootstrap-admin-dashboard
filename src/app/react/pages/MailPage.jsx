@@ -175,7 +175,7 @@ function ComposeModal(props) {
   useEffect(function () {
     setTo(initialTo || '');
     setSubject(initialSubject || '');
-  }, [initialTo, initialSubject]);
+  }, [initialTo, initialSubject, isOpen]);
 
   if (!isOpen) return null;
 
