@@ -45,14 +45,15 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 
-node_modules
+node_modules/
+bower_components/
+package-lock.json
 gulp.1
 build
 .tmp
 
 /src/release
 /release
-/bower_components
 
 # Playwright
 /test-results/
