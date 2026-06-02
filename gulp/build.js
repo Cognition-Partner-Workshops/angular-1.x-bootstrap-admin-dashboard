@@ -95,4 +95,10 @@ gulp.task('clean', function () {
   return $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')]);
 });
 
-gulp.task('build', ['html', 'fonts', 'other']);
+// Copy the webpack-built React bundle into the dist directory.
+gulp.task('copyReactBundle', function () {
+  return gulp.src('build/react/bundle.js')
+    .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
+});
+
+gulp.task('build', ['html', 'fonts', 'other', 'copyReactBundle']);

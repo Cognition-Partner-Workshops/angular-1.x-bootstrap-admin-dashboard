@@ -19,7 +19,11 @@ gulp.task('scripts', function() {
 });
 
 function buildScripts() {
-  return gulp.src(path.join(conf.paths.src, '/app/**/*.js'))
+  return gulp.src([
+    path.join(conf.paths.src, '/app/**/*.js'),
+    // React sources are ES modules bundled by webpack, not AngularJS scripts.
+    path.join('!' + conf.paths.src, '/app/react/**/*.js'),
+  ])
     .pipe($.eslint())
     .pipe($.eslint.format())
     .pipe($.size())
