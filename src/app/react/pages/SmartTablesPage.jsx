@@ -159,7 +159,11 @@ function EditableRowsTable() {
 
   var addUser = useCallback(function () {
     setRows(function (prev) {
-      var newUser = { id: prev.length + 1, name: '', status: null, group: null };
+      // Derive a unique id from the current max so ids stay stable after
+      // deletions (prev.length + 1 would collide once any row is removed,
+      // breaking React keys and editingId tracking).
+      var maxId = prev.reduce(function (m, u) { return Math.max(m, u.id); }, 0);
+      var newUser = { id: maxId + 1, name: '', status: null, group: null };
       var next = prev.concat([newUser]);
       setEditingId(newUser.id);
       setDraft(Object.assign({}, newUser));
