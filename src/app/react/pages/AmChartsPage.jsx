@@ -248,7 +248,7 @@ function buildPieConfig(layoutColors, pathToImages) {
   };
 }
 
-function buildFunnelConfig(layoutColors, layoutPaths) {
+function buildFunnelConfig(layoutColors, pathToImages) {
   return {
     type: 'funnel',
     theme: 'blur',
@@ -278,7 +278,7 @@ function buildFunnelConfig(layoutColors, layoutPaths) {
     balloonText: '[[title]]:<b>[[value]]</b>',
     export: { enabled: true },
     creditsPosition: 'bottom-left',
-    pathToImages: layoutPaths
+    pathToImages: pathToImages
   };
 }
 
@@ -489,7 +489,7 @@ export function AmChartsPage({ baConfig, layoutPaths }) {
     }
     made.push(pieChart);
 
-    var funnelChart = AmCharts.makeChart('funnelChart', buildFunnelConfig(layoutColors, layoutPaths));
+    var funnelChart = AmCharts.makeChart('funnelChart', buildFunnelConfig(layoutColors, pathToImages));
     made.push(funnelChart);
 
     var combinedChart = AmCharts.makeChart('zoomAxisChart', buildCombinedConfig(layoutColors, pathToImages));
