@@ -6,7 +6,8 @@
   'use strict';
 
   angular.module('BlurAdmin.pages.profile', [])
-      .config(routeConfig);
+      .config(routeConfig)
+      .directive('profilePageReact', profilePageReactDirective);
 
   /** @ngInject */
   function routeConfig($stateProvider) {
@@ -14,9 +15,19 @@
         .state('profile', {
           url: '/profile',
           title: 'Profile',
-          templateUrl: 'app/pages/profile/profile.html',
-          controller: 'ProfilePageCtrl',
+          template: '<profile-page-react></profile-page-react>',
         });
+  }
+
+  function profilePageReactDirective() {
+    return {
+      restrict: 'E',
+      link: function (scope, element) {
+        if (window.__mountProfilePage) {
+          window.__mountProfilePage(element[0]);
+        }
+      }
+    };
   }
 
 })();
