@@ -25,5 +25,5 @@ module.exports = {
       },
     ],
   },
-  externals: {},
+  // React is bundled directly (no CDN/UMD globals needed)
 };
