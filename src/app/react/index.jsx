@@ -14,6 +14,12 @@ export { useFileReader } from './hooks/useFileReader';
 export { profilePicture, PROFILE_IMAGES_ROOT } from './utils/profilePicture';
 export { colorHelper } from './utils/colorHelper';
 
+// Maps page components
+export { GoogleMapsPage } from './pages/GoogleMapsPage';
+export { LeafletMapsPage } from './pages/LeafletMapsPage';
+export { MapBubblesPage } from './pages/MapBubblesPage';
+export { MapLinesPage } from './pages/MapLinesPage';
+
 /**
  * Mount a React component tree into a DOM element.
  * Used by react2angular bridges and standalone React pages.
