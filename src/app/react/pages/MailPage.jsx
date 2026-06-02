@@ -390,10 +390,7 @@ export function MailPage() {
             React.createElement('button', { type: 'button', className: 'btn btn-with-icon' },
               React.createElement('i', { className: 'ion-android-delete' }), 'Delete')
           )
-        ),
-        !mail ? React.createElement('div', null,
-          React.createElement('h5', { className: 'text-center' }, 'Nothing to show')
-        ) : null
+        )
       );
     } else {
       content = React.createElement('div', {
