@@ -15,7 +15,6 @@
           url: '/tables',
           template : '<ui-view  autoscroll="true" autoscroll-body-top></ui-view>',
           abstract: true,
-          controller: 'TablesPageCtrl',
           title: 'Tables',
           sidebarMeta: {
             icon: 'ion-grid',
@@ -23,14 +22,14 @@
           },
         }).state('tables.basic', {
           url: '/basic',
-          templateUrl: 'app/pages/tables/basic/tables.html',
+          template: '<tables-basic-react></tables-basic-react>',
           title: 'Basic Tables',
           sidebarMeta: {
             order: 0,
           },
         }).state('tables.smart', {
           url: '/smart',
-          templateUrl: 'app/pages/tables/smart/tables.html',
+          template: '<tables-smart-react></tables-smart-react>',
           title: 'Smart Tables',
           sidebarMeta: {
             order: 100,
