@@ -111,7 +111,7 @@ export function FormWizardPage() {
     };
   }, []);
 
-  var usernameInvalid = !personal.username && (submitted[0] || personal.username !== undefined);
+  var usernameInvalid = !personal.username && submitted[0];
   var emailInvalid = (!personal.email || personal.email.indexOf('@') === -1) && submitted[0];
   var passwordInvalid = !personal.password && submitted[0];
   var confirmInvalid = personal.password !== personal.confirmPassword && submitted[0];
