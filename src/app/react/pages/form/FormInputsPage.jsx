@@ -48,8 +48,33 @@ function StandardFields() {
 }
 
 function TagsInput() {
+  var containerRef = useRef(null);
+
+  useEffect(function () {
+    var $ = window.jQuery;
+    if (!$ || !$.fn.tagsinput || !containerRef.current) {
+      return undefined;
+    }
+    var inputs = $(containerRef.current).find('input[data-role="tagsinput"]');
+    inputs.each(function () {
+      var input = $(this);
+      input.tagsinput({
+        tagClass: 'label label-' + input.attr('tag-input'),
+      });
+    });
+    return function () {
+      inputs.each(function () {
+        try {
+          $(this).tagsinput('destroy');
+        } catch (e) {
+          /* plugin not initialized */
+        }
+      });
+    };
+  }, []);
+
   return (
-    <div className="form-group">
+    <div className="form-group" ref={containerRef}>
       <div className="form-group">
         <input type="text" tag-input="primary" defaultValue="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" placeholder="Add Tag" />
       </div>
@@ -406,8 +431,26 @@ var OLD_SELECTS = [
 ];
 
 function OldSelects() {
+  var containerRef = useRef(null);
+
+  useEffect(function () {
+    var $ = window.jQuery;
+    if (!$ || !$.fn.selectpicker || !containerRef.current) {
+      return undefined;
+    }
+    var selects = $(containerRef.current).find('select.selectpicker');
+    selects.selectpicker({ dropupAuto: false, hideDisabled: true });
+    return function () {
+      try {
+        selects.selectpicker('destroy');
+      } catch (e) {
+        /* plugin not initialized */
+      }
+    };
+  }, []);
+
   return (
-    <div>
+    <div ref={containerRef}>
       {OLD_SELECTS.map(function (sel, i) {
         return (
           <div className="form-group" key={i}>

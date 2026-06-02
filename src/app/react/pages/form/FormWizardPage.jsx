@@ -6,7 +6,7 @@
  * step's form to be valid (HTML5 validity), mirroring the original
  * `isAvailiable()` / `isComplete()` gating in baWizardCtrl.
  */
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Panel } from '../../components/Panel';
 
 var STEP_TITLES = ['Personal info', 'Product Info', 'Shipment', 'Finish'];
@@ -14,7 +14,24 @@ var STEP_TITLES = ['Personal info', 'Product Info', 'Shipment', 'Finish'];
 export function FormWizardPage() {
   var [tabNum, setTabNum] = useState(0);
 
+  var containerRef = useRef(null);
   var formRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
+
+  useEffect(function () {
+    var $ = window.jQuery;
+    if (!$ || !$.fn.selectpicker || !containerRef.current) {
+      return undefined;
+    }
+    var selects = $(containerRef.current).find('select.selectpicker');
+    selects.selectpicker({ dropupAuto: false, hideDisabled: true });
+    return function () {
+      try {
+        selects.selectpicker('destroy');
+      } catch (e) {
+        /* plugin not initialized */
+      }
+    };
+  }, []);
 
   var lastTab = STEP_TITLES.length - 1;
   var progress = ((tabNum + 1) / STEP_TITLES.length) * 100;
@@ -54,7 +71,7 @@ export function FormWizardPage() {
   }
 
   return (
-    <div className="widgets">
+    <div className="widgets" ref={containerRef}>
       <div className="row">
         <div className="col-md-12">
           <Panel title="Form Wizard" panelClass="with-scroll">
