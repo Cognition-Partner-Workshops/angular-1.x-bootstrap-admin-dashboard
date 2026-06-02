@@ -13,8 +13,7 @@
     $stateProvider
         .state('ui.buttons', {
           url: '/buttons',
-          templateUrl: 'app/pages/ui/buttons/buttons.html',
-          controller: 'ButtonPageCtrl',
+          template: '<buttons-react></buttons-react>',
           title: 'Buttons',
           sidebarMeta: {
             order: 100,
