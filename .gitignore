@@ -50,6 +50,8 @@ bower_components/
 package-lock.json
 gulp.1
 build
+!build/react/
+!build/react/bundle.js
 .tmp
 
 /src/release
