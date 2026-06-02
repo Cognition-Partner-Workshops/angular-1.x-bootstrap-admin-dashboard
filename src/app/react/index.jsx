@@ -14,6 +14,11 @@ export { useFileReader } from './hooks/useFileReader';
 export { profilePicture, PROFILE_IMAGES_ROOT } from './utils/profilePicture';
 export { colorHelper } from './utils/colorHelper';
 
+// Migrated page components
+export { ComponentsTimeline } from './pages/ComponentsTimeline';
+export { ComponentsTree } from './pages/ComponentsTree';
+export { ComponentsMail } from './pages/ComponentsMail';
+
 /**
  * Mount a React component tree into a DOM element.
  * Used by react2angular bridges and standalone React pages.
