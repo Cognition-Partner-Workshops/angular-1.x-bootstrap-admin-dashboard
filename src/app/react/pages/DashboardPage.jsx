@@ -538,6 +538,8 @@ function BlurFeed() {
 
 // ======================== DashboardTodo ========================
 
+var todoIdCounter = 0;
+
 function DashboardTodo({ baConfig }) {
   var dashboardColors = baConfig.colors.dashboard;
   var transparent = baConfig.theme.blur;
@@ -569,14 +571,14 @@ function DashboardTodo({ baConfig }) {
       { text: 'Have fun with blur admin' },
       { text: 'What do you think?' },
     ].map(function (item) {
-      return { text: item.text, color: getRandomColor(), deleted: false };
+      return { id: ++todoIdCounter, text: item.text, color: getRandomColor(), deleted: false };
     });
   });
   var [newTodoText, setNewTodoText] = useState('');
 
   function addItem() {
     setTodoList(function (prev) {
-      return [{ text: newTodoText, color: getRandomColor(), deleted: false }].concat(prev);
+      return [{ id: ++todoIdCounter, text: newTodoText, color: getRandomColor(), deleted: false }].concat(prev);
     });
     setNewTodoText('');
   }
@@ -612,8 +614,8 @@ function DashboardTodo({ baConfig }) {
     h('i', { className: 'add-item-icon ion-plus-round', onClick: addItem }),
     h('div', { className: 'box-shadow-border' }),
     h('ul', { className: 'todo-list' },
-      visibleItems.map(function (item, i) {
-        return h('li', { key: i },
+      visibleItems.map(function (item) {
+        return h('li', { key: item.id },
           h('div', { className: 'blur-container' },
             h('div', { className: 'blur-box' })
           ),
