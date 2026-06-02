@@ -53,3 +53,10 @@ build
 /src/release
 /release
 /bower_components
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
