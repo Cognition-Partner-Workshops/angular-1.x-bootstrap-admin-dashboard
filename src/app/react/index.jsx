@@ -14,6 +14,13 @@ export { useFileReader } from './hooks/useFileReader';
 export { profilePicture, PROFILE_IMAGES_ROOT } from './utils/profilePicture';
 export { colorHelper } from './utils/colorHelper';
 
+// Migrated page components
+export { BasicTablesPage } from './pages/BasicTablesPage';
+export { SmartTablesPage } from './pages/SmartTablesPage';
+
+// React Router route map for migrated pages
+export { AppRoutes } from './routes';
+
 /**
  * Mount a React component tree into a DOM element.
  * Used by react2angular bridges and standalone React pages.
