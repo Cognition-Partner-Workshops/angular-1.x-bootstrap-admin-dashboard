@@ -13,7 +13,7 @@
     $stateProvider
         .state('charts.chartist', {
           url: '/chartist',
-          templateUrl: 'app/pages/charts/chartist/chartist.html',
+          template: '<charts-chartist-react></charts-chartist-react>',
           title: 'Chartist',
           sidebarMeta: {
             order: 100,
