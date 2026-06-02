@@ -552,7 +552,7 @@ function DashboardTodo({ baConfig }) {
   }
 
   function getRandomColor() {
-    var i = Math.floor(Math.random() * (colorsRef.current.length - 1));
+    var i = Math.floor(Math.random() * colorsRef.current.length);
     return colorsRef.current[i];
   }
 
