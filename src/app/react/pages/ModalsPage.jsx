@@ -68,6 +68,7 @@ function MessageModalContent({ onClose, type, icon, title, message }) {
 function ProgressModalContent({ onClose }) {
   var ref = useRef(null);
   var intervalRef = useRef(null);
+  var timerRef = useRef(null);
 
   useEffect(function () {
     var progress = 0;
@@ -79,10 +80,10 @@ function ProgressModalContent({ onClose }) {
       }
       if (progress >= 100) {
         clearInterval(intervalRef.current);
-        setTimeout(function () { onClose(); }, 500);
+        timerRef.current = setTimeout(function () { onClose(); }, 500);
       }
     }, 300);
-    return function () { if (intervalRef.current) clearInterval(intervalRef.current); };
+    return function () { clearInterval(intervalRef.current); clearTimeout(timerRef.current); };
   }, [onClose]);
 
   return React.createElement('div', { className: 'modal-content' },
