@@ -23,9 +23,15 @@
     return {
       restrict: 'E',
       link: function (scope, element) {
+        var root;
         if (window.__mountProfilePage) {
-          window.__mountProfilePage(element[0]);
+          root = window.__mountProfilePage(element[0]);
         }
+        scope.$on('$destroy', function () {
+          if (root) {
+            root.unmount();
+          }
+        });
       }
     };
   }
