@@ -25,9 +25,5 @@ module.exports = {
       },
     ],
   },
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM',
-    'react-dom/client': 'ReactDOM',
-  },
+  // React is bundled directly (no CDN/UMD globals needed)
 };
