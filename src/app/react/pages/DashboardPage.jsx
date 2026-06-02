@@ -56,7 +56,7 @@ function DashboardPieCharts({ baConfig }) {
         });
       });
 
-      $(containerRef.current).find('.pie-charts .chart').each(function (index, chart) {
+      $(containerRef.current).find('.chart').each(function (index, chart) {
         $(chart).data('easyPieChart').update(getRandomArbitrary(55, 90));
       });
     }, 1000);
