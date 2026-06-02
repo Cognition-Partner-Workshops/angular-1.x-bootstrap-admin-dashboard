@@ -13,7 +13,7 @@
     $stateProvider
         .state('ui.grid', {
           url: '/grid',
-          templateUrl: 'app/pages/ui/grid/grid.html',
+          template: '<ui-page-react></ui-page-react>',
           title: 'Grid',
           sidebarMeta: {
             order: 400,
