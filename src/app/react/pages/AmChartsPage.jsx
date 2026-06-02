@@ -414,6 +414,7 @@ function initCombinedChart() {
 
 export function AmChartsPage() {
   useEffect(function () {
+    if (typeof AmCharts === 'undefined') return;
     setupBlurTheme();
     initBarChart();
     initAreaChart();

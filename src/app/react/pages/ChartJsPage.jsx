@@ -147,12 +147,13 @@ export function ChartJsPage() {
   var intervalRef = useRef(null);
 
   useEffect(function () {
-    init1DChart('pie', 'pie');
-    init1DChart('doughnut', 'doughnut');
-    init1DChart('polar-area', 'polarArea');
-    initRadar2D('radar');
-    initLine2D('line');
-    initBar2D('bar');
+    var charts = [];
+    charts.push(init1DChart('pie', 'pie'));
+    charts.push(init1DChart('doughnut', 'doughnut'));
+    charts.push(init1DChart('polar-area', 'polarArea'));
+    charts.push(initRadar2D('radar'));
+    charts.push(initLine2D('line'));
+    charts.push(initBar2D('bar'));
 
     var waveData = [1, 9, 3, 4, 5, 6, 7, 8, 2].map(function (e) {
       return Math.sin(e) * 25 + 25;
@@ -225,6 +226,9 @@ export function ChartJsPage() {
       if (intervalRef.current) clearInterval(intervalRef.current);
       window.removeEventListener('focus', onFocus);
       window.removeEventListener('blur', onBlur);
+      charts.forEach(function (c) { if (c) c.destroy(); });
+      if (waveLineRef.current) { waveLineRef.current.destroy(); waveLineRef.current = null; }
+      if (waveBarsRef.current) { waveBarsRef.current.destroy(); waveBarsRef.current = null; }
     };
   }, []);
 
