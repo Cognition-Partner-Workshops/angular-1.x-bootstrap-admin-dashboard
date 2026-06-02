@@ -23,7 +23,15 @@ import React from 'react';
 export function Panel({ title, panelClass, children }) {
   var classes = 'panel ' + (panelClass || '');
 
-  return React.createElement('div', { className: classes.trim() },
+  var attrs = { className: classes.trim() };
+  if (title) {
+    attrs['ba-panel-title'] = title;
+  }
+  if (panelClass) {
+    attrs['ba-panel-class'] = panelClass;
+  }
+
+  return React.createElement('div', attrs,
     title
       ? React.createElement('div', { className: 'panel-heading clearfix' },
           React.createElement('h3', { className: 'panel-title' }, title)
