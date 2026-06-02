@@ -8,7 +8,7 @@
  * bar, prevent-duplicates, newest-on-top, timeouts, etc.) behaves identically.
  */
 import React from 'react';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { BaPanel } from '../components/BaPanel';
 
 var TYPES = ['success', 'error', 'info', 'warning'];
@@ -57,6 +57,18 @@ export function NotificationsPage({ toastr, toastrConfig, $rootScope }) {
   var [options, setOptions] = useState(DEFAULT_OPTIONS);
   var [optionsStr, setOptionsStr] = useState('');
   var openedToasts = useRef([]);
+
+  // Mirror the original controller: snapshot toastrConfig on mount and restore
+  // it on unmount so per-page toast settings don't leak into the global config
+  // (NotificationsPageCtrl.js:13 + $destroy handler at lines 106-108).
+  useEffect(function () {
+    if (!toastrConfig) { return undefined; }
+    var defaultConfig = {};
+    for (var k in toastrConfig) { defaultConfig[k] = toastrConfig[k]; }
+    return function () {
+      for (var dk in defaultConfig) { toastrConfig[dk] = defaultConfig[dk]; }
+    };
+  }, [toastrConfig]);
 
   var setOpt = function (key, value) {
     setOptions(function (prev) {
