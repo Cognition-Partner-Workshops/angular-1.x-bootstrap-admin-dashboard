@@ -10,6 +10,7 @@
   var h = React.createElement;
   var useState = React.useState;
   var useEffect = React.useEffect;
+  var useLayoutEffect = React.useLayoutEffect;
   var useRef = React.useRef;
   var Fragment = React.Fragment;
 
@@ -76,7 +77,7 @@
     var link = state[0];
     var setLink = state[1];
 
-    useEffect(function () {
+    useLayoutEffect(function () {
       if (props.isOpen) { setLink(''); }
     }, [props.isOpen]);
 
