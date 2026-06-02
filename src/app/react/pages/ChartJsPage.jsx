@@ -149,7 +149,7 @@ export function ChartJsPage() {
   useEffect(function () {
     init1DChart('pie', 'pie');
     init1DChart('doughnut', 'doughnut');
-    init1DChart('polarArea', 'polarArea');
+    init1DChart('polar-area', 'polarArea');
     initRadar2D('radar');
     initLine2D('line');
     initBar2D('bar');
