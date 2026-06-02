@@ -49,7 +49,7 @@ node_modules/
 bower_components/
 package-lock.json
 gulp.1
-build
+build/*
 !build/react/
 !build/react/bundle.js
 .tmp
