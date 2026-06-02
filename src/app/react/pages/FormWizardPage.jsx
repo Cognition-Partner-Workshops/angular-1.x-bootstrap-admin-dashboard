@@ -29,7 +29,7 @@ export function FormWizardPage() {
   var submitted = _sub[0];
   var setSubmitted = _sub[1];
 
-  var selectRef = useRef(null);
+  var stepsRef = useRef(null);
 
   var stepTitles = ['Personal info', 'Product Info', 'Shipment', 'Finish'];
   var totalSteps = stepTitles.length;
@@ -37,10 +37,14 @@ export function FormWizardPage() {
 
   useEffect(function () {
     var $ = window.jQuery;
-    if (!$ || !selectRef.current || !$.fn.selectpicker) return;
-    $(selectRef.current).find('select.selectpicker').each(function () {
-      $(this).selectpicker({ dropupAuto: false, hideDisabled: true });
-    });
+    if (!$ || !stepsRef.current || !$.fn.selectpicker) return;
+    try {
+      $(stepsRef.current).find('select.selectpicker').each(function () {
+        if (!$(this).data('selectpicker')) {
+          $(this).selectpicker({ dropupAuto: false, hideDisabled: true });
+        }
+      });
+    } catch (e) { /* plugin not available */ }
   }, [tabNum]);
 
   function markSubmitted(idx) {
@@ -150,7 +154,7 @@ export function FormWizardPage() {
                 })
               ),
               /* Steps */
-              React.createElement('div', { className: 'steps' },
+              React.createElement('div', { className: 'steps', ref: stepsRef },
                 /* Step 1: Personal Info */
                 React.createElement(WizardStep, { active: tabNum === 0 },
                   React.createElement('form', { name: 'personalInfoForm', noValidate: true },
@@ -216,7 +220,7 @@ export function FormWizardPage() {
                 ),
                 /* Step 2: Product Info */
                 React.createElement(WizardStep, { active: tabNum === 1 },
-                  React.createElement('form', { name: 'productInfoForm', noValidate: true, ref: selectRef },
+                  React.createElement('form', { name: 'productInfoForm', noValidate: true },
                     React.createElement('div', { className: 'row' },
                       React.createElement('div', { className: 'col-md-6' },
                         React.createElement('div', {
