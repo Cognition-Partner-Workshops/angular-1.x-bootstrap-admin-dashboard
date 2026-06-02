@@ -117,7 +117,7 @@ function TrafficChart({ baConfig }) {
   useEffect(function () {
     if (!canvasRef.current || !window.Chart) return;
     var ctx = canvasRef.current.getContext('2d');
-    window.myDoughnut = new window.Chart(ctx, {
+    var chartInstance = new window.Chart(ctx, {
       type: 'doughnut',
       data: doughnutData,
       options: {
@@ -126,6 +126,8 @@ function TrafficChart({ baConfig }) {
         elements: { arc: { borderWidth: 0 } }
       }
     });
+    window.myDoughnut = chartInstance;
+    return function () { chartInstance.destroy(); };
   }, []);
 
   var dataset = doughnutData.datasets[0];
@@ -176,7 +178,7 @@ function DashboardMap({ baConfig, layoutPaths }) {
     var AmCharts = window.AmCharts;
     if (!AmCharts) return;
 
-    AmCharts.makeChart('amChartMap', {
+    var mapChart = AmCharts.makeChart('amChartMap', {
       type: 'map',
       theme: 'blur',
       zoomControl: { zoomControlEnabled: false, panControlEnabled: false },
@@ -247,6 +249,7 @@ function DashboardMap({ baConfig, layoutPaths }) {
       creditsPosition: 'bottom-right',
       pathToImages: layoutPaths.images.amChart
     });
+    return function () { if (mapChart) mapChart.clear(); };
   }, []);
 
   return h('div', { id: 'amChartMap' });
@@ -366,6 +369,7 @@ function DashboardLineChart({ baConfig, layoutPaths }) {
     if (chart.zoomChart) {
       chart.zoomChart();
     }
+    return function () { if (chart) chart.clear(); };
   }, []);
 
   return h('div', { id: 'amchart' });
@@ -691,10 +695,11 @@ function DashboardCalendar({ baConfig }) {
         {
           title: 'Birthday Party',
           start: '2016-04-01T07:00:00',
-          color: dashboardColors.gossipDark
+          color: dashboardColors.gossip
         }
       ]
     });
+    return function () { $(calendarRef.current).fullCalendar('destroy'); };
   }, []);
 
   return h('div', { id: 'calendar', className: 'blurCalendar', ref: calendarRef });
