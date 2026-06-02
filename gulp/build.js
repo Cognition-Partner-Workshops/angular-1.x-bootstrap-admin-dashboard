@@ -91,8 +91,15 @@ gulp.task('other', ['copyVendorImages'], function () {
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
 });
 
+// Copy the webpack-built React bundle into the dist root so the
+// <script src="bundle.js"> tag in index.html resolves in the built app.
+gulp.task('copyReactBundle', function () {
+  return gulp.src('build/react/bundle.js')
+    .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
+});
+
 gulp.task('clean', function () {
   return $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')]);
 });
 
-gulp.task('build', ['html', 'fonts', 'other']);
+gulp.task('build', ['html', 'fonts', 'other', 'copyReactBundle']);

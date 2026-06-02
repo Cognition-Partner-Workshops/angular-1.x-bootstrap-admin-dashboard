@@ -47,8 +47,12 @@ browserSync.use(browserSyncSpa({
   selector: '[ng-app]'// Only needed for angular apps
 }));
 
+// build/react holds the webpack-built React bundle (bundle.js), served at the
+// site root so index.html's <script src="bundle.js"> resolves in dev/e2e.
+var reactBuildDir = 'build/react';
+
 gulp.task('serve', ['watch'], function () {
-  browserSyncInit([path.join(conf.paths.tmp, '/serve'), conf.paths.src]);
+  browserSyncInit([path.join(conf.paths.tmp, '/serve'), reactBuildDir, conf.paths.src]);
 });
 
 gulp.task('serve:dist', ['build'], function () {
@@ -56,7 +60,7 @@ gulp.task('serve:dist', ['build'], function () {
 });
 
 gulp.task('serve:e2e', ['inject'], function () {
-  browserSyncInit([conf.paths.tmp + '/serve', conf.paths.src], []);
+  browserSyncInit([conf.paths.tmp + '/serve', reactBuildDir, conf.paths.src], []);
 });
 
 gulp.task('serve:e2e-dist', ['build'], function () {
