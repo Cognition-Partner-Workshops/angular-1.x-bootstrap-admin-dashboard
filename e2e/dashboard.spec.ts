@@ -235,6 +235,7 @@ test.describe('Dashboard', () => {
 
   test('should display calendar events', async ({ page }) => {
     const events = page.locator('#calendar .fc-event');
+    await expect(events.first()).toBeAttached();
     const count = await events.count();
     expect(count).toBeGreaterThanOrEqual(1);
   });
