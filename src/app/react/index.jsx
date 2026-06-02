@@ -10,6 +10,7 @@ import { createRoot } from 'react-dom/client';
 
 // Shared components and utilities
 export { Panel } from './components/Panel';
+export { GlobeLoader } from './components/GlobeLoader';
 export { useFileReader } from './hooks/useFileReader';
 export { profilePicture, PROFILE_IMAGES_ROOT } from './utils/profilePicture';
 export { colorHelper } from './utils/colorHelper';

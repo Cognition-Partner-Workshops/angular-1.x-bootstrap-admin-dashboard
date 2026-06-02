@@ -6,13 +6,17 @@
  * are injected from AngularJS (baConfig, layoutPaths) via the react2angular
  * bridge so they are never read from window.
  */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Panel } from '../components/Panel';
+import { GlobeLoader } from '../components/GlobeLoader';
 
 export function MapLinesPage({ baConfig, layoutPaths }) {
+  var [loading, setLoading] = useState(true);
+
   useEffect(function () {
     var AmCharts = window.AmCharts;
     if (!AmCharts) {
+      setLoading(false);
       return undefined;
     }
         var layoutColors = baConfig.colors;
@@ -277,6 +281,7 @@ export function MapLinesPage({ baConfig, layoutPaths }) {
               },
               pathToImages: layoutPaths.images.amMap
             } );
+      setLoading(false);
     }, 100);
 
     return function () {
@@ -294,6 +299,9 @@ export function MapLinesPage({ baConfig, layoutPaths }) {
   return React.createElement(
     Panel,
     { title: 'Line Map', panelClass: 'viewport100' },
-    React.createElement('div', { id: 'map-lines' })
+    React.createElement('div', { style: { position: 'relative', height: '100%' } },
+      React.createElement('div', { id: 'map-lines' }),
+      loading ? React.createElement(GlobeLoader) : null
+    )
   );
 }
