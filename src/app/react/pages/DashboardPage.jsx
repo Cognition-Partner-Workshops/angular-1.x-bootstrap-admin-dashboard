@@ -574,9 +574,11 @@ function DashboardTodo({ baConfig }) {
     { text: 'What do you think?' },
   ];
 
+  var nextIdRef = useRef(initialTodos.length);
+
   var todoState = useState(function () {
-    return initialTodos.map(function (item) {
-      return { text: item.text, color: getRandomColor(), deleted: false };
+    return initialTodos.map(function (item, idx) {
+      return { id: idx, text: item.text, color: getRandomColor(), deleted: false };
     });
   });
   var todoList = todoState[0];
@@ -588,8 +590,9 @@ function DashboardTodo({ baConfig }) {
 
   var addToDoItem = useCallback(function (event, clickPlus) {
     if (clickPlus || (event && event.which === 13)) {
+      var id = nextIdRef.current++;
       setTodoList(function (prev) {
-        return [{ text: newTodoText, color: getRandomColor(), deleted: false }].concat(prev);
+        return [{ id: id, text: newTodoText, color: getRandomColor(), deleted: false }].concat(prev);
       });
       setNewTodoText('');
     }
@@ -614,7 +617,7 @@ function DashboardTodo({ baConfig }) {
     React.createElement('ul', { className: 'todo-list' },
       todoList.filter(function (item) { return !item.deleted; }).map(function (item, i) {
         return React.createElement(TodoItem, {
-          key: item.text + '-' + i,
+          key: item.id,
           item: item,
           onDelete: function () {
             setTodoList(function (prev) {
