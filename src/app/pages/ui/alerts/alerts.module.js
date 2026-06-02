@@ -13,7 +13,7 @@
     $stateProvider
         .state('ui.alerts', {
           url: '/alerts',
-          templateUrl: 'app/pages/ui/alerts/alerts.html',
+          template: '<alerts-react></alerts-react>',
           title: 'Alerts',
           sidebarMeta: {
             order: 500,
