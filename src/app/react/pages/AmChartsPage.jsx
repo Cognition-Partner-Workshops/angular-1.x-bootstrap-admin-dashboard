@@ -11,7 +11,7 @@ export function AmChartsPage({ baConfig }) {
     if (!AmCharts) return;
 
     // Bar Chart
-    AmCharts.makeChart('barChart', {
+    var barChart = AmCharts.makeChart('barChart', {
       type: 'serial',
       theme: 'blur',
       color: layoutColors.defaultText,
@@ -235,7 +235,7 @@ export function AmChartsPage({ baConfig }) {
     });
 
     // Funnel Chart
-    AmCharts.makeChart('funnelChart', {
+    var funnelChart = AmCharts.makeChart('funnelChart', {
       type: 'funnel',
       theme: 'blur',
       color: layoutColors.defaultText,
@@ -268,7 +268,7 @@ export function AmChartsPage({ baConfig }) {
     });
 
     // Combined Chart
-    AmCharts.makeChart('zoomAxisChart', {
+    var zoomAxisChart = AmCharts.makeChart('zoomAxisChart', {
       type: 'serial',
       theme: 'none',
       color: layoutColors.defaultText,
@@ -382,6 +382,12 @@ export function AmChartsPage({ baConfig }) {
       ],
       pathToImages: AMCHART_IMAGES
     });
+
+    return function () {
+      [barChart, areaChart, lineChart, pieChart, funnelChart, zoomAxisChart].forEach(function (chart) {
+        if (chart && chart.clear) chart.clear();
+      });
+    };
   }, []);
 
   return React.createElement('div', { className: 'widgets' },

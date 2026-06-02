@@ -94,6 +94,12 @@ export function MorrisPage({ baConfig }) {
         lineColors: colors
       });
     }
+
+    return function () {
+      [lineRef, donutRef, barRef, areaRef].forEach(function (ref) {
+        if (ref.current) ref.current.innerHTML = '';
+      });
+    };
   }, []);
 
   return React.createElement('section', null,
