@@ -236,28 +236,23 @@ function EditableCellsTable() {
   var [data, setData] = useState(function () {
     return smartTableData.slice(0, 36).map(function (d) { return Object.assign({}, d); });
   });
-  var [sortColumn, setSortColumn] = useState('id');
-  var [sortReverse, setSortReverse] = useState(false);
+  var [sortState, setSortState] = useState({ column: 'id', reverse: false });
   var [currentPage, setCurrentPage] = useState(1);
   var [editingCell, setEditingCell] = useState(null);
   var [editValue, setEditValue] = useState('');
   var itemsPerPage = 12;
 
   var sorted = useMemo(function () {
-    return sortData(data, sortColumn, sortReverse);
-  }, [data, sortColumn, sortReverse]);
+    return sortData(data, sortState.column, sortState.reverse);
+  }, [data, sortState]);
 
   var totalPages = Math.ceil(sorted.length / itemsPerPage);
   var pageData = sorted.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   var handleSort = useCallback(function (col) {
-    setSortColumn(function (prev) {
-      if (prev === col) {
-        setSortReverse(function (r) { return !r; });
-        return col;
-      }
-      setSortReverse(false);
-      return col;
+    setSortState(function (prev) {
+      if (prev.column === col) return { column: col, reverse: !prev.reverse };
+      return { column: col, reverse: false };
     });
     setCurrentPage(1);
   }, []);
@@ -382,8 +377,7 @@ function SmartTableWidget() {
   var [searchFilters, setSearchFilters] = useState({
     firstName: '', lastName: '', username: '', email: '', age: ''
   });
-  var [sortColumn, setSortColumn] = useState('id');
-  var [sortReverse, setSortReverse] = useState(false);
+  var [sortState, setSortState] = useState({ column: 'id', reverse: false });
   var [currentPage, setCurrentPage] = useState(1);
 
   var filtered = useMemo(function () {
@@ -401,21 +395,17 @@ function SmartTableWidget() {
   }, [searchFilters]);
 
   var sorted = useMemo(function () {
-    return sortData(filtered, sortColumn, sortReverse);
-  }, [filtered, sortColumn, sortReverse]);
+    return sortData(filtered, sortState.column, sortState.reverse);
+  }, [filtered, sortState]);
 
   var totalPages = Math.max(1, Math.ceil(sorted.length / pageSize));
   var safePage = Math.min(currentPage, totalPages);
   var pageData = sorted.slice((safePage - 1) * pageSize, safePage * pageSize);
 
   var handleSort = useCallback(function (col) {
-    setSortColumn(function (prev) {
-      if (prev === col) {
-        setSortReverse(function (r) { return !r; });
-        return col;
-      }
-      setSortReverse(false);
-      return col;
+    setSortState(function (prev) {
+      if (prev.column === col) return { column: col, reverse: !prev.reverse };
+      return { column: col, reverse: false };
     });
     setCurrentPage(1);
   }, []);
