@@ -71,7 +71,7 @@
   }
 
   function profilePicture(name) {
-    return 'assets/img/theme/no-photo.png';
+    return 'assets/img/app/profile/' + name + '.png';
   }
 
   function formatDate(dateStr, format) {
