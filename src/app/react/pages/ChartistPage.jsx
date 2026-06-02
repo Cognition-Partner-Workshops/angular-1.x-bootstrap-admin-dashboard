@@ -186,19 +186,25 @@ export function ChartistPage() {
   useEffect(function () {
     if (typeof Chartist === 'undefined') return;
 
-    setTimeout(function () {
-      new Chartist.Line('#line-chart', simpleLineData, simpleLineOptions);
-      new Chartist.Line('#area-chart', areaLineData, areaLineOptions);
-      new Chartist.Line('#bi-chart', biLineData, biLineOptions);
+    var charts = [];
+    var timerId = setTimeout(function () {
+      charts.push(new Chartist.Line('#line-chart', simpleLineData, simpleLineOptions));
+      charts.push(new Chartist.Line('#area-chart', areaLineData, areaLineOptions));
+      charts.push(new Chartist.Line('#bi-chart', biLineData, biLineOptions));
 
-      new Chartist.Bar('#simple-bar', simpleBarData, simpleBarOptions);
-      new Chartist.Bar('#multi-bar', multiBarData, multiBarOptions, multiBarResponsive);
-      new Chartist.Bar('#stacked-bar', stackedBarData, stackedBarOptions);
+      charts.push(new Chartist.Bar('#simple-bar', simpleBarData, simpleBarOptions));
+      charts.push(new Chartist.Bar('#multi-bar', multiBarData, multiBarOptions, multiBarResponsive));
+      charts.push(new Chartist.Bar('#stacked-bar', stackedBarData, stackedBarOptions));
 
-      new Chartist.Pie('#simple-pie', simplePieData, simplePieOptions, pieResponsive);
-      new Chartist.Pie('#label-pie', labelsPieData, labelsPieOptions);
-      new Chartist.Pie('#donut', simpleDonutData, simpleDonutOptions, donutResponsive);
+      charts.push(new Chartist.Pie('#simple-pie', simplePieData, simplePieOptions, pieResponsive));
+      charts.push(new Chartist.Pie('#label-pie', labelsPieData, labelsPieOptions));
+      charts.push(new Chartist.Pie('#donut', simpleDonutData, simpleDonutOptions, donutResponsive));
     }, 0);
+
+    return function () {
+      clearTimeout(timerId);
+      charts.forEach(function (c) { if (c && c.detach) c.detach(); });
+    };
   }, []);
 
   return React.createElement('section', { className: 'chartist' },

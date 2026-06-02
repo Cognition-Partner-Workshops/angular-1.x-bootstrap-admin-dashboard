@@ -177,6 +177,7 @@ function initAreaChart() {
   areaChart.addListener('dataUpdated', function () {
     areaChart.zoomToDates(new Date(2012, 0, 3), new Date(2012, 0, 11));
   });
+  return areaChart;
 }
 
 function initLineChart() {
@@ -232,6 +233,7 @@ function initLineChart() {
   if (lineChart.zoomChart) {
     lineChart.zoomChart();
   }
+  return lineChart;
 }
 
 function initPieChart() {
@@ -294,6 +296,7 @@ function initPieChart() {
     var wedge = e.dataItem.wedge.node;
     wedge.parentNode.appendChild(wedge);
   }
+  return pieChart;
 }
 
 function initFunnelChart() {
@@ -416,12 +419,17 @@ export function AmChartsPage() {
   useEffect(function () {
     if (typeof AmCharts === 'undefined') return;
     setupBlurTheme();
-    initBarChart();
-    initAreaChart();
-    initLineChart();
-    initPieChart();
-    initFunnelChart();
-    initCombinedChart();
+    var charts = [
+      initBarChart(),
+      initAreaChart(),
+      initLineChart(),
+      initPieChart(),
+      initFunnelChart(),
+      initCombinedChart()
+    ];
+    return function () {
+      charts.forEach(function (c) { if (c && c.clear) c.clear(); });
+    };
   }, []);
 
   return React.createElement('div', { className: 'widgets' },
