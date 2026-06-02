@@ -503,6 +503,7 @@ export function MapBubblesPage({ baConfig, layoutPaths }) {
           };
 
           setTimeout(function() {
+            if (cancelled) return;
             map.write('map-bubbles');
           }, 100);
       mapInstance = map;
