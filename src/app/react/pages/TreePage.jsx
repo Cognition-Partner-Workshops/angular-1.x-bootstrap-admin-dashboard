@@ -95,8 +95,9 @@ export function TreePage() {
     var inst = $basic.jstree(true);
     var selected = inst.get_selected()[0];
     if (selected) {
-      var id = (newIdRef.current++).toString();
-      inst.create_node(selected, { id: id, text: 'New node ' + (newIdRef.current), state: { opened: true } });
+      newIdRef.current++;
+      var id = newIdRef.current.toString();
+      inst.create_node(selected, { id: id, text: 'New node ' + id, state: { opened: true } });
     }
   }, []);
 
