@@ -340,7 +340,7 @@ export function AmChartsPage({ baConfig, layoutPaths }) {
       balloonText: '[[title]]:<b>[[value]]</b>',
       export: { enabled: true },
       creditsPosition: 'bottom-left',
-      pathToImages: layoutPaths
+      pathToImages: amChartImages
     }));
 
     charts.push(AmCharts.makeChart('zoomAxisChart', {
