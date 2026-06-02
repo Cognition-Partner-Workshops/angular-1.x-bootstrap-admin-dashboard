@@ -14,6 +14,20 @@ export { useFileReader } from './hooks/useFileReader';
 export { profilePicture, PROFILE_IMAGES_ROOT } from './utils/profilePicture';
 export { colorHelper } from './utils/colorHelper';
 
+// Migrated UI page module
+export { TypographyPage } from './pages/TypographyPage';
+export { ButtonsPage } from './pages/ButtonsPage';
+export { IconsPage } from './pages/IconsPage';
+export { ModalsPage } from './pages/ModalsPage';
+export { GridPage } from './pages/GridPage';
+export { AlertsPage } from './pages/AlertsPage';
+export { ProgressBarsPage } from './pages/ProgressBarsPage';
+export { NotificationsPage } from './pages/NotificationsPage';
+export { TabsPage } from './pages/TabsPage';
+export { SliderPage } from './pages/SliderPage';
+export { PanelsPage } from './pages/PanelsPage';
+export { UiRoutes } from './routes';
+
 /**
  * Mount a React component tree into a DOM element.
  * Used by react2angular bridges and standalone React pages.

@@ -13,8 +13,7 @@
     $stateProvider
         .state('ui.panels', {
           url: '/panels',
-          templateUrl: 'app/pages/ui/panels/panels.html',
-          controller: 'NotificationsPageCtrl',
+          template: '<ui-page-react></ui-page-react>',
           title: 'Panels',
           sidebarMeta: {
             order: 1100,

@@ -13,7 +13,7 @@
     $stateProvider
         .state('ui.tabs', {
           url: '/tabs',
-          templateUrl: 'app/pages/ui/tabs/tabs.html',
+          template: '<ui-page-react></ui-page-react>',
           title: 'Tabs & Accordions',
           sidebarMeta: {
             order: 800,
