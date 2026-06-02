@@ -285,7 +285,7 @@ export function ProfilePage() {
                   React.createElement('span', null, item.name),
                   React.createElement('em', {
                     className: 'ion-ios-close-empty sn-link-close',
-                    onMouseDown: function (e) { e.preventDefault(); e.stopPropagation(); unconnect(index); }
+                    onClick: function (e) { e.preventDefault(); e.stopPropagation(); unconnect(index); }
                   })
                 )
           );
