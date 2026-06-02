@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Panel } from '../components/Panel';
+import { GlobeSpinner } from '../components/GlobeSpinner';
 
 /**
  * Bubble Maps page (amCharts AmMap) — migrated from MapBubblePageCtrl.
@@ -7,6 +8,7 @@ import { Panel } from '../components/Panel';
  */
 export function MapBubblesPage({ baConfig, layoutPaths }) {
   const containerRef = useRef(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(function () {
     let cancelled = false;
@@ -505,6 +507,7 @@ export function MapBubblesPage({ baConfig, layoutPaths }) {
           setTimeout(function() {
             if (cancelled) return;
             map.write('map-bubbles');
+            setLoading(false);
           }, 100);
       mapInstance = map;
     }
@@ -519,6 +522,9 @@ export function MapBubblesPage({ baConfig, layoutPaths }) {
   }, [baConfig, layoutPaths]);
 
   return React.createElement(Panel, { title: 'Map with Bubbles', panelClass: 'viewport100' },
-    React.createElement('div', { id: 'map-bubbles', ref: containerRef })
+    React.createElement('div', { style: { position: 'relative' } },
+      React.createElement('div', { id: 'map-bubbles', ref: containerRef }),
+      React.createElement(GlobeSpinner, { visible: loading })
+    )
   );
 }

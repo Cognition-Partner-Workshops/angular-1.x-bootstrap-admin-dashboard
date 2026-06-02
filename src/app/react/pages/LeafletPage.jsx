@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Panel } from '../components/Panel';
+import { GlobeSpinner } from '../components/GlobeSpinner';
 
 /**
  * Leaflet Maps page — migrated from LeafletPageCtrl.
@@ -7,6 +8,7 @@ import { Panel } from '../components/Panel';
  */
 export function LeafletPage() {
   const containerRef = useRef(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(function () {
     let cancelled = false;
@@ -28,6 +30,8 @@ export function LeafletPage() {
       L.marker([51.5, -0.09]).addTo(map)
         .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
         .openPopup();
+
+      if (!cancelled) setLoading(false);
     }
 
     init();
@@ -39,6 +43,9 @@ export function LeafletPage() {
   }, []);
 
   return React.createElement(Panel, { title: 'Leaflet', panelClass: 'viewport100' },
-    React.createElement('div', { id: 'leaflet-map', ref: containerRef })
+    React.createElement('div', { style: { position: 'relative' } },
+      React.createElement('div', { id: 'leaflet-map', ref: containerRef }),
+      React.createElement(GlobeSpinner, { visible: loading })
+    )
   );
 }
