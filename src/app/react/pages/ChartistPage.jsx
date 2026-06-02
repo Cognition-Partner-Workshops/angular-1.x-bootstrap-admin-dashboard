@@ -93,7 +93,7 @@ var multiBarResponsive = [
   ['screen and (min-width: 400px)', {
     reverseData: true,
     horizontalBars: true,
-    axisX: { labelInterpolationFnc: function () { return ''; } },
+    axisX: { labelInterpolationFnc: function (value) { return value; } },
     axisY: { offset: 60 }
   }],
   ['screen and (min-width: 700px)', {
