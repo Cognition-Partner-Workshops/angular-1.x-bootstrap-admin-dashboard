@@ -27,6 +27,9 @@ gulp.task('inject', ['scripts', 'styles', 'injectAuth', 'inject404', 'copyVendor
     path.join(conf.paths.src, '/app/**/*.js'),
     path.join('!' + conf.paths.src, '/app/**/*.spec.js'),
     path.join('!' + conf.paths.src, '/app/**/*.mock.js'),
+    // React sources are ES modules bundled by webpack into build/react/bundle.js,
+    // not standalone scripts — never inject them as <script> tags.
+    path.join('!' + conf.paths.src, '/app/react/**/*.js'),
   ])
     /*.pipe($.angularFilesort())*/.on('error', conf.errorHandler('AngularFilesort'));
 

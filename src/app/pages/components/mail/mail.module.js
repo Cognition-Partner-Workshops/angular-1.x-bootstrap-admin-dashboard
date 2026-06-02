@@ -9,32 +9,23 @@
     .config(routeConfig);
 
   /** @ngInject */
-  function routeConfig($stateProvider,$urlRouterProvider) {
+  function routeConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('components.mail', {
-          url: '/mail',
-          abstract: true,
-          templateUrl: 'app/pages/components/mail/mail.html',
-          controller: "MailTabCtrl",
-          controllerAs: "tabCtrl",
+          url: '/mail/{label}/{id}',
+          params: {
+            label: { value: 'inbox', squash: false },
+            id: { value: null, squash: true }
+          },
+          template: '<components-mail-react></components-mail-react>',
           title: 'Mail',
           sidebarMeta: {
             order: 0,
           },
-        }).state('components.mail.label', {
-          url: '/:label',
-          templateUrl: 'app/pages/components/mail/list/mailList.html',
-          title: 'Mail',
-          controller: "MailListCtrl",
-          controllerAs: "listCtrl"
-        }).state('components.mail.detail', {
-          url: '/:label/:id',
-          templateUrl: 'app/pages/components/mail/detail/mailDetail.html',
-          title: 'Mail',
-          controller: "MailDetailCtrl",
-          controllerAs: "detailCtrl"
         });
-    $urlRouterProvider.when('/components/mail','/components/mail/inbox');
+    // The consolidated React state serves /components/mail/inbox directly;
+    // redirect the bare /components/mail URL to the default inbox folder.
+    $urlRouterProvider.when('/components/mail', '/components/mail/inbox');
   }
 
 })();
