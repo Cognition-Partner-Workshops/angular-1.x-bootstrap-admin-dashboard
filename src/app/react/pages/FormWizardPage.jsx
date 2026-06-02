@@ -68,9 +68,11 @@ export function FormWizardPage() {
     if (idx < 0 || idx >= totalSteps) return;
     markSubmitted(tabNum);
     if (idx > tabNum) {
-      if (tabNum === 0 && !isStep1Valid()) return;
-      if (tabNum === 1 && !isStep2Valid()) return;
-      if (tabNum === 2 && !isStep3Valid()) return;
+      for (var step = tabNum; step < idx; step++) {
+        if (step === 0 && !isStep1Valid()) return;
+        if (step === 1 && !isStep2Valid()) return;
+        if (step === 2 && !isStep3Valid()) return;
+      }
     }
     setTabNum(idx);
   }, [tabNum, personal, product, shipment, submitted]);
