@@ -1,0 +1,106 @@
+<div class="ba-panel">
+  <div class="ba-panel-header">Form Wizard</div>
+  <div class="ba-panel-body">
+    <div class="wizard-progress">
+      @for (step of [1, 2, 3, 4]; track step) {
+        <div class="wizard-step"
+             [class.active]="currentStep() === step"
+             [class.completed]="currentStep() > step"
+             (click)="goToStep(step)">
+          <div class="step-circle">{{ step }}</div>
+          <div class="step-label">
+            @switch (step) {
+              @case (1) { Personal Info }
+              @case (2) { Company Info }
+              @case (3) { Address }
+              @case (4) { Confirmation }
+            }
+          </div>
+        </div>
+      }
+    </div>
+
+    @switch (currentStep()) {
+      @case (1) {
+        <form [formGroup]="step1Form" class="wizard-form">
+          <h4>Personal Information</h4>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">First Name</label>
+              <input type="text" class="form-control" formControlName="firstName" placeholder="First Name">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Last Name</label>
+              <input type="text" class="form-control" formControlName="lastName" placeholder="Last Name">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" formControlName="email" placeholder="Email">
+          </div>
+        </form>
+      }
+      @case (2) {
+        <form [formGroup]="step2Form" class="wizard-form">
+          <h4>Company Information</h4>
+          <div class="mb-3">
+            <label class="form-label">Company</label>
+            <input type="text" class="form-control" formControlName="company" placeholder="Company name">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Position</label>
+            <input type="text" class="form-control" formControlName="position" placeholder="Position">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Phone</label>
+            <input type="tel" class="form-control" formControlName="phone" placeholder="Phone">
+          </div>
+        </form>
+      }
+      @case (3) {
+        <form [formGroup]="step3Form" class="wizard-form">
+          <h4>Address</h4>
+          <div class="mb-3">
+            <label class="form-label">Street Address</label>
+            <input type="text" class="form-control" formControlName="address" placeholder="Street address">
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">City</label>
+              <input type="text" class="form-control" formControlName="city" placeholder="City">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Country</label>
+              <input type="text" class="form-control" formControlName="country" placeholder="Country">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Zip Code</label>
+            <input type="text" class="form-control" formControlName="zipCode" placeholder="Zip Code">
+          </div>
+        </form>
+      }
+      @case (4) {
+        <div class="wizard-form confirmation">
+          <div class="text-center">
+            <i class="fa fa-check-circle confirmation-icon"></i>
+            <h4>Complete!</h4>
+            <p>Registration has been completed successfully.</p>
+          </div>
+        </div>
+      }
+    }
+
+    <div class="wizard-actions">
+      @if (currentStep() > 1 && currentStep() < 4) {
+        <button class="btn btn-outline-secondary" (click)="prevStep()">Previous</button>
+      }
+      @if (currentStep() < 3) {
+        <button class="btn btn-primary" (click)="nextStep()">Next</button>
+      }
+      @if (currentStep() === 3) {
+        <button class="btn btn-success" (click)="submit()">Submit</button>
+      }
+    </div>
+  </div>
+</div>

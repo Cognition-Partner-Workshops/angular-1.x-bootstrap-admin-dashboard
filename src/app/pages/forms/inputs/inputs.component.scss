@@ -1,0 +1,29 @@
+:host { display: block; }
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+
+  .badge {
+    font-size: 13px;
+    font-weight: 400;
+    padding: 6px 10px;
+    display: inline-flex;
+    align-items: center;
+
+    .btn-close {
+      font-size: 8px;
+      padding: 2px;
+    }
+  }
+}
+
+.form-switch .form-check-input {
+  width: 3em;
+  height: 1.5em;
+  &:checked {
+    background-color: #209e91;
+    border-color: #209e91;
+  }
+}
