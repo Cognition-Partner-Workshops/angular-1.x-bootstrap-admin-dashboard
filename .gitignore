@@ -53,3 +53,9 @@ build
 /src/release
 /release
 /bower_components
+legacy/
+node_modules/
+dist/
+.angular/
+legacy/
+node_modules/
