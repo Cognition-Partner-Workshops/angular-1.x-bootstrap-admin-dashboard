@@ -1,0 +1,19 @@
+<div class="row pie-charts-row">
+  @for (chart of charts; track chart.title) {
+    <div class="col-xl-4 col-md-4 col-12">
+      <div class="pie-chart-item">
+        <div class="chart-wrapper">
+          <canvas baseChart
+            [data]="chart.data"
+            [options]="chartOptions"
+            type="doughnut">
+          </canvas>
+          <div class="chart-center-text">
+            <span class="value" [style.color]="chart.color">{{ chart.value }}</span>
+          </div>
+        </div>
+        <div class="chart-label">{{ chart.title }}</div>
+      </div>
+    </div>
+  }
+</div>

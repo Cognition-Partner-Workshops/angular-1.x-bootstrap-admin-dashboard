@@ -1,0 +1,34 @@
+.pie-charts-row {
+  margin-bottom: 24px;
+}
+
+.pie-chart-item {
+  text-align: center;
+  padding: 20px;
+
+  .chart-wrapper {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 10px;
+  }
+
+  .chart-center-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    .value {
+      font-size: 24px;
+      font-weight: 300;
+    }
+  }
+
+  .chart-label {
+    font-size: 16px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 8px;
+  }
+}
