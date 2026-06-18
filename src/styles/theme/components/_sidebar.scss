@@ -1,0 +1,144 @@
+$sidebar-width: 180px;
+
+.al-sidebar {
+  width: $sidebar-width;
+  top: $top-height;
+  left: 0;
+  z-index: 904;
+  display: block;
+  min-height: 100%;
+  background-color: $sidebar;
+  height: 100%;
+  position: fixed;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: width 0.3s ease;
+}
+
+.al-sidebar-list {
+  margin: 0;
+  padding: 18px 0 0 0;
+  list-style: none;
+}
+
+.al-sidebar-sublist {
+  padding: 0;
+  list-style: none;
+  display: none;
+  &.expanded {
+    display: block;
+  }
+  > li {
+    display: block;
+    a {
+      display: block;
+      text-shadow: none;
+      font-size: 13px;
+      text-decoration: none;
+      color: $sidebar-text;
+      padding-left: 52px;
+      height: auto;
+      line-height: 29px;
+      &:hover {
+        color: $primary;
+      }
+    }
+    &.selected > a {
+      border: none;
+      background-color: $primary;
+      color: $sidebar-text;
+    }
+  }
+}
+
+.al-sidebar-list-item {
+  display: block;
+  position: relative;
+  float: none;
+  padding: 0;
+
+  &.selected:not(.with-sub-menu) {
+    background-color: $primary;
+    a.al-sidebar-list-link {
+      color: $sidebar-text;
+    }
+  }
+
+  &.ba-sidebar-item-expanded {
+    > .al-sidebar-list-link b {
+      transform: rotate(180deg);
+    }
+    > .al-sidebar-sublist {
+      display: block;
+    }
+  }
+}
+
+a.al-sidebar-list-link {
+  display: block;
+  height: 42px;
+  padding-left: 18px;
+  text-shadow: none;
+  font-size: 13px;
+  text-decoration: none;
+  color: $sidebar-text;
+  line-height: 42px;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+
+  &:hover {
+    color: $primary;
+    b { color: $primary; }
+  }
+
+  i {
+    margin-right: 18px;
+    width: 16px;
+    display: inline-block;
+  }
+
+  b {
+    display: block;
+    opacity: 1;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    text-shadow: none;
+    font-size: 18px;
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    padding: 0;
+    text-align: center;
+    color: $sidebar-text;
+    transition: transform 0.2s linear;
+  }
+}
+
+.sidebar-hover-elem {
+  width: 4px;
+  background: $primary;
+  position: absolute;
+  top: -150px;
+  left: 176px;
+  transition: all 0.5s ease;
+  transition-property: top, height;
+  height: 42px;
+  display: block;
+}
+
+@media (max-width: $resXS) {
+  .al-sidebar {
+    width: 0;
+    &.sidebar-visible {
+      width: $sidebar-width;
+    }
+  }
+}
+
+@media (max-width: 1200px) and (min-width: $resXS + 1) {
+  .al-sidebar {
+    width: $sidebar-width;
+  }
+}

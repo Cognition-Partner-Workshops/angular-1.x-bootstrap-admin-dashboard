@@ -1,0 +1,19 @@
+.ba-panel {
+  background-color: $bootstrap-panel-bg;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.25);
+  margin-bottom: 24px;
+  color: $bootstrap-panel-text;
+
+  .ba-panel-header {
+    padding: 15px 22px 8px;
+    color: $default-text;
+    font-weight: $font-light;
+    font-size: 18px;
+  }
+
+  .ba-panel-body {
+    padding: 0 22px 15px;
+  }
+}

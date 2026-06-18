@@ -1,0 +1,32 @@
+<aside class="al-sidebar" [class.sidebar-visible]="sidebarVisible()">
+  <ul class="al-sidebar-list">
+    @for (item of menuItems; track item.title) {
+      <li class="al-sidebar-list-item"
+          [class.with-sub-menu]="!!item.children"
+          [class.ba-sidebar-item-expanded]="item.expanded"
+          [class.selected]="!item.children">
+        @if (item.route && !item.children) {
+          <a class="al-sidebar-list-link" [routerLink]="item.route" routerLinkActive="selected">
+            <i [class]="item.icon"></i>
+            <span>{{ item.title }}</span>
+          </a>
+        } @else {
+          <a class="al-sidebar-list-link" (click)="toggleItem(item)">
+            <i [class]="item.icon"></i>
+            <span>{{ item.title }}</span>
+            <b class="fa fa-angle-down"></b>
+          </a>
+          @if (item.children) {
+            <ul class="al-sidebar-sublist" [class.expanded]="item.expanded">
+              @for (child of item.children; track child.title) {
+                <li>
+                  <a [routerLink]="child.route" routerLinkActive="selected">{{ child.title }}</a>
+                </li>
+              }
+            </ul>
+          }
+        }
+      </li>
+    }
+  </ul>
+</aside>
