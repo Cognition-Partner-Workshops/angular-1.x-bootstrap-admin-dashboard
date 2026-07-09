@@ -1,0 +1,46 @@
+// Ported from the legacy `src/sass/theme/dashboard/_amChartMap.scss`
+// (#amChartMap { width: 100%; height: 315px; }) plus the legacy legend styling
+// (baConfig.colors.border background at 0.3 alpha with a solid border).
+
+$border: #dddddd;
+$default-text: #666666;
+
+.dashboard-map {
+  display: flex;
+  flex-direction: column;
+
+  &__chart {
+    width: 100%;
+    height: 315px;
+  }
+
+  &__legend {
+    list-style: none;
+    margin: 10px 0 0;
+    padding: 8px 27px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    background-color: rgba($border, 0.3);
+    border: 1px solid $border;
+    color: $default-text;
+    font-size: 12px;
+  }
+
+  &__legend-item {
+    display: flex;
+    align-items: center;
+  }
+
+  &__legend-swatch {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 6px;
+    border-radius: 2px;
+  }
+
+  &__legend-label {
+    line-height: 14px;
+  }
+}

@@ -1,0 +1,240 @@
+// Ported from legacy src/sass/theme/dashboard/_blurFeed.scss.
+// Palette resolved from the active legacy color scheme (mint):
+//   $default-text: #666666; $help-text: #949494;
+//   $danger: #e85656; $success: #90b900; $primary: #209e91; $font-light: 300.
+
+$default-text: #666666;
+$help-text: #949494;
+$danger: #e85656;
+$success: #90b900;
+$primary: #209e91;
+$font-light: 300;
+
+:host {
+  display: block;
+}
+
+.feed-messages-container {
+  padding: 10px 0;
+}
+
+.feed-message {
+  $text-message-color: $default-text;
+  $video-message-color: $danger;
+  $image-message-color: $success;
+  $geo-message-color: $primary;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  .message-icon {
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    float: left;
+    position: relative;
+    margin-left: 20px;
+
+    > .photo-icon,
+    .media-icon {
+      display: block;
+      border-radius: 30px;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .sub-photo-icon {
+      display: inline-block;
+      padding: 4px;
+
+      &:after {
+        content: '';
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+
+      &.video-message {
+        background: $video-message-color;
+
+        &:after {
+          background-image: url('./images/feed-video.svg');
+        }
+      }
+
+      &.image-message {
+        background: $image-message-color;
+
+        &:after {
+          width: 21px;
+          height: 21px;
+          margin-top: 1px;
+          margin-left: 1px;
+          border-radius: 5px;
+          background-image: url('./images/feed-image.svg');
+        }
+      }
+
+      &.geo-message {
+        background: $geo-message-color;
+
+        &:after {
+          width: 22px;
+          height: 22px;
+          background-image: url('./images/feed-location.svg');
+        }
+      }
+    }
+
+    .sub-photo-icon {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      right: -2px;
+      bottom: -4px;
+      border-radius: 15px;
+    }
+  }
+
+  .text-block {
+    cursor: pointer;
+    position: relative;
+    border-radius: 5px;
+    margin: 0 0 0 80px;
+    padding: 5px 20px;
+    color: $default-text;
+    width: 280px;
+    height: 70px;
+
+    &.text-message {
+      font-size: 12px;
+      width: inherit;
+      max-width: calc(100% - 80px);
+      height: inherit;
+      min-height: 60px;
+
+      &:before {
+        display: block;
+      }
+
+      .message-content {
+        font-size: 12px;
+        line-height: 15px;
+        font-weight: $font-light;
+      }
+    }
+  }
+
+  .message-header {
+    font-size: 12px;
+    padding-bottom: 5px;
+
+    .author {
+      font-size: 13px;
+      padding-right: 5px;
+    }
+  }
+
+  .message-content {
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  .preview {
+    transition: 0s linear all;
+    display: block;
+
+    a {
+      display: block;
+      width: 100%;
+    }
+
+    .preview-img {
+      display: block;
+      margin-top: 10px;
+      width: 100%;
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .message-time {
+    width: 100%;
+    left: 0;
+    font-size: 11px;
+    padding-top: 10px;
+    color: $help-text;
+    margin-bottom: 5px;
+    overflow: hidden;
+
+    .post-time {
+      float: left;
+    }
+
+    .ago-time {
+      float: right;
+    }
+  }
+}
+
+// Author avatars (legacy: author | profilePicture -> assets/img/app/profile/<author>.png)
+.avatar--Kostya    { background-image: url('./images/Kostya.png'); }
+.avatar--Andrey    { background-image: url('./images/Andrey.png'); }
+.avatar--Vlad      { background-image: url('./images/Vlad.png'); }
+.avatar--Nasta     { background-image: url('./images/Nasta.png'); }
+.avatar--Nick      { background-image: url('./images/Nick.png'); }
+.avatar--Alexander { background-image: url('./images/Alexander.png'); }
+
+// Preview images (legacy: preview | appImage -> assets/img/app/feed/<file>)
+.preview--vader-and-me-preview { background-image: url('./images/vader-and-me-preview.png'); }
+.preview--my-little-kitten     { background-image: url('./images/my-little-kitten.png'); }
+.preview--new-york-location    { background-image: url('./images/new-york-location.png'); }
+.preview--genom                { background-image: url('./images/genom.png'); }
+
+// Line clamp (ported from _blurFeed.scss)
+.line-clamp {
+  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  position: relative;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 !important;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .line-clamp:after {
+    content: '...';
+    text-align: right;
+    bottom: 0;
+    right: 0;
+    width: 25%;
+    display: block;
+    position: absolute;
+    height: calc(1em * 1.2);
+  }
+}
+
+@supports (-webkit-line-clamp: 1) {
+  .line-clamp:after {
+    display: none !important;
+  }
+}
+
+.line-clamp-2 {
+  -webkit-line-clamp: 2;
+  height: calc(1em * 1.2 * 2);
+}

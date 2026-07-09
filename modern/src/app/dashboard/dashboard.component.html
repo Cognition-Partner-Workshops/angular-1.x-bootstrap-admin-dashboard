@@ -1,0 +1,51 @@
+<section class="dashboard">
+  <app-dashboard-pie-chart></app-dashboard-pie-chart>
+
+  <div class="row">
+    <div class="col col-lg-6">
+      <app-ba-panel title="Acquisition Channels" panelClass="medium-panel traffic-panel">
+        <app-traffic-chart></app-traffic-chart>
+      </app-ba-panel>
+    </div>
+    <div class="col col-lg-6">
+      <app-ba-panel title="Users by Country" panelClass="medium-panel">
+        <app-dashboard-map></app-dashboard-map>
+      </app-ba-panel>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col col-xlg-9 col-lg-6">
+      <div class="row">
+        <div class="col col-xlg-8 col-lg-12">
+          <app-ba-panel title="Revenue" panelClass="medium-panel">
+            <app-dashboard-line-chart></app-dashboard-line-chart>
+          </app-ba-panel>
+        </div>
+        <div class="col col-xlg-4 col-lg-12">
+          <app-ba-panel panelClass="popular-app medium-panel">
+            <app-popular-app></app-popular-app>
+          </app-ba-panel>
+        </div>
+      </div>
+    </div>
+    <div class="col col-xlg-3 col-lg-6">
+      <app-ba-panel title="Feed" panelClass="large-panel with-scroll feed-panel">
+        <app-blur-feed></app-blur-feed>
+      </app-ba-panel>
+    </div>
+  </div>
+
+  <div class="row shift-up">
+    <div class="col col-xlg-3 col-lg-6">
+      <app-ba-panel title="To Do List" panelClass="xmedium-panel feed-comply-panel with-scroll todo-panel">
+        <app-dashboard-todo></app-dashboard-todo>
+      </app-ba-panel>
+    </div>
+    <div class="col col-xlg-6 col-lg-6">
+      <app-ba-panel title="Calendar" panelClass="xmedium-panel feed-comply-panel with-scroll calendar-panel">
+        <app-dashboard-calendar></app-dashboard-calendar>
+      </app-ba-panel>
+    </div>
+  </div>
+</section>

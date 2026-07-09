@@ -1,0 +1,2 @@
+# Shared components (e.g. ba-panel) live here.
+# ba-panel: src/app/shared/ba-panel/ba-panel.component.ts (selector app-ba-panel)

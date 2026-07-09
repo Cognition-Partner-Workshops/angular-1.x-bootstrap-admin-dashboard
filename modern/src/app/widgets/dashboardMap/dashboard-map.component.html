@@ -1,0 +1,12 @@
+<div class="dashboard-map">
+  <div #chartDiv class="dashboard-map__chart"></div>
+
+  <ul class="dashboard-map__legend">
+    @for (item of legend; track item.title) {
+      <li class="dashboard-map__legend-item">
+        <span class="dashboard-map__legend-swatch" [style.background-color]="item.color"></span>
+        <span class="dashboard-map__legend-label">{{ item.title }}</span>
+      </li>
+    }
+  </ul>
+</div>

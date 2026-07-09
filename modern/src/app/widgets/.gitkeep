@@ -1,0 +1,2 @@
+# Ported dashboard widgets live here.
+# Each widget: src/app/widgets/<widgetName>/<widget-name>.component.ts (+ .html + .scss)

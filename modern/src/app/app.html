@@ -1,0 +1,22 @@
+<div class="al-app">
+  <aside class="al-sidebar">
+    <div class="al-sidebar__logo">Blur Admin</div>
+    <nav class="al-sidebar__nav">
+      <ul>
+        <li class="al-sidebar__item is-active">
+          <a routerLink="/dashboard">Dashboard</a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <div class="al-main">
+    <header class="al-topbar">
+      <span class="al-topbar__title">{{ title() }}</span>
+    </header>
+
+    <main class="al-content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

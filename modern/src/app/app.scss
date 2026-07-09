@@ -1,0 +1,81 @@
+:host {
+  display: block;
+}
+
+$sidebar-width: 220px;
+$topbar-height: 56px;
+$sidebar-bg: #34495e;
+$sidebar-fg: #d7dce3;
+$content-bg: #eef1f5;
+
+.al-app {
+  min-height: 100vh;
+}
+
+.al-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: $sidebar-width;
+  background: $sidebar-bg;
+  color: $sidebar-fg;
+  overflow-y: auto;
+
+  &__logo {
+    height: $topbar-height;
+    display: flex;
+    align-items: center;
+    padding: 0 1.25rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.15);
+  }
+
+  &__nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 0;
+  }
+
+  &__item a {
+    display: block;
+    padding: 0.75rem 1.25rem;
+    color: $sidebar-fg;
+    text-decoration: none;
+  }
+
+  &__item.is-active a,
+  &__item a:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+  }
+}
+
+.al-main {
+  margin-left: $sidebar-width;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: $content-bg;
+}
+
+.al-topbar {
+  height: $topbar-height;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  background: #fff;
+  border-bottom: 1px solid #dde3ea;
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}
+
+.al-content {
+  flex: 1;
+  padding: 1.5rem;
+}

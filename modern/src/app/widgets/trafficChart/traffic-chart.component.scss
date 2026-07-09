@@ -1,0 +1,172 @@
+// Ported from the legacy Blur Admin traffic-chart styles:
+//   src/sass/theme/dashboard/_trafficChart.scss
+// with blur-theme variable values inlined from
+//   src/sass/theme/conf/colorScheme/_blur.scss and _variables.scss.
+
+// --- blur theme variables (inlined) ---
+$default-text: #ffffff;
+$progress-background: rgba(#000000, 0.15);
+$progress-default: #ffffff;
+$resM: 768px;
+
+:host {
+  display: block;
+}
+
+.channels-block {
+  width: 100%;
+  position: relative;
+}
+
+.chart-bg {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  left: 60px;
+  top: 60px;
+  border-radius: 100px;
+  background-color: transparent;
+}
+
+.channels-info {
+  display: inline-block;
+  width: calc(100% - 370px);
+  margin-left: 70px;
+  margin-top: -20px;
+}
+
+.channels-info-item {
+  p {
+    margin-bottom: 9px;
+    font-size: 18px;
+    opacity: 0.9;
+  }
+
+  .channel-number {
+    display: inline-block;
+    float: right;
+  }
+}
+
+.traffic-chart {
+  width: 300px;
+  position: relative;
+  min-height: 300px;
+  float: left;
+}
+
+.canvas-holder {
+  display: inline-block;
+  width: 300px;
+  height: 300px;
+  position: relative;
+  float: left;
+}
+
+.traffic-text {
+  width: 100%;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -24px;
+  line-height: 24px;
+  text-align: center;
+  font-size: 18px;
+
+  span {
+    display: block;
+    font-size: 18px;
+    color: $default-text;
+  }
+}
+
+.channel-progress {
+  height: 4px;
+  border-radius: 0;
+  width: 100%;
+  margin-bottom: 0;
+  background-color: $progress-background;
+  box-shadow: none;
+
+  .progress-bar {
+    height: 4px;
+    background-color: $progress-default;
+    box-shadow: none;
+  }
+}
+
+// Bootstrap 3 .progress base used by the legacy template, scoped locally.
+.progress {
+  overflow: hidden;
+  display: block;
+}
+
+.legend-color {
+  width: 30px;
+  height: 30px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25);
+  position: relative;
+  top: 27px;
+  border-radius: 15px;
+  left: -45px;
+}
+
+@media (max-width: $resM) {
+  div.channels-info {
+    display: block;
+    width: calc(100% - 88px);
+    margin-top: -65px;
+    margin-bottom: 10px;
+  }
+
+  .traffic-chart {
+    position: inherit;
+    float: none;
+    margin: 0 auto;
+  }
+
+  .chart-bg {
+    left: calc(50% - 90px);
+  }
+}
+
+@media (max-width: 1465px) and (min-width: 1199px) {
+  .channels-info {
+    display: none;
+  }
+
+  .traffic-chart {
+    position: inherit;
+    float: none;
+    margin: 0 auto;
+  }
+
+  .chart-bg {
+    left: calc(50% - 90px);
+  }
+}
+
+@media (max-width: 380px) {
+  .traffic-chart {
+    width: 240px;
+  }
+
+  .canvas-holder {
+    width: 240px;
+    height: 240px;
+  }
+
+  .chart-bg {
+    top: 30px;
+  }
+}
+
+@media (max-width: 320px) {
+  .chart-bg {
+    left: 50px;
+    top: 50px;
+    width: 142px;
+    height: 142px;
+  }
+}
