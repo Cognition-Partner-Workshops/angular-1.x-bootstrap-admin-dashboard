@@ -1,14 +1,68 @@
+// Modern port of the legacy Blur Admin dashboard layout
+// (legacy: src/app/pages/dashboard/dashboard.html + Bootstrap-3 grid).
+//
+// The modern workspace ships no Bootstrap, so the responsive 12-column grid is
+// reproduced here with flexbox. Breakpoints approximate the legacy ones:
+//   - < 992px            → columns stack full width (tablet/mobile)
+//   - >= 992px  (lg)     → Bootstrap `col-lg-*` widths (desktop)
+//   - >= 1620px (xlg)    → custom `col-xlg-*` widths (large desktop)
+// Panel chrome/height variants live in the shared ba-panel component styles.
+
+$gutter: 12px;
+
+:host {
+  display: block;
+}
+
 .dashboard {
-  &__title {
-    margin: 0 0 1.5rem;
-    font-size: 1.5rem;
-    font-weight: 400;
+  display: block;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -$gutter;
+  margin-right: -$gutter;
+}
+
+.col {
+  width: 100%;
+  padding-left: $gutter;
+  padding-right: $gutter;
+  box-sizing: border-box;
+}
+
+// Desktop — Bootstrap `lg` widths.
+@media screen and (min-width: 992px) {
+  .col-lg-6 {
+    width: 50%;
+  }
+  .col-lg-12 {
+    width: 100%;
+  }
+}
+
+// Large desktop — custom `xlg` widths (legacy breakpoint: 1620px).
+@media screen and (min-width: 1620px) {
+  .col-xlg-3 {
+    width: 25%;
+  }
+  .col-xlg-4 {
+    width: 33.33333333%;
+  }
+  .col-xlg-6 {
+    width: 50%;
+  }
+  .col-xlg-8 {
+    width: 66.66666667%;
+  }
+  .col-xlg-9 {
+    width: 75%;
   }
 
-  &__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.5rem;
-    min-height: 200px;
+  // Legacy "shift-up" tweak: pull the last row up to fill the space beside the
+  // taller Feed panel on large desktops (src/sass/app/_dashboard.scss).
+  .row.shift-up > .col {
+    margin-top: -573px;
   }
 }
