@@ -6,10 +6,33 @@ var conf = require('./conf');
 
 var $ = require('gulp-load-plugins')();
 
-var wiredep = require('wiredep').stream;
-var _ = require('lodash');
-
 var browserSync = require('browser-sync');
+
+// Options that turn each node_modules-relative vendor path into the
+// `../node_modules/...` form the app expects (the browser normalises the
+// leading `..` to the served `/node_modules` route). This replaces the former
+// wiredep injection now that dependencies come from npm instead of Bower.
+var vendorInjectOptions = {
+  starttag: '<!-- vendor:{{ext}} -->',
+  endtag: '<!-- endvendor -->',
+  addPrefix: '..',
+  addRootSlash: false,
+  relative: false
+};
+
+function injectVendorJs(stream) {
+  return stream.pipe($.inject(
+    gulp.src(conf.vendor.js, {read: false, base: '.'}),
+    vendorInjectOptions
+  ));
+}
+
+function injectVendorCss(stream) {
+  return stream.pipe($.inject(
+    gulp.src(conf.vendor.css, {read: false, base: '.'}),
+    vendorInjectOptions
+  ));
+}
 
 gulp.task('inject-reload', ['inject'], function () {
   browserSync.reload();
@@ -35,11 +58,14 @@ gulp.task('inject', ['scripts', 'styles', 'injectAuth', 'inject404', 'copyVendor
     addRootSlash: false
   };
 
-  return gulp.src(path.join(conf.paths.src, '/index.html'))
+  var stream = gulp.src(path.join(conf.paths.src, '/index.html'))
     .pipe($.inject(injectStyles, injectOptions))
-    .pipe($.inject(injectScripts, injectOptions))
-    .pipe(wiredep(_.extend({}, conf.wiredep)))
-    .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve')));
+    .pipe($.inject(injectScripts, injectOptions));
+
+  stream = injectVendorCss(stream);
+  stream = injectVendorJs(stream);
+
+  return stream.pipe(gulp.dest(path.join(conf.paths.tmp, '/serve')));
 });
 
 gulp.task('injectAuth', ['stylesAuth'], function () {
@@ -66,8 +92,11 @@ var injectAlone = function (options) {
     addRootSlash: false
   };
 
-  return gulp.src(options.paths)
-    .pipe($.inject(injectStyles, injectOptions))
-    .pipe(wiredep(_.extend({}, conf.wiredep)))
-    .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve')));
+  var stream = gulp.src(options.paths)
+    .pipe($.inject(injectStyles, injectOptions));
+
+  stream = injectVendorCss(stream);
+  stream = injectVendorJs(stream);
+
+  return stream.pipe(gulp.dest(path.join(conf.paths.tmp, '/serve')));
 };
