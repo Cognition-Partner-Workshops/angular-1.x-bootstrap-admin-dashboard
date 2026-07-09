@@ -152,10 +152,10 @@ $font-light: 300;
 
   .preview {
     transition: 0s linear all;
-    display: inline-block;
+    display: block;
 
     a {
-      display: inline-block;
+      display: block;
       width: 100%;
     }
 
