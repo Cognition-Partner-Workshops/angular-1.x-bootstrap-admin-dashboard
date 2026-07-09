@@ -5,7 +5,7 @@ var gulp = require('gulp');
 var conf = require('./conf');
 
 var $ = require('gulp-load-plugins')({
-  pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
+  pattern: ['gulp-*', 'uglify-save-license', 'del']
 });
 
 gulp.task('partials', function () {
@@ -50,7 +50,6 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe(jsFilter.restore)
     .pipe(cssFilter)
     .pipe($.sourcemaps.init())
-    .pipe($.replace('../../bower_components/bootstrap-sass/assets/fonts/bootstrap/', '../fonts/'))
     .pipe($.minifyCss({ processImport: false }))
     .pipe($.sourcemaps.write('maps'))
     .pipe(cssFilter.restore)
@@ -69,10 +68,10 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe($.size({ title: path.join(conf.paths.dist, '/'), showFiles: true }));
   });
 
-// Only applies for fonts from bower dependencies
-// Custom fonts are handled by the "other" task
+// Only applies for fonts from npm vendor dependencies (Ionicons, Bootstrap,
+// Font Awesome). Custom fonts are handled by the "other" task.
 gulp.task('fonts', function () {
-  return gulp.src($.mainBowerFiles('**/*.{eot,svg,ttf,woff,woff2}'))
+  return gulp.src(conf.vendorFonts)
     .pipe($.flatten())
     .pipe(gulp.dest(path.join(conf.paths.dist, '/fonts/')));
 });

@@ -4,44 +4,33 @@ var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
 
-var $ = require('gulp-load-plugins')({
-  pattern: ['gulp-*', 'main-bower-files']
-});
-
-var _ = require('lodash');
+var $ = require('gulp-load-plugins')();
 
 gulp.task('dev-fonts', function () {
-  return gulp.src($.mainBowerFiles())
-      .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
+  return gulp.src(conf.vendorFonts)
       .pipe($.flatten())
       .pipe(gulp.dest(path.join(conf.paths.devDist, 'fonts')));
 });
 
 gulp.task('dev-copy-lib', function () {
-  var assets = require('wiredep')(_.extend({}, conf.wiredep));
   var srcList = [];
-  srcList.push.apply(srcList, assets.js);
-  srcList.push.apply(srcList, assets.css);
+  srcList.push.apply(srcList, conf.vendor.js);
+  srcList.push.apply(srcList, conf.vendor.css);
   return gulp
-      .src(srcList/*, { base: '.' }*/)
-/*      .pipe($.rename(function (p) {
-        p.dirname = p.dirname.replace(/\\/g, '/').replace('bower_components/', '');
-        if (p.dirname.indexOf('/') !== -1) {
-          p.dirname = p.dirname.substr(0, p.dirname.indexOf('/'));
-        }
-      }))*/
+      .src(srcList)
+      .pipe($.flatten())
       .pipe(gulp.dest(path.join(conf.paths.devDist, 'lib')));
 });
 
 gulp.task('dev-css-replace', ['dev-copy-assets'], function() {
   return gulp.src(path.join(conf.paths.devDist, '*.html'))
-      .pipe($.replace(/<link rel="stylesheet" href="\.\.\/bower_components\/.*\/(.*)"\s*?\/>/g, '<link rel="stylesheet" href="lib/$1" >'))
+      .pipe($.replace(/<link rel="stylesheet" href="\.\.\/node_modules\/.*\/(.*)"\s*?\/>/g, '<link rel="stylesheet" href="lib/$1" >'))
       .pipe(gulp.dest(conf.paths.devDist));
 });
 
 gulp.task('dev-js-replace', ['dev-copy-assets'], function() {
-  return gulp.src(path.join(conf.paths.devDist, '.html'))
-      .pipe($.replace(/<script src="\.\.\/bower_components\/.*\/(.*)"\s*?>/g, '<script src="lib/$1">'))
+  return gulp.src(path.join(conf.paths.devDist, '*.html'))
+      .pipe($.replace(/<script src="\.\.\/node_modules\/.*\/(.*)"\s*?>/g, '<script src="lib/$1">'))
       .pipe(gulp.dest(conf.paths.devDist));
 });
 
