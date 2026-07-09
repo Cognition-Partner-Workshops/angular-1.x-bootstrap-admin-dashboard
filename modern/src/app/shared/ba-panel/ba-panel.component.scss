@@ -1,0 +1,124 @@
+// Ported from the legacy Blur Admin panel styles:
+//   src/sass/theme/bootstrap-overrides/_panel.scss
+//   src/sass/theme/conf/_variables.scss (panel heights)
+//   src/sass/theme/conf/colorScheme/_blur.scss ($default, $default-text)
+//   src/sass/app/_dashboard.scss (shift-up / feed-panel responsive tweak)
+// Scoped to the component so the panel matches the legacy translucent card look.
+
+// --- colors (blur theme) ---
+$default: rgba(#000000, 0.2);
+$default-text: #ffffff;
+
+// --- panel heading metrics ---
+$panel-title-height: 44px;
+$panel-heading-font-size: 16px;
+$panel-heading-vertical-padding: ($panel-title-height - $panel-heading-font-size) * 0.5;
+
+// --- panel size/height variants ---
+$small-panel-height: 114px;
+$xsmall-panel-height: 187px;
+$medium-panel-height: 400px;
+$extra-medium-panel-height: 550px;
+$large-panel-height: 974px;
+
+:host {
+  display: block;
+}
+
+.panel {
+  color: $default-text;
+  background-color: $default;
+  border: none;
+  border-radius: 5px;
+  position: relative;
+  margin-bottom: 24px;
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.25);
+
+  // translucent scrollbars, mirroring the legacy scrollbars() mixin
+  &::-webkit-scrollbar {
+    width: 0.4em;
+    height: 0.4em;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.6);
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  &.animated {
+    animation-duration: 0.5s;
+  }
+
+  // height variant classes carried via [panelClass]
+  &.small-panel {
+    height: $small-panel-height;
+  }
+  &.xsmall-panel {
+    height: $xsmall-panel-height;
+  }
+  &.medium-panel {
+    height: $medium-panel-height;
+  }
+  &.xmedium-panel {
+    height: $extra-medium-panel-height;
+  }
+  &.large-panel {
+    height: $large-panel-height;
+  }
+  &.viewport100 {
+    height: calc(100vh - 218px);
+  }
+
+  &.with-scroll {
+    .panel-body {
+      height: calc(100% - #{$panel-title-height});
+      overflow-y: auto;
+    }
+  }
+
+  > .panel-body {
+    padding: 15px 22px;
+    height: 100%;
+  }
+
+  > .panel-heading {
+    color: $default-text;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+.panel-heading {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  height: $panel-title-height;
+  font-size: $panel-heading-font-size;
+  padding: $panel-heading-vertical-padding 22px;
+
+  // bootstrap .clearfix
+  &.clearfix::before,
+  &.clearfix::after {
+    content: ' ';
+    display: table;
+  }
+  &.clearfix::after {
+    clear: both;
+  }
+}
+
+.panel-title {
+  margin: 0;
+  font-size: $panel-heading-font-size;
+  font-weight: 400;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+// Responsive tweak ported from _dashboard.scss so the Feed panel shrinks
+// on narrower screens like the legacy dashboard.
+@media screen and (max-width: 1620px) {
+  .panel.feed-panel.large-panel {
+    height: 824px;
+  }
+}
