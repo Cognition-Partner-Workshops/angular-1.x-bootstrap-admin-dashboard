@@ -1,0 +1,113 @@
+// Ported from the legacy Blur Admin dashboard widget styles:
+//   src/sass/theme/dashboard/_popularApp.scss
+//   src/sass/theme/conf/colorScheme/_blur.scss ($default-text, $border-light)
+// The legacy widget relied on Bootstrap 3 grid/text-align utilities and the
+// panel body reset; those are reproduced here so the component is self-contained.
+
+// --- colors (blur theme) ---
+$default-text: #ffffff;
+$border-light: rgba(#ffffff, 0.2);
+
+:host {
+  display: block;
+}
+
+// Legacy `.panel.popular-app > .panel-body { padding: 0 }`: the widget content
+// fills the panel body edge-to-edge.
+:host {
+  margin: -15px -22px;
+}
+
+.popular-app-img-container {
+  position: relative;
+  padding: 30px 0;
+  height: 260px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  background: rgba(0, 0, 0, 0.5);
+
+  .popular-app-img {
+    width: 260px;
+    position: absolute;
+    transform: translateY(-50%) translate(-50%);
+    top: 50%;
+    left: 50%;
+    text-align: center;
+
+    .app-logo {
+      display: inline-block;
+      width: 114px;
+      height: 114px;
+      background-image: url('./my-app-logo.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      vertical-align: middle;
+    }
+
+    .logo-text {
+      display: inline-block;
+      margin: 10px;
+      font-size: 26px;
+      color: $default-text;
+      vertical-align: middle;
+    }
+  }
+}
+
+.popular-app-cost {
+  font-size: 20px;
+  padding: 20px 22px;
+  border-bottom: 1px solid $border-light;
+  border-top: 1px solid $border-light;
+}
+
+.popular-app-info {
+  padding: 20px 22px;
+  font-size: 20px;
+  text-align: center;
+
+  .info-label {
+    font-size: 12px;
+  }
+}
+
+// --- Bootstrap 3 grid/utility subset used by the legacy markup ---
+.row {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+
+  > div {
+    padding: 0;
+    position: relative;
+    min-height: 1px;
+  }
+}
+
+.col-xs-3 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.col-xs-4 {
+  flex: 0 0 33.33333333%;
+  max-width: 33.33333333%;
+}
+
+.col-xs-9 {
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
