@@ -1,0 +1,248 @@
+// Ported from the legacy Blur Admin to-do styles:
+//   src/sass/theme/dashboard/_todo.scss
+// The widget is integrated inside the blur-themed `app-ba-panel` (translucent
+// dark card, white text), so the legacy `.transparent` variant is reproduced.
+
+// --- palette (blur theme + dashboard) ---
+$default-text: #ffffff;
+$success: #90b900;
+$mark-min-width: 6px;
+$mark-active-width: 40px;
+$item-height: 42px;
+
+:host {
+  display: block;
+}
+
+.task-todo-container {
+  color: $default-text;
+  font-weight: 300;
+}
+
+input.task-todo {
+  display: block;
+  width: calc(100% - 25px);
+  margin-bottom: 8px;
+  padding: 6px 0;
+  color: $default-text;
+  font-size: 14px;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  &:focus {
+    outline: none;
+    background-color: transparent;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  }
+}
+
+.add-item-icon {
+  display: block;
+  float: right;
+  margin-top: -45px;
+  margin-right: 5px;
+  font-size: 25px;
+  font-style: normal;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+}
+
+.box-shadow-border {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  width: calc(100% + 44px);
+  margin-left: -22px;
+}
+
+ul.todo-list {
+  margin: 0;
+  padding: 0;
+
+  li {
+    position: relative;
+    height: $item-height;
+    margin: 0;
+    padding: 12px 12px 12px 20px;
+    list-style: none;
+    border: none;
+    font-weight: 300;
+    overflow: hidden;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    .blur-container {
+      position: absolute;
+      top: 0;
+      left: -25px;
+      width: calc(100% + 40px);
+      height: 40px;
+      overflow-y: hidden;
+      pointer-events: none;
+    }
+
+    .blur-box {
+      transition: all 0.2s ease-out;
+    }
+
+    &:hover {
+      .blur-container {
+        box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.12);
+      }
+      .blur-box {
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0.3) 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        filter: blur(3px);
+      }
+      i.remove-todo {
+        visibility: visible;
+      }
+      i.mark {
+        min-width: $mark-active-width;
+      }
+    }
+
+    i.mark {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      height: 100%;
+      min-width: $mark-min-width;
+      cursor: pointer;
+      transition: min-width 0.3s ease-out;
+    }
+
+    i.remove-todo {
+      position: absolute;
+      top: 0;
+      right: 12px;
+      z-index: 2;
+      font-size: 28px;
+      font-style: normal;
+      line-height: $item-height;
+      color: rgba(255, 255, 255, 0.4);
+      visibility: hidden;
+      cursor: pointer;
+      transition: color 0.2s, opacity 0.2s;
+
+      &:hover {
+        color: #ffffff;
+        opacity: 0.95;
+      }
+    }
+
+    &.checked {
+      .cut-with-dots {
+        text-decoration: line-through;
+        opacity: 0.6;
+      }
+    }
+  }
+}
+
+label.todo-checkbox {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  min-height: 16px;
+  padding-right: 25px;
+  cursor: pointer;
+
+  > input {
+    display: none;
+  }
+
+  > span {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    padding-left: 26px;
+    line-height: 18px;
+    vertical-align: middle;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 16px;
+      height: 16px;
+      margin-top: -9px;
+      border: 2px solid rgba(255, 255, 255, 0.7);
+      border-radius: 50%;
+      transition: all 0.15s ease-out;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 50%;
+      width: 4px;
+      height: 8px;
+      margin-top: -6px;
+      border: solid #ffffff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+      opacity: 0;
+      transition: opacity 0.15s ease-out;
+    }
+  }
+}
+
+li.checked label.todo-checkbox > span {
+  &::before {
+    background: $success;
+    border-color: $success;
+  }
+  &::after {
+    opacity: 1;
+  }
+}
+
+.cut-with-dots {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+// cdk drag-drop feedback
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow:
+    0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.3;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+ul.todo-list.cdk-drop-list-dragging li:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
