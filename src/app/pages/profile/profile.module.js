@@ -22,12 +22,18 @@
 
   /** @ngInject */
   function ProfileReactBridgeCtrl($scope, layoutPaths) {
+    var destroyed = false;
+
     $scope.$evalAsync(function () {
-      if ($scope.$$destroyed) {
+      if (destroyed) {
         return;
       }
 
       var mountElement = document.getElementById('profile-react-mount');
+
+      if (!mountElement) {
+        return;
+      }
 
       window.mountProfileReact(mountElement, {
         layoutPaths: layoutPaths
@@ -35,6 +41,7 @@
     });
 
     $scope.$on('$destroy', function () {
+      destroyed = true;
       window.unmountProfileReact();
     });
   }
