@@ -160,11 +160,8 @@ test('handles email notification switches', async ({ page }) => {
 
   await switches.nth(2).click();
   await expect.poll(() => checkedState(2)).toBe(true);
-  await switches.nth(0).click();
-  if (await checkedState(0)) {
-    await switches.nth(0).click();
-  }
-  await expect.poll(() => checkedState(0)).toBe(false);
+  await switches.nth(2).click();
+  await expect.poll(() => checkedState(2)).toBe(false);
 });
 
 test('shows the update profile button', async ({ page }) => {
