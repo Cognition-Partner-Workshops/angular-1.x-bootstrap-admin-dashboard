@@ -6,6 +6,7 @@
   'use strict';
 
   angular.module('BlurAdmin.pages.profile', [])
+      .controller('ProfileReactBridgeCtrl', ProfileReactBridgeCtrl)
       .config(routeConfig);
 
   /** @ngInject */
@@ -14,9 +15,35 @@
         .state('profile', {
           url: '/profile',
           title: 'Profile',
-          templateUrl: 'app/pages/profile/profile.html',
-          controller: 'ProfilePageCtrl',
+          template: '<div ba-panel ba-panel-class="profile-page"><div id="profile-react-mount"></div></div>',
+          controller: 'ProfileReactBridgeCtrl',
         });
+  }
+
+  /** @ngInject */
+  function ProfileReactBridgeCtrl($scope, layoutPaths) {
+    var destroyed = false;
+
+    $scope.$evalAsync(function () {
+      if (destroyed) {
+        return;
+      }
+
+      var mountElement = document.getElementById('profile-react-mount');
+
+      if (!mountElement) {
+        return;
+      }
+
+      window.mountProfileReact(mountElement, {
+        layoutPaths: layoutPaths
+      });
+    });
+
+    $scope.$on('$destroy', function () {
+      destroyed = true;
+      window.unmountProfileReact();
+    });
   }
 
 })();
