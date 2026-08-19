@@ -173,6 +173,9 @@
     var pictureState = useState(layoutPaths.images.profile + 'Nasta.png');
     var picture = pictureState[0];
     var setPicture = pictureState[1];
+    var noPictureState = useState(false);
+    var noPicture = noPictureState[0];
+    var setNoPicture = noPictureState[1];
     var socialState = useState(copySocialProfiles);
     var socialProfiles = socialState[0];
     var setSocialProfiles = socialState[1];
@@ -195,6 +198,7 @@
 
     function removePicture() {
       setPicture(layoutPaths.images.root + 'theme/no-photo.png');
+      setNoPicture(true);
     }
 
     function disconnectProfile(event, profileName) {
@@ -249,7 +253,7 @@
           onClick: uploadPicture
         })
       ),
-      picture.indexOf('no-photo.png') === -1
+      !noPicture
         ? h('i', {
             className: 'ion-ios-close-outline',
             onClick: removePicture
@@ -336,15 +340,12 @@
     });
 
     return h(
-      'div',
-      { className: 'panel panel-blur profile-page animated zoomIn' },
+      React.Fragment,
+      null,
       h(
         'div',
-        { className: 'panel-body' },
-        h(
-          'div',
-          { className: 'panel-content' },
-          h('div', { className: 'progress-info' }, 'Your profile is 70% Complete'),
+        { className: 'panel-content' },
+        h('div', { className: 'progress-info' }, 'Your profile is 70% Complete'),
           h(
             'div',
             { className: 'progress' },
@@ -642,8 +643,7 @@
             h('i', { className: 'ion-android-checkmark-circle' }),
             'Update Profile'
           )
-        )
-      ),
+        ),
       pendingProfileName
         ? h(AddAccountModal, {
             key: pendingProfileName,

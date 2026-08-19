@@ -15,17 +15,23 @@
         .state('profile', {
           url: '/profile',
           title: 'Profile',
-          template: '<div id="profile-react-mount"></div>',
+          template: '<div ba-panel ba-panel-class="profile-page"><div id="profile-react-mount"></div></div>',
           controller: 'ProfileReactBridgeCtrl',
         });
   }
 
   /** @ngInject */
   function ProfileReactBridgeCtrl($scope, layoutPaths) {
-    var mountElement = document.getElementById('profile-react-mount');
+    $scope.$evalAsync(function () {
+      if ($scope.$$destroyed) {
+        return;
+      }
 
-    window.mountProfileReact(mountElement, {
-      layoutPaths: layoutPaths
+      var mountElement = document.getElementById('profile-react-mount');
+
+      window.mountProfileReact(mountElement, {
+        layoutPaths: layoutPaths
+      });
     });
 
     $scope.$on('$destroy', function () {
