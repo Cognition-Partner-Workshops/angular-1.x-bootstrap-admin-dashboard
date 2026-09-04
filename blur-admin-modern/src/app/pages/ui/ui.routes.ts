@@ -24,3 +24,13 @@ export const UI_ROUTES: Routes = [
   { path: 'progressBars', component: ProgressBarsComponent, data: { title: 'Progress Bars', sidebarMeta: { order: 600 } } },
   { path: 'notifications', component: NotificationsComponent, data: { title: 'Notifications', sidebarMeta: { order: 700 } } },
 ];
+import { Routes } from '@angular/router';
+import { TabsComponent } from './tabs/tabs.component';
+import { SliderComponent } from './slider/slider.component';
+import { PanelsComponent } from './panels/panels.component';
+
+export const UI_ROUTES: Routes = [
+  { path: 'tabs', component: TabsComponent, data: { title: 'Tabs & Accordions', sidebarMeta: { order: 800 } } },
+  { path: 'slider', component: SliderComponent, data: { title: 'Sliders', sidebarMeta: { order: 1000 } } },
+  { path: 'panels', component: PanelsComponent, data: { title: 'Panels', sidebarMeta: { order: 1100 } } },
+];

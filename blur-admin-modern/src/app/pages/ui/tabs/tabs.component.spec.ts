@@ -1,0 +1,3 @@
+import { TestBed } from '@angular/core/testing';
+import { TabsComponent } from './tabs.component';
+describe('TabsComponent', () => { beforeEach(() => TestBed.configureTestingModule({ imports: [TabsComponent] })); it('renders the four child selectors', () => { const f = TestBed.createComponent(TabsComponent); f.detectChanges(); expect(f.nativeElement.querySelector('app-ui-main-tabs')).toBeTruthy(); expect(f.nativeElement.querySelector('app-ui-side-tabs')).toBeTruthy(); expect(f.nativeElement.querySelector('app-ui-sample-accordion')).toBeTruthy(); expect(f.nativeElement.querySelector('app-ui-contextual-accordion')).toBeTruthy(); }); });
