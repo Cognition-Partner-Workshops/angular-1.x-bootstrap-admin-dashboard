@@ -1,0 +1,8 @@
+.tree-node { line-height: 25px; cursor: pointer; }
+.tree-node.selected { background-color: $border-light; }
+.tree-node:hover { background-color: $input-border; }
+.tree-node .control { cursor: pointer; font-size: 16px; padding-left: 5px; width: 25px; border: 0; background: transparent; color: inherit; }
+.tree-children { border-left: 1px solid $border-light; padding-left: 10px; }
+.control-side > div { margin: 5px 0 10px; } .control-side .btn { width: 100px; }
+#tree-root { border-left: 1px solid $border-light; padding-left: 10px; }
+.tree-panel { height: 500px; } .search-container { margin-top: 10px; }

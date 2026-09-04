@@ -1,0 +1,61 @@
+@if (mail(); as message) {
+  <div class="message-container" [class.expanded]="tab.navigationCollapsed()">
+    <div class="message">
+      <div class="row">
+        <div class="toggle-navigation-container detail-page">
+          <a class="collapse-navigation-link ion-navicon" role="button" (click)="tab.toggleNavigation()"></a>
+        </div>
+        <button [routerLink]="['/components/mail', label()]" type="button" class="back-button btn btn-default btn-with-icon">
+          <i class="ion-chevron-left"></i>Back
+        </button>
+      </div>
+      <div class="person-info row">
+        <div class="col-lg-4 col-md-12 no-padding">
+          <img [src]="message.name.split(' ')[0] | profilePicture" class="human-picture">
+          <div class="name">
+            <h2 class="name-h">{{ message.name.split(' ')[0] }}</h2>
+            <h2 class="name-h second-name">{{ message.name.split(' ')[1] }}</h2>
+            <div><span class="mail-tag tag label {{ message.tag }}">{{ message.tag }}</span></div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-12 no-padding">
+          <div class="contact-info phone-email">
+            <div><i class="ion-iphone"></i><span class="phone">777-777-7777</span></div>
+            <div><i class="ion-email"></i><span class="email">{{ message.email }}</span></div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-12 no-padding">
+          <div class="contact-info position-address">
+            <div><span class="position">{{ message.position }}</span></div>
+            <div><span class="address">12 Nezavisimosti st. Vilnius, Lithuania</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="row"></div>
+      <div class="line"></div>
+      <div class="message-details">
+        <span class="subject">{{ message.subject }} </span>
+        <span class="date">• {{ message.date | date: 'h:mm a MMMM d ' }}</span>
+      </div>
+      <div class="line"></div>
+      <div class="message-body" [innerHTML]="message.body"></div>
+      <div class="line"></div>
+      @if (message.attachment) {
+        <div class="attachment">
+          <span class="file-links">1 Attachment - <a>View</a> | <a>Download</a></span>
+          <div><i class="file-icon ion-document"></i><span class="file-name">{{ message.attachment }}</span></div>
+        </div>
+        <div class="line"></div>
+      }
+      <div class="answer-container">
+        <button type="button" class="btn btn-with-icon" (click)="tab.showCompose(message.subject, message.email, '')"><i class="ion-reply"></i>Reply</button>
+        <button type="button" class="btn btn-with-icon" (click)="tab.showCompose(message.subject, '', message.body)"><i class="ion-forward"></i>Forward</button>
+        <button type="button" class="btn btn-with-icon"><i class="ion-printer"></i>Print</button>
+        <button type="button" class="btn btn-with-icon"><i class="ion-android-remove-circle"></i>Spam</button>
+        <button type="button" class="btn btn-with-icon"><i class="ion-android-delete"></i>Delete</button>
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="message-container" [class.expanded]="tab.navigationCollapsed()"><h5 class="text-center">Nothing to show</h5></div>
+}
