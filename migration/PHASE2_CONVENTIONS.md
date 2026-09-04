@@ -1,4 +1,4 @@
-# Phase 2 conventions (theme-core)
+# Phase 2 conventions
 
 Everything below lives in `blur-admin-modern/`. The legacy tree under `src/` is read-only reference.
 
@@ -86,6 +86,10 @@ equivalent (`closeHtml`, `containerId`, `preventOpenDuplicates`, `target`) were 
    `components/_pageTop`, `components/_contentTop`, `components/_msgCenter`, `components/_backTop`,
    `components/_widgets`, `_switcher`.
 
+4. `styles/app/*` partials ported from legacy `src/sass/app/*` (one `@import` per page area at the end of the file):
+   `chartsPage`, `email`, `tree`, `timeline`, `form`, `maps`, `profile`, `modals`, `modalNotifications`, `alerts`,
+   `notifications`.
+
 Page areas put page-specific SCSS in their own component `styleUrls` (or, for legacy `src/sass/app/*` files that are
 global, add a new `styles/app/_<name>.scss` and one `@import` line at the end of `styles.scss`). Use the variables and
 mixins from `_conf.scss` (`$primary`, `$default-text`, `@include bg-nr(...)`, …). Use `$images-root` / `$fonts-root`
@@ -124,6 +128,14 @@ export const UI_ROUTES: Routes = [
 ];
 ```
 
+Registered areas (in `app.routes.ts`, legacy sidebar order): `dashboard` (0), `components` (100), `charts` (150),
+`ui` (200), `form` (250), `tables` (300), `maps` (500), `profile` (no sidebar entry; reached from the static
+`Pages > User Profile` item). `provideRouter` uses `withPreloading(PreloadAllModules)` so every area's chunk (and
+therefore its submenu) is available shortly after startup; `BaSidebarComponent` also rebuilds its menu on
+`RouteConfigLoadEnd`, so an area's submenu appears as soon as its chunk loads. Area route files are flat
+(child routes directly under the lazy entry, no wrapper component) because `getMenuItems()` only reads
+submenu items one level below a lazy entry.
+
 Register each area with exactly one lazy child entry inside the layout route; that is the only edit an area
 makes to `app.routes.ts`. `BaSidebarService` builds menu items from `data.sidebarMeta`: direct children of
 the layout are level 0 and descendants of those entries are level 1 (and level 2 where needed). The lazy
@@ -158,16 +170,28 @@ seven-second fallback. Static demo menu entries live in `src/app/app.static-menu
 and are registered through an app initializer. The breadcrumb uses Bootstrap 5 `breadcrumb-item` and
 `active` classes.
 
-The dashboard unit replaces the placeholder in `src/app/pages/dashboard/`: delete the placeholder component
-when implementing the real page, but keep `dashboard.routes.ts`, its `DASHBOARD_ROUTES` export, and the
-`app.routes.ts` lazy entry.
+### Panels
+
+`ba-panel` renders `.panel-heading > h3.panel-title`; `styles/theme/bootstrap-overrides/_panel.scss` resets
+`.panel-title` to `margin: 0; font-size: inherit` (16px heading) because Bootstrap 5 has no `.panel-title` rule.
+Because `title` is also a native attribute, bind it as `[title]="'Text'"` (a static `title="..."` produces a
+browser tooltip). Tables must use explicit `<thead>`/`<tbody>` — Angular does not insert an implicit `tbody`, so
+`.table > tbody > tr` rules would otherwise miss.
+
+### Charts
+
+ng2-charts' `BaseChartDirective` calls `chart.update()` whenever the `data`/`options` input reference changes, so
+never build those objects in a getter without memoising them (see `pages/charts/chart-js/*`): a fresh object per
+change-detection cycle restarts the animation forever. `provideCharts(withDefaultRegisterables())` is supplied at the
+page-component level, not in `app.config.ts`.
 
 ## Dependencies
 
 New packages: `npm install <pkg>@<exact version>` (≥ 7 days old) inside `blur-admin-modern/`; committing the
 `package-lock.json` change is expected. Follow `migration/DEPENDENCY_BASELINE.md`; never add DROP packages
-(jQuery, jQuery plugins, AngularJS libraries). Added in this unit: `ngx-toastr@19.1.0`,
-`@angular-slider/ngx-slider@20.0.0`, `@angular/animations`.
+(jQuery, jQuery plugins, AngularJS libraries). Packages added in phase 2 and their rationale are
+listed in `blur-admin-modern/README.md` ("Packages added in phase 2"). `tsconfig.app.json` / `tsconfig.spec.json`
+include `"google.maps"` in `compilerOptions.types` for the maps area.
 
 ## Verification
 

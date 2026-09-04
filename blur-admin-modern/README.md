@@ -1,8 +1,10 @@
 # Blur Admin modern workspace
 
-This is the empty modern Angular workspace for phase 1 of the Blur Admin
-modernization. No legacy components have been migrated yet; the generated
-starter application remains in `src/app/`.
+Angular 20 (standalone components, SCSS, Bootstrap 5) port of the Blur Admin
+template. After phase 2 the theme shell (`src/app/theme/`, `src/app/layout/`)
+and every page area (`src/app/pages/{dashboard,ui,components,form,tables,charts,maps,profile}`)
+are ported; see `../migration/README.md` for status and `../migration/PHASE2_CONVENTIONS.md`
+for conventions.
 
 ## Toolchain
 
@@ -33,22 +35,33 @@ was generated with the latest Node-20-compatible CLI major,
 Bootstrap SCSS and Font Awesome CSS are imported from `src/styles.scss` so
 the production build verifies that both style packages resolve.
 
-## Deferred replacements
+## Packages added in phase 2
 
-The following component-specific replacements were deliberately not installed
-yet and are deferred to later phases:
+All pinned to exact versions that were at least 7 days old when installed, per
+`../migration/DEPENDENCY_BASELINE.md` (LATER items).
 
-- tables
-- editors
-- tree
-- toastr
-- select
-- sortable
-- slimscroll
-- progress buttons
-- amCharts, Chartist, and Morris
-- FullCalendar
-- Google Maps
+| Package | Version | Replaces | Why |
+| --- | ---: | --- | --- |
+| `ngx-toastr` | 19.1.0 | `angular-toastr` | Angular-native toasts for the notifications page and demos |
+| `@angular-slider/ngx-slider` | 20.0.0 | `ion.rangeSlider` (jQuery) | Slider widget behind `ba-slider` and the sliders page |
+| `@angular/animations` | 20.3.x | ngAnimate | required by ng-bootstrap / ngx-toastr animations |
+| `@fullcalendar/{angular,core,daygrid,timegrid,interaction}` | 6.1.21 | `angular-ui-calendar` + fullcalendar 2 (jQuery) | dashboard calendar |
+| `@amcharts/amcharts5` | 5.20.3 | amCharts 3 / amMap | charts page (bar/area/line/pie/funnel) and dashboard/maps map charts |
+| `@amcharts/amcharts5-geodata` | 5.1.6 | ammap `worldLow` | world geometry for bubble/line/dashboard maps |
+| `chartist` | 1.5.0 | `angular-chartist.js` + chartist 0.9 | chartist page (hand-written `ChartistDirective`) |
+| `ngx-quill` + `quill` | 28.0.2 / 2.0.3 | `textAngular` | mail compose rich-text editor |
+| `@ng-select/ng-select` | 15.2.0 | `angular-ui-select` | form inputs "ui-select" demos |
+| `@angular/google-maps` | 20.2.14 | `ngmap` | Google Maps loader for `/maps/gmap` (map created via the plain `google.maps` API, keyless) |
+| `@types/google.maps` (dev) | 3.65.5 | - | typings for the `google.maps` globals (`compilerOptions.types` in tsconfig.app/spec) |
+
+Not installed (baseline NONE/DROP, hand-written instead): smart-table, xeditable,
+bootstrap-select, bootstrap-switch, bootstrap-tagsinput, progress-button-styles,
+ng-js-tree (CDK tree), Morris/Raphael (Chart.js), slimscroll, jQuery and all
+jQuery plugins.
+
+`angular.json` budgets were raised to `initial` 1.1 MB warning / 2 MB error and
+`anyComponentStyle` 5 kB / 8 kB to accommodate the merged areas; the production
+build is ~1.09 MB raw / ~220 kB transferred.
 
 ## Build and serve
 
