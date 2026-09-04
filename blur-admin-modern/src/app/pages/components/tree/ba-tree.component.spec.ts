@@ -7,4 +7,15 @@ describe('BaTreeComponent', () => {
   beforeEach(async () => { await TestBed.configureTestingModule({ imports: [BaTreeComponent] }).compileComponents(); fixture = TestBed.createComponent(BaTreeComponent); fixture.componentInstance.nodes = getDefaultData(); fixture.detectChanges(); });
   it('renders nested nodes and custom icons', () => { expect(fixture.nativeElement.textContent).toContain('Node 1'); expect(fixture.nativeElement.textContent).toContain('Node 3.2.1'); expect(fixture.nativeElement.querySelector('.ion-help-buoy')).toBeTruthy(); });
   it('selects a node', () => { const spy = jasmine.createSpy('selected'); fixture.componentInstance.selectedChange.subscribe(spy); (fixture.nativeElement.querySelector('.tree-node') as HTMLElement).click(); expect(spy).toHaveBeenCalled(); });
+  it('toggles nested node visibility', () => {
+    const node = fixture.nativeElement.querySelector('.tree-node') as HTMLElement;
+    const control = node.querySelector('.control') as HTMLElement;
+    expect(fixture.nativeElement.textContent).toContain('Node 1.1');
+    control.click();
+    fixture.detectChanges();
+    expect(fixture.nativeElement.textContent).not.toContain('Node 1.1');
+    control.click();
+    fixture.detectChanges();
+    expect(fixture.nativeElement.textContent).toContain('Node 1.1');
+  });
 });

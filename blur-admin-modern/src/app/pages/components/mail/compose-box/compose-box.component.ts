@@ -1,4 +1,4 @@
-import { Component, HostListener, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { QuillEditorComponent } from 'ngx-quill';
@@ -15,7 +15,6 @@ export class ComposeBoxComponent {
   to = '';
   text = '';
   quill?: Quill;
-  readonly modules = { toolbar: false };
   readonly activeModal = inject(NgbActiveModal);
 
   onEditorCreated(editor: Quill): void {
@@ -52,10 +51,5 @@ export class ComposeBoxComponent {
 
   toggleQuote(): void {
     if (this.quill) this.quill.format('blockquote', !this.quill.getFormat()['blockquote']);
-  }
-
-  @HostListener('window:keydown.escape')
-  onEscape(): void {
-    this.dismiss();
   }
 }

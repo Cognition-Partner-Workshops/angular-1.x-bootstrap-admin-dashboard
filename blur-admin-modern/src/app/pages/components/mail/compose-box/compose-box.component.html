@@ -10,17 +10,20 @@
   <input type="text" class="form-control compose-input default-color" placeholder="To" [(ngModel)]="to">
   <input type="text" class="form-control compose-input default-color" placeholder="Subject" [(ngModel)]="subject">
   <div class="compose-container">
-    <div quill-editor-toolbar class="ta-toolbar toolbarMain">
-      <select class="ql-header"><option value="1"></option><option value="2"></option><option value="3"></option><option selected></option></select>
-      <button type="button" class="ql-bold"></button>
-      <button type="button" class="ql-italic"></button>
-      <button type="button" class="ql-underline"></button>
-      <button type="button" class="ql-align" value=""></button>
-      <button type="button" class="ql-align" value="center"></button>
-      <button type="button" class="ql-align" value="right"></button>
-      <button type="button" class="ql-align" value="justify"></button>
-    </div>
-    <quill-editor [(ngModel)]="text" [modules]="modules" (onEditorCreated)="onEditorCreated($event)"></quill-editor>
+    <quill-editor [(ngModel)]="text" (onEditorCreated)="onEditorCreated($event)">
+      <div quill-editor-toolbar class="ta-toolbar toolbarMain">
+        <button type="button" class="ql-header" value="1">H1</button>
+        <button type="button" class="ql-header" value="2">H2</button>
+        <button type="button" class="ql-header" value="3">H3</button>
+        <button type="button" class="ql-bold"></button>
+        <button type="button" class="ql-italic"></button>
+        <button type="button" class="ql-underline"></button>
+        <button type="button" class="ql-align" value=""></button>
+        <button type="button" class="ql-align" value="center"></button>
+        <button type="button" class="ql-align" value="right"></button>
+        <button type="button" class="ql-align" value="justify"></button>
+      </div>
+    </quill-editor>
   </div>
 </div>
 <div class="compose-footer clearfix">
