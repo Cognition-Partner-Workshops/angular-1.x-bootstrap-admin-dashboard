@@ -72,6 +72,9 @@ $panel-heading-font-size: 16px;
 }
 
 .panel-title {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
   font-weight: $font-normal;
   text-transform: uppercase;
   opacity: 0.9;

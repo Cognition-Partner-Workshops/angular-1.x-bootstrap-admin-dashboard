@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
+import { Route, RouteConfigLoadEnd, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { BaSidebarComponent } from './ba-sidebar.component';
 import { BaMenuItem, BaSidebarService } from './ba-sidebar.service';
@@ -29,5 +29,17 @@ describe('BaSidebarComponent', () => {
     component.toggleSubMenu(new MouseEvent('click'), item);
     expect(component.sidebar.isMenuCollapsed()).toBeFalse();
     expect(item.expanded).toBeTrue();
+  });
+
+  it('refreshes menu items when a lazy route config loads', () => {
+    const service = TestBed.inject(BaSidebarService);
+    const newItem: BaMenuItem = { title: 'Lazy item', stateRef: '/lazy-item' };
+    spyOn(service, 'getMenuItems').and.returnValue([newItem]);
+    const fixture = TestBed.createComponent(BaSidebarComponent);
+    const component = fixture.componentInstance;
+
+    router.events.next(new RouteConfigLoadEnd({} as Route));
+
+    expect(component.menuItems).toContain(newItem);
   });
 });

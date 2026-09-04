@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, OnInit, inject, signal } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive, NavigationEnd } from '@angular/router';
+import { NavigationEnd, RouteConfigLoadEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { BaMenuItem, BaSidebarService } from './ba-sidebar.service';
 import { BaUtilService } from '../../services/ba-util.service';
 
@@ -77,7 +77,7 @@ export class BaSidebarComponent implements OnInit {
   private readonly util = inject(BaUtilService);
   readonly sidebar = inject(BaSidebarService);
   readonly router = inject(Router);
-  readonly menuItems = this.sidebar.getMenuItems();
+  menuItems: BaMenuItem[] = this.sidebar.getMenuItems();
   readonly menuHeight = signal(0);
   showHoverElem = false;
   hoverElemHeight = 42;
@@ -88,6 +88,11 @@ export class BaSidebarComponent implements OnInit {
     this.updateExpanded();
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) this.updateExpanded();
+      if (event instanceof RouteConfigLoadEnd) {
+        const expandedState = this.getExpandedState();
+        this.menuItems = this.sidebar.getMenuItems();
+        this.updateExpanded(expandedState);
+      }
     });
   }
 
@@ -132,12 +137,24 @@ export class BaSidebarComponent implements OnInit {
     if (aside) this.menuHeight.set(aside.clientHeight - 84);
   }
 
-  private updateExpanded(): void {
+  private updateExpanded(expandedState = new Map<string, boolean>()): void {
     const url = this.router.url;
     const expand = (item: BaMenuItem): void => {
-      item.expanded = this.sidebar.getAllStateRefsRecursive(item).some((ref) => url.startsWith(ref));
+      item.expanded =
+        expandedState.get(item.stateRef ?? '') === true ||
+        this.sidebar.getAllStateRefsRecursive(item).some((ref) => url.startsWith(ref));
       item.subMenu?.forEach(expand);
     };
     this.menuItems.forEach(expand);
+  }
+
+  private getExpandedState(): Map<string, boolean> {
+    const expandedState = new Map<string, boolean>();
+    const collect = (item: BaMenuItem): void => {
+      if (item.stateRef) expandedState.set(item.stateRef, item.expanded === true);
+      item.subMenu?.forEach(collect);
+    };
+    this.menuItems.forEach(collect);
+    return expandedState;
   }
 }
