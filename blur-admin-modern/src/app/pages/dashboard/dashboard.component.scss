@@ -1,0 +1,102 @@
+@use 'sass:math';
+@import '../../../styles/conf';
+
+// legacy src/sass/app/_dashboard.scss
+@media screen and (min-width: 1620px) {
+  .row.shift-up {
+    > div {
+      margin-top: -573px;
+    }
+  }
+}
+
+@media screen and (max-width: 1620px) {
+  .panel.feed-panel.large-panel {
+    height: 824px;
+  }
+}
+
+.user-stats-panel {
+  .panel-title {
+    padding: 0 0 15px;
+  }
+}
+
+.blurCalendar {
+  height: 475px;
+}
+
+// legacy custom `col-xlg-*` breakpoint (src/sass/app/_typography.scss), expressed for the Bootstrap 5 flex grid
+@media screen and (min-width: 1620px) {
+  @for $i from 1 through 12 {
+    .col-xlg-#{$i} {
+      flex: 0 0 auto;
+      width: math.percentage(math.div($i, 12));
+    }
+  }
+}
+
+// `custom-checkbox` / `cut-with-dots` come from the legacy forms area (src/sass/app/_form.scss),
+// which the theme shell does not ship yet; scoped copy so the todo widget renders standalone.
+.todo-list label.custom-checkbox {
+  padding-right: 0;
+  padding-left: 0;
+  margin-bottom: 0;
+  > input {
+    height: 0;
+    z-index: -100 !important;
+    opacity: 0;
+    position: absolute;
+    &:checked + span:before {
+      content: '\f00c';
+      font-weight: 900;
+    }
+  }
+  > span {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    line-height: 16px;
+    font-weight: $font-light;
+    cursor: pointer;
+    padding-left: 22px;
+    width: 100%;
+    &:before {
+      cursor: pointer;
+      font-family: 'Font Awesome 7 Free';
+      font-weight: 900;
+      font-size: 12px;
+      color: $default-text;
+      content: '\a0';
+      background-color: transparent;
+      border: 1px solid $border;
+      border-radius: 0;
+      display: inline-block;
+      text-align: center;
+      height: 16px;
+      line-height: 14px;
+      min-width: 16px;
+      margin-right: 6px;
+      position: relative;
+      top: 0;
+      margin-left: -22px;
+      float: left;
+    }
+    &:hover:before {
+      border-color: $primary-bg;
+    }
+  }
+  &.custom-input-success > span {
+    &:before {
+      color: $success;
+    }
+    &:hover:before {
+      border-color: $success;
+    }
+  }
+}
+.todo-list .cut-with-dots {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}

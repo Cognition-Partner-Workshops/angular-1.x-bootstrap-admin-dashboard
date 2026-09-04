@@ -1,0 +1,54 @@
+<div class="weather-wrapper">
+  @if (weather(); as w) {
+    <div class="weather-main-info">
+      <h5 class="city-date font-x1dot5">
+        <div>
+          {{ geoData()?.geoplugin_city }} - {{ geoData()?.geoplugin_countryName | uppercase }}
+        </div>
+        <div>
+          {{ currentDay()?.date | date : 'EEEE h:mm' }}
+        </div>
+      </h5>
+      <div class="weather-description font-x1dot5">
+        <i class="font-x3 {{ weatherIcons[currentDay()?.icon ?? ''] }}"></i>
+
+        <div class="weather-info">{{ currentDay()?.main }} -
+          {{ currentDay()?.description }}
+        </div>
+      </div>
+      <div class="weather-temp font-x1dot5">
+        <i class="font-x2 ion-thermometer"></i>
+
+        <div class="weather-info">
+          @switch (units()) {
+            @case ('metric') {
+              <span>{{ currentDay()?.temp }} °C | <a (click)="switchUnits('imperial')" href="javascript:void(0)">°F</a></span>
+            }
+            @case ('imperial') {
+              <span>{{ currentDay()?.temp }} °F | <a (click)="switchUnits('metric')" href="javascript:void(0)">°C</a></span>
+            }
+          }
+        </div>
+      </div>
+    </div>
+  }
+  <div id="tempChart" class="temp-by-time" #tempChart></div>
+  @if (weather(); as w) {
+    <div class="select-day">
+      @for (day of w.days; track $index) {
+        <div class="day" (click)="switchDay($index)">
+          <div>
+            <span class="font-x1dot25">{{ day.temp }}</span>
+          </div>
+          <div>
+            <i class="weatherIcon font-x2 {{ weatherIcons[day.icon ?? ''] }}"></i>
+            <span class="select-day-info">{{ day.main }}</span>
+          </div>
+          <div>
+            <span>{{ day.date | date : 'EEE' }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>
