@@ -95,6 +95,8 @@ mixins from `_conf.scss` (`$primary`, `$default-text`, `@include bg-nr(...)`, â€
 
 `src/assets/img/**` and `src/assets/fonts/*` were copied to `blur-admin-modern/public/assets/img/` and
 `public/assets/fonts/`, so `LAYOUT_PATHS`, the pipes and SCSS `url()`s resolve unchanged (`/assets/img/...`).
+Ionicons 2.0.1 is vendored under `public/assets/vendor/ionicons/`; use the legacy `ion-*` classes.
+Font Awesome's v4 shims are loaded globally, so legacy `fa fa-*-o` names continue to work.
 Add new static files under `public/assets/`.
 
 ## Routes
@@ -126,7 +128,9 @@ Register each area with exactly one lazy child entry inside the layout route; th
 makes to `app.routes.ts`. `BaSidebarService` builds menu items from `data.sidebarMeta`: direct children of
 the layout are level 0 and descendants of those entries are level 1 (and level 2 where needed). The lazy
 entry's metadata is therefore available before its module is loaded; loaded lazy routes are also walked when
-available. The content title comes from the deepest activated route with `data.title`.
+available. Candidates are deduplicated by path, so a lazy area's `''` child may repeat the app-level metadata
+without creating a duplicate submenu item. The content title comes from the deepest activated route with
+`data.title`.
 
 ## Layout shell
 
@@ -151,7 +155,8 @@ available. The content title comes from the deepest activated route with `data.t
 
 `ThemeRunService` waits for AmCharts and the legacy blur background assets (when applicable), with a
 seven-second fallback. Static demo menu entries live in `src/app/app.static-menu.ts` as `STATIC_MENU_ITEMS`
-and are registered through an app initializer.
+and are registered through an app initializer. The breadcrumb uses Bootstrap 5 `breadcrumb-item` and
+`active` classes.
 
 The dashboard unit replaces the placeholder in `src/app/pages/dashboard/`: delete the placeholder component
 when implementing the real page, but keep `dashboard.routes.ts`, its `DASHBOARD_ROUTES` export, and the

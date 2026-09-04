@@ -39,7 +39,6 @@ import { BaUtilService } from '../../services/ba-util.service';
                           <li routerLinkActive="selected" [routerLinkActiveOptions]="{exact: false}"
                               (mouseenter)="hoverItem($event)">
                             <a class="al-sidebar-list-link" [routerLink]="leaf.stateRef"
-                               [href]="leaf.disabled ? 'javascript:void(0)' : null"
                                (click)="leaf.disabled && $event.preventDefault()">{{ leaf.title }}</a>
                           </li>
                         }
@@ -47,7 +46,7 @@ import { BaUtilService } from '../../services/ba-util.service';
                     } @else {
                       <a class="al-sidebar-list-link"
                          [routerLink]="subitem.disabled ? null : subitem.stateRef"
-                         [href]="subitem.disabled ? 'javascript:void(0)' : (subitem.fixedHref ?? null)"
+                         [href]="subitem.disabled ? null : (subitem.fixedHref ?? null)"
                          [target]="subitem.blank ? '_blank' : '_self'"
                          (mouseenter)="hoverItem($event)"
                          (click)="subitem.disabled && $event.preventDefault()">{{ subitem.title }}</a>
@@ -58,7 +57,7 @@ import { BaUtilService } from '../../services/ba-util.service';
             } @else {
               <a class="al-sidebar-list-link"
                  [routerLink]="item.disabled ? null : item.stateRef"
-                 [href]="item.disabled ? 'javascript:void(0)' : (item.fixedHref ?? null)"
+                 [href]="item.disabled ? null : (item.fixedHref ?? null)"
                  [target]="item.blank ? '_blank' : '_self'"
                  (mouseenter)="hoverItem($event)"
                  (click)="item.disabled && $event.preventDefault()">

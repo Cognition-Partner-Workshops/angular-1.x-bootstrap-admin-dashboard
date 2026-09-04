@@ -16,7 +16,9 @@ describe('BaSidebarService', () => {
           { path: 'buttons', data: { title: 'Buttons', sidebarMeta: { order: 1 } } },
           { path: 'alerts', data: { title: 'Alerts', sidebarMeta: { order: 0 } } },
         ] },
-        { path: 'dashboard', data: { title: 'Dashboard', sidebarMeta: { icon: 'home', order: 0 } } },
+        { path: 'dashboard', data: { title: 'Dashboard', sidebarMeta: { icon: 'home', order: 0 } }, _loadedRoutes: [
+          { path: '', data: { title: 'Dashboard', sidebarMeta: { icon: 'home', order: 0 } } },
+        ] },
         { path: 'excluded', data: { title: 'Hidden' } },
       ],
     }],
@@ -33,6 +35,13 @@ describe('BaSidebarService', () => {
     expect(items[1].stateRef).toBe('/ui');
     expect(items[1].subMenu?.map((item) => item.title)).toEqual(['Alerts', 'Buttons']);
     expect(items.some((item) => item.title === 'Hidden')).toBeFalse();
+  });
+
+  it('does not turn a lazy empty-path child into a duplicate sub menu item', () => {
+    const service = TestBed.inject(BaSidebarService);
+    const dashboard = service.getMenuItems()[0];
+    expect(dashboard.stateRef).toBe('/dashboard');
+    expect(dashboard.subMenu).toBeNull();
   });
 
   it('appends static items and recursively finds state refs', () => {

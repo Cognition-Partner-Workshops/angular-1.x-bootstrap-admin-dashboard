@@ -25,6 +25,12 @@ h1.al-title {
   li {
     font-size: 18px;
     font-weight: $font-normal;
+    &.active {
+      color: $default-text;
+    }
+    a {
+      text-decoration: none;
+    }
   }
 }
 

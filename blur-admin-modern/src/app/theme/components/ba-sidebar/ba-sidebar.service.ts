@@ -62,13 +62,13 @@ export class BaSidebarService {
   }
 
   getMenuItems(): BaMenuItem[] {
-    const layout = this.router.config.find((route) => route.component?.name === 'LayoutComponent');
+    const layout = this.router.config.find((route) => route.path === '' && !!route.children);
     const candidates: BaMenuItem[] = [];
     const walk = (routes: Route[], parentPath: string, depth: number): void => {
       for (const route of routes) {
         const path = this.joinPath(parentPath, route.path ?? '');
         const meta = route.data?.['sidebarMeta'] as { icon?: string; order?: number } | undefined;
-        if (meta) {
+        if (meta && !candidates.some((item) => item.stateRef === path)) {
           candidates.push({
             title: String(route.data?.['title'] ?? ''),
             icon: meta.icon,

@@ -9,7 +9,10 @@ import { Subscription, filter } from 'rxjs';
   template: `
     <div class="content-top clearfix">
       <h1 class="al-title">{{ activePageTitle() }}</h1>
-      <ul class="breadcrumb al-breadcrumb"><li><a routerLink="/dashboard">Home</a></li><li>{{ activePageTitle() }}</li></ul>
+      <ul class="breadcrumb al-breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/dashboard">Home</a></li>
+        <li class="breadcrumb-item active">{{ activePageTitle() }}</li>
+      </ul>
     </div>
   `,
 })
