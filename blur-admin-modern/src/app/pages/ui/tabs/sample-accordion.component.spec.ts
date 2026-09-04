@@ -1,0 +1,5 @@
+import { Component } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { SampleAccordionComponent } from './sample-accordion.component';
+@Component({ standalone: true, imports: [SampleAccordionComponent], template: '<app-ui-sample-accordion />' }) class Host {}
+describe('SampleAccordionComponent', () => { beforeEach(() => TestBed.configureTestingModule({ imports: [Host] })); it('renders four items with the first expanded', () => { const f = TestBed.createComponent(Host); f.detectChanges(); expect(f.nativeElement.querySelectorAll('[ngbaccordionitem]').length).toBe(4); expect(f.nativeElement.querySelector('.accordion-button:not(.collapsed)')).toBeTruthy(); expect(f.nativeElement.textContent).toContain('This content is straight in the template.'); }); it('expands the second item', () => { const f = TestBed.createComponent(Host); f.detectChanges(); f.nativeElement.querySelectorAll('.accordion-button')[1].click(); f.detectChanges(); expect(f.nativeElement.querySelectorAll('.accordion-button:not(.collapsed)').length).toBe(2); }); });
