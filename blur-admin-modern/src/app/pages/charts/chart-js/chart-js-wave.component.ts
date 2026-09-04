@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
-import { ChartData, ChartType } from 'chart.js';
+import { ChartData, ChartOptions, ChartType } from 'chart.js';
 import { BaConfigService, StopableIntervalHandle, StopableIntervalService } from '../../../theme';
 import { chartJsOptions, chartPalette } from './chart-js.defaults';
 
@@ -19,14 +19,31 @@ export class ChartJsWaveComponent implements OnInit, OnDestroy {
   private readonly config = inject(BaConfigService);
   private readonly interval = inject(StopableIntervalService);
   private handle?: StopableIntervalHandle;
-  get data(): ChartData<ChartType> {
+  private cache?: { type: string; data: ChartData<ChartType>; options: ChartOptions };
+
+  private buildData(): ChartData<ChartType> {
     const color = chartPalette(this.config.colors)[0];
     return { labels: this.labels, datasets: [{ data: this.dataValues, backgroundColor: `${color}80`, borderColor: color, fill: this.chartType === 'radar' }] };
   }
-  get options() { return chartJsOptions(this.config.colors, this.chartType, false); }
+
+  private snapshot() {
+    if (!this.cache || this.cache.type !== this.chartType) {
+      this.cache = {
+        type: this.chartType,
+        data: this.buildData(),
+        options: chartJsOptions(this.config.colors, this.chartType, false),
+      };
+    }
+    return this.cache;
+  }
+
+  get data() { return this.snapshot().data; }
+  get options() { return this.snapshot().options; }
+
   ngOnInit(): void {
     this.handle = this.interval.start(() => {
       this.dataValues = [this.dataValues[this.dataValues.length - 1], ...this.dataValues.slice(0, -1)];
+      this.cache = undefined;
     }, 400);
   }
   ngOnDestroy(): void { this.handle?.stop(); }

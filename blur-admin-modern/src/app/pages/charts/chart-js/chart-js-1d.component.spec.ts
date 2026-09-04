@@ -23,4 +23,14 @@ describe('ChartJs1DComponent', () => {
     component.changeData();
     expect([...component.dataValues].sort()).toEqual(original);
   });
+  it('returns the same data object across reads until data changes', () => {
+    const component = TestBed.createComponent(ChartJs1DComponent).componentInstance;
+    const first = component.data;
+
+    expect(component.data).toBe(first);
+
+    component.changeData();
+
+    expect(component.data).not.toBe(first);
+  });
 });
