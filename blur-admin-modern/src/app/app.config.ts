@@ -1,15 +1,18 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, inject, provideAppInitializer, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { provideToastr } from 'ngx-toastr';
 
 import { routes } from './app.routes';
+import { STATIC_MENU_ITEMS } from './app.static-menu';
+import { BaSidebarService } from './theme';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
+    provideRouter(routes, withInMemoryScrolling({ scrollPositionRestoration: 'top' })),
+    provideAppInitializer(() => inject(BaSidebarService).addStaticItem(...STATIC_MENU_ITEMS)),
     provideAnimationsAsync(),
     provideToastr({
       closeButton: true,
@@ -19,6 +22,6 @@ export const appConfig: ApplicationConfig = {
       newestOnTop: true,
       positionClass: 'toast-top-right',
       preventDuplicates: false,
-    })
+    }),
   ]
 };
