@@ -17,6 +17,11 @@ export const routes: Routes = [
       { path: 'form', loadChildren: () => import('./pages/form/form.routes').then((m) => m.FORM_ROUTES), data: { title: 'Form Elements', sidebarMeta: { icon: 'ion-compose', order: 250 } } },
       { path: 'maps', loadChildren: () => import('./pages/maps/maps.routes').then((m) => m.MAPS_ROUTES), data: { title: 'Maps', sidebarMeta: { icon: 'ion-ios-location-outline', order: 500 } } },
       { path: 'profile', loadChildren: () => import('./pages/profile/profile.routes').then((m) => m.PROFILE_ROUTES) },
+      {
+        path: 'tables',
+        loadChildren: () => import('./pages/tables/tables.routes').then((m) => m.TABLES_ROUTES),
+        data: { title: 'Tables', sidebarMeta: { icon: 'ion-grid', order: 300 } },
+      },
     ],
   },
   { path: '**', redirectTo: 'dashboard' },

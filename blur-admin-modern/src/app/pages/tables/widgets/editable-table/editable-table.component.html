@@ -1,0 +1,38 @@
+<div class="horizontal-scroll">
+  <table class="table table-hover">
+    <thead><tr class="sortable">
+      @for (field of columns; track field.key) {
+        <th [class.table-id]="field.key === 'id'" (click)="sort(field.key)" [class.st-sort-ascent]="sortKey() === field.key && sortDir() === 'asc'" [class.st-sort-descent]="sortKey() === field.key && sortDir() === 'desc'">{{ field.label }}</th>
+      }
+    </tr></thead>
+    <tbody>
+      @for (item of pageRows(); track item.id) {
+        <tr class="editable-tr-wrap">
+          <td class="table-id">{{ item.id }}</td>
+          @for (field of editableFields; track field) {
+            <td>
+              @if (editing()?.row === item && editing()?.field === field) {
+                <form class="editable-wrap form-inline" (ngSubmit)="save()">
+                  <div class="editable-controls"><input class="editable-input form-control form-control-sm editable-has-buttons" [value]="draft" name="value" [autoFocus]="true" (input)="draft = $any($event.target).value" (blur)="cancel()" (keydown.escape)="cancel()"><div class="editable-buttons"><button type="submit" class="btn btn-primary btn-with-icon" (mousedown)="$event.preventDefault()"><i class="ion-checkmark-round"></i></button><button type="button" class="btn btn-default btn-with-icon" (mousedown)="$event.preventDefault()" (click)="cancel()"><i class="ion-close-round"></i></button></div></div>
+                </form>
+              } @else {
+                <span class="editable-click" (click)="startEdit(item, field)">{{ display(item, field) }}</span>
+              }
+            </td>
+          }
+          <td><a class="email-link" [href]="'mailto:' + item.email">{{ item.email }}</a></td>
+          <td>
+            @if (editing()?.row === item && editing()?.field === 'age') {
+              <form class="editable-wrap form-inline" (ngSubmit)="save()">
+                <div class="editable-controls"><input class="editable-input form-control form-control-sm editable-has-buttons" [value]="draft" name="value" [autoFocus]="true" (input)="draft = $any($event.target).value" (blur)="cancel()" (keydown.escape)="cancel()"><div class="editable-buttons"><button type="submit" class="btn btn-primary btn-with-icon" (mousedown)="$event.preventDefault()"><i class="ion-checkmark-round"></i></button><button type="button" class="btn btn-default btn-with-icon" (mousedown)="$event.preventDefault()" (click)="cancel()"><i class="ion-close-round"></i></button></div></div>
+              </form>
+            } @else {
+              <span class="editable-click" (click)="startEdit(item, 'age')">{{ item.age }}</span>
+            }
+          </td>
+        </tr>
+      }
+    </tbody>
+    <tfoot><tr><td colspan="6" class="text-center"><st-pagination [(page)]="page" [totalItems]="data().length" [pageSize]="12" /></td></tr></tfoot>
+  </table>
+</div>

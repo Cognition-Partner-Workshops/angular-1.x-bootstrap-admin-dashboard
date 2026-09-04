@@ -1,0 +1,11 @@
+@if (totalPages() > 1) {
+  <ul class="pagination">
+    <li class="page-item" [class.disabled]="page() <= 1"><a class="page-link" (click)="setPage(1)">«</a></li>
+    <li class="page-item" [class.disabled]="page() <= 1"><a class="page-link" (click)="setPage(page() - 1)">‹</a></li>
+    @for (number of pages(); track number) {
+      <li class="page-item" [class.active]="number === page()"><a class="page-link" (click)="setPage(number)">{{ number }}</a></li>
+    }
+    <li class="page-item" [class.disabled]="page() >= totalPages()"><a class="page-link" (click)="setPage(page() + 1)">›</a></li>
+    <li class="page-item" [class.disabled]="page() >= totalPages()"><a class="page-link" (click)="setPage(totalPages())">»</a></li>
+  </ul>
+}
