@@ -22,6 +22,11 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/tables/tables.routes').then((m) => m.TABLES_ROUTES),
         data: { title: 'Tables', sidebarMeta: { icon: 'ion-grid', order: 300 } },
       },
+      {
+        path: 'ui',
+        loadChildren: () => import('./pages/ui/ui.routes').then((m) => m.UI_ROUTES),
+        data: { title: 'UI Features', sidebarMeta: { icon: 'ion-android-laptop', order: 200 } },
+      },
     ],
   },
   { path: '**', redirectTo: 'dashboard' },

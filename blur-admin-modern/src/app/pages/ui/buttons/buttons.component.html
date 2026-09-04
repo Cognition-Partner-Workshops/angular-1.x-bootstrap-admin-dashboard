@@ -1,0 +1,409 @@
+<div class="widgets">
+  <div class="row">
+    <div class="col-md-3"
+         baPanel
+         title="Flat Buttons"
+         baPanelClass="with-scroll button-panel">
+      <div class="button-wrapper"><button type="button" class="btn btn-default">Default</button></div>
+      <div class="button-wrapper"><button type="button" class="btn btn-primary">Primary</button></div>
+      <div class="button-wrapper"><button type="button" class="btn btn-success">Success</button></div>
+      <div class="button-wrapper"><button type="button" class="btn btn-info">Info</button></div>
+      <div class="button-wrapper"><button type="button" class="btn btn-warning">Warning</button></div>
+      <div class="button-wrapper"><button type="button" class="btn btn-danger">Danger</button></div>
+    </div>
+    <div class="col-md-3"
+         baPanel
+         title="Raised Buttons"
+         baPanelClass="with-scroll button-panel">
+      <div class="button-wrapper"><button type="button" class="btn btn-default btn-raised">Default</button></div>
+      <div class="button-wrapper"><button type="button" class="btn btn-primary btn-raised">Primary</button></div>
+      <div class="button-wrapper"><button type="button" class="btn btn-success btn-raised">Success</button></div>
+      <div class="button-wrapper"><button type="button" class="btn btn-info btn-raised">Info</button></div>
+      <div class="button-wrapper"><button type="button" class="btn btn-warning btn-raised">Warning</button></div>
+      <div class="button-wrapper"><button type="button" class="btn btn-danger btn-raised">Danger</button></div>
+    </div>
+    <div class="col-md-3"
+         baPanel
+         title="Different sizes"
+         baPanelClass="with-scroll button-panel df-size-button-panel">
+      <div class="button-wrapper"><button type="button" class="btn btn-default  btn-xs">Default</button></div>
+      <div class="button-wrapper"><button type="button" class="btn btn-primary  btn-sm">Primary</button></div>
+      <div class="button-wrapper"><button type="button" class="btn btn-success btn-mm">Success</button></div>
+      <div class="button-wrapper"><button type="button" class="btn btn-info btn-md">Info</button></div>
+      <div class="button-wrapper"><button type="button" class="btn btn-warning btn-xm">Warning</button></div>
+      <div class="button-wrapper"><button type="button" class="btn btn-danger btn-lg">Danger</button></div>
+    </div>
+    <div class="col-md-3"
+         baPanel
+         title="Disabled"
+         baPanelClass="with-scroll button-panel">
+      <div class="button-wrapper"><button type="button" class="btn btn-default" disabled>Default</button></div>
+      <div class="button-wrapper"><button type="button" class="btn btn-primary" disabled>Primary</button></div>
+      <div class="button-wrapper"><button type="button" class="btn btn-success" disabled>Success</button></div>
+      <div class="button-wrapper"><button type="button" class="btn btn-info" disabled>Info</button></div>
+      <div class="button-wrapper"><button type="button" class="btn btn-warning" disabled>Warning</button></div>
+      <div class="button-wrapper"><button type="button" class="btn btn-danger" disabled>Danger</button></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div
+          baPanel
+          title="Icon Buttons"
+          baPanelClass="with-scroll">
+        <ul class="btn-list clearfix">
+  <li><button type="button" class="btn btn-primary btn-icon"><i class="ion-android-download"></i></button></li>
+  <li><button type="button" class="btn btn-default btn-icon"><i class="ion-stats-bars"></i></button></li>
+  <li><button type="button" class="btn btn-success btn-icon"><i class="ion-android-checkmark-circle"></i></button></li>
+  <li><button type="button" class="btn btn-info btn-icon"><i class="ion-information"></i></button></li>
+  <li><button type="button" class="btn btn-warning btn-icon"><i class="ion-android-warning"></i></button></li>
+  <li><button type="button" class="btn btn-danger btn-icon"><i class="ion-nuclear"></i></button></li>
+</ul>
+
+<h5 class="panel-subtitle">Buttons with icons</h5>
+
+<ul class="btn-list clearfix">
+  <li><button type="button" class="btn btn-primary btn-with-icon"><i class="ion-android-download"></i>Primary</button></li>
+  <li><button type="button" class="btn btn-default btn-with-icon"><i class="ion-stats-bars"></i>Default</button></li>
+  <li><button type="button" class="btn btn-success btn-with-icon"><i class="ion-android-checkmark-circle"></i>Success</button></li>
+  <li><button type="button" class="btn btn-info btn-with-icon"><i class="ion-information"></i>Info</button></li>
+  <li><button type="button" class="btn btn-warning btn-with-icon"><i class="ion-android-warning"></i>Warning</button></li>
+  <li><button type="button" class="btn btn-danger btn-with-icon"><i class="ion-nuclear"></i>Danger</button></li>
+</ul>
+      </div>
+      <div
+          baPanel
+          title="Large Buttons"
+          baPanelClass="with-scroll large-buttons-panel">
+        <div class="row btns-row btns-same-width-lg">
+  <div class="col-sm-4 col-6"><button type="button" class="btn btn-primary btn-lg">Primary</button></div>
+  <div class="col-sm-4 col-6"><button type="button" class="btn btn-success btn-lg">Success</button></div>
+  <div class="col-sm-4 col-6"><button type="button" class="btn btn-info btn-lg">Info</button></div>
+  <div class="col-sm-4 col-6"><button type="button" class="btn btn-default btn-lg">Default</button></div>
+  <div class="col-sm-4 col-6"><button type="button" class="btn btn-warning btn-lg">Warning</button></div>
+  <div class="col-sm-4 col-6"><button type="button" class="btn btn-danger btn-lg">Danger</button></div>
+</div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div
+          baPanel
+          title="Button Dropdowns"
+          baPanelClass="with-scroll">
+        <div class="row btns-row">
+  <div class="col-sm-4 col-6">
+    <div class="btn-group" ngbDropdown>
+      <button type="button" class="btn btn-primary " ngbDropdownToggle dropdown-toggle>
+        Primary
+      </button>
+      <div ngbDropdownMenu class="dropdown-menu">
+        <a href ngbDropdownItem>Action</a>
+        <a href ngbDropdownItem>Another action</a>
+        <a href ngbDropdownItem>Something else here</a>
+        <div class="dropdown-divider"></div>
+        <a href ngbDropdownItem>Separated link</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 col-6">
+    <div class="btn-group" ngbDropdown>
+      <button type="button" class="btn btn-success " ngbDropdownToggle dropdown-toggle>
+        Success
+      </button>
+      <div ngbDropdownMenu class="dropdown-menu">
+        <a href ngbDropdownItem>Action</a>
+        <a href ngbDropdownItem>Another action</a>
+        <a href ngbDropdownItem>Something else here</a>
+        <div class="dropdown-divider"></div>
+        <a href ngbDropdownItem>Separated link</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 col-6">
+    <div class="btn-group" ngbDropdown>
+      <button type="button" class="btn btn-info " ngbDropdownToggle dropdown-toggle>
+        Info
+      </button>
+      <div ngbDropdownMenu class="dropdown-menu">
+        <a href ngbDropdownItem>Action</a>
+        <a href ngbDropdownItem>Another action</a>
+        <a href ngbDropdownItem>Something else here</a>
+        <div class="dropdown-divider"></div>
+        <a href ngbDropdownItem>Separated link</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 col-6">
+    <div class="btn-group" ngbDropdown>
+      <button type="button" class="btn btn-default " ngbDropdownToggle dropdown-toggle>
+        Default
+      </button>
+      <div ngbDropdownMenu class="dropdown-menu">
+        <a href ngbDropdownItem>Action</a>
+        <a href ngbDropdownItem>Another action</a>
+        <a href ngbDropdownItem>Something else here</a>
+        <div class="dropdown-divider"></div>
+        <a href ngbDropdownItem>Separated link</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 col-6">
+    <div class="btn-group" ngbDropdown>
+      <button type="button" class="btn btn-warning " ngbDropdownToggle dropdown-toggle>
+        Warning
+      </button>
+      <div ngbDropdownMenu class="dropdown-menu">
+        <a href ngbDropdownItem>Action</a>
+        <a href ngbDropdownItem>Another action</a>
+        <a href ngbDropdownItem>Something else here</a>
+        <div class="dropdown-divider"></div>
+        <a href ngbDropdownItem>Separated link</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 col-6">
+    <div class="btn-group" ngbDropdown>
+      <button type="button" class="btn btn-danger " ngbDropdownToggle dropdown-toggle>
+        Danger
+      </button>
+      <div ngbDropdownMenu class="dropdown-menu">
+        <a href ngbDropdownItem>Action</a>
+        <a href ngbDropdownItem>Another action</a>
+        <a href ngbDropdownItem>Something else here</a>
+        <div class="dropdown-divider"></div>
+        <a href ngbDropdownItem>Separated link</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h5 class="panel-subtitle">Split button dropdowns</h5>
+
+<div class="row btns-row">
+  <div class="col-sm-4 col-6">
+    <div class="btn-group" ngbDropdown>
+      <button type="button" class="btn btn-primary">Primary</button>
+      <button type="button" class="btn btn-primary " ngbDropdownToggle dropdown-toggle>
+       
+        <span class="visually-hidden">Toggle Dropdown</span>
+      </button>
+      <div ngbDropdownMenu class="dropdown-menu">
+        <a href ngbDropdownItem>Action</a>
+        <a href ngbDropdownItem>Another action</a>
+        <a href ngbDropdownItem>Something else here</a>
+        <div class="dropdown-divider"></div>
+        <a href ngbDropdownItem>Separated link</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 col-6">
+    <div class="btn-group" ngbDropdown>
+      <button type="button" class="btn btn-success">Success</button>
+      <button type="button" class="btn btn-success " ngbDropdownToggle dropdown-toggle>
+       
+        <span class="visually-hidden">Toggle Dropdown</span>
+      </button>
+      <div ngbDropdownMenu class="dropdown-menu">
+        <a href ngbDropdownItem>Action</a>
+        <a href ngbDropdownItem>Another action</a>
+        <a href ngbDropdownItem>Something else here</a>
+        <div class="dropdown-divider"></div>
+        <a href ngbDropdownItem>Separated link</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 col-6">
+    <div class="btn-group" ngbDropdown>
+      <button type="button" class="btn btn-info">Info</button>
+      <button type="button" class="btn btn-info " ngbDropdownToggle dropdown-toggle>
+       
+        <span class="visually-hidden">Toggle Dropdown</span>
+      </button>
+      <div ngbDropdownMenu class="dropdown-menu">
+        <a href ngbDropdownItem>Action</a>
+        <a href ngbDropdownItem>Another action</a>
+        <a href ngbDropdownItem>Something else here</a>
+        <div class="dropdown-divider"></div>
+        <a href ngbDropdownItem>Separated link</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 col-6">
+    <div class="btn-group" ngbDropdown>
+      <button type="button" class="btn btn-default">Default</button>
+      <button type="button" class="btn btn-default " ngbDropdownToggle dropdown-toggle>
+       
+        <span class="visually-hidden">Toggle Dropdown</span>
+      </button>
+      <div ngbDropdownMenu class="dropdown-menu">
+        <a href ngbDropdownItem>Action</a>
+        <a href ngbDropdownItem>Another action</a>
+        <a href ngbDropdownItem>Something else here</a>
+        <div class="dropdown-divider"></div>
+        <a href ngbDropdownItem>Separated link</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 col-6">
+    <div class="btn-group" ngbDropdown>
+      <button type="button" class="btn btn-warning">Warning</button>
+      <button type="button" class="btn btn-warning " ngbDropdownToggle dropdown-toggle>
+       
+        <span class="visually-hidden">Toggle Dropdown</span>
+      </button>
+      <div ngbDropdownMenu class="dropdown-menu">
+        <a href ngbDropdownItem>Action</a>
+        <a href ngbDropdownItem>Another action</a>
+        <a href ngbDropdownItem>Something else here</a>
+        <div class="dropdown-divider"></div>
+        <a href ngbDropdownItem>Separated link</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 col-6">
+    <div class="btn-group" ngbDropdown>
+      <button type="button" class="btn btn-danger">Danger</button>
+      <button type="button" class="btn btn-danger " ngbDropdownToggle dropdown-toggle>
+       
+        <span class="visually-hidden">Toggle Dropdown</span>
+      </button>
+      <div ngbDropdownMenu class="dropdown-menu">
+        <a href ngbDropdownItem>Action</a>
+        <a href ngbDropdownItem>Another action</a>
+        <a href ngbDropdownItem>Something else here</a>
+        <div class="dropdown-divider"></div>
+        <a href ngbDropdownItem>Separated link</a>
+      </div>
+    </div>
+  </div>
+</div>
+      </div>
+      <div
+          baPanel
+          title="Button Groups"
+          baPanelClass="with-scroll">
+        <div class="btn-group-example">
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-danger">Left</button>
+    <button type="button" class="btn btn-danger">Middle</button>
+    <button type="button" class="btn btn-danger">Right</button>
+  </div>
+</div>
+
+<div class="btn-toolbar-example">
+  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group" role="group" aria-label="First group">
+      <button type="button" class="btn btn-primary">1</button>
+      <button type="button" class="btn btn-primary">2</button>
+      <button type="button" class="btn btn-primary">3</button>
+      <button type="button" class="btn btn-primary">4</button>
+    </div>
+    <div class="btn-group" role="group" aria-label="Second group">
+      <button type="button" class="btn btn-primary">5</button>
+      <button type="button" class="btn btn-primary">6</button>
+      <button type="button" class="btn btn-primary">7</button>
+    </div>
+    <div class="btn-group" role="group" aria-label="Third group">
+      <button type="button" class="btn btn-primary">8</button>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12"
+         baPanel
+         title="Progress Buttons"
+         baPanelClass="with-scroll">
+      <div class="progress-buttons-container text-center default-text">
+  <div class="row">
+    <section class="col-md-6 col-lg-3">
+      <span class="button-title">fill horizontal</span>
+      <button [progressButton]="progressFunction" class="btn btn-success">Submit</button>
+    </section>
+    <section class="col-md-6 col-lg-3">
+      <span class="button-title">fill vertical</span>
+      <button [progressButton]="progressFunction" [pbDirection]="'vertical'" class="btn btn-danger">Submit</button>
+    </section>
+    <section class="col-md-6 col-lg-3">
+      <span class="button-title">shrink horizontal</span>
+      <button [progressButton]="progressFunction" [pbStyle]="'shrink'" class="btn btn-warning">Submit</button>
+    </section>
+    <section class="col-md-6 col-lg-3">
+      <span class="button-title">shrink vertical</span>
+      <button [progressButton]="progressFunction" [pbStyle]="'shrink'" [pbDirection]="'vertical'" class="btn btn-info">Submit</button>
+    </section>
+  </div>
+  <div class="row">
+    <section class="col-md-6 col-lg-3">
+      <span class="button-title">rotate-angle-bottom <br/>perspective</span>
+      <button [progressButton]="progressFunction" [pbStyle]="'rotate-angle-bottom'" class="btn btn-success">Submit</button>
+    </section>
+    <section class="col-md-6 col-lg-3">
+      <span class="button-title">rotate-angle-top <br/>perspective</span>
+      <button [progressButton]="progressFunction" [pbStyle]="'rotate-angle-top'" class="btn btn-danger">Submit</button>
+    </section>
+    <section class="col-md-6 col-lg-3">
+      <span class="button-title">rotate-angle-left <br/>perspective</span>
+      <button [progressButton]="progressFunction" [pbStyle]="'rotate-angle-left'" class="btn btn-warning">Submit</button>
+    </section>
+    <section class="col-md-6 col-lg-3">
+      <span class="button-title">rotate-angle-right <br/>perspective</span>
+      <button [progressButton]="progressFunction" [pbStyle]="'rotate-angle-right'" class="btn btn-info">Submit</button>
+    </section>
+  </div>
+  <div class="row">
+    <section class="col-md-6 col-lg-3">
+      <span class="button-title">rotate-side-down <br/>perspective</span>
+      <button [progressButton]="progressFunction" [pbStyle]="'rotate-side-down'" class="btn btn-success">Submit</button>
+    </section>
+    <section class="col-md-6 col-lg-3">
+      <span class="button-title">rotate-side-up <br/>perspective</span>
+      <button [progressButton]="progressFunction" [pbStyle]="'rotate-side-up'" class="btn btn-danger">Submit</button>
+    </section>
+    <section class="col-md-6 col-lg-3">
+      <span class="button-title">rotate-side-left <br/>perspective</span>
+      <button [progressButton]="progressFunction" [pbStyle]="'rotate-side-left'" class="btn btn-warning">Submit</button>
+    </section>
+    <section class="col-md-6 col-lg-3">
+      <span class="button-title">rotate-side-right <br/>perspective</span>
+      <button [progressButton]="progressFunction" [pbStyle]="'rotate-side-right'" class="btn btn-info">Submit</button>
+    </section>
+  </div>
+  <div class="row">
+    <section class="col-md-6 col-lg-3">
+      <span class="button-title">rotate-back <br/>perspective</span>
+      <button [progressButton]="progressFunction" [pbStyle]="'rotate-back'" class="btn btn-success">Submit</button>
+    </section>
+    <section class="col-md-6 col-lg-3">
+      <span class="button-title">flip-open <br/>perspective</span>
+      <button [progressButton]="progressFunction" [pbStyle]="'flip-open'" class="btn btn-danger">Submit</button>
+    </section>
+    <section class="col-md-6 col-lg-3">
+      <span class="button-title">slide-down <br/>horizontal</span>
+      <button [progressButton]="progressFunction" [pbStyle]="'slide-down'" class="btn btn-warning">Submit</button>
+    </section>
+    <section class="col-md-6 col-lg-3">
+      <span class="button-title">move-up <br/>horizontal</span>
+      <button [progressButton]="progressFunction" [pbStyle]="'move-up'" class="btn btn-info">Submit</button>
+    </section>
+  </div>
+  <div class="row">
+    <section class="col-md-6">
+      <span class="button-title">top-line <br/>horizontal</span>
+      <button [progressButton]="progressFunction" [pbStyle]="'top-line'" class="btn btn-success">Submit</button>
+    </section>
+    <section class="col-md-6">
+      <span class="button-title">lateral-lines <br/>vertical</span>
+      <button [progressButton]="progressFunction" [pbStyle]="'lateral-lines'" class="btn btn-info">Submit</button>
+    </section>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
