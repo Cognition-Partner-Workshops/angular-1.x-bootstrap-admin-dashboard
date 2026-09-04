@@ -1,0 +1,21 @@
+@import '../../../styles/conf';
+
+.profile-page {
+  .form-group {
+    margin-bottom: 14px;
+  }
+
+  .control-label {
+    padding-top: 0;
+  }
+
+  .switch-container.primary .form-check-input:checked {
+    background-color: $primary;
+    border-color: $primary;
+  }
+
+  .form-check-input {
+    width: 3em;
+    height: 1.6em;
+  }
+}
