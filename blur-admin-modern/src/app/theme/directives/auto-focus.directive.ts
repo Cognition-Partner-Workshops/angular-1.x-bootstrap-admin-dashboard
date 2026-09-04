@@ -8,6 +8,10 @@ export class AutoFocusDirective implements OnDestroy {
 
   constructor(private readonly element: ElementRef<HTMLElement>) {
     effect(() => {
+      if (this.timer) {
+        clearTimeout(this.timer);
+        this.timer = undefined;
+      }
       if (this.autoFocus()) {
         this.timer = setTimeout(() => {
           this.element.nativeElement.focus();

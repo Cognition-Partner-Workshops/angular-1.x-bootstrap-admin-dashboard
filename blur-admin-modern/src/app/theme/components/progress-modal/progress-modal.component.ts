@@ -19,10 +19,7 @@ import { BaProgressModalService } from '../../services/ba-progress-modal.service
     </div>
     <div class="modal-footer"></div>
   `,
-  styles: `
-    .progress-bar-round { display: block; }
-    .modal-body { text-align: center; }
-  `,
+  styles: '.modal-body { text-align: center; }',
 })
 export class ProgressModalComponent {
   private readonly progressService = inject(BaProgressModalService);

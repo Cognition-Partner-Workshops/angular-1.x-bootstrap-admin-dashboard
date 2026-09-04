@@ -3,16 +3,22 @@ import { Inject, Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class BaPanelBlurHelperService {
-  protected image: HTMLImageElement;
+  protected image?: HTMLImageElement;
   private readonly loaded: Promise<void>;
 
   constructor(@Inject(DOCUMENT) document: Document) {
     const computedStyle = getComputedStyle(document.body, ':before');
-    this.image = new Image();
-    this.image.src = computedStyle.backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2');
+    const backgroundImage = computedStyle.backgroundImage;
+    if (backgroundImage === 'none') {
+      this.loaded = Promise.resolve();
+      return;
+    }
+    const image = new Image();
+    this.image = image;
+    image.src = backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2');
     this.loaded = new Promise((resolve, reject) => {
-      this.image.onerror = () => reject();
-      this.image.onload = () => resolve();
+      image.onerror = () => reject();
+      image.onload = () => resolve();
     });
   }
 
@@ -23,7 +29,7 @@ export class BaPanelBlurHelperService {
   getBodyBgImageSizes(): { width: number; height: number; positionX: number; positionY: number } | undefined {
     const elemW = document.documentElement.clientWidth;
     const elemH = document.documentElement.clientHeight;
-    if (elemW <= 640) return undefined;
+    if (elemW <= 640 || !this.image) return undefined;
     const imgRatio = this.image.height / this.image.width;
     const containerRatio = elemH / elemW;
     let finalHeight: number;
