@@ -1,0 +1,33 @@
+<div class="horizontal-scroll">
+  <div class="mb-3 select-page-size-wrap">
+    <label>Rows on page
+      <select class="form-select form-select-sm" title="Rows on page" [value]="pageSize()" (change)="setPageSize($any($event.target).value)">
+        @for (size of pageSizes; track size) { <option [value]="size">{{ size }}</option> }
+      </select>
+    </label>
+  </div>
+  <table class="table">
+    <thead>
+      <tr class="sortable">
+        <th class="table-id" (click)="sort('id')" [class.st-sort-ascent]="sortKey() === 'id' && sortDir() === 'asc'" [class.st-sort-descent]="sortKey() === 'id' && sortDir() === 'desc'">#</th>
+        <th (click)="sort('firstName')" [class.st-sort-ascent]="sortKey() === 'firstName' && sortDir() === 'asc'" [class.st-sort-descent]="sortKey() === 'firstName' && sortDir() === 'desc'">First Name</th>
+        <th (click)="sort('lastName')" [class.st-sort-ascent]="sortKey() === 'lastName' && sortDir() === 'asc'" [class.st-sort-descent]="sortKey() === 'lastName' && sortDir() === 'desc'">Last Name</th>
+        <th (click)="sort('username')" [class.st-sort-ascent]="sortKey() === 'username' && sortDir() === 'asc'" [class.st-sort-descent]="sortKey() === 'username' && sortDir() === 'desc'">Username</th>
+        <th (click)="sort('email')" [class.st-sort-ascent]="sortKey() === 'email' && sortDir() === 'asc'" [class.st-sort-descent]="sortKey() === 'email' && sortDir() === 'desc'">Email</th>
+        <th (click)="sort('age')" [class.st-sort-ascent]="sortKey() === 'age' && sortDir() === 'asc'" [class.st-sort-descent]="sortKey() === 'age' && sortDir() === 'desc'">Age</th>
+      </tr>
+      <tr>
+        <th></th>
+        @for (col of searchColumns; track col.key) {
+          <th><input type="search" class="form-control form-control-sm search-input" placeholder="Search {{ col.label }}" (input)="setFilter(col.key, $event)"></th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of pageRows(); track item.id) {
+        <tr><td class="table-id">{{ item.id }}</td><td>{{ item.firstName }}</td><td>{{ item.lastName }}</td><td>{{ item.username }}</td><td><a class="email-link" [href]="'mailto:' + item.email">{{ item.email }}</a></td><td>{{ item.age }}</td></tr>
+      }
+    </tbody>
+    <tfoot><tr><td colspan="6" class="text-center"><st-pagination [(page)]="page" [totalItems]="sorted().length" [pageSize]="pageSize()" /></td></tr></tfoot>
+  </table>
+</div>
