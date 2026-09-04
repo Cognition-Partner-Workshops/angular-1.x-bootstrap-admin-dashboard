@@ -1,0 +1,33 @@
+<div class="widgets">
+  <div class="row">
+    <div class="col-md-12" baPanel title="Modals" baPanelClass="with-scroll">
+      <div class="modal-buttons clearfix">
+        <button type="button" class="btn btn-primary" (click)="open('md')">Default modal</button>
+        <button type="button" class="btn btn-success" (click)="open('lg')">Large modal</button>
+        <button type="button" class="btn btn-warning" (click)="open('sm')">Small modal</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6" baPanel title="Message Modals" baPanelClass="with-scroll">
+      <div class="modal-buttons same-width clearfix">
+        <button type="button" class="btn btn-success" (click)="openMessage('success')">Success Message</button>
+        <button type="button" class="btn btn-info" (click)="openMessage('info')">Info Message</button>
+        <button type="button" class="btn btn-warning" (click)="openMessage('warning')">Warning Message</button>
+        <button type="button" class="btn btn-danger" (click)="openMessage('danger')">Danger Message</button>
+      </div>
+    </div>
+    <div class="col-md-6" baPanel title="Notifications" baPanelClass="with-scroll">
+      <app-notifications-widget />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6" baPanel title="Progress dialogs" baPanelClass="with-scroll">
+      <div class="modal-buttons same-width clearfix">
+        <button type="button" class="btn btn-info" (click)="openProgressDialog()">Progress dialog</button>
+      </div>
+    </div>
+  </div>
+</div>

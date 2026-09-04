@@ -1,0 +1,14 @@
+@import '../../../../styles/conf';
+
+.progress {
+  background: $progress-background;
+  height: 20px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+.progress-bar-primary { background-color: $primary; }
+.progress-bar-success { background-color: $success-light; }
+.progress-bar-info { background-color: $info; }
+.progress-bar-warning { background-color: $warning; }
+.progress-bar-danger { background-color: $danger; }
