@@ -82,7 +82,9 @@ equivalent (`closeHtml`, `containerId`, `preventOpenDuplicates`, `target`) were 
    `$border-color`, `$font-family-sans-serif`, `$enable-shadows`).
 2. `bootstrap/scss/bootstrap`, Font Awesome, `ngx-toastr/toastr`.
 3. `styles/theme/*` partials: `_layout`, `_buttons`, `_icons`, `_socicon`, `_blur-admin-theme`, `_preloader`,
-   `bootstrap-overrides/_panel`, `components/_baWizard`, `components/_progressRound`, `_switcher`.
+   `bootstrap-overrides/_panel`, `components/_baWizard`, `components/_progressRound`, `components/_sidebar`,
+   `components/_pageTop`, `components/_contentTop`, `components/_msgCenter`, `components/_backTop`,
+   `components/_widgets`, `_switcher`.
 
 Page areas put page-specific SCSS in their own component `styleUrls` (or, for legacy `src/sass/app/*` files that are
 global, add a new `styles/app/_<name>.scss` and one `@import` line at the end of `styles.scss`). Use the variables and
@@ -98,31 +100,62 @@ Add new static files under `public/assets/`.
 ## Routes
 
 Each page area lives in `src/app/pages/<area>/` and exports `<AREA>_ROUTES: Routes` from
-`src/app/pages/<area>/<area>.routes.ts`, mirroring the legacy `$stateProvider` states: same URL segments
-(`/#/ui/buttons` → `/ui/buttons`), same `title`, same `sidebarMeta.icon` and `sidebarMeta.order`.
+`src/app/pages/<area>/<area>.routes.ts`, mirroring the legacy `$stateProvider` states: preserve URL segments
+(`/\#/ui/buttons` → `/ui/buttons`), `title`, and `sidebarMeta.icon` / `sidebarMeta.order`.
+
+The lazy entry in `src/app/app.routes.ts` carries the area's top-level `data` (including its title and
+`sidebarMeta`), while the area's routes file carries its child route data:
 
 ```ts
+// app.routes.ts
+{
+  path: 'ui',
+  loadChildren: () => import('./pages/ui/ui.routes').then(m => m.UI_ROUTES),
+  data: { title: 'UI Features', sidebarMeta: { icon: 'ion-android-laptop', order: 200 } },
+}
+
 // src/app/pages/ui/ui.routes.ts
 export const UI_ROUTES: Routes = [
-  {
-    path: '',
-    data: { title: 'UI Features', sidebarMeta: { icon: 'ion-android-laptop', order: 200 } },
-    children: [
-      { path: '', redirectTo: 'typography', pathMatch: 'full' },
-      { path: 'typography', component: TypographyComponent, data: { title: 'Typography', sidebarMeta: { order: 0 } } },
-    ],
-  },
+  { path: '', redirectTo: 'typography', pathMatch: 'full' },
+  { path: 'typography', component: TypographyComponent,
+    data: { title: 'Typography', sidebarMeta: { order: 0 } } },
 ];
 ```
 
-Register the area in `src/app/app.routes.ts` with exactly **one** lazy child entry inside the layout route:
+Register each area with exactly one lazy child entry inside the layout route; that is the only edit an area
+makes to `app.routes.ts`. `BaSidebarService` builds menu items from `data.sidebarMeta`: direct children of
+the layout are level 0 and descendants of those entries are level 1 (and level 2 where needed). The lazy
+entry's metadata is therefore available before its module is loaded; loaded lazy routes are also walked when
+available. The content title comes from the deepest activated route with `data.title`.
 
-```ts
-{ path: '<area>', loadChildren: () => import('./pages/<area>/<area>.routes').then(m => m.<AREA>_ROUTES) }
-```
+## Layout shell
 
-That is the only edit an area makes to `app.routes.ts`. The layout shell (next unit) builds the sidebar from
-`data.sidebarMeta` and the page title from `data.title`, so route `data` replaces ui-router `sidebarMeta`.
+`LayoutComponent` owns the page shell and calls `ThemeRunService.run()`. The shell uses
+`BaPageLoadingService`, `ThemeLayoutSettingsService`, and these standalone components:
+
+| Selector | Class | Notes |
+|---|---|---|
+| `<ba-sidebar>` | `BaSidebarComponent` | Three-level menu, responsive collapse, router/fixed links |
+| `<page-top>` | `PageTopComponent` | Logo, menu toggle, search, profile dropdown, message center |
+| `<content-top>` | `ContentTopComponent` | Deepest activated route title and breadcrumb |
+| `<back-top>` | `BackTopComponent` | Scroll-to-top control shown past 200px |
+| `<msg-center>` | `MsgCenterComponent` | Notification and message dropdown demo data |
+| `<widgets>` | `WidgetsComponent` | Renders widget columns using `TemplateRef`s |
+| `<progress-bar-round>` | `ProgressBarRoundComponent` | Signal-backed round progress SVG |
+
+`BaSidebarService` is root-provided and exposes `menuCollapsed`, `isMenuCollapsed()`, `setMenuCollapsed()`,
+`toggleMenuCollapsed()`, `shouldMenuBeCollapsed()`, `canSidebarBeHidden()`, `addStaticItem(...)`,
+`getAllStateRefsRecursive(item)`, and `getMenuItems()`. Its `BaMenuItem` shape includes `title`, optional
+`icon`, `stateRef`, `fixedHref`, `blank`, `disabled`, `level`, `order`, `subMenu`, `expanded`, and
+`slideRight`. Swipe gestures are intentionally dropped; native `overflow-y: auto` replaces slimscroll.
+
+`ThemeRunService` waits for AmCharts and the legacy blur background assets (when applicable), with a
+seven-second fallback. Static demo menu entries live in `src/app/app.static-menu.ts` as `STATIC_MENU_ITEMS`
+and are registered through an app initializer.
+
+The dashboard unit replaces the placeholder in `src/app/pages/dashboard/`: delete the placeholder component
+when implementing the real page, but keep `dashboard.routes.ts`, its `DASHBOARD_ROUTES` export, and the
+`app.routes.ts` lazy entry.
 
 ## Dependencies
 
