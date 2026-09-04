@@ -1,0 +1,7 @@
+@keyframes spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+#preloader { position: fixed; inset: 0; z-index: 1000; background: #000;
+  > div { position: relative; left: 50%; top: 50%; width: 150px; height: 150px; margin: -75px 0 0 -75px; border-radius: 50%; border: 3px solid transparent; border-top-color: $danger; animation: spin 2s linear infinite;
+    &::before, &::after { content: ''; position: absolute; border-radius: 50%; border: 3px solid transparent; animation: spin 3s linear infinite; }
+    &::before { inset: 5px; border-top-color: $primary; } &::after { inset: 15px; border-top-color: $warning; animation-duration: 1.5s; }
+  }
+}

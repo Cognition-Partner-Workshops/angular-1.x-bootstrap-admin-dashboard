@@ -1,0 +1,7 @@
+$panel-title-height: 44px;
+.panel { @include scrollbars(.4em, rgba(0,0,0,.6), rgba(255,255,255,.7)); color: $default-text; background-color: $default; border: none; border-radius: 5px; position: relative; margin-bottom: 24px; box-shadow: 0 5px 5px 0 rgba(0,0,0,.25);
+  &.panel-blur { background: url($images-root + 'blur-bg-blurred.jpg'); background-attachment: fixed; }
+  > .panel-body { padding: 15px 22px; height: 100%; } > .panel-heading, > .panel-footer { color: $default-text; }
+}
+.panel-heading, .panel-footer { border-bottom: 1px solid rgba(0,0,0,.12); height: $panel-title-height; padding: 14px 22px; }
+.panel-title { font-weight: $font-normal; text-transform: uppercase; opacity: .9; }

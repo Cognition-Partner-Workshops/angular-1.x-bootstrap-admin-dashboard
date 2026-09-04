@@ -1,0 +1,5 @@
+@mixin svg-icon-class($name, $width, $height) {
+  .i-#{$name} { display: inline-block; width: #{$width}px; height: #{$height}px; background: url($images-root + $name + '.svg') no-repeat center; background-size: contain; vertical-align: middle; }
+}
+@include svg-icon-class('face', 80, 80); @include svg-icon-class('money', 80, 80);
+@include svg-icon-class('person', 80, 80); @include svg-icon-class('refresh', 80, 80);

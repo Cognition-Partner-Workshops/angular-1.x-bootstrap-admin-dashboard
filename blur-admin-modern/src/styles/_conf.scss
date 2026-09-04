@@ -1,0 +1,37 @@
+@use 'sass:color';
+@function tint($value, $percentage) { @return color.mix(white, $value, $percentage); }
+@function shade($value, $percentage) { @return color.mix(black, $value, $percentage); }
+@mixin scrollbars($size, $foreground-color, $background-color: color.mix($foreground-color, white, 50%)) {
+  ::-webkit-scrollbar { width: $size; height: $size; }
+  ::-webkit-scrollbar-thumb { background: $foreground-color; cursor: pointer; }
+  ::-webkit-scrollbar-track { background: $background-color; }
+  body { scrollbar-face-color: $foreground-color; scrollbar-track-color: $background-color; }
+}
+@mixin bg-nr($relative-url) { background: url($images-root + $relative-url) no-repeat 0 0; }
+@mixin bg($relative-url) { background: url($images-root + $relative-url); }
+@mixin bg-image($relative-url) { background-image: url($images-root + $relative-url); }
+@mixin main-background() {
+  &::before { content: ''; position: fixed; inset: 0; background: url($images-root + 'blur-bg.jpg') no-repeat center center; background-size: cover; z-index: -1; }
+}
+@mixin bg-translucent-dark($opacity) { background: rgba(0, 0, 0, $opacity); }
+@mixin placeholderStyle($value, $opacity) { &::placeholder { color: $value; opacity: $opacity; } }
+@mixin overrideColors($value) { p, h1, h2, h3, h4, h5, h6, .panel-title, .form-group label, .help-block { color: $value; } }
+$font-family: 'Roboto', sans-serif;
+$resMin: 320px; $resXS: 500px; $assets-root: '/assets/';
+$images-root: $assets-root + 'img/'; $fonts-root: $assets-root + 'fonts/';
+$font-thin: 100; $font-light: 300; $font-normal: 400; $font-bold: 700; $font-ultraBold: 900;
+$top-height: 66px; $small-panel-height: 114px; $xsmall-panel-height: 187px; $medium-panel-height: 400px;
+$extra-medium-panel-height: 550px; $large-panel-height: 974px;
+$default: #fff; $body-bg: #f0f3f4; $default-text: #666; $help-text: #949494; $label-text: #fff;
+$disabled: #ddd; $border: #d6d6d6; $input-border: shade($border, 5%); $input-background: #fff;
+$primary: #209e91 !default; $info: #2dacd1 !default; $success: #90b900 !default;
+$warning: #dfb81c !default; $danger: #e85656 !default;
+$primary-light: tint($primary, 30%); $info-light: tint($info, 30%); $success-light: tint($success, 30%);
+$warning-light: tint($warning, 30%); $danger-light: tint($danger, 30%);
+$primary-dark: shade($primary, 15%); $info-dark: shade($info, 15%); $success-dark: shade($success, 15%);
+$warning-dark: shade($warning, 15%); $danger-dark: shade($danger, 15%);
+$primary-bg: tint($primary, 20%); $info-bg: tint($info, 20%); $success-bg: tint($success, 20%);
+$warning-bg: tint($warning, 20%); $danger-bg: tint($danger, 20%);
+$facebook-color: #3b5998; $twitter-color: #55acee; $google-color: #dd4b39; $linkedin-color: #0177b5;
+$github-color: #6b6b6b; $stackoverflow-color: #2f96e8; $dribble-color: #f26798; $behace-color: #0093fa;
+$body-color: $default-text; $border-color: $border; $font-family-sans-serif: $font-family; $enable-shadows: false;

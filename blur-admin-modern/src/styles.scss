@@ -1,5 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
-
-/* Importing Bootstrap SCSS file. */
+@import 'styles/conf';
 @import 'bootstrap/scss/bootstrap';
 @import '@fortawesome/fontawesome-free/css/all.min.css';
+@import 'ngx-toastr/toastr';
+@import 'styles/theme/layout';
+@import 'styles/theme/buttons';
+@import 'styles/theme/icons';
+@import 'styles/theme/socicon';
+@import 'styles/theme/blur-admin-theme';
+@import 'styles/theme/preloader';
+@import 'styles/theme/bootstrap-overrides/panel';
+@import 'styles/theme/components/baWizard';
+@import 'styles/theme/switcher';

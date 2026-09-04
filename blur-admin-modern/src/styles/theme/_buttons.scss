@@ -1,0 +1,8 @@
+.btn:focus, .btn:active:focus, .btn.active:focus { outline: none; }
+.btn { border-radius: 5px; transition: all .1s ease; } .btn:hover { transform: scale(1.02); }
+@mixin theme-button($color) { background: $color; border-color: $color; &:hover, &:focus, &:active { background: shade($color, 15%); border-color: shade($color, 15%); } }
+button.btn.btn-primary { @include theme-button($primary); } button.btn.btn-success { @include theme-button($success); }
+button.btn.btn-info { @include theme-button($info); } button.btn.btn-warning { @include theme-button($warning); }
+button.btn.btn-danger { @include theme-button($danger); } .btn-with-icon i { margin-right: 10px; }
+.btn-group, .btn-toolbar { :hover { transform: none; } } .btn-raised { box-shadow: 0 2px 5px 0 rgba(0,0,0,.35); }
+.btn-mm { padding: 5px 11px; font-size: 13px; } .btn-xm { padding: 8px 14px; font-size: 16px; }
