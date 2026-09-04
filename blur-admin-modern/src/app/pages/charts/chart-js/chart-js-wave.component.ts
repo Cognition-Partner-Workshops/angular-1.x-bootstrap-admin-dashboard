@@ -28,10 +28,12 @@ export class ChartJsWaveComponent implements OnInit, OnDestroy {
 
   private snapshot() {
     if (!this.cache || this.cache.type !== this.chartType) {
+      const options = chartJsOptions(this.config.colors, this.chartType, false);
+      options.animation = false;
       this.cache = {
         type: this.chartType,
         data: this.buildData(),
-        options: chartJsOptions(this.config.colors, this.chartType, false),
+        options,
       };
     }
     return this.cache;

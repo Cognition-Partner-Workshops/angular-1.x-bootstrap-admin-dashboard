@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import * as am5xy from '@amcharts/amcharts5/xy';
 import { DashboardLineChartComponent, REVENUE_CHART_DATA, REVENUE_ZOOM_END, REVENUE_ZOOM_START } from './dashboard-line-chart.component';
 
 describe('DashboardLineChartComponent', () => {
@@ -34,6 +35,8 @@ describe('DashboardLineChartComponent', () => {
     expect(component.chart?.series.length).toBe(2);
     expect(component.chart?.xAxes.length).toBe(1);
     expect(component.chart?.yAxes.length).toBe(1);
+    expect((component.chart?.series.getIndex(0) as am5xy.SmoothedXLineSeries)?.get('tension')).toBe(0.4);
+    expect((component.chart?.series.getIndex(1) as am5xy.SmoothedXLineSeries)?.get('tension')).toBe(0.4);
   });
 
   it('disposes the amCharts root on destroy', () => {

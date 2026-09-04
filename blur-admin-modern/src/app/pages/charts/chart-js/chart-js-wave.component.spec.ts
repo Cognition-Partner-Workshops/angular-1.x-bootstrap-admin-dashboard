@@ -8,6 +8,10 @@ describe('ChartJsWaveComponent', () => {
     const component = TestBed.createComponent(ChartJsWaveComponent).componentInstance;
     expect(component.options.plugins?.legend?.display).toBeFalse();
   });
+  it('disables animation for rotating chart updates', () => {
+    const component = TestBed.createComponent(ChartJsWaveComponent).componentInstance;
+    expect(component.options.animation).toBeFalse();
+  });
   it('rotates every 400ms and stops on destroy', fakeAsync(() => {
     const fixture = TestBed.createComponent(ChartJsWaveComponent);
     const component = fixture.componentInstance;

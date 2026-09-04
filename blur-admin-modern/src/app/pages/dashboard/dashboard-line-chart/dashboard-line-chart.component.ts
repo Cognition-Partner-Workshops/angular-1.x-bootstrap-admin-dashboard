@@ -114,6 +114,7 @@ export class DashboardLineChartComponent implements AfterViewInit, OnDestroy {
         yAxis,
         valueXField: 'date',
         valueYField: field,
+        tension: 0.4,
         stroke: am5.color(this.util.hexToRGB(graphColor, alpha)),
         fill: am5.color(this.util.hexToRGB(graphColor, alpha)),
         tooltip: am5.Tooltip.new(root, { labelText: '{valueY}' }),
