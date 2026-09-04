@@ -40,6 +40,7 @@
     "@fullcalendar/interaction": "^6.1.21",
     "@fullcalendar/timegrid": "^6.1.21",
     "@ng-bootstrap/ng-bootstrap": "^19.0.1",
+    "@ng-select/ng-select": "15.2.0",
     "@popperjs/core": "^2.11.8",
     "@types/leaflet": "^1.9.22",
     "bootstrap": "^5.3.8",

@@ -1,0 +1,105 @@
+<div class="form-group">
+  <select class="form-control form-select selectpicker" title="Standard Select" [(ngModel)]="standardSelected">
+    <option [ngValue]="null" disabled>Standard Select</option>
+    @for (item of standardSelectItems; track item.value) {
+      <option [ngValue]="item">{{ item.label }}</option>
+    }
+  </select>
+</div>
+<div class="form-group">
+  <select class="form-control form-select selectpicker" title="Select With Search" [(ngModel)]="searchSelectedItem">
+    <option [ngValue]="null" disabled>Select With Search</option>
+    @for (item of selectWithSearchItems; track item.value) {
+      <option [ngValue]="item">{{ item.label }}</option>
+    }
+  </select>
+</div>
+<div class="form-group">
+  <select class="form-control form-select selectpicker" title="Option Types" [(ngModel)]="optionTypesSelected">
+    <option [ngValue]="null" disabled>Option Types</option>
+    <option value="Standard option">Standard option</option>
+    <option value="Option with subtext">Option with subtext</option>
+    <option value="Disabled Option" disabled>Disabled Option</option>
+    <option value="Option with cion"><i class="fa fa-heart"></i> Option with cion</option>
+  </select>
+</div>
+<div class="form-group">
+  <select class="form-control form-select selectpicker" title="Disabled Select" [(ngModel)]="disabledSelected" disabled>
+    <option [ngValue]="null" disabled>Disabled Select</option>
+    <option value="Option 1">Option 1</option>
+    <option value="Option 2">Option 2</option>
+    <option value="Option 3">Option 3</option>
+  </select>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-group">
+      <select class="form-control form-select" title="Select with Option Groups" [(ngModel)]="groupedSelectedItem">
+        <option [ngValue]="null" disabled>Select with Option Groups</option>
+        @for (group of ['Group 1', 'Group 2']; track group) {
+          <optgroup [label]="group">
+            @for (item of groupedSelectItems; track item.value) {
+              @if (item.group === group) {
+                <option [ngValue]="item">{{ item.label }}</option>
+              }
+            }
+          </optgroup>
+        }
+      </select>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="form-group">
+      <select class="form-control form-select" title="Select with Divider" [(ngModel)]="dividerSelected">
+        <option [ngValue]="null" disabled>Select with Divider</option>
+        <option value="Group 1 - Option 1">Group 1 - Option 1</option>
+        <option value="Group 1 - Option 2">Group 1 - Option 2</option>
+        <option value="──────" disabled>──────</option>
+        <option value="Group 2 - Option 1">Group 2 - Option 1</option>
+        <option value="Group 2 - Option 2">Group 2 - Option 2</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <select class="form-control form-select" title="Multiple Select" multiple [(ngModel)]="multipleSelectedItems">
+    @for (item of standardSelectItems; track item.value) {
+      <option [ngValue]="item">{{ item.label }}</option>
+    }
+  </select>
+</div>
+<div class="form-group">
+  <select class="form-control form-select" title="Multiple Select with Limit" multiple [(ngModel)]="multipleSelectedItems2">
+    @for (item of standardSelectItems; track item.value) {
+      <option [ngValue]="item">{{ item.label }}</option>
+    }
+  </select>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    @for (style of ['primary', 'success', 'warning']; track style) {
+      <div class="form-group">
+      <select class="form-control form-select selectpicker btn-{{ style }}" [title]="(style | titlecase) + ' Select'" [(ngModel)]="coloredSelections[style]">
+          <option [ngValue]="null" disabled>{{ style | titlecase }} Select</option>
+          <option value="Option 1">Option 1</option>
+          <option value="Option 2">Option 2</option>
+          <option value="Option 3">Option 3</option>
+          <option value="Option 4">Option 4</option>
+        </select>
+      </div>
+    }
+  </div>
+  <div class="col-sm-6">
+    @for (style of ['info', 'danger', 'inverse']; track style) {
+      <div class="form-group">
+      <select class="form-control form-select selectpicker btn-{{ style }}" [title]="(style | titlecase) + ' Select'" [(ngModel)]="coloredSelections[style]">
+          <option [ngValue]="null" disabled>{{ style | titlecase }} Select</option>
+          <option value="Option 1">Option 1</option>
+          <option value="Option 2">Option 2</option>
+          <option value="Option 3">Option 3</option>
+          <option value="Option 4">Option 4</option>
+        </select>
+      </div>
+    }
+  </div>
+</div>
