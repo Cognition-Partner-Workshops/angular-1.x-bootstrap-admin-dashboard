@@ -1,0 +1,53 @@
+@import '../../../../styles/conf';
+app-ui-tabs {
+  .tabset-group > div + div { margin-top: 15px; }
+  .panel.tabs-panel .panel-body { padding: 0; }
+  .panel.tabs-panel .dropdown-menu { min-width: 132px; top: auto; border: none; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; }
+  .panel.tabs-panel.with-scroll .panel-body { height: 100%; }
+  .xsmall-panel .nav-tabs, .xsmall-panel .tab-content { height: 100%; }
+  .inline-icon { display: inline-block; margin: 20px 5px; }
+  .panel.horizontal-tabs .tab-content { height: calc(100% - 40px); }
+  .tabs-left, .tabs-right { height: 100%; }
+  .tabs-left > .nav-tabs, .tabs-right > .nav-tabs { flex-direction: column; min-width: 100px; border-bottom: 0; }
+  .tabs-left > .nav-tabs { float: left; }
+  .tabs-right > .nav-tabs { float: right; }
+  .tabs-left > .tab-content { width: calc(100% - 100px); margin-left: 100px; overflow-y: auto; }
+  .tabs-right > .tab-content { width: calc(100% - 100px); margin-right: 100px; overflow-y: auto; }
+  .tabs-left > .nav-tabs .nav-link, .tabs-right > .nav-tabs .nav-link { min-width: 74px; margin: 0 0 3px; border: 0; border-radius: 0; }
+  .tabs-left > .nav-tabs .nav-link { margin-right: -1px; }
+  .tabs-right > .nav-tabs .nav-link { margin-left: -1px; }
+  .tab-content { padding: 15px 15px 5px; background: transparent; color: $default-text; }
+  .tab-content .tab-pane p { color: $default-text; }
+  .nav.nav-tabs { border-radius: 5px 5px 0 0; border-bottom: 1px solid transparent; background-color: $primary-light; }
+  .nav.nav-tabs .nav-link { color: $label-text; margin: 0; border: 0; border-radius: 0; }
+  .nav.nav-tabs .nav-link:hover, .nav.nav-tabs .nav-link:focus { color: $label-text; border: 0; background-color: $primary-light; }
+  .nav.nav-tabs .nav-link.active { color: $label-text; background-color: $primary; }
+  .nav.nav-tabs > li:first-of-type .nav-link { border-top-left-radius: 5px; }
+  .dropdown-menu .dropdown-item { color: $dropdown-text; }
+  .with-dropdown > .dropdown-toggle { padding: 10px 15px; display: inline-block; cursor: pointer; }
+  .dropdown-toggle::after { display: none; }
+  .caret { display: inline-block; width: 0; height: 0; margin-left: 2px; vertical-align: middle; border-top: 4px dashed; border-right: 4px solid transparent; border-left: 4px solid transparent; }
+  .pull-right { float: right; }
+  .accordion-item { background: transparent; border: 0; border-radius: inherit; }
+  .accordion-button { background: transparent; color: inherit; box-shadow: none; font-size: inherit; width: 100%; text-align: left; }
+  .accordion-button::after { display: none; }
+  .accordion-button:not(.collapsed) { background: transparent; color: inherit; box-shadow: none; }
+  .accordion-body { padding: 15px 22px; }
+  .accordion-panel .accordion-toggle.panel-title { font-size: 16px; margin: 0; }
+  .accordion-panel .panel-heading { padding: 0; border-radius: 3px; }
+  .accordion-panel.panel-open .panel-heading { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+  .accordion-panel:not(.panel-open) .panel-heading { transition-delay: .3s; }
+  .accordion-panel > .panel-heading .accordion-toggle { display: inline-block; width: 100%; padding: 14px 22px; }
+  .panel-default > .panel-heading, .panel-default > .panel-footer { background-color: #f5f5f5; border-color: #ddd; }
+  .kameleon-icon-tabs { max-width: 84px; }
+  .kameleon-icon-tabs img { width: 100%; min-width: 81px; min-height: 81px; }
+  .kameleon-icon { text-align: center; margin: 0 auto; }
+  .kameleon-icon img { width: 100%; }
+  .with-round-bg { margin-bottom: 6px; }
+  .with-round-bg img { border-radius: 50%; margin-bottom: 4px; background: $default; }
+  .with-round-bg.success img { background: $success; }
+  .with-round-bg.danger img { background: $danger; }
+  .with-round-bg.warning img { background: $warning; }
+  .with-round-bg.info img { background: $info; }
+  .with-round-bg.primary img { background: $primary; }
+}

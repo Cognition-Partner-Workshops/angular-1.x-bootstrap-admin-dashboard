@@ -1,0 +1,3 @@
+import { TestBed } from '@angular/core/testing';
+import { PanelsComponent } from './panels.component';
+describe('PanelsComponent', () => { beforeEach(() => TestBed.configureTestingModule({ imports: [PanelsComponent] })); it('renders the panel examples', () => { const f = TestBed.createComponent(PanelsComponent); f.detectChanges(); expect(f.componentInstance).toBeTruthy(); expect(f.nativeElement.querySelectorAll('h2').length).toBe(4); expect(f.nativeElement.querySelectorAll('[baPanel] .panel').length).toBe(3); expect(f.nativeElement.querySelectorAll('.contextual-example-panel').length).toBe(6); expect(f.nativeElement.textContent).toContain('Panel Footer'); expect(f.nativeElement.querySelector('.panel-group')).toBeTruthy(); }); });

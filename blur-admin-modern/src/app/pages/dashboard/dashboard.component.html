@@ -1,0 +1,63 @@
+<dashboard-pie-chart></dashboard-pie-chart>
+
+<div class="row">
+  <div class="col-lg-6 col-md-12 col-sm-12"
+       baPanel
+       [title]="'Acquisition Channels'"
+       baPanelClass="medium-panel traffic-panel">
+    <traffic-chart></traffic-chart>
+  </div>
+  <div class="col-lg-6 col-md-12 col-sm-12"
+       baPanel
+       [title]="'Users by Country'"
+       baPanelClass="medium-panel">
+    <dashboard-map></dashboard-map>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xlg-9 col-lg-6 col-md-6 col-sm-12 col-12">
+    <div class="row">
+      <div class="col-xlg-8 col-lg-12 col-md-12 col-sm-7 col-12"
+           baPanel
+           [title]="'Revenue'"
+           baPanelClass="medium-panel">
+        <dashboard-line-chart></dashboard-line-chart>
+      </div>
+      <div class="col-xlg-4 col-lg-12 col-md-12 col-sm-5 col-12"
+           baPanel
+           baPanelClass="popular-app medium-panel">
+        <popular-app></popular-app>
+      </div>
+    </div>
+  </div>
+  <div class="col-xlg-3 col-lg-6 col-md-6 col-sm-12 col-12"
+       baPanel
+       [title]="'Feed'"
+       baPanelClass="large-panel with-scroll feed-panel">
+    <blur-feed></blur-feed>
+  </div>
+</div>
+
+<div class="row shift-up">
+  <div class="col-xlg-3 col-lg-6 col-md-6 col-12"
+       baPanel
+       [title]="'To Do List'"
+       baPanelClass="xmedium-panel feed-comply-panel with-scroll todo-panel">
+    <dashboard-todo></dashboard-todo>
+  </div>
+  <div class="col-xlg-6 col-lg-6 col-md-6 col-12"
+       baPanel
+       [title]="'Calendar'"
+       baPanelClass="xmedium-panel feed-comply-panel with-scroll calendar-panel">
+    <dashboard-calendar></dashboard-calendar>
+  </div>
+</div>
+
+<!--<div class="row">
+  <div class="col-lg-4 col-sm-6 col-12">
+    <div baPanel title="Weather" baPanelClass="medium-panel with-scroll">
+      <weather forecast="5"></weather>
+    </div>
+  </div>
+</div>-->

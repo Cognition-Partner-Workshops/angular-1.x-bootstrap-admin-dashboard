@@ -1,0 +1,11 @@
+<div class="form-group">
+  <div class="bootstrap-tagsinput">
+    @for (tag of tags(); track $index) {
+      <span class="tag label label-{{ tagStyle() }}">
+        {{ tag }}
+        <span data-role="remove" (click)="removeTag($index)"></span>
+      </span>
+    }
+    <input type="text" [placeholder]="placeholder()" (keydown)="onKeydown($event)" [(ngModel)]="draft">
+  </div>
+</div>

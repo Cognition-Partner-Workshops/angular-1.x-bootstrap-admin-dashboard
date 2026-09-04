@@ -1,0 +1,172 @@
+@import '../../../../styles/conf';
+
+// legacy src/sass/theme/dashboard/_calendar.scss, re-targeted at FullCalendar 6 class names / CSS variables
+div.blurCalendar {
+  font-size: 12px;
+  margin-top: 15px;
+}
+
+.calendar-panel.panel .panel-body {
+  padding: 0;
+}
+
+.blurCalendar .fc {
+  direction: ltr;
+  text-align: left;
+  --fc-border-color: #{rgba($border, 0.3)};
+  --fc-today-bg-color: rgba(255, 255, 255, 0.15);
+  --fc-highlight-color: rgba(255, 255, 255, 0.25);
+  --fc-event-bg-color: #{$primary};
+  --fc-event-border-color: #{$primary};
+  --fc-event-text-color: #{$label-text};
+  --fc-page-bg-color: transparent;
+  --fc-neutral-bg-color: #{$default};
+  --fc-more-link-bg-color: #{$default};
+  --fc-more-link-text-color: #{$default-text};
+
+  table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 1em;
+  }
+
+  th {
+    text-align: center;
+  }
+
+  .fc-toolbar {
+    text-align: center;
+    margin-bottom: 1em;
+    position: relative;
+    justify-content: center;
+
+    .fc-button-group {
+      position: static;
+    }
+
+    h2,
+    .fc-toolbar-title {
+      font-size: 24px;
+      white-space: nowrap;
+      color: $default-text;
+    }
+  }
+
+  .fc-button {
+    box-sizing: border-box;
+    margin: 0;
+    height: 2.1em;
+    padding: 0 0.6em;
+    font-size: 1em;
+    white-space: nowrap;
+    cursor: pointer;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .fc-today-button,
+  .fc-dayGridMonth-button,
+  .fc-dayGridWeek-button,
+  .fc-dayGridDay-button {
+    display: none;
+  }
+
+  .fc-prev-button,
+  .fc-next-button {
+    position: absolute;
+    top: 0;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    color: $default-text;
+    font-size: 2em;
+    height: auto;
+    line-height: 1;
+    padding: 0 0.3em;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: transparent;
+      color: $default-text;
+      box-shadow: none;
+    }
+  }
+
+  .fc-prev-button {
+    left: 0;
+  }
+
+  .fc-next-button {
+    left: 30px;
+  }
+
+  .fc-col-header {
+    color: $label-text;
+    background-color: $primary;
+
+    th,
+    td {
+      border: none;
+    }
+
+    .fc-col-header-cell-cushion {
+      padding: 5px 0;
+      color: $label-text;
+      text-decoration: none;
+    }
+  }
+
+  .fc-scrollgrid,
+  .fc-scrollgrid td,
+  .fc-scrollgrid th {
+    border-color: var(--fc-border-color);
+  }
+
+  .fc-scrollgrid > tbody > tr > .fc-scrollgrid-section > td {
+    border: none;
+  }
+
+  .fc-daygrid-day-number {
+    color: $default-text;
+    opacity: 0.9;
+    text-decoration: none;
+  }
+
+  .fc-day-today {
+    border-style: double;
+  }
+
+  .fc-event {
+    font-size: 0.85em;
+    line-height: 1.3;
+    font-weight: $font-normal;
+    border-width: 1px;
+  }
+
+  .fc-h-event .fc-event-main,
+  .fc-daygrid-event-dot,
+  .fc-daygrid-dot-event .fc-event-title {
+    color: $label-text;
+  }
+
+  .fc-daygrid-dot-event {
+    color: $label-text;
+
+    .fc-daygrid-event-dot {
+      border-color: currentColor;
+    }
+  }
+
+  .fc-popover {
+    background-color: $default;
+    border: 1px solid var(--fc-border-color);
+
+    .fc-popover-header {
+      background: #eee;
+      color: #666666;
+    }
+  }
+}

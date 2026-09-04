@@ -1,0 +1,12 @@
+@import '../../../../styles/conf';
+
+app-ui-panels {
+  .panel-default > .panel-heading, .panel-default > .panel-footer {
+    background-color: #f5f5f5;
+    border-color: #ddd;
+  }
+
+  .panel-footer {
+    border-top: 1px solid #ddd;
+  }
+}

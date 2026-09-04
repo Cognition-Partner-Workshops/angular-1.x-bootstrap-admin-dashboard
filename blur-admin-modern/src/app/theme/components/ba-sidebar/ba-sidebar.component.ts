@@ -1,0 +1,160 @@
+import { Component, ElementRef, HostListener, OnInit, inject, signal } from '@angular/core';
+import { NavigationEnd, RouteConfigLoadEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { BaMenuItem, BaSidebarService } from './ba-sidebar.service';
+import { BaUtilService } from '../../services/ba-util.service';
+
+@Component({
+  selector: 'ba-sidebar',
+  standalone: true,
+  imports: [RouterLink, RouterLinkActive],
+  template: `
+    <aside class="al-sidebar" (mouseleave)="hoverElemTop = selectElemTop">
+      <ul class="al-sidebar-list" [style.height.px]="menuHeight()" style="overflow-y:auto">
+        @for (item of menuItems; track item.title) {
+          <li class="al-sidebar-list-item"
+              [class.with-sub-menu]="!!item.subMenu"
+              [class.ba-sidebar-item-expanded]="item.expanded"
+              routerLinkActive="selected" [routerLinkActiveOptions]="{exact: false}">
+            @if (item.subMenu) {
+              <a class="al-sidebar-list-link" href="javascript:void(0)"
+                 (mouseenter)="hoverItem($event)" (click)="toggleSubMenu($event, item)">
+                <i [class]="item.icon"></i><span>{{ item.title }}</span>
+                <b class="fa" [class.fa-angle-up]="item.expanded" [class.fa-angle-down]="!item.expanded"></b>
+              </a>
+              <ul class="al-sidebar-sublist" [class.slide-right]="item.slideRight">
+                @for (subitem of item.subMenu; track subitem.title) {
+                  <li class="ba-sidebar-sublist-item"
+                      [class.with-sub-menu]="!!subitem.subMenu"
+                      [class.ba-sidebar-item-expanded]="subitem.expanded"
+                      routerLinkActive="selected" [routerLinkActiveOptions]="{exact: false}">
+                    @if (subitem.subMenu) {
+                      <a class="al-sidebar-list-link subitem-submenu-link" href="javascript:void(0)"
+                         (mouseenter)="hoverItem($event)" (click)="toggleSubMenu($event, subitem)">
+                        <span>{{ subitem.title }}</span>
+                        <b class="fa" [class.fa-angle-up]="subitem.expanded" [class.fa-angle-down]="!subitem.expanded"></b>
+                      </a>
+                      <ul class="al-sidebar-sublist subitem-submenu-list"
+                          [class.expanded]="subitem.expanded" [class.slide-right]="subitem.slideRight">
+                        @for (leaf of subitem.subMenu; track leaf.title) {
+                          <li routerLinkActive="selected" [routerLinkActiveOptions]="{exact: false}"
+                              (mouseenter)="hoverItem($event)">
+                            <a class="al-sidebar-list-link" [routerLink]="leaf.stateRef"
+                               (click)="leaf.disabled && $event.preventDefault()">{{ leaf.title }}</a>
+                          </li>
+                        }
+                      </ul>
+                    } @else {
+                      <a class="al-sidebar-list-link"
+                         [routerLink]="subitem.disabled ? null : subitem.stateRef"
+                         [href]="subitem.disabled ? null : (subitem.fixedHref ?? null)"
+                         [target]="subitem.blank ? '_blank' : '_self'"
+                         (mouseenter)="hoverItem($event)"
+                         (click)="subitem.disabled && $event.preventDefault()">{{ subitem.title }}</a>
+                    }
+                  </li>
+                }
+              </ul>
+            } @else {
+              <a class="al-sidebar-list-link"
+                 [routerLink]="item.disabled ? null : item.stateRef"
+                 [href]="item.disabled ? null : (item.fixedHref ?? null)"
+                 [target]="item.blank ? '_blank' : '_self'"
+                 (mouseenter)="hoverItem($event)"
+                 (click)="item.disabled && $event.preventDefault()">
+                <i [class]="item.icon"></i><span>{{ item.title }}</span>
+              </a>
+            }
+          </li>
+        }
+      </ul>
+      <div class="sidebar-hover-elem" [style.top.px]="hoverElemTop"
+           [style.height.px]="hoverElemHeight" [class.show-hover-elem]="showHoverElem"></div>
+    </aside>
+  `,
+})
+export class BaSidebarComponent implements OnInit {
+  private readonly elementRef = inject(ElementRef<HTMLElement>);
+  private readonly util = inject(BaUtilService);
+  readonly sidebar = inject(BaSidebarService);
+  readonly router = inject(Router);
+  menuItems: BaMenuItem[] = this.sidebar.getMenuItems();
+  readonly menuHeight = signal(0);
+  showHoverElem = false;
+  hoverElemHeight = 42;
+  hoverElemTop?: number;
+  selectElemTop?: number;
+
+  ngOnInit(): void {
+    this.updateExpanded();
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) this.updateExpanded();
+      if (event instanceof RouteConfigLoadEnd) {
+        const expandedState = this.getExpandedState();
+        this.menuItems = this.sidebar.getMenuItems();
+        this.updateExpanded(expandedState);
+      }
+    });
+  }
+
+  toggleSubMenu(event: Event, item: BaMenuItem): void {
+    event.preventDefault();
+    if (this.sidebar.isMenuCollapsed()) {
+      this.sidebar.setMenuCollapsed(false);
+      item.expanded = true;
+    } else {
+      item.expanded = !item.expanded;
+    }
+  }
+
+  hoverItem(event: MouseEvent): void {
+    const target = event.currentTarget as HTMLElement;
+    this.showHoverElem = true;
+    this.hoverElemHeight = target.clientHeight;
+    this.hoverElemTop = target.getBoundingClientRect().top - 66;
+  }
+
+  @HostListener('window:click', ['$event'])
+  onWindowClick(event: Event & { $sidebarEventProcessed?: boolean }): void {
+    if (event.$sidebarEventProcessed || this.sidebar.isMenuCollapsed()) return;
+    const target = event.target as Node | null;
+    if (target && !this.util.isDescendant(this.elementRef.nativeElement, target) && this.sidebar.canSidebarBeHidden()) {
+      setTimeout(() => this.sidebar.setMenuCollapsed(true), 10);
+    }
+  }
+
+  @HostListener('window:resize')
+  onResize(): void {
+    this.sidebar.setMenuCollapsed(this.sidebar.shouldMenuBeCollapsed());
+    this.updateMenuHeight();
+  }
+
+  ngAfterViewInit(): void {
+    this.updateMenuHeight();
+  }
+
+  private updateMenuHeight(): void {
+    const aside = this.elementRef.nativeElement.querySelector('aside');
+    if (aside) this.menuHeight.set(aside.clientHeight - 84);
+  }
+
+  private updateExpanded(expandedState = new Map<string, boolean>()): void {
+    const url = this.router.url;
+    const expand = (item: BaMenuItem): void => {
+      item.expanded =
+        expandedState.get(item.stateRef ?? '') === true ||
+        this.sidebar.getAllStateRefsRecursive(item).some((ref) => url.startsWith(ref));
+      item.subMenu?.forEach(expand);
+    };
+    this.menuItems.forEach(expand);
+  }
+
+  private getExpandedState(): Map<string, boolean> {
+    const expandedState = new Map<string, boolean>();
+    const collect = (item: BaMenuItem): void => {
+      if (item.stateRef) expandedState.set(item.stateRef, item.expanded === true);
+      item.subMenu?.forEach(collect);
+    };
+    this.menuItems.forEach(collect);
+    return expandedState;
+  }
+}

@@ -1,0 +1,41 @@
+@import 'chartist/dist/index.css';
+
+.admin-chart {
+  width: 100%;
+  height: 500px;
+  font-size: 11px;
+}
+
+#pieChart { max-width: 1120px; }
+
+.ct-area { fill-opacity: .5; }
+.ct-label { color: $default-text; opacity: .9; fill: $default-text; }
+.ct-chart .ct-label { font-size: 1em; }
+.ct-chart svg { width: 100%; display: block; }
+
+.ct-series-a {
+  .ct-bar, .ct-line, .ct-point, .ct-slice-donut, .ct-slice-pie { stroke: $primary; }
+  .ct-slice-pie, .ct-area { fill: $primary; }
+}
+.ct-series-b {
+  .ct-bar, .ct-line, .ct-point, .ct-slice-donut, .ct-slice-pie { stroke: $success; }
+  .ct-slice-pie, .ct-area { fill: $success; }
+}
+.ct-series-c {
+  .ct-bar, .ct-line, .ct-point, .ct-slice-donut, .ct-slice-pie { stroke: $danger; }
+  .ct-slice-pie, .ct-area { fill: $danger; }
+}
+.ct-series-d {
+  .ct-bar, .ct-line, .ct-point, .ct-slice-donut, .ct-slice-pie { stroke: $warning; }
+  .ct-slice-pie, .ct-area { fill: $warning; }
+}
+.ct-series-e {
+  .ct-bar, .ct-line, .ct-point, .ct-slice-donut, .ct-slice-pie { stroke: $info; }
+  .ct-slice-pie, .ct-area { fill: $info; }
+}
+
+.stacked-bar .ct-bar { stroke-width: 30px; }
+.chartist h5 { font-weight: $font-normal; }
+.chartjs-canvas-holder-first-row { height: 300px; }
+.chartjs-canvas-holder-second-row { height: 350px; }
+.chartjs-canvas-holder-third-row { height: 250px; }

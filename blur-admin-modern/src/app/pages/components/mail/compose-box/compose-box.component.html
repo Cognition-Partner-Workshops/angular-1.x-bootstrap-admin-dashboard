@@ -1,0 +1,42 @@
+<div class="compose-header">
+  <span>New message</span>
+  <span class="header-controls">
+    <i class="ion-minus-round"></i>
+    <i class="ion-arrow-resize"></i>
+    <i class="ion-close-round" (click)="dismiss()"></i>
+  </span>
+</div>
+<div>
+  <input type="text" class="form-control compose-input default-color" placeholder="To" [(ngModel)]="to">
+  <input type="text" class="form-control compose-input default-color" placeholder="Subject" [(ngModel)]="subject">
+  <div class="compose-container">
+    <quill-editor [(ngModel)]="text" (onEditorCreated)="onEditorCreated($event)">
+      <div quill-editor-toolbar class="ta-toolbar toolbarMain">
+        <button type="button" class="ql-header" value="1">H1</button>
+        <button type="button" class="ql-header" value="2">H2</button>
+        <button type="button" class="ql-header" value="3">H3</button>
+        <button type="button" class="ql-bold"></button>
+        <button type="button" class="ql-italic"></button>
+        <button type="button" class="ql-underline"></button>
+        <button type="button" class="ql-align" value=""></button>
+        <button type="button" class="ql-align" value="center"></button>
+        <button type="button" class="ql-align" value="right"></button>
+        <button type="button" class="ql-align" value="justify"></button>
+      </div>
+    </quill-editor>
+  </div>
+</div>
+<div class="compose-footer clearfix">
+  <button type="button" (click)="dismiss()" class="btn btn-send">Send</button>
+  <div class="ta-toolbar toolbarFooter">
+    <button type="button" class="btn" (click)="insertLink()"><i class="fa fa-link"></i></button>
+    <button type="button" class="btn" (click)="insertImage()"><i class="fa fa-picture-o"></i></button>
+    <button type="button" class="btn" (click)="toggleCode()"><i class="fa fa-code"></i></button>
+    <button type="button" class="btn" (click)="toggleQuote()"><i class="fa fa-quote-right"></i></button>
+    <button type="button" class="btn" (click)="insertVideo()"><i class="fa fa-video-camera"></i></button>
+  </div>
+  <div class="footer-controls">
+    <i class="footer-control-first compose-footer-icon ion-arrow-down-b"></i>
+    <i class="compose-footer-icon ion-android-delete" (click)="dismiss()"></i>
+  </div>
+</div>
