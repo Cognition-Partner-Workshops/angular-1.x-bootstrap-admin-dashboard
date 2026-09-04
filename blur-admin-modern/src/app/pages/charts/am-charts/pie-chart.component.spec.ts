@@ -8,7 +8,7 @@ describe('PieChartComponent', () => {
     expect(fixture.nativeElement.querySelector('#pieChart.admin-chart')).toBeTruthy();
     const root = fixture.componentInstance.root;
     expect(root).toBeTruthy();
-    fixture.destroy();
+    expect(() => fixture.destroy()).not.toThrow();
     expect(root!.isDisposed()).toBeTrue();
   });
 });

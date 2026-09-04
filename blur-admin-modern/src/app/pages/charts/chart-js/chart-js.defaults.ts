@@ -6,21 +6,22 @@ export const chartPalette = (colors: BaColors): string[] => [
   colors.primaryDark, colors.successDark, colors.warningLight, colors.successLight, colors.primaryLight,
 ];
 
-export function chartJsOptions(colors: BaColors, type: string): ChartOptions {
+export function chartJsOptions(colors: BaColors, type: string, showLegend = true): ChartOptions {
   const options: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     animation: { duration: 2500 },
     plugins: {
-      legend: { display: true, position: 'bottom', labels: { color: colors.defaultText } },
+      legend: { display: showLegend, position: 'bottom', labels: { color: colors.defaultText } },
       tooltip: { enabled: type !== 'bar' },
     },
-    scales: {
+  };
+  if (type === 'line' || type === 'bar') {
+    options.scales = {
       x: { grid: { color: colors.border }, ticks: { color: colors.defaultText } },
       y: { grid: { color: colors.border }, ticks: { color: colors.defaultText } },
-    },
-  };
-  if (type === 'radar') {
+    };
+  } else if (type === 'radar' || type === 'polarArea') {
     options.scales = {
       r: {
         grid: { color: colors.border },

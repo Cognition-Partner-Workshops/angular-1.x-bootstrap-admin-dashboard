@@ -21,9 +21,9 @@ export class ChartJsWaveComponent implements OnInit, OnDestroy {
   private handle?: StopableIntervalHandle;
   get data(): ChartData<ChartType> {
     const color = chartPalette(this.config.colors)[0];
-    return { labels: this.labels, datasets: [{ data: this.dataValues, label: 'Wave', backgroundColor: `${color}80`, borderColor: color, fill: this.chartType === 'radar' }] };
+    return { labels: this.labels, datasets: [{ data: this.dataValues, backgroundColor: `${color}80`, borderColor: color, fill: this.chartType === 'radar' }] };
   }
-  get options() { return chartJsOptions(this.config.colors, this.chartType); }
+  get options() { return chartJsOptions(this.config.colors, this.chartType, false); }
   ngOnInit(): void {
     this.handle = this.interval.start(() => {
       this.dataValues = [this.dataValues[this.dataValues.length - 1], ...this.dataValues.slice(0, -1)];

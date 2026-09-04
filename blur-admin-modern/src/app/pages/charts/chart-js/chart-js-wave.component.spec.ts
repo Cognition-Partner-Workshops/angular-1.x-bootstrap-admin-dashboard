@@ -4,6 +4,10 @@ import { ChartJsWaveComponent } from './chart-js-wave.component';
 
 describe('ChartJsWaveComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({ imports: [ChartJsWaveComponent], providers: [provideCharts(withDefaultRegisterables())] }));
+  it('hides the legend', () => {
+    const component = TestBed.createComponent(ChartJsWaveComponent).componentInstance;
+    expect(component.options.plugins?.legend?.display).toBeFalse();
+  });
   it('rotates every 400ms and stops on destroy', fakeAsync(() => {
     const fixture = TestBed.createComponent(ChartJsWaveComponent);
     const component = fixture.componentInstance;
