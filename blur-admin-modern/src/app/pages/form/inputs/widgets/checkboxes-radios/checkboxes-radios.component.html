@@ -1,0 +1,36 @@
+<div class="checkbox-demo-row">
+  <div class="input-demo checkbox-demo row">
+    @for (item of ['Check 1', 'Check 2', 'Check 3']; track item; let i = $index) {
+      <div class="col-md-4">
+        <label class="checkbox-inline custom-checkbox nowrap">
+          <input type="checkbox" [id]="'inlineCheckbox0' + (i + 1)" [value]="'option' + (i + 1)">
+          <span>{{ item }}</span>
+        </label>
+      </div>
+    }
+  </div>
+  <div class="input-demo radio-demo row">
+    @for (item of ['Option 1', 'Option 2', 'Option3']; track item; let i = $index) {
+      <div class="col-md-4">
+        <label class="radio-inline custom-radio nowrap">
+          <input type="radio" name="inlineRadioOptions" [id]="'inlineRadio' + (i + 1)" [value]="'option' + (i + 1)">
+          <span>{{ item }}</span>
+        </label>
+      </div>
+    }
+  </div>
+</div>
+<div>
+  <div class="checkbox disabled">
+    <label class="custom-checkbox nowrap">
+      <input type="checkbox" value="" disabled>
+      <span>Checkbox is disabled</span>
+    </label>
+  </div>
+  <div class="radio disabled">
+    <label class="custom-radio nowrap">
+      <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
+      <span>Disabled option</span>
+    </label>
+  </div>
+</div>

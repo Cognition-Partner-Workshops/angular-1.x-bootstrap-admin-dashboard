@@ -1,0 +1,40 @@
+<div class="datepicker row">
+  <div class="col-xlg-6 col-md-12 col-sm-6">
+    <h4>Inline</h4>
+    <label>
+      Selected date is: <em>{{ dt | date:'fullDate' }}</em>
+    </label>
+    <div class="uib-datepicker-wrap">
+      <ngb-datepicker [(ngModel)]="dt" [showWeekNumbers]="false" />
+    </div>
+  </div>
+  <div class="col-xlg-6 col-md-12 col-sm-6">
+    <h4>Popup</h4>
+    <label>
+      Selected date is: <em>{{ popupDt | date:'fullDate' }}</em>
+    </label>
+    <p class="input-group">
+      <input
+        type="text"
+        class="form-control"
+        ngbDatepicker
+        #d="ngbDatepicker"
+        [(ngModel)]="popupDt"
+        [showWeekNumbers]="false"
+        required
+      >
+      <button type="button" class="btn btn-default" (click)="d.toggle()">
+        <i class="fa fa-calendar"></i>
+      </button>
+    </p>
+    <label>
+      Format: <span class="muted-text">(manual alternate <em></em>)</span>
+    </label>
+    <select class="form-control form-select format-select" [ngModel]="format" (ngModelChange)="setFormat($event)">
+      <option></option>
+      @for (item of formats; track item) {
+        <option [value]="item">{{ item }}</option>
+      }
+    </select>
+  </div>
+</div>

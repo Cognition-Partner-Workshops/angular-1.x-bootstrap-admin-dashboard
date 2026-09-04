@@ -1,0 +1,73 @@
+<div class="form-group">
+  <ng-select
+    class="bootstrap-select form-control"
+    [items]="standardSelectItems"
+    bindLabel="label"
+    placeholder="Standard Select"
+    [searchable]="false"
+    [(ngModel)]="standardItem"
+  />
+</div>
+<div class="form-group">
+  <ng-select
+    class="bootstrap-select form-control"
+    [items]="selectWithSearchItems"
+    bindLabel="label"
+    placeholder="Select With Search"
+    [(ngModel)]="withSearchItem"
+  />
+</div>
+<div class="form-group">
+  <ng-select
+    #disabledSelect
+    class="bootstrap-select form-control"
+    [items]="[]"
+    bindLabel="label"
+    placeholder="Disabled Selection"
+  />
+</div>
+<div class="form-group">
+  <ng-select
+    class="bootstrap-select form-control"
+    [items]="groupedSelectItems | groupSelectpickerOptions: { label: '' }"
+    bindLabel="label"
+    groupBy="group"
+    placeholder="Select With Option Groups"
+    [(ngModel)]="groupedItem"
+  />
+</div>
+<div class="form-group">
+  <ng-select
+    class="bootstrap-select form-control"
+    [items]="groupedBySelectItems"
+    [groupBy]="someGroupFn"
+    bindLabel="name"
+    placeholder="Select With Option Groups Function"
+    [(ngModel)]="groupedByItem"
+  />
+</div>
+<div class="form-group">
+  <ng-select
+    class="bootstrap-select form-control"
+    [items]="multipleSelectItems"
+    bindLabel="label"
+    placeholder="Multiple Select"
+    [multiple]="true"
+    [(ngModel)]="multipleItem"
+  />
+</div>
+<div class="form-group">
+  <div class="input-group">
+    <ng-select
+      class="bootstrap-select form-control"
+      [items]="withDeleteSelectItems"
+      bindLabel="label"
+      placeholder="Select With Clear Button"
+      [multiple]="true"
+      [(ngModel)]="withDeleteItem"
+    />
+    <button type="button" class="btn btn-danger" (click)="withDeleteItem = []">
+      <i class="fa fa-trash"></i>
+    </button>
+  </div>
+</div>
