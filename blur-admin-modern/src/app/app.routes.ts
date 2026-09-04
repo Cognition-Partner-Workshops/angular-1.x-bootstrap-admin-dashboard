@@ -16,6 +16,7 @@ export const routes: Routes = [
       { path: 'components', loadChildren: () => import('./pages/components/components.routes').then((m) => m.COMPONENTS_ROUTES), data: { title: 'Components', sidebarMeta: { icon: 'ion-gear-a', order: 100 } } },
       { path: 'form', loadChildren: () => import('./pages/form/form.routes').then((m) => m.FORM_ROUTES), data: { title: 'Form Elements', sidebarMeta: { icon: 'ion-compose', order: 250 } } },
       { path: 'maps', loadChildren: () => import('./pages/maps/maps.routes').then((m) => m.MAPS_ROUTES), data: { title: 'Maps', sidebarMeta: { icon: 'ion-ios-location-outline', order: 500 } } },
+      { path: 'profile', loadChildren: () => import('./pages/profile/profile.routes').then((m) => m.PROFILE_ROUTES) },
     ],
   },
   { path: '**', redirectTo: 'dashboard' },
