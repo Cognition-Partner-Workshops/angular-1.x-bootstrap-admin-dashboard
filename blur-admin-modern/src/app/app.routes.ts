@@ -12,6 +12,7 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/dashboard/dashboard.routes').then((m) => m.DASHBOARD_ROUTES),
         data: { title: 'Dashboard', sidebarMeta: { icon: 'ion-android-home', order: 0 } },
       },
+      { path: 'profile', loadChildren: () => import('./pages/profile/profile.routes').then((m) => m.PROFILE_ROUTES) },
     ],
   },
   { path: '**', redirectTo: 'dashboard' },
