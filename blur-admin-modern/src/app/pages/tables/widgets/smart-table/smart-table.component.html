@@ -1,8 +1,8 @@
 <div class="horizontal-scroll">
   <div class="mb-3 select-page-size-wrap">
     <label>Rows on page
-      <select class="form-select form-select-sm" title="Rows on page" [value]="pageSize()" (change)="setPageSize($any($event.target).value)">
-        @for (size of pageSizes; track size) { <option [value]="size">{{ size }}</option> }
+      <select class="form-select form-select-sm" title="Rows on page" [ngModel]="pageSize()" (ngModelChange)="setPageSize($event)">
+        @for (size of pageSizes; track size) { <option [ngValue]="size" [selected]="size === pageSize()">{{ size }}</option> }
       </select>
     </label>
   </div>

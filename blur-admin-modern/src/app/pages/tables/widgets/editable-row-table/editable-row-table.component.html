@@ -1,42 +1,44 @@
 <div class="add-row-editable-table"><button class="btn btn-primary" (click)="addUser()">Add row</button></div>
 <table class="table table-bordered table-hover table-sm table-condensed">
-  <tr><td></td><td>Name</td><td>Status</td><td>Group</td><td>Actions</td></tr>
-  @for (user of users(); track user.id; let i = $index) {
-    <tr class="editable-row">
-      <td>{{ i }}</td>
-      <td>
-        @if (editing() === user) {
-          <input class="form-control form-control-sm" required [ngModel]="draft().name" (ngModelChange)="setName($event)">
-        } @else {
-          <span [class.editable-empty]="!user.name">{{ user.name || 'empty' }}</span>
-        }
-      </td>
-      <td class="select-td">
-        @if (editing() === user) {
-          <select class="form-select form-select-sm" [ngModel]="draft().status" (ngModelChange)="setStatus($event)">
-            <option [ngValue]="null" [selected]="draft().status === null">Not set</option>
-            @for (status of statuses; track status.value) { <option [ngValue]="status.value" [selected]="draft().status === status.value">{{ status.text }}</option> }
-          </select>
-        } @else { {{ showStatus(user) }} }
-      </td>
-      <td class="select-td">
-        @if (editing() === user) {
-          <select class="form-select form-select-sm" [ngModel]="draft().group" (ngModelChange)="setGroup($event)">
-            <option [ngValue]="null" [selected]="draft().group === null">Not set</option>
-            @for (group of groups; track group.id) { <option [ngValue]="group.id" [selected]="draft().group === group.id">{{ group.text }}</option> }
-          </select>
-        } @else { {{ showGroup(user) }} }
-      </td>
-      <td>
-        @if (editing() === user) {
-          <form class="form-buttons form-inline d-inline-flex gap-1" (ngSubmit)="save()">
-            <button type="submit" class="btn btn-primary editable-table-button btn-xs" [disabled]="!draft().name.trim()">Save</button>
-            <button type="button" class="btn btn-default editable-table-button btn-xs" (click)="cancel()">Cancel</button>
-          </form>
-        } @else {
-          <div class="buttons"><button class="btn btn-primary editable-table-button btn-xs" (click)="startEdit(user)">Edit</button><button class="btn btn-danger editable-table-button btn-xs" (click)="removeUser(i)">Delete</button></div>
-        }
-      </td>
-    </tr>
-  }
+  <thead><tr><td></td><td>Name</td><td>Status</td><td>Group</td><td>Actions</td></tr></thead>
+  <tbody>
+    @for (user of users(); track user.id; let i = $index) {
+      <tr class="editable-row">
+        <td>{{ i }}</td>
+        <td>
+          @if (editing() === user) {
+            <input class="form-control form-control-sm" required [ngModel]="draft().name" (ngModelChange)="setName($event)">
+          } @else {
+            <span [class.editable-empty]="!user.name">{{ user.name || 'empty' }}</span>
+          }
+        </td>
+        <td class="select-td">
+          @if (editing() === user) {
+            <select class="form-select form-select-sm" [ngModel]="draft().status" (ngModelChange)="setStatus($event)">
+              <option [ngValue]="null" [selected]="draft().status === null">Not set</option>
+              @for (status of statuses; track status.value) { <option [ngValue]="status.value" [selected]="draft().status === status.value">{{ status.text }}</option> }
+            </select>
+          } @else { {{ showStatus(user) }} }
+        </td>
+        <td class="select-td">
+          @if (editing() === user) {
+            <select class="form-select form-select-sm" [ngModel]="draft().group" (ngModelChange)="setGroup($event)">
+              <option [ngValue]="null" [selected]="draft().group === null">Not set</option>
+              @for (group of groups; track group.id) { <option [ngValue]="group.id" [selected]="draft().group === group.id">{{ group.text }}</option> }
+            </select>
+          } @else { {{ showGroup(user) }} }
+        </td>
+        <td>
+          @if (editing() === user) {
+            <form class="form-buttons form-inline d-inline-flex gap-1" (ngSubmit)="save()">
+              <button type="submit" class="btn btn-primary editable-table-button btn-xs" [disabled]="!draft().name.trim()">Save</button>
+              <button type="button" class="btn btn-default editable-table-button btn-xs" (click)="cancel()">Cancel</button>
+            </form>
+          } @else {
+            <div class="buttons"><button class="btn btn-primary editable-table-button btn-xs" (click)="startEdit(user)">Edit</button><button class="btn btn-danger editable-table-button btn-xs" (click)="removeUser(i)">Delete</button></div>
+          }
+        </td>
+      </tr>
+    }
+  </tbody>
 </table>

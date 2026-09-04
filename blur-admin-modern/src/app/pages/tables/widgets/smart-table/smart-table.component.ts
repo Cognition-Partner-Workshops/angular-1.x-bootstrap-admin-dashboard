@@ -47,8 +47,8 @@ export class SmartTableComponent {
     this.page.set(1);
   }
 
-  setPageSize(value: string): void {
-    this.pageSize.set(Number(value));
+  setPageSize(value: number): void {
+    this.pageSize.set(value);
     this.page.set(1);
   }
 }

@@ -10,6 +10,8 @@ describe('SmartTableComponent', () => {
     expect(fixture.nativeElement.querySelectorAll('tbody tr').length).toBe(10);
     expect(fixture.nativeElement.querySelector('tbody tr td').textContent.trim()).toBe('1');
     expect(fixture.nativeElement.querySelector('th').classList).toContain('st-sort-ascent');
+    const select = fixture.nativeElement.querySelector('select') as HTMLSelectElement;
+    expect(select.selectedOptions[0].textContent?.trim()).toBe('10');
   });
 
   it('sorts, filters, changes page size, and paginates', () => {
@@ -31,7 +33,7 @@ describe('SmartTableComponent', () => {
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelectorAll('tbody tr').length).toBe(2);
     const select = fixture.nativeElement.querySelector('select') as HTMLSelectElement;
-    select.value = '5';
+    select.value = Array.from(select.options).find((option) => option.textContent?.trim() === '5')?.value ?? '';
     select.dispatchEvent(new Event('change'));
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelectorAll('tbody tr').length).toBe(2);

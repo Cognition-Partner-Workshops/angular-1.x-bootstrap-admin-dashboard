@@ -8,5 +8,6 @@ describe('ResponsiveTableComponent', () => {
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('.table-responsive')).toBeTruthy();
     expect(fixture.nativeElement.querySelectorAll('tr').length).toBe(6);
+    expect(fixture.nativeElement.querySelectorAll('tbody tr').length).toBe(5);
   });
 });

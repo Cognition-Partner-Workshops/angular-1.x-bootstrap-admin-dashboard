@@ -7,7 +7,8 @@ describe('EditableRowTableComponent', () => {
   it('renders users and resolves legacy status/group labels', () => {
     const fixture = TestBed.createComponent(EditableRowTableComponent);
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelectorAll('tbody tr, table > tr').length).toBe(11);
+    expect(fixture.nativeElement.querySelectorAll('tbody tr').length).toBe(10);
+    expect(fixture.nativeElement.querySelectorAll('tbody tr').length).toBe(10);
     expect(fixture.nativeElement.textContent).toContain('Esther Vang');
     expect(fixture.nativeElement.textContent).toContain('Buckley Hopkins');
     const rows = fixture.nativeElement.querySelectorAll('tr');
