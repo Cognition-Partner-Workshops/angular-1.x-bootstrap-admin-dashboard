@@ -13,6 +13,7 @@ export const routes: Routes = [
         data: { title: 'Dashboard', sidebarMeta: { icon: 'ion-android-home', order: 0 } },
       },
       { path: 'charts', loadChildren: () => import('./pages/charts/charts.routes').then((m) => m.CHARTS_ROUTES), data: { title: 'Charts', sidebarMeta: { icon: 'ion-stats-bars', order: 150 } } },
+      { path: 'components', loadChildren: () => import('./pages/components/components.routes').then((m) => m.COMPONENTS_ROUTES), data: { title: 'Components', sidebarMeta: { icon: 'ion-gear-a', order: 100 } } },
     ],
   },
   { path: '**', redirectTo: 'dashboard' },

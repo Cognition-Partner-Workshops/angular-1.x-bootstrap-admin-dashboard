@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-6">
+    <div baPanel title="Basic Action" baPanelClass="with-scroll tree-panel">
+      <div class="row">
+        <div class="col-sm-4"><div class="control-side text-center">
+          <div><button class="btn btn-primary" (click)="addNewNode()">Add</button></div>
+          <div><button class="btn btn-primary" (click)="collapse()">Collapse All</button></div>
+          <div><button class="btn btn-primary" (click)="expand()">Expand All</button></div>
+          <div><button class="btn btn-primary" (click)="refresh()">Refresh</button></div>
+        </div></div>
+        <div class="col-sm-8"><ba-tree [nodes]="treeData()" (selectedChange)="selected = $event"></ba-tree></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6"><div baPanel title="Drag & Drop" baPanelClass="with-scroll tree-panel"><ba-tree [nodes]="dragData" [draggable]="true"></ba-tree></div></div>
+</div>
