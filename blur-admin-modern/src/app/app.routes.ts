@@ -12,6 +12,7 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/dashboard/dashboard.routes').then((m) => m.DASHBOARD_ROUTES),
         data: { title: 'Dashboard', sidebarMeta: { icon: 'ion-android-home', order: 0 } },
       },
+      { path: 'charts', loadChildren: () => import('./pages/charts/charts.routes').then((m) => m.CHARTS_ROUTES), data: { title: 'Charts', sidebarMeta: { icon: 'ion-stats-bars', order: 150 } } },
     ],
   },
   { path: '**', redirectTo: 'dashboard' },
