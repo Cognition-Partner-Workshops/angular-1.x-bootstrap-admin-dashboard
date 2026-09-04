@@ -1,0 +1,23 @@
+<div class="task-todo-container" [class.transparent]="transparent">
+  <input type="text" class="form-control task-todo" placeholder="Task to do.."
+         (keyup)="addToDoItem($event)" [(ngModel)]="newTodoText"/>
+  <i (click)="addToDoItem(undefined, true)" class="add-item-icon ion-plus-round"></i>
+  <div class="box-shadow-border"></div>
+  <ul class="todo-list" cdkDropList (cdkDropListDropped)="drop($event)">
+    @for (item of todoList(); track item) {
+      @if (!item.deleted) {
+        <li cdkDrag
+            [class.checked]="item.checked" [class.active]="item.active"
+            (mouseenter)="item.active = true" (mouseleave)="item.active = false">
+          <div class="blur-container"><div class="blur-box"></div></div>
+          <i class="mark" [style.background-color]="item.color"></i>
+          <label class="todo-checkbox custom-checkbox custom-input-success">
+            <input type="checkbox" [(ngModel)]="item.checked">
+            <span class="cut-with-dots">{{ item.text }}</span>
+          </label>
+          <i class="remove-todo ion-ios-close-empty" (click)="item.deleted = true"></i>
+        </li>
+      }
+    }
+  </ul>
+</div>

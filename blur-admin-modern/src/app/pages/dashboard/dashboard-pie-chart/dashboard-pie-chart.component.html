@@ -1,0 +1,25 @@
+<div class="row pie-charts">
+  @for (chart of charts; track chart.description; let i = $index) {
+    <div class="pie-chart-item-container">
+      <div baPanel>
+        <div class="pie-chart-item">
+          <div class="chart" [attr.rel]="chart.color" [attr.data-percent]="chart.percent">
+            <svg [attr.width]="size" [attr.height]="size" [attr.viewBox]="'0 0 ' + size + ' ' + size">
+              <circle class="ring"
+                      [attr.cx]="size / 2" [attr.cy]="size / 2" [attr.r]="radius"
+                      fill="none" [attr.stroke]="chart.color" [attr.stroke-width]="lineWidth" stroke-linecap="round"
+                      [attr.stroke-dasharray]="circumference" [attr.stroke-dashoffset]="dashOffset(displayed()[i])"
+                      [attr.transform]="'rotate(-90 ' + size / 2 + ' ' + size / 2 + ')'"></circle>
+            </svg>
+            <span class="percent">{{ displayed()[i] | number: '1.0-0' }}</span>
+          </div>
+          <div class="description">
+            <div>{{ chart.description }}</div>
+            <div class="description-stats">{{ chart.stats }}</div>
+          </div>
+          <i class="chart-icon i-{{ chart.icon }}"></i>
+        </div>
+      </div>
+    </div>
+  }
+</div>
