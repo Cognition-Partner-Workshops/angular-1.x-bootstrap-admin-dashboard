@@ -27,6 +27,11 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/ui/ui.routes').then((m) => m.UI_ROUTES),
         data: { title: 'UI Features', sidebarMeta: { icon: 'ion-android-laptop', order: 200 } },
       },
+      {
+        path: 'ui',
+        loadChildren: () => import('./pages/ui/ui.routes').then((m) => m.UI_ROUTES),
+        data: { title: 'UI Features', sidebarMeta: { icon: 'ion-android-laptop', order: 200 } },
+      },
     ],
   },
   { path: '**', redirectTo: 'dashboard' },

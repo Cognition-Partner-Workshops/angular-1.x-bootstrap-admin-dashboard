@@ -1,0 +1,61 @@
+<div class="widgets">
+  <div class="row">
+    <div class="col-md-6" baPanel title="Basic" baPanelClass="with-scroll">
+      <div>
+        <div class="alert bg-success"><strong>Well done!</strong> You successfully read this important alert message.</div>
+        <div class="alert bg-info"><strong>Heads up!</strong> This alert needs your attention, but it's not super important.</div>
+        <div class="alert bg-warning"><strong>Warning!</strong> Better check yourself, you're not looking too good.</div>
+        <div class="alert bg-danger"><strong>Oh snap!</strong> Change a few things up and try submitting again.</div>
+      </div>
+    </div>
+
+    <div class="col-md-6" baPanel title="Dismissible alerts" baPanelClass="with-scroll">
+      <div>
+        @if (!dismissed['success']) {
+          <div class="alert bg-success closeable" role="alert"><button type="button" class="close" aria-label="Close" (click)="dismiss('success')"><span aria-hidden="true">&times;</span></button>
+            <strong>Well done!</strong> You successfully read this important alert message.
+          </div>
+        }
+        @if (!dismissed['info']) {
+          <div class="alert bg-info closeable" role="alert"><button type="button" class="close" aria-label="Close" (click)="dismiss('info')"><span aria-hidden="true">&times;</span></button>
+            <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+          </div>
+        }
+        @if (!dismissed['warning']) {
+          <div class="alert bg-warning closeable" role="alert"><button type="button" class="close" aria-label="Close" (click)="dismiss('warning')"><span aria-hidden="true">&times;</span></button>
+            <strong>Warning!</strong> Better check yourself, you're not looking too good.
+          </div>
+        }
+        @if (!dismissed['danger']) {
+          <div class="alert bg-danger closeable" role="alert"><button type="button" class="close" aria-label="Close" (click)="dismiss('danger')"><span aria-hidden="true">&times;</span></button>
+            <strong>Oh snap!</strong> Change a few things up and try submitting again.
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6" baPanel title="Links in alerts" baPanelClass="with-scroll">
+      <div>
+        <div class="alert bg-success"><strong>Well done!</strong> You successfully read <a class="alert-link" href="#" (click)="$event.preventDefault()">this important alert message</a>.</div>
+        <div class="alert bg-info"><strong>Heads up!</strong> This <a class="alert-link" href="#" (click)="$event.preventDefault()">alert needs your attention</a>, but it's not super important.</div>
+        <div class="alert bg-warning"><strong>Warning!</strong> Better check yourself, you're <a class="alert-link" href="#" (click)="$event.preventDefault()">not looking too good</a>.</div>
+        <div class="alert bg-danger"><strong>Oh snap!</strong> <a class="alert-link" href="#" (click)="$event.preventDefault()">Change a few things up</a> and try submitting again.</div>
+      </div>
+    </div>
+
+    <div class="col-md-6" baPanel title="Composite alerts" baPanelClass="with-scroll">
+      <div>
+        <div class="alert bg-warning">
+          <h4>Warning!</h4>
+          <strong>Pay attention.</strong> Change a few things up and try submitting again.
+          <div class="control-alert">
+            <button type="button" class="btn btn-danger">Pay Attention</button>
+            <button type="button" class="btn btn-primary">Ignore</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
