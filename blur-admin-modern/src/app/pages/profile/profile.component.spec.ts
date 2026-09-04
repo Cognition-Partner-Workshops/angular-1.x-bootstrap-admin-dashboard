@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FileReaderService } from '../../theme';
+import { ProfileModalComponent } from './profile-modal.component';
 import { ProfileComponent, SocialProfile } from './profile.component';
 
 describe('ProfileComponent', () => {
@@ -47,6 +48,13 @@ describe('ProfileComponent', () => {
     expect(fixture.nativeElement.querySelectorAll('.sn-link.connected').length).toBe(4);
   });
 
+  it('matches the legacy select defaults', () => {
+    const selects = fixture.nativeElement.querySelectorAll('select') as NodeListOf<HTMLSelectElement>;
+
+    expect(selects[0].value).toBe('Web Development');
+    expect(selects[1].selectedOptions[0].textContent?.trim()).toBe('Standard Select');
+  });
+
   it('removes the profile picture and hides the remove icon', () => {
     component.removePicture();
     fixture.detectChanges();
@@ -69,6 +77,10 @@ describe('ProfileComponent', () => {
     modal.open.and.returnValue({ result: Promise.resolve('https://x') } as ReturnType<NgbModal['open']>);
 
     component.showModal(item);
+    expect(modal.open).toHaveBeenCalledWith(ProfileModalComponent, {
+      animation: false,
+      windowClass: 'profile-modal',
+    });
     await fixture.whenStable();
 
     expect(item.href).toBe('https://x');

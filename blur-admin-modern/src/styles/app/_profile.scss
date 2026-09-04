@@ -267,3 +267,69 @@ a.sn-link {
     height: 1.6em;
   }
 }
+
+.profile-modal {
+  text-align: center;
+
+  &::before {
+    display: inline-block;
+    vertical-align: middle;
+    content: ' ';
+    height: 100%;
+  }
+
+  .modal-dialog {
+    display: inline-block;
+    text-align: left;
+    margin: 0 auto;
+  }
+
+  .modal-content {
+    border-radius: 5px;
+    border: none;
+    background: #fff;
+    color: $dropdown-text;
+  }
+
+  .modal-header {
+    border: none;
+    display: block;
+    color: $label-text;
+
+    .modal-title {
+      color: $dropdown-text;
+      margin: 0;
+    }
+
+    .close {
+      float: right;
+      margin-top: -5px;
+      padding: 0;
+    }
+  }
+
+  .modal-body p {
+    color: $dropdown-text;
+  }
+
+  .modal-dialog .form-control {
+    color: $github-color;
+    background-color: transparent;
+    border: 1px solid #e7e7e7;
+  }
+
+  .modal-footer {
+    border: none;
+    padding-top: 0;
+  }
+
+  .sn-link-close {
+    color: $dropdown-text;
+    font-size: 30px;
+    line-height: 1;
+
+    &:hover {
+      color: $danger;
+    }
+  }
+}

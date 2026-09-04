@@ -22,7 +22,6 @@ export interface SocialProfile {
   standalone: true,
   imports: [FormsModule, BaPanelComponent, NgFileSelectDirective],
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.scss',
 })
 export class ProfileComponent {
   @ViewChild('uploadFile') private uploadFile?: ElementRef<HTMLInputElement>;
@@ -94,7 +93,7 @@ export class ProfileComponent {
   }
 
   showModal(item: SocialProfile): void {
-    this.modal.open(ProfileModalComponent, { animation: false }).result.then(
+    this.modal.open(ProfileModalComponent, { animation: false, windowClass: 'profile-modal' }).result.then(
       (link) => item.href = link,
       () => {},
     );
